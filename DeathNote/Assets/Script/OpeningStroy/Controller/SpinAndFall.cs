@@ -5,17 +5,18 @@ using UnityEngine;
 
 public class SpinAndFall : MonoBehaviour
 {
+    public OpeningManager manager;
+    public GameObject book;
+    public GameObject scriptBox;
+
     float time;
     bool go = true;
+    bool show = false;
     Vector2 originScale;
     float rotateSpeed = 250.0f;
     RectTransform rectTransform;
     Vector2 initialPosition;
     Vector2 targetPosition;
-
-    public OpeningManager manager;
-    public GameObject book;
-    public GameObject scriptBox;
 
     // Start is called before the first frame update
     void Start()
@@ -60,8 +61,9 @@ public class SpinAndFall : MonoBehaviour
     public void disappear()
     {
         book.SetActive(false);
-        if (!scriptBox.activeSelf)
+        if(!show)
         {
+            show = true;
             manager.BoxAppear();
         }
     }
