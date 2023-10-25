@@ -6,8 +6,11 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Events;
+<<<<<<< HEAD
 
 // 페이지 넘기는 방식을 나타내는 열거형
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
 public enum FlipMode
 {
     RightToLeft,
@@ -19,11 +22,19 @@ public class Book : MonoBehaviour {
     [SerializeField]
     RectTransform BookPanel;
     public Sprite background;
+<<<<<<< HEAD
     public Sprite[] bookPages;  // 책 페이지의 스프라이트 배열
     public bool interactable = true;  // 책 페이지가 상호작용 가능한지 여부
     public bool enableShadowEffect = true;  // 그림자 효과 활성화 여부
     public int currentPage = 0;  // 현재 페이지 번호
     // 총 페이지 수를 반환하는 속성
+=======
+    public Sprite[] bookPages;
+    public bool interactable=true;
+    public bool enableShadowEffect=true;
+    //represent the index of the sprite shown in the right page
+    public int currentPage = 0;
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public int TotalPageCount
     {
         get { return bookPages.Length; }
@@ -69,8 +80,11 @@ public class Book : MonoBehaviour {
     //current flip mode
     FlipMode mode;
 
+<<<<<<< HEAD
     // 초기 설정
     // 캔버스, 책 패널, 그림자, 페이지 크기 등을 설정
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     void Start()
     {
         if (!canvas) canvas=GetComponentInParent<Canvas>();
@@ -100,7 +114,10 @@ public class Book : MonoBehaviour {
 
     }
 
+<<<<<<< HEAD
     // 페이지를 넘길 때 중요한 좌표를 계산하는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     private void CalcCurlCriticalPoints()
     {
         sb = new Vector3(0, -BookPanel.rect.height / 2);
@@ -113,7 +130,10 @@ public class Book : MonoBehaviour {
         radius2 = Mathf.Sqrt(pageWidth * pageWidth + pageHeight * pageHeight);
     }
 
+<<<<<<< HEAD
     // 마우스의 화면 좌표를 책의 로컬 좌표로 변환하는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public Vector3 transformPoint(Vector3 mouseScreenPos)
     {
         if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
@@ -142,9 +162,12 @@ public class Book : MonoBehaviour {
             return localPos;
         }
     }
+<<<<<<< HEAD
 
     // 매 프레임마다 실행되는 함수
     // 페이지를 드래그 중이고 상호 작용 가능한 경우 책을 업데이트
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     void Update()
     {
         if (pageDragging && interactable)
@@ -152,9 +175,12 @@ public class Book : MonoBehaviour {
             UpdateBook();
         }
     }
+<<<<<<< HEAD
 
     // 책을 업데이트하는 함수
     // 마우스의 위치에 따라 책 페이지를 넘김
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public void UpdateBook()
     {
         f = Vector3.Lerp(f, transformPoint(Input.mousePosition), Time.deltaTime * 10);
@@ -200,7 +226,10 @@ public class Book : MonoBehaviour {
 
         ShadowLTR.rectTransform.SetParent(Left.rectTransform, true);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public void UpdateBookRTLToPoint(Vector3 followLocation)
     {
         mode = FlipMode.RightToLeft;
@@ -287,8 +316,11 @@ public class Book : MonoBehaviour {
             c = r2;
         return c;
     }
+<<<<<<< HEAD
 
     // 오른쪽 페이지를 특정 포인트로 드래그하는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public void DragRightPageToPoint(Vector3 point)
     {
         if (currentPage >= bookPages.Length) return;
@@ -318,16 +350,22 @@ public class Book : MonoBehaviour {
         if (enableShadowEffect) Shadow.gameObject.SetActive(true);
         UpdateBookRTLToPoint(f);
     }
+<<<<<<< HEAD
 
     // 마우스로 오른쪽 페이지를 드래그할 때 실행되는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public void OnMouseDragRightPage()
     {
         if (interactable)
         DragRightPageToPoint(transformPoint(Input.mousePosition));
         
     }
+<<<<<<< HEAD
 
     // 왼쪽 페이지를 특정 포인트로 드래그하는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public void DragLeftPageToPoint(Vector3 point)
     {
         if (currentPage <= 0) return;
@@ -356,23 +394,32 @@ public class Book : MonoBehaviour {
         if (enableShadowEffect) ShadowLTR.gameObject.SetActive(true);
         UpdateBookLTRToPoint(f);
     }
+<<<<<<< HEAD
 
     // 마우스로 왼쪽 페이지를 드래그할 때 실행되는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public void OnMouseDragLeftPage()
     {
         if (interactable)
         DragLeftPageToPoint(transformPoint(Input.mousePosition));
         
     }
+<<<<<<< HEAD
 
     // 마우스 버튼을 놓았을 때 실행되는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public void OnMouseRelease()
     {
         if (interactable)
             ReleasePage();
     }
+<<<<<<< HEAD
 
     // 페이지 드래그를 종료하는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public void ReleasePage()
     {
         if (pageDragging)
@@ -389,15 +436,21 @@ public class Book : MonoBehaviour {
         }
     }
     Coroutine currentCoroutine;
+<<<<<<< HEAD
 
     // 페이지 스프라이트를 업데이트하는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     void UpdateSprites()
     {
         LeftNext.sprite= (currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage-1] : background;
         RightNext.sprite=(currentPage>=0 &&currentPage<bookPages.Length) ? bookPages[currentPage] : background;
     }
+<<<<<<< HEAD
 
     // 페이지를 앞쪽으로 부드럽게 넘기는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public void TweenForward()
     {
         if(mode== FlipMode.RightToLeft)
@@ -405,8 +458,11 @@ public class Book : MonoBehaviour {
         else
         currentCoroutine = StartCoroutine(TweenTo(ebr, 0.15f, () => { Flip(); }));
     }
+<<<<<<< HEAD
 
     // 페이지를 넘기는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     void Flip()
     {
         if (mode == FlipMode.RightToLeft)
@@ -426,8 +482,11 @@ public class Book : MonoBehaviour {
         if (OnFlip != null)
             OnFlip.Invoke();
     }
+<<<<<<< HEAD
 
     // 페이지를 뒤쪽으로 부드럽게 넘기는 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public void TweenBack()
     {
         if (mode == FlipMode.RightToLeft)
@@ -462,8 +521,11 @@ public class Book : MonoBehaviour {
                 ));
         }
     }
+<<<<<<< HEAD
 
     // 페이지를 특정 위치로 부드럽게 이동시키는 코루틴 함수
+=======
+>>>>>>> d0b89229b8a9dd843f8720c94fd92202d28dfc56
     public IEnumerator TweenTo(Vector3 to, float duration, System.Action onFinish)
     {
         int steps = (int)(duration / 0.025f);
