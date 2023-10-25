@@ -39,7 +39,7 @@ public class Interactive : MonoBehaviour
             transform.position = currentMousePosition;
         }
 
-if (Input.GetMouseButtonUp(0) && isDragging)
+        if (Input.GetMouseButtonUp(0) && isDragging)
         {
             isDragging = false;
             rb.isKinematic = false;
@@ -48,16 +48,5 @@ if (Input.GetMouseButtonUp(0) && isDragging)
 
 
         previousMousePosition = currentMousePosition;
-    }
-
-    // 씬 전환을 위한 메서드
-    public class ChangeScene : MonoBehaviour
-    {
-        public string targetSceneName;
-
-        public void GoToTargetScene()
-        {
-            SceneManager.LoadScene(targetSceneName);
-        }
     }
 }
