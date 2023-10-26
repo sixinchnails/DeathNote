@@ -46,6 +46,7 @@ public class AutoFlip : MonoBehaviour
     public void FlipRightPage()
     {
         // 이미 넘기는 중이거나 마지막 페이지인 경우 리턴
+        GetComponent<AudioSource>().Play();
         if (isFlipping) return;
         if (ControledBook.currentPage >= ControledBook.TotalPageCount) return;
 
@@ -64,6 +65,7 @@ public class AutoFlip : MonoBehaviour
     public void FlipLeftPage()
     {
         // 이미 넘기는 중이거나 첫 페이지인 경우 리턴
+        GetComponent<AudioSource>().Play();
         if (isFlipping) return;
         if (ControledBook.currentPage <= 0) return;
 
