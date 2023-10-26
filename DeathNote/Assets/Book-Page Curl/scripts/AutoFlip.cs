@@ -28,6 +28,7 @@ public class AutoFlip : MonoBehaviour {
     }
     public void FlipRightPage()
     {
+        GetComponent<AudioSource>().Play();
         if (isFlipping) return;
         if (ControledBook.currentPage >= ControledBook.TotalPageCount) return;
         isFlipping = true;
@@ -41,6 +42,7 @@ public class AutoFlip : MonoBehaviour {
     }
     public void FlipLeftPage()
     {
+        GetComponent<AudioSource>().Play();
         if (isFlipping) return;
         if (ControledBook.currentPage <= 0) return;
         isFlipping = true;
