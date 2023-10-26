@@ -42,18 +42,6 @@ public class DoongDoong : MonoBehaviour
                 up = true;
             }
         }
-        //if (rectTransform.anchoredPosition.y >= targetPosition.y)
-        //{
-        //Debug.Log(rectTransform.anchoredPosition + " " + targetPosition.y);
-        //    //아래로
-        //    rectTransform.anchoredPosition = Vector2.MoveTowards(rectTransform.anchoredPosition, initialPosition, Time.deltaTime * 50.0f);
-        //}
-        //else
-        //{
-        //    //위로
-        //    rectTransform.anchoredPosition  = Vector2.MoveTowards(rectTransform.anchoredPosition, targetPosition, Time.deltaTime * 50.0f);
-
-        //}
         time += Time.deltaTime;
     }
 }
