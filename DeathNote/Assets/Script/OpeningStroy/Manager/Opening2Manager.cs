@@ -18,6 +18,10 @@ public class Opening2Manager : MonoBehaviour
 
     int talkIdx = -1;
 
+    private void Awake()
+    {
+        dark.SetActive(false);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +57,7 @@ public class Opening2Manager : MonoBehaviour
             {
                 content2.text += str[i];
             }
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.06f);
         }
     }
     void Talk()

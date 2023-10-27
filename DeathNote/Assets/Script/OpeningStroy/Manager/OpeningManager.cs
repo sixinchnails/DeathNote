@@ -68,10 +68,12 @@ public class OpeningManager : MonoBehaviour
         nickname2.text = null;
         int storyId = talkManager.getStoryId();
         TalkData data = talkManager.getTalk(storyId, talkIdx);
-
-        if(talkIdx == 2)
+        if(talkIdx == 1)
         {
             book.SetActive(false);
+        }
+        if(talkIdx == 2)
+        {
             rBook.SetActive(true);
         }
 
