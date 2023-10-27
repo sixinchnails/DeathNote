@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
-public class OpeningManager : MonoBehaviour
+public class Opening2Manager : MonoBehaviour
 {
     public TalkManager talkManager;
     public GameObject dark;
@@ -15,17 +13,19 @@ public class OpeningManager : MonoBehaviour
     public Text content;
     public Text nickname2; //사신
     public Text content2;
-    public GameObject book;
-    public GameObject rBook;
     public GoBackR goBackR;
     public GoBackM goBackM;
 
-    int talkIdx=-1;
+    int talkIdx = -1;
 
-    void Awake()
+    private void Awake()
     {
-        rBook.SetActive(false);
         dark.SetActive(false);
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        BoxAppear();
     }
 
     public void BoxAppear()
@@ -47,7 +47,7 @@ public class OpeningManager : MonoBehaviour
     {
         content.text = null;
         content2.text = null;
-        for(int i=0; i<str.Length; i++)
+        for (int i = 0; i < str.Length; i++)
         {
             if (data == 1)
             {
@@ -57,7 +57,7 @@ public class OpeningManager : MonoBehaviour
             {
                 content2.text += str[i];
             }
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.06f);
         }
     }
     void Talk()
@@ -68,38 +68,35 @@ public class OpeningManager : MonoBehaviour
         nickname2.text = null;
         int storyId = talkManager.getStoryId();
         TalkData data = talkManager.getTalk(storyId, talkIdx);
-        if(talkIdx == 1)
-        {
-            book.SetActive(false);
-        }
-        if(talkIdx == 2)
-        {
-            rBook.SetActive(true);
-        }
-
-        if (data == null) 
+        if (data == null)
         {
             scriptBox.SetBool("isShow", false);
-            //대화 끝났으면 튜토리얼으로 넘어간다.
+            //대화 끝났으면 다음 화면으로 넘어간다.
             //SceneManager.LoadScene("");
             return;
         }
-        if(data.id == 0)
+        if (data.id == 0)
         {
             nickname.text = "";
         }
-        else if(data.id == 1)
+        else if (data.id == 1)
         {
             goBackR.back();
             goBackM.forward();
             nickname.text = "사용자 닉네임 들어갈거임";
         }
-        else if(data.id == 2)
+        else if (data.id == 2)
         {
             goBackR.forward();
             goBackM.back();
             nickname2.text = "사신";
         }
         StartCoroutine(Typing(data.content, data.id));
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
