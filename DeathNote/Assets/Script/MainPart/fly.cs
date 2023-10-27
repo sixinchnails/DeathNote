@@ -18,6 +18,6 @@ public class fly : MonoBehaviour
     void Update()
     {
         rectTransform.anchoredPosition = originalPosition + new Vector2(0.0f, Mathf.Abs(Mathf.Sin(Time.time) * amplitude) * floatStrength);
-        // anchoredPosition을 사용하여 위치를 변경합니다.
+        // anchoredPosition을 사용하여 위치를 변경합니다.d
     }
 }
