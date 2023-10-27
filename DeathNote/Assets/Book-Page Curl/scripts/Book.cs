@@ -24,6 +24,8 @@ public class Book : MonoBehaviour {
     public bool enableShadowEffect = true;  // 그림자 효과 활성화 여부
     public int currentPage = 0;  // 현재 페이지 번호
     // 총 페이지 수를 반환하는 속성
+    public Text pageNumberText;
+
 
     public int TotalPageCount
     {
