@@ -15,6 +15,7 @@ import javax.persistence.*;
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
+    @Column(name = "user_id")
     private Long id;
 
     @Column(name = "user_name", unique = true, length = 8) // 유일 하고, 최대 길이 8
