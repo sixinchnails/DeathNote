@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 // 필요한 컴포넌트를 자동으로 추가합니다.
 [RequireComponent(typeof(Book))]
@@ -11,12 +12,11 @@ public class AutoFlip : MonoBehaviour
     public float PageFlipTime = 1;           // 페이지를 넘기는 데 걸리는 시간
     public float TimeBetweenPages = 1;       // 페이지를 넘길 때마다 기다리는 시간
     public float DelayBeforeStarting = 0;    // 시작하기 전에 기다리는 시간
-
     public bool AutoStartFlip = true;          // 시작할 때 자동으로 페이지를 넘길지의 여부
     public Book ControledBook;               // 제어하는 책 객체
     public int AnimationFramesCount = 40;    // 애니메이션 프레임 수
     bool isFlipping = false;                 // 현재 페이지를 넘기는 중인지 여부
-
+    public Text rightPageNumberText;
     // 시작할 때 실행되는 함수
     void Start()
     {
@@ -34,7 +34,19 @@ public class AutoFlip : MonoBehaviour
     void PageFlipped()
     {
         isFlipping = false;  // 넘기기 상태를 false로 변경
+        UpdatePageNumber();
     }
+
+    // 페이지 번호를 갱신하는 함수
+    void UpdatePageNumber()
+    {
+        if (rightPageNumberText)
+        {
+            int pageNumber = (ControledBook.currentPage / 2) + 1;
+            rightPageNumberText.text = pageNumber.ToString();
+        }
+    }
+
 
     // 페이지 넘기기를 시작하는 함수
     public void StartFlipping()
@@ -61,6 +73,7 @@ public class AutoFlip : MonoBehaviour
         float dx = (xl)*2 / AnimationFramesCount;
         StartCoroutine(FlipRTL(xc, xl, h, frameTime, dx));
     }
+
     // 왼쪽 페이지를 넘기는 함수
     public void FlipLeftPage()
     {
