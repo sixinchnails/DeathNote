@@ -72,7 +72,7 @@ public class Opening2Manager : MonoBehaviour
         {
             scriptBox.SetBool("isShow", false);
             //대화 끝났으면 다음 화면으로 넘어간다.
-            //SceneManager.LoadScene("");
+            SceneManager.LoadScene("Main");
             return;
         }
         if (data.id == 0)

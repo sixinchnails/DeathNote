@@ -19,15 +19,15 @@ public class TalkManager : MonoBehaviour
     void GenerateData()
     {
         List<TalkData> openingData =  new List<TalkData> {
-            new TalkData(1, "『···이게 뭐지』"),
-            new TalkData(2, "『앗, 떨어트렸슴다』"),
-            new TalkData(1, "『다 찢어져있네』"),
+            new TalkData(1, "『··· 이게 뭐지』"),
+            new TalkData(2, "『앗! 떨어트렸다』"),
+            new TalkData(1, "『노트가 다 찢어져있네』"),
+            new TalkData(1, "『악보를 멀리한 지도 오래됐구나··· 』"),
             new TalkData(1, "『오랜만에 연주나 해볼까?』")
         };
         scriptList.Add(0, openingData);
 
         List<TalkData> opening2Data = new List<TalkData> {
-            //new TalkData(0, "(정령이 튀어나온다.)"),
             new TalkData(2, "『너 어떻게 정령을 불러낸 거지?』"),
             new TalkData(2, "『이 악보를 완벽히 연주해야만 정령이 풀려나는데』"),
             new TalkData(1, "『어어..! 넌 뭐야』"),
@@ -42,6 +42,12 @@ public class TalkManager : MonoBehaviour
         //이렇게 각 스토리 씬마다 대사 넣고 storyId에 씬번호 넣어서 출력하면 됨.
         //월드1개마다 스토리 4개 들어가야되니까 대사 여러개 넣어놓고 랜덤으로 출력하게할까?
         //물어보는거임
+
+        List<TalkData> endingData = new List<TalkData>
+        {
+            new TalkData(2, "『드디어 정령을 다 구출했구나』")
+        };
+        scriptList.Add(7, endingData);
     }
 
     public int getStoryId()

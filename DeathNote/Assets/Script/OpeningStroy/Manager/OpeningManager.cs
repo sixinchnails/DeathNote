@@ -19,6 +19,8 @@ public class OpeningManager : MonoBehaviour
     public GameObject rBook;
     public GoBackR goBackR;
     public GoBackM goBackM;
+    public GameObject backgroundN;
+    //public AudioSource drop;
 
     int talkIdx=-1;
 
@@ -26,6 +28,7 @@ public class OpeningManager : MonoBehaviour
     {
         rBook.SetActive(false);
         dark.SetActive(false);
+        backgroundN.SetActive(false);
     }
 
     public void BoxAppear()
@@ -62,6 +65,7 @@ public class OpeningManager : MonoBehaviour
     }
     void Talk()
     {
+        backgroundN.SetActive(false);
         content.text = null;
         nickname.text = null;
         content2.text = null;
@@ -70,10 +74,11 @@ public class OpeningManager : MonoBehaviour
         TalkData data = talkManager.getTalk(storyId, talkIdx);
         if(talkIdx == 1)
         {
-            book.SetActive(false);
+           
         }
         if(talkIdx == 2)
         {
+            book.SetActive(false);
             rBook.SetActive(true);
         }
 
@@ -81,7 +86,7 @@ public class OpeningManager : MonoBehaviour
         {
             scriptBox.SetBool("isShow", false);
             //대화 끝났으면 튜토리얼으로 넘어간다.
-            //SceneManager.LoadScene("");
+            SceneManager.LoadScene("Tutorial");
             return;
         }
         if(data.id == 0)
@@ -96,6 +101,7 @@ public class OpeningManager : MonoBehaviour
         }
         else if(data.id == 2)
         {
+            backgroundN.SetActive(true);
             goBackR.forward();
             goBackM.back();
             nickname2.text = "사신";
