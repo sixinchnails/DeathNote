@@ -8,6 +8,10 @@ public class SpinAndFall : MonoBehaviour
     public OpeningManager manager;
     public GameObject book;
 
+    AudioSource sound;
+    public AudioClip drop;
+    public AudioClip bam;
+
     float time;
     bool go = true;
     bool show = false;
@@ -17,7 +21,11 @@ public class SpinAndFall : MonoBehaviour
     Vector2 initialPosition;
     Vector2 targetPosition;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        sound = GetComponent<AudioSource>();
+    }
+
     void Start()
     {
         //원래 크기 저장
@@ -32,7 +40,8 @@ public class SpinAndFall : MonoBehaviour
         targetPosition = new Vector2(initialPosition.x, -300);
         //초기 회전 설정
         transform.rotation = Quaternion.Euler(0, 0, 130);
-
+        sound.clip = drop;
+        sound.Play();
     }
 
     // Update is called once per frame
@@ -55,6 +64,8 @@ public class SpinAndFall : MonoBehaviour
             go = false;
             if(!show)
             {
+                sound.clip = bam;
+                sound.Play();
                 show = true;
                 manager.BoxAppear();
             }

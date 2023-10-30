@@ -6,8 +6,16 @@ public class NextScript : MonoBehaviour
 {
     public OpeningManager manager;
 
+    AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public void click()
     {
+        audioSource.Play();
         manager.Action();
     }
 }
