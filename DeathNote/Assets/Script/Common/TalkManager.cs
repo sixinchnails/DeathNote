@@ -31,12 +31,11 @@ public class TalkManager : MonoBehaviour
             new TalkData(2, "『너···! 어떻게 정령을 불러낸 거지?』"),
             new TalkData(1, "『어어···!  너··· 넌 뭐야!』"),
             new TalkData(2, "『악보를 완벽히 연주해야만 정령이 풀려나는데···』"),
-            new TalkData(2, "『난 악(樂)신이야』"),
-            new TalkData(2, "『네가 연주한 악보를 보관하고 있었지』"),
+            new TalkData(2, "『난 악(樂)마야』"),
+            new TalkData(2, "『그 악보를 보관하고 있었지』"),
             new TalkData(2, "『악보엔 정령들이 봉인되어 있어』"),
-            new TalkData(2, "『하지만, 악보가 다 찢어져서』"),
-            new TalkData(2, "『정령들이 뿔뿔이 흩어지고 말았어』"),
-            new TalkData(2, "『너라면 악보를 찾아 정령을 풀어줄 수 있을 것 같아』"),
+            new TalkData(2, "『하지만, 악보가 다 찢어져서 정령들이 뿔뿔이 흩어지고 말았어···』"),
+            new TalkData(2, "『너라면 악보를 찾아 정령을 풀어줄 수 있을 것 같아!』"),
             new TalkData(2, "『월드 버튼을 눌러봐. 나랑 악보를 찾아 여행을 떠나자』")
         };
         scriptList.Add(-1, opening2Data);
