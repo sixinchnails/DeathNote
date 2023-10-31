@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class ResultManager : MonoBehaviour
 {
+    public int totalNoteNum;
+    
     [SerializeField] GameObject resultUI = null;
 
+    
     [SerializeField] Text[] txtCount = null;
     [SerializeField] Text songTitle = null;
     [SerializeField] Text totalNote = null;

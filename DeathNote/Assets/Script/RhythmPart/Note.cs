@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 using UnityEngine.UI;
 
-public class WideNote : MonoBehaviour, IPointerDownHandler
+public class Note : MonoBehaviour, IPointerDownHandler
 {
     private Image noteImage;
     public Color originalColor = Color.white; // 원래 색상
@@ -23,16 +23,19 @@ public class WideNote : MonoBehaviour, IPointerDownHandler
     private double collapseTime = 0;
     public float lerpValue;
 
+    private bool isClicked;
+
     Transform image;
-    EffectManager effectManager; // 이펙트
+    EffectController effectController; // 이펙트
     ScoreManager scoreManager; // 점수
-    Animator[] animators;
+    Animator animator;
 
     void Awake()
     {
-        effectManager = transform.GetComponentInChildren<EffectManager>();
+        effectController = transform.GetComponentInChildren<EffectController>();
         scoreManager = FindObjectOfType<ScoreManager>();
-        image = transform.GetChild(2);
+        animator = GetComponentInChildren<Animator>();
+        image = transform.GetChild(0);
     }
     void OnEnable()
     {
@@ -47,13 +50,12 @@ public class WideNote : MonoBehaviour, IPointerDownHandler
         Color transparentOriginal = new Color(originalColor.r, originalColor.g, originalColor.b, 0); // 원래 색의 투명 버전
         noteImage.color = Color.Lerp(originalColor, transparentOriginal, 1);
 
-        float startScale = 0.5f; // 시작 크기
-        float endScale = 1f; // 끝 크기
-        float currentScale = Mathf.Lerp(startScale, endScale, 0);
-        transform.localScale = new Vector3(currentScale, currentScale, currentScale);
+
         enabledTime = AudioSettings.dspTime;
         transform.localPosition = newPos;
-
+        transform.localScale = Vector3.one;
+        animator.Play("Idle");
+        isClicked = false;
         noteImage.enabled = true;
     }
 
@@ -62,26 +64,32 @@ public class WideNote : MonoBehaviour, IPointerDownHandler
         currentTime = AudioSettings.dspTime;
         float lerpValue = (float)((currentTime-enabledTime)/(checkTime - enabledTime));
 
-        if (currentTime >= checkTime + collapseTime)
+        if (currentTime >= checkTime + 0.5* collapseTime)
         {
-                NotePool.instance.noteQueue.Enqueue(gameObject);
-                gameObject.SetActive(false);
+            if (!isClicked)
+            {
+                isClicked = true;
+                effectController.JudgeEffect("Dismiss");
+            }
+
+            HideImage();
             
+        }
+
+        if (currentTime >= checkTime + 1)
+        {
+            NotePool.instance.normalQueue.Enqueue(gameObject);
+            gameObject.SetActive(false);
+
         }
 
         lerpValue = Mathf.Clamp01(lerpValue);
 
-        // 회전 애니메이션
-        image.rotation = Quaternion.Euler(0, 0, lerpValue * 360f);
 
         // 색상 애니메이션
         Color transparentOriginal = new Color(originalColor.r, originalColor.g, originalColor.b, 0); // 원래 색의 투명 버전
         noteImage.color = Color.Lerp(originalColor, transparentOriginal, 1 - lerpValue);
 
-        float startScale = 0.5f; // 시작 크기
-        float endScale = 1f; // 끝 크기
-        float currentScale = Mathf.Lerp(startScale, endScale, lerpValue);
-        transform.localScale = new Vector3(currentScale, currentScale, currentScale);
 
     }
 
@@ -102,7 +110,7 @@ public class WideNote : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-   
+        isClicked = true;
         double pressTime = AudioSettings.dspTime;
         double[] checkList = new double[] { 0.06, 0.1 };
 
@@ -110,17 +118,27 @@ public class WideNote : MonoBehaviour, IPointerDownHandler
         {   
             if (Math.Abs(pressTime - checkTime) <= checkList[x])
             {
-                Debug.Log("되고 있어여");
                 HideImage();
 
-                effectManager.JudgeEffect(x);
-                effectManager.NoteHitEffect();
+                effectController.NoteHitEffect();
+                if(x==0) effectController.JudgeEffect("Deadly");
+                else effectController.JudgeEffect("Delicate");
                 scoreManager.IncreaseCombo(true);
                 scoreManager.IncreaseScore(x);
 
                 return;
             }
         }
+
+        HideImage();
+
+        effectController.NoteHitEffect();
+        effectController.JudgeEffect("Discord");
+        scoreManager.IncreaseCombo(false);
+        scoreManager.IncreaseScore(2);
+
+        return;
+
     }
 
 
