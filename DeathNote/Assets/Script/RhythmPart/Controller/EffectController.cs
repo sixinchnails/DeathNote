@@ -1,26 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EffectManager : MonoBehaviour
+/**
+ *  노트의 효과를 처리하는 컨트롤러
+ */
+public class EffectController : MonoBehaviour
 {
 
-    [SerializeField] Animator noteHitAnimator = null;
-    string hit = "Hit";
-    [SerializeField] Animator judgementAnimator = null;
-    [SerializeField] Image image = null;
-    [SerializeField] Sprite[] sprite = null;
+    Animator noteAnimator = null;
+    Animator hitAnimator = null;    
+    Animator judgeAnimator = null;
+    
+
+    public void Awake()
+    {
+        Debug.Log(transform.childCount);
+        noteAnimator = GetComponent<Animator>();
+        hitAnimator = transform.GetChild(0).GetComponent<Animator>();
+        judgeAnimator = transform.GetChild(1).GetComponent<Animator>();
+    }
+
+    public void RepeatNote()
+    {
+        noteAnimator.SetTrigger("Repeat");
+    }
 
     public void NoteHitEffect()
     {
-        Debug.Log("��Ʈ����");   
-        noteHitAnimator.SetTrigger(hit);
+        hitAnimator.SetTrigger("Hit");
     }
 
-    public void JudgeEffect(int num)
+    public void JudgeEffect(string judge)
     {
-        image.sprite = sprite[num];
-        judgementAnimator.SetTrigger(hit);
+        judgeAnimator.SetTrigger(judge);
     }
+
+
 }

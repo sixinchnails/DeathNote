@@ -54,7 +54,7 @@ public class ObjectPool : MonoBehaviour
                 {
                     // ObjectInfo 배열의 모든 요소를 count만큼 생성하고 비활성화 한 뒤 Queue에 넣어둔다.
                     GameObject clone = Instantiate(objectInfo.goPrefab, transform.position, Quaternion.identity);
-                    clone.GetComponent<Note>().isLeft = left;
+                    clone.GetComponent<LegacyNote>().isLeft = left;
                     clone.SetActive(false);
                     if (objectInfo.tfPoolParent != null)
                     {
