@@ -1,26 +1,23 @@
 package com.goat.deathnote.domain.user.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder
-@Table(name = "user")
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
-    @Column(name = "user_id")
+    @Column(name = "user_id") // 사용자번호
     private Long id;
 
-    @Column(name = "user_name", unique = true, length = 8) // 유일 하고, 최대 길이 8
-    private String name;
+    @Column(name = "user_nickname", unique = true, length = 8) // 유일 하고, 최대 길이 8
+    private String nickName;
 
     @Column(name = "user_level")
     private Long level;
@@ -30,4 +27,7 @@ public class User {
 
     @Column(name = "progress")
     private Long progress;
+
+    @Column(name = "open_id")
+    private String openId; // 구글로 받아온 사용자 고유id, 중복 방지로 비교, 사용할듯
 }
