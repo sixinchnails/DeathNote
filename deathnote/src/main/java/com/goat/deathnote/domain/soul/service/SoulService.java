@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Service
 public class SoulService {
+    
     private final SoulRepository soulRepository;
 
     public SoulService(SoulRepository soulRepository) {
