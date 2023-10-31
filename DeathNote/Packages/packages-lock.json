@@ -103,6 +103,18 @@
       },
       "url": "https://packages.unity.com"
     },
+<<<<<<< HEAD
+=======
+    "com.unity.adaptiveperformance.google.android": {
+      "version": "1.2.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.adaptiveperformance": "5.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+>>>>>>> 464684fa3ce6562f6b413af6fc5669263f75e316
     "com.unity.adaptiveperformance.samsung.android": {
       "version": "5.0.0",
       "depth": 0,
@@ -220,11 +232,12 @@
     },
     "com.unity.profiling.core": {
       "version": "1.0.2",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+<<<<<<< HEAD
     "com.unity.render-pipelines.core": {
       "version": "14.0.9",
       "depth": 1,
@@ -252,6 +265,8 @@
         "com.unity.searcher": "4.9.2"
       }
     },
+=======
+>>>>>>> 464684fa3ce6562f6b413af6fc5669263f75e316
     "com.unity.test-framework": {
       "version": "1.1.33",
       "depth": 0,
