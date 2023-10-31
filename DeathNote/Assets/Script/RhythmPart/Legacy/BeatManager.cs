@@ -122,14 +122,14 @@ public class BeatManager : MonoBehaviour
             GameObject leftMetronomeNote = ObjectPool.instance.leftMetronome.Dequeue();
             leftMetronomeNote.transform.position = startHolder.transform.position;
             leftMetronomeNote.transform.localScale = Vector3.one;
-            leftMetronomeNote.GetComponent<Note>().setTime(time);
+            leftMetronomeNote.GetComponent<LegacyNote>().setTime(time);
             leftMetronomeNote.SetActive(true);
 
 
             GameObject rightMetronomeNote = ObjectPool.instance.rightMetronome.Dequeue();
             rightMetronomeNote.transform.position = startHolder.transform.position;
             rightMetronomeNote.transform.localScale = Vector3.one;
-            rightMetronomeNote.GetComponent<Note>().setTime(time);
+            rightMetronomeNote.GetComponent<LegacyNote>().setTime(time);
             rightMetronomeNote.SetActive(true);
         }
         
@@ -141,7 +141,7 @@ public class BeatManager : MonoBehaviour
             leftNote.transform.localScale = Vector3.one;
             leftNote.SetActive(true);
 
-            Note noteScript = leftNote.GetComponent<Note>();
+            LegacyNote noteScript = leftNote.GetComponent<LegacyNote>();
             noteScript.setTime(time);
             noteScript.setBeat(beatNumber);
             noteScript.isLeft = true;
@@ -156,7 +156,7 @@ public class BeatManager : MonoBehaviour
             rightNote.transform.localScale = Vector3.one;
             rightNote.SetActive(true);
 
-            Note noteScript = rightNote.GetComponent<Note>();
+            LegacyNote noteScript = rightNote.GetComponent<LegacyNote>();
             noteScript.setTime(time);
             noteScript.setBeat(beatNumber);
             noteScript.isLeft = false;
