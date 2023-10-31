@@ -23,7 +23,7 @@ public class EndingManager : MonoBehaviour
 
     private void Awake()
     {
-        
+        book.SetActive(false);
     }
 
     private void Start()
@@ -51,6 +51,7 @@ public class EndingManager : MonoBehaviour
             }
             else if (data == 2)
             {
+                book.SetActive(true);
                 content2.text += str[i];
             }
             yield return new WaitForSeconds(0.05f);
@@ -65,6 +66,10 @@ public class EndingManager : MonoBehaviour
         nickname2.text = null;
         int storyId = talkManager.getStoryId();
         TalkData data = talkManager.getTalk(storyId, talkIdx);
+        if(talkIdx == 1)
+        {
+            //과거회상장면
+        }
         if(talkIdx == 4)
         {
             me.SetActive(false);
