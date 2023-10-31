@@ -28,6 +28,9 @@ public class User {
     @Column(name = "progress")
     private Long progress;
 
-    @Column(name = "open_id")
-    private String openId; // 구글로 받아온 사용자 고유id, 중복 방지로 비교, 사용할듯
+    @Column(name = "provider")
+    private String provider;
+
+    @Column(name = "provider_id")
+    private String providerId;
 }
