@@ -48,7 +48,7 @@ public class TalkManager : MonoBehaviour
 
         List<TalkData> endingData = new List<TalkData>
         {
-            new TalkData(1, "『···  ···!』"),
+            new TalkData(1, "『···  ···  !』"),
             new TalkData(1, "『이 노래··· 어딘가 익숙한데?』"),
             new TalkData(1, "『내가 어릴 때 작곡한 노래잖아?!』"),
             new TalkData(2, "『정령을 찾아줘서 고마워 그럼 이만···』"),
