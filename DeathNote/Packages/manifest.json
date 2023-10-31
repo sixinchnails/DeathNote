@@ -1,10 +1,7 @@
 {
   "dependencies": {
-<<<<<<< HEAD
-=======
     "com.unity.adaptiveperformance": "4.0.1",
     "com.unity.adaptiveperformance.google.android": "1.2.1",
->>>>>>> 464684fa3ce6562f6b413af6fc5669263f75e316
     "com.unity.adaptiveperformance.samsung.android": "5.0.0",
     "com.unity.collab-proxy": "2.1.0",
     "com.unity.feature.2d": "2.0.0",
