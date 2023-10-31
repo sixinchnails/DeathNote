@@ -1,28 +1,41 @@
 package com.goat.deathnote.domain.user.controller;
 
-import com.goat.deathnote.domain.user.dto.UserDto;
 import com.goat.deathnote.domain.user.entity.User;
-import com.goat.deathnote.domain.user.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.goat.deathnote.domain.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequiredArgsConstructor
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/users")
 public class UserController {
 
-    private final UserRepository userRepository;
-//    private final UserService userService;
+    private final UserService userService;
 
-    @PostMapping("/users/save")
-    public void userSave(@RequestBody UserDto userDto){
-        User user  = User.builder()
-                .name(userDto.getName())
-                .level(userDto.getLevel())
-                .experienceValue(userDto.getExperienceValue())
-                .progress(userDto.getProgress())
-                .build();
-        userRepository.save(user);
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping
+    public User createUser(@RequestBody User user) {
+        return userService.saveUser(user);
+    }
+
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<User> getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
     }
 }
