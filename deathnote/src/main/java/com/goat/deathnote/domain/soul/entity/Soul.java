@@ -2,10 +2,7 @@ package com.goat.deathnote.domain.soul.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
@@ -13,6 +10,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @Builder
+@Table(name = "soul")
 public class Soul {
 
     @Id @GeneratedValue

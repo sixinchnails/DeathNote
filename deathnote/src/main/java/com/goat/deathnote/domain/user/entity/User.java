@@ -16,8 +16,10 @@ public class User {
     @Column(name = "user_id") // 기본 키
     private Long id;
 
-    @Column(name = "user_nickname", unique = true, length = 8) // 유일 하고, 최대 길이 8
+    @Column(name = "user_nickname")
     private String nickName;
+
+    private String name;
 
     @Column(name = "user_level")
     private Long level;
@@ -34,7 +36,9 @@ public class User {
     @Column(name = "provider_id")
     private String providerId;
 
-    @Column(name = "open_id")
-    private String openId; // 구글로 받아온 사용자 고유id, 중복 방지로 비교, 사용할듯
+    private UserRole role;
+
+//    @Column(name = "open_id")
+//    private String openId; // 구글로 받아온 사용자 고유id, 중복 방지로 비교, 사용할듯
 
 }
