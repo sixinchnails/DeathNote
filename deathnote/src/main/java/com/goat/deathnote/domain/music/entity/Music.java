@@ -10,6 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder
+@Table(name = "music")
 public class Music {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT

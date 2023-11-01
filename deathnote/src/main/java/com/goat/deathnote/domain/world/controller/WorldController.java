@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/souls")
+@RequestMapping("/worlds")
 public class WorldController {
 
     private final WorldService worldService;

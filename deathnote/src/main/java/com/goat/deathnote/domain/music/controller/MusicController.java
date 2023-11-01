@@ -6,6 +6,7 @@ import com.goat.deathnote.domain.soul.entity.Soul;
 import com.goat.deathnote.domain.soul.service.SoulService;
 import com.goat.deathnote.domain.world.entity.World;
 import com.goat.deathnote.domain.world.service.WorldService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,15 +14,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/souls")
+@RequiredArgsConstructor
+@RequestMapping("/musics")
 public class MusicController {
 
     private final MusicService musicService;
 
-    @Autowired
-    public MusicController(MusicService musicService) {
-        this.musicService = musicService;
-    }
 
     @PostMapping
     public Music createMusic(@RequestBody Music music) {
@@ -34,7 +32,7 @@ public class MusicController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Music> getWorldById(@PathVariable Long id) {
+    public Optional<Music> getMusicById(@PathVariable Long id) {
         return musicService.getMusicById(id);
     }
 

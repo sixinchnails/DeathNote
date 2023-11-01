@@ -1,31 +1,31 @@
 package com.goat.deathnote.domain.collection.service;
 
 import com.goat.deathnote.domain.collection.entity.Collection;
-import com.goat.deathnote.domain.collection.repository.MusicRepository;
+import com.goat.deathnote.domain.collection.repository.CollectionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MusicService {
+public class CollectionService {
     
-    private final MusicRepository musicRepository;
+    private final CollectionRepository collectionRepository;
 
-    public MusicService(MusicRepository musicRepository) {
-        this.musicRepository = musicRepository;
+    public CollectionService(CollectionRepository collectionRepository) {
+        this.collectionRepository = collectionRepository;
     }
 
     public Collection saveMusic (Collection music){
-            return musicRepository.save(music);
+            return collectionRepository.save(music);
         }
 
         public List<Collection> getAllMusics () {
-            return musicRepository.findAll();
+            return collectionRepository.findAll();
         }
 
         public Optional<Collection> getMusicById (Long id){
-            return musicRepository.findById(id);
+            return collectionRepository.findById(id);
         }
 
 //        public void deleteMusic (Long id){

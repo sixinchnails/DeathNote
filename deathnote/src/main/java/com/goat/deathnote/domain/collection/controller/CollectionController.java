@@ -1,7 +1,7 @@
 package com.goat.deathnote.domain.collection.controller;
 
 import com.goat.deathnote.domain.collection.entity.Collection;
-import com.goat.deathnote.domain.collection.service.MusicService;
+import com.goat.deathnote.domain.collection.service.CollectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/souls")
-public class MusicController {
+@RequestMapping("/collections")
+public class CollectionController {
 
-    private final MusicService musicService;
+    private final CollectionService musicService;
 
     @Autowired
-    public MusicController(MusicService musicService) {
+    public CollectionController(CollectionService musicService) {
         this.musicService = musicService;
     }
 

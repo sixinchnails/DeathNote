@@ -1,4 +1,4 @@
-package com.goat.deathnote.config;
+package com.goat.deathnote.domain.user.entity;
 
 public enum UserRole {
     USER("일반 사용자"),
