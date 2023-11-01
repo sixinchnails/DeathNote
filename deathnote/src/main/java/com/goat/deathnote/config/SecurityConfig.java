@@ -29,4 +29,4 @@ public class SecurityConfig {
                 .userInfoEndpoint()//로그인 완료 후 회원 정보 받기
                 .userService(oAuth2MemberService).and().and().build(); //로그인 후 받아온 유저 정보 처리
     }
-}
+}git
