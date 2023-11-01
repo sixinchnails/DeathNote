@@ -1359,8 +1359,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   talkManager: {fileID: 635827960}
   manager: {fileID: 2102477827}
-  dark: {fileID: 1173457746}
   scriptBox: {fileID: 796548468}
+  dark: {fileID: 1173457746}
   nickname: {fileID: 1274259534}
   content: {fileID: 523382045}
   nickname2: {fileID: 2096023341}
@@ -1369,8 +1369,9 @@ MonoBehaviour:
   rBook: {fileID: 1721188507}
   goBackR: {fileID: 1793313304}
   goBackM: {fileID: 49617118}
-  backgroundN: {fileID: 1498295576}
+  me: {fileID: 0}
   button: {fileID: 534469638}
+  backgroundN: {fileID: 1498295576}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

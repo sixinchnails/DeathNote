@@ -81,7 +81,7 @@ public class NextScript2 : MonoBehaviour
         if (data == null)
         {
             scriptBox.SetBool("isShow", false);
-            //대화 끝났으면 다음 화면으로 넘어간다.
+            //대화 끝났으면 메인으로
             SceneManager.LoadScene("Main");
             return;
         }

@@ -13,15 +13,12 @@ public class DoongDoong : MonoBehaviour
     Vector2 initialPosition;
     Vector2 targetPosition;
 
-    // Start is called before the first frame update
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         initialPosition = new Vector2(rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y);
-        //targetPosition = new Vector2(initialPosition.x, initialPosition.y + upMax);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (up)
