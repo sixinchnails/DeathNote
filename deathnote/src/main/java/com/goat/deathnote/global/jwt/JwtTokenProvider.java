@@ -4,10 +4,20 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -28,7 +38,7 @@ public class JwtTokenProvider {
         return REFRESH_TOKEN_EXPIRE_TIME_COOKIE;
     }
 
-    public Token createToken(String email, String role) {
+    public Token createToken(String email, String role) { // 토큰에 유저의 이메일 정보와 만료 기간이 담김
         long now = new Date().getTime();
 
         String accessToken = Jwts
@@ -112,5 +122,25 @@ public class JwtTokenProvider {
         String jwtToken = accessToken.split("Bearer ")[1];
         Claims claims = this.parseClaims(jwtToken);
         return claims.getSubject();
+    }
+
+    public Authentication getAuthentication(String accessToken) {
+        Claims claims = parseClaims(accessToken);
+
+        if (claims.get(AUTHORITIES_KEY) == null) {
+            throw new RuntimeException("권한이 없습니다.");
+        }
+
+        Collection<? extends GrantedAuthority> authorities = Arrays
+            .stream(
+                claims
+                    .get(AUTHORITIES_KEY)
+                    .toString()
+                    .split(","))
+            .map(authority -> new SimpleGrantedAuthority("ROLE_" + authority))
+            .collect(Collectors.toList());
+
+        UserDetails principal = new User(claims.getSubject(), "", authorities);
+        return new UsernamePasswordAuthenticationToken(principal, accessToken, authorities);
     }
 }

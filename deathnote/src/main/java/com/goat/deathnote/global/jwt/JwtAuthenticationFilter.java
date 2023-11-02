@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,6 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			ServletException,
 		IOException {
 		log.info("JWT Authentication Filter Start");
+		// 토큰을 까봄
 		String token = resolveToken(request);
 
 		if (token == null) {
@@ -48,33 +50,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			if (validateToken.equals("valid")) {
 				log.info("jwt 인증 성공");
 				Authentication authentication = jwtTokenProvider.getAuthentication(token);
-				SecurityContextHolder.getContext().setAuthentication(authentication);
-			} else if (validateToken.equals("isExpired")) {
-				Token tokenInfo = refreshTokenAndGetToken(request);
-
-				CookieUtil.deleteCookie(request, response,
-					OAuth2AuthorizationRequestBasedOnCookieRepository.REFRESH_TOKEN);
-
-				CookieUtil.addCookie(response,
-					OAuth2AuthorizationRequestBasedOnCookieRepository.REFRESH_TOKEN,
-					tokenInfo.getRefreshToken(),
-					JwtTokenProvider.getRefreshTokenExpireTimeCookie());
-
-				response.setHeader("x-access-token", tokenInfo.getAccessToken());
-				log.info("x-access-token : {}", tokenInfo.getAccessToken());
-
-				Authentication authentication = jwtTokenProvider.getAuthentication(
-					tokenInfo.getAccessToken());
-				SecurityContextHolder.getContext().setAuthentication(authentication);
-			} else {
+				SecurityContextHolder.getContext().setAuthentication(authentication);}
+			// else if (validateToken.equals("isExpired")) {
+			// 	Token tokenInfo = refreshTokenAndGetToken(request);
+			//
+			// 	CookieUtil.deleteCookie(request, response,
+			// 		OAuth2AuthorizationRequestBasedOnCookieRepository.REFRESH_TOKEN);
+			//
+			// 	CookieUtil.addCookie(response,
+			// 		OAuth2AuthorizationRequestBasedOnCookieRepository.REFRESH_TOKEN,
+			// 		tokenInfo.getRefreshToken(),
+			// 		JwtTokenProvider.getRefreshTokenExpireTimeCookie());
+			//
+			// 	response.setHeader("x-access-token", tokenInfo.getAccessToken());
+			// 	log.info("x-access-token : {}", tokenInfo.getAccessToken());
+			//
+			// 	Authentication authentication = jwtTokenProvider.getAuthentication(
+			// 		tokenInfo.getAccessToken());
+			// 	SecurityContextHolder.getContext().setAuthentication(authentication);}
+			else {
 				throw new MalformedJwtException("토큰이 유효하지 않습니다");
 			}
-		} catch (ExpiredTokenException e) {
-			log.info(e.getMessage());
-			response.sendError(401, e.getMessage());
-		} catch (NullValueException e) {
-			log.info(e.getMessage());
-			response.sendError(401, e.getMessage());
 		} catch (MalformedJwtException e) {
 			log.info(e.getMessage());
 			response.sendError(401, e.getMessage());
@@ -86,7 +82,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			response.sendError(500, e.getMessage());
 		} finally {
 			log.info("JWT Authentication Filter End");
-			chain.doFilter(request, response);
+			chain.doFilter(request, response); // 최종적으로 doFilter를 통해 인증을 하고 response 보내줌
 		}
 	}
 
@@ -94,7 +90,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		return CookieUtil
 			.getCookie(request, OAuth2AuthorizationRequestBasedOnCookieRepository.REFRESH_TOKEN)
 			.map(Cookie::getValue)
-			.orElseThrow(() -> new NullValueException("쿠키에 refresh 토큰이 존재하지 않습니다"));
+			.orElseThrow();
 	}
 
 	private String resolveToken(HttpServletRequest request) {
@@ -107,27 +103,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		return null;
 	}
 
-	private Token refreshTokenAndGetToken(HttpServletRequest request) {
-		String refreshToken = getRefreshTokenFromCookie(request);
-
-		if (!jwtTokenProvider.getIsExipired(refreshToken))
-			throw new ExpiredTokenException("리프레쉬 토큰이 만료되었습니다");
-
-		String memberUUID = jwtTokenProvider.getMemberUUID(refreshToken);
-		MemberAuth memberLoginInfo = memberAuthRepository.findById(memberUUID)
-			.orElseThrow(() -> new NoSuchElementException("로그인이 되어있지 않습니다."));
-
-		if (!Objects.equals(memberLoginInfo.getMemberRefreshToken(), refreshToken)) {
-			log.info("Redis RT와 쿠키 RT가 다름");
-			throw new MalformedJwtException("리프레쉬 토큰이 유효하지 않습니다");
-		}
-
-		Member member = memberRepository.findMemberByIdx(memberLoginInfo.getMemberIdx())
-			.orElseThrow(() -> new NoSuchElementException("멤버정보가 존재하지 않습니다."));
-		Token tokenInfo = jwtTokenProvider.createToken(member.getUuid(), member.getMemberRole().name());
-
-
-		return tokenInfo;
-	}
+	// private Token refreshTokenAndGetToken(HttpServletRequest request) {
+	// 	String refreshToken = getRefreshTokenFromCookie(request);
+	//
+	// 	if (!jwtTokenProvider.getIsExipired(refreshToken))
+	// 		throw new ExpiredTokenException("리프레쉬 토큰이 만료되었습니다");
+	//
+	// 	String memberUUID = jwtTokenProvider.getMemberUUID(refreshToken);
+	// 	MemberAuth memberLoginInfo = memberAuthRepository.findById(memberUUID)
+	// 		.orElseThrow(() -> new NoSuchElementException("로그인이 되어있지 않습니다."));
+	//
+	// 	if (!Objects.equals(memberLoginInfo.getMemberRefreshToken(), refreshToken)) {
+	// 		log.info("Redis RT와 쿠키 RT가 다름");
+	// 		throw new MalformedJwtException("리프레쉬 토큰이 유효하지 않습니다");
+	// 	}
+	//
+	// 	Member member = memberRepository.findMemberByIdx(memberLoginInfo.getMemberIdx())
+	// 		.orElseThrow(() -> new NoSuchElementException("멤버정보가 존재하지 않습니다."));
+	// 	Token tokenInfo = jwtTokenProvider.createToken(member.getUuid(), member.getMemberRole().name());
+	//
+	//
+	// 	return tokenInfo;
+	// }
 
 }

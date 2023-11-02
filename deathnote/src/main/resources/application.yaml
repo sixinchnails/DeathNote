@@ -22,3 +22,6 @@ spring:
         format_sql: true
         ddl-auto: create
     database-platform: org.hibernate.dialect.MySQL8Dialect
+
+  jwt:
+    key: TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309

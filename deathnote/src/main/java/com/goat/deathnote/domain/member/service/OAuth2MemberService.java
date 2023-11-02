@@ -26,7 +26,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        OAuth2User user = super.loadUser(userRequest);
+        OAuth2User user = super.loadUser(userRequest); // 유저를 불러옴
 
         try {
             return this.process(userRequest, user);
@@ -37,11 +37,13 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
     }
 
     private OAuth2User process(OAuth2UserRequest userRequest, OAuth2User user) {
-        SocialProvider socialProvider = SocialProvider.valueOf(
+        SocialProvider socialProvider = SocialProvider.valueOf( // 소셜 프로바이더 얻어옴
                 userRequest.getClientRegistration().getRegistrationId().toUpperCase());
 
+        // 얻어온 프로바이더로 해당 소셜에 맞는 유저 정보 가져옴
         OAuth2MemberInfo memberInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(socialProvider, user.getAttributes());
 
+        // 해당 유저가 존재하는지 확인후 존재하지 않으면 회원가입
         Member foundMember = memberRepository.findByEmail(memberInfo.getEmail());
         Member savedMember;
         if (foundMember == null) {
@@ -51,6 +53,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
             savedMember = foundMember;
         }
 
+        // 그리고 principal 만들어줌
         return MemberPrincipal.create(savedMember, user.getAttributes(), savedMember.getRole());
     }
 

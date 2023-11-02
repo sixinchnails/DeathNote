@@ -55,11 +55,14 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
 	protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response,
 		Authentication authentication) {
+		// 쿠키로 redirectUri 받아옴
 		Optional<String> redirectUri = CookieUtil.getCookie(request,
 				OAuth2AuthorizationRequestBasedOnCookieRepository.REDIRECT_URI_PARAM_COOKIE_NAME)
 			.map(Cookie::getValue);
 
 		String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
+
+		// 아래는 전부 유저 정보로 토큰을 만드는 과정
 		OAuth2AuthenticationToken authToken = (OAuth2AuthenticationToken)authentication;
 		SocialProvider socialProvider = SocialProvider.valueOf(
 			authToken.getAuthorizedClientRegistrationId().toUpperCase());
@@ -85,6 +88,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 			tokenInfo.getRefreshToken(),
 			JwtTokenProvider.getRefreshTokenExpireTimeCookie());
 
+		// 아까 받아온 redirectUri로 토큰을 보내줌
 		return UriComponentsBuilder.fromUriString(targetUrl)
 			.queryParam("accessToken", tokenInfo.getAccessToken())
 			.queryParam("refreshToken", tokenInfo.getRefreshToken())
