@@ -41,4 +41,11 @@ public class RandomJumpingMovement : MonoBehaviour
         // 현재 방향으로 움직임
         transform.Translate(direction * speed * Time.deltaTime, 0, 0);
     }
+
+    // 물체와 충돌했을 때 호출되는 메서드
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // 방향 반전
+        direction *= -1;
+    }
 }
