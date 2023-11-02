@@ -18,8 +18,8 @@ public class Book : MonoBehaviour {
     public Canvas canvas;
     [SerializeField]
     RectTransform BookPanel;
-    public Sprite background;
-    public Sprite[] bookPages;  // 책 페이지의 스프라이트 배열
+    public GameObject background;
+    public GameObject[] bookPages;  // 책 페이지의 스프라이트 배열
     public bool interactable = true;  // 책 페이지가 상호작용 가능한지 여부
     public bool enableShadowEffect = true;  // 그림자 효과 활성화 여부
     public int currentPage = 0;  // 현재 페이지 번호
@@ -306,15 +306,15 @@ public class Book : MonoBehaviour {
         Left.rectTransform.pivot = new Vector2(0, 0);
         Left.transform.position = RightNext.transform.position;
         Left.transform.eulerAngles = new Vector3(0, 0, 0);
-        Left.sprite = (currentPage < bookPages.Length) ? bookPages[currentPage] : background;
+        Left.GetComponent<SpriteRenderer>().sprite = (currentPage < bookPages.Length) ? bookPages[currentPage].GetComponent<SpriteRenderer>().sprite : background.GetComponent<SpriteRenderer>().sprite;
         Left.transform.SetAsFirstSibling();
         
         Right.gameObject.SetActive(true);
         Right.transform.position = RightNext.transform.position;
         Right.transform.eulerAngles = new Vector3(0, 0, 0);
-        Right.sprite = (currentPage < bookPages.Length - 1) ? bookPages[currentPage + 1] : background;
+        Right.GetComponent<SpriteRenderer>().sprite = (currentPage < bookPages.Length - 1) ? bookPages[currentPage + 1].GetComponent<SpriteRenderer>().sprite : background.GetComponent<SpriteRenderer>().sprite;
+        RightNext.GetComponent<SpriteRenderer>().sprite = (currentPage < bookPages.Length - 2) ? bookPages[currentPage + 2].GetComponent<SpriteRenderer>().sprite : background.GetComponent<SpriteRenderer>().sprite;
 
-        RightNext.sprite = (currentPage < bookPages.Length - 2) ? bookPages[currentPage + 2] : background;
 
         LeftNext.transform.SetAsFirstSibling();
         if (enableShadowEffect) Shadow.gameObject.SetActive(true);
@@ -342,7 +342,7 @@ public class Book : MonoBehaviour {
 
         Right.gameObject.SetActive(true);
         Right.transform.position = LeftNext.transform.position;
-        Right.sprite = bookPages[currentPage - 1];
+        Right.GetComponent<SpriteRenderer>().sprite = bookPages[currentPage - 1].GetComponent<SpriteRenderer>().sprite;
         Right.transform.eulerAngles = new Vector3(0, 0, 0);
         Right.transform.SetAsFirstSibling();
 
@@ -350,9 +350,9 @@ public class Book : MonoBehaviour {
         Left.rectTransform.pivot = new Vector2(1, 0);
         Left.transform.position = LeftNext.transform.position;
         Left.transform.eulerAngles = new Vector3(0, 0, 0);
-        Left.sprite = (currentPage >= 2) ? bookPages[currentPage - 2] : background;
+        Left.GetComponent<SpriteRenderer>().sprite = (currentPage >= 2) ? bookPages[currentPage - 2].GetComponent<SpriteRenderer>().sprite : background.GetComponent<SpriteRenderer>().sprite;
 
-        LeftNext.sprite = (currentPage >= 3) ? bookPages[currentPage - 3] : background;
+        LeftNext.GetComponent<SpriteRenderer>().sprite = (currentPage >= 3) ? bookPages[currentPage - 3].GetComponent<SpriteRenderer>().sprite : background.GetComponent<SpriteRenderer>().sprite;
 
         RightNext.transform.SetAsFirstSibling();
         if (enableShadowEffect) ShadowLTR.gameObject.SetActive(true);
@@ -395,8 +395,9 @@ public class Book : MonoBehaviour {
     // 페이지 스프라이트를 업데이트하는 함수
     void UpdateSprites()
     {
-        LeftNext.sprite= (currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage-1] : background;
-        RightNext.sprite=(currentPage>=0 &&currentPage<bookPages.Length) ? bookPages[currentPage] : background;
+        LeftNext.GetComponent<SpriteRenderer>().sprite = (currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage - 1].GetComponent<SpriteRenderer>().sprite : background.GetComponent<SpriteRenderer>().sprite;
+        RightNext.GetComponent<SpriteRenderer>().sprite = (currentPage >= 0 && currentPage < bookPages.Length) ? bookPages[currentPage].GetComponent<SpriteRenderer>().sprite : background.GetComponent<SpriteRenderer>().sprite;
+
     }
 
     // 페이지를 앞쪽으로 부드럽게 넘기는 함수
