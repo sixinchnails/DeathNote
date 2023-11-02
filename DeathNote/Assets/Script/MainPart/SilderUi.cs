@@ -14,10 +14,11 @@ public class SilderUi : MonoBehaviour
     private void Awake()
     {
         slider.onValueChanged.AddListener(OnSliderEvent);
+        OnSliderEvent(slider.value); // 슬라이더의 초기 값을 사용하여 텍스트를 설정
     }
 
     public void OnSliderEvent(float value)
     {
-        text.text = $"{value * 100:F1}%";
+        text.text = $"{value * 100:F0}%";
     }
 }
