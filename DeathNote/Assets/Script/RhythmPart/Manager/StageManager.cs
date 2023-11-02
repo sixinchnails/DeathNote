@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 
@@ -14,7 +16,7 @@ public class StageManager : MonoBehaviour
     MusicManager musicManager; // 노래 정보를 담고있는 객체
 
     public float areaX = 0; // 노트가 나타나는 영역의 가로길이
-    public float[] areasY = new float[10]; // 노트가 나타나는 세로영역의 각 부분 높이
+    public float[] areasY = new float[11]; // 노트가 나타나는 세로영역의 각 부분 높이
 
     public int beatNumber = 0; // 진행중인 현재의 비트 번호
     public double timePerBeat; // 비트 당 걸리는 시간
@@ -28,6 +30,7 @@ public class StageManager : MonoBehaviour
     private bool hasPlayed = false; // 음악 실행 여부
     
     [SerializeField] GameObject judgeLine; // 판정선
+    [SerializeField] TextMeshProUGUI title; // 곡 제목
     Image[] noteDownImage;
     ResultManager resultManager;
 
@@ -40,7 +43,8 @@ public class StageManager : MonoBehaviour
 
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
-        musicManager.setRainy();
+        musicManager.setSunset();
+        title.text = musicManager.musicTitle;
         resultManager = FindObjectOfType<ResultManager>();
         audioSource = musicManager.audioSource;
         // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
@@ -57,13 +61,13 @@ public class StageManager : MonoBehaviour
         // 노트를 누르는 영역의 크기지정
         areaX = GetComponent<RectTransform>().rect.width;
         float areaY = GetComponent<RectTransform>().rect.height;
-        noteDownImage = new Image[10];
-        for (int i = 0; i < 10; i++)
+        noteDownImage = new Image[11];
+        for (int i = 0; i < 11; i++)
         {
-            areasY[i] = (areaY * i / 9) - areaY / 2; // Y축 앵커가 중앙에 잡혀있으므로, areaY/2만큼 빼줘야 정확하게 측정
+            areasY[i] = (areaY * i / 10) - areaY/2; // Y축 앵커가 중앙에 잡혀있으므로, areaY/2만큼 빼줘야 정확하게 측정
             
             // Center 표현을 위한 객체
-            Transform effect = transform.GetChild(1).GetChild(1).GetChild(i);
+            Transform effect = transform.GetChild(2).GetChild(1).GetChild(i);
             Vector3 newPos = effect.localPosition;
             newPos.y = areasY[i];
             effect.localPosition = newPos;
@@ -87,7 +91,7 @@ public class StageManager : MonoBehaviour
     void Update()
     {
         currentTime = AudioSettings.dspTime - gameStart; // 현재시간
-
+        Debug.Log(gameStart);
 
         double timeDiffer = currentTime - (timePerBeat * beatNumber); // 실제 정박과 현재 시간사이의 간격
         beatNumber = (int)(currentTime / timePerBeat);
@@ -128,6 +132,7 @@ public class StageManager : MonoBehaviour
                         GameObject note = NotePool.instance.normalQueue.Dequeue();
                         Note script = note.GetComponent<Note>();
                         script.SetNoteInfo(checkPositionX(noteData.beat + 3, noteData.posX, timeDiff), areasY[noteData.posY], checkTime(noteData.beat+3, noteData.posX), timePerBeat);
+                        note.transform.SetAsFirstSibling();
                         note.SetActive(true);
                     }
                     else if (noteData.length >= 1)
