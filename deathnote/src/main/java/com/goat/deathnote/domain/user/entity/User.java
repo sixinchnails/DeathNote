@@ -1,5 +1,7 @@
 package com.goat.deathnote.domain.user.entity;
 
+import com.goat.deathnote.domain.member.entity.MemberRole;
+import com.goat.deathnote.domain.member.entity.SocialProvider;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,26 +21,25 @@ public class User {
     @Column(name = "user_nickname")
     private String nickName;
 
-    private String name;
-
     @Column(name = "user_level")
     private Long level;
 
     @Column(name = "user_experience_value")
-    private Long experienceValue;
+    private Long experienceValue; // 경험치
 
-    @Column(name = "progress")
-    private Long progress;
+    @Column(name = "user_progress")
+    private Long progress; // 진행도
 
-    @Column(name = "provider")
-    private String provider;
+    @Column(name = "user_name")
+    private String name; //유저 이름
 
-    @Column(name = "provider_id")
-    private String providerId;
+    @Column(name = "user_email")
+    private String email; //유저 구글 이메일
 
-    private UserRole role;
+    @Column(name = "user_role")
+    private UserRole role; //유저 권한 (일반 유저 or 관리자)
 
-//    @Column(name = "open_id")
-//    private String openId; // 구글로 받아온 사용자 고유id, 중복 방지로 비교, 사용할듯
+    @Column(name = "user_provider")
+    private SocialProvider provider; //공급자 (google, facebook ...)
 
 }
