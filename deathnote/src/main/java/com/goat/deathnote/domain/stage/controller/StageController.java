@@ -17,18 +17,18 @@ public class StageController {
 
 
     @PostMapping
-    public Stage createMusic(@RequestBody Stage music) {
-        return stageService.saveMusic(music);
+    public Stage createStage(@RequestBody Stage stage) {
+        return stageService.saveStage(stage);
     }
 
     @GetMapping
-    public List<Stage> getAllMusics() {
-        return stageService.getAllMusics();
+    public List<Stage> getAllStages() {
+        return stageService.getAllStages();
     }
 
     @GetMapping("/{id}")
-    public Optional<Stage> getMusicById(@PathVariable Long id) {
-        return stageService.getMusicById(id);
+    public Optional<Stage> getStageById(@PathVariable Long id) {
+        return stageService.getStageById(id);
     }
 
 //    @DeleteMapping("/{id}")

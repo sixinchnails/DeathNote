@@ -17,8 +17,7 @@ public class Stage {
     @Column(name = "stage_id") // 기본 키
     private Long id;
 
-
-    @Column(name = "music_id")
+    @Column(name = "stage_id")
     private Long musicId;
 
     @Column(name = "world_id")

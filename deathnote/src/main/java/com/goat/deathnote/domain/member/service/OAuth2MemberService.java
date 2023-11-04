@@ -61,6 +61,9 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
                                 .email(memberInfo.getEmail())
                                         .role(MemberRole.USER)
                                                 .provider(socialProvider)
+                .progress(1L)
+                .experienceValue(0L)
+                .level(1L)
                                                         .build();
 
         memberRepository.saveAndFlush(member);
