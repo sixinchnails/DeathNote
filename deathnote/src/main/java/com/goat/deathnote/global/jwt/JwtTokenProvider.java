@@ -29,8 +29,8 @@ public class JwtTokenProvider {
     private static final int REFRESH_TOKEN_EXPIRE_TIME_COOKIE = 365 * 24 * 60 * 60;
     private Key key;
 
-    public JwtTokenProvider() {
-        byte[] keyBytes = Decoders.BASE64.decode("adnkansdclsnacklncasnklasdckasddasasdqeqweqwe");
+    public JwtTokenProvider(@Value("${jwt.key}") String secret) {
+        byte[] keyBytes = Decoders.BASE64.decode(secret);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 

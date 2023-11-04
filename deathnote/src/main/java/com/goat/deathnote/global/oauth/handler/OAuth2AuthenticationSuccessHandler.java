@@ -37,13 +37,12 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 	private final JwtTokenProvider jwtTokenProvider;
 	private final MemberRepository memberRepository;
 
-	private String redirectUri = "/oauth/redirect";
+	private String redirectUri = "http://localhost:3000/oauth/redirect";
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 										Authentication authentication) throws IOException {
 		String targetUrl = determineTargetUrl(request, response, authentication);
-
 		if (response.isCommitted()) {
 			log.error("Response has already been committed. Unable to redirect to " + targetUrl);
 			return;

@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "memver_id")
+    @Column(name = "member_id")
     private Long id; //기본키
 
     @Column(name = "member_name")
@@ -21,9 +21,11 @@ public class Member {
     @Column(name = "member_email")
     private String email; //유저 구글 이메일
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "member_role")
-    private MemberRole role; //유저 권한 (일반 유저, 관리지ㅏ)
+    private MemberRole role; //유저 권한 (일반 유저, 관리자)
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "member_provider")
     private SocialProvider provider; //공급자 (google, facebook ...)
 

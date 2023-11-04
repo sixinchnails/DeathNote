@@ -38,7 +38,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		log.info("JWT Authentication Filter Start");
 		// 토큰을 까봄
 		String token = resolveToken(request);
-
 		if (token == null) {
 			log.info("토큰이 없음");
 			chain.doFilter(request, response);
@@ -95,7 +94,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	private String resolveToken(HttpServletRequest request) {
 		String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
-
 		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_TYPE)) {
 			return bearerToken.substring(7);
 		}

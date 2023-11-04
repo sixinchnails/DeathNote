@@ -39,9 +39,9 @@ public class SecurityConfig {
                 .authorizeRequests(auth -> auth.antMatchers("/**").hasAnyRole("USER").anyRequest().authenticated()) // 모든 uri에 대해 유저 권한이 있는 사람만 허용
                 .oauth2Login()
                 .authorizationEndpoint()
-                .baseUri("/oauth2/authorization/google")
+                .baseUri("/oauth2/authorization")
                 .and()
-                .redirectionEndpoint().baseUri("login/oauth2/code/google")
+                .redirectionEndpoint().baseUri("/login/oauth2/code/*")
                 .and()
                 .userInfoEndpoint()
                 .userService(oAuth2MemberService)
