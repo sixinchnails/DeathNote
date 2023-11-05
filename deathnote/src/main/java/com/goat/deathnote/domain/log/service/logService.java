@@ -1,18 +1,18 @@
 package com.goat.deathnote.domain.log.service;
 
 import com.goat.deathnote.domain.log.entity.Log;
-import com.goat.deathnote.domain.log.repository.SoulRepository;
+import com.goat.deathnote.domain.log.repository.LogRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SoulService {
+public class logService {
 
-    private final SoulRepository soulRepository;
+    private final LogRepository soulRepository;
 
-    public SoulService(SoulRepository soulRepository) {
+    public logService(LogRepository soulRepository) {
         this.soulRepository = soulRepository;
     }
 

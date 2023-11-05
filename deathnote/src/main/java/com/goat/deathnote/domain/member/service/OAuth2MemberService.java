@@ -28,6 +28,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User user = super.loadUser(userRequest); // 유저를 불러옴
         try {
+            System.out.println(123);
             return this.process(userRequest, user);
         } catch (Exception ex) {
             log.error("CustomOAuth2UserService loadUser Error {} ", ex.getMessage());
@@ -46,8 +47,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
         Member savedMember;
         if (foundMember == null) {
             savedMember = createMember(memberInfo, socialProvider);
-        }
-        else {
+        } else {
             savedMember = foundMember;
         }
 
@@ -57,14 +57,14 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
 
     private Member createMember(OAuth2MemberInfo memberInfo, SocialProvider socialProvider) {
         Member member = Member.builder()
-                        .name(memberInfo.getName())
-                                .email(memberInfo.getEmail())
-                                        .role(MemberRole.USER)
-                                                .provider(socialProvider)
+                .name(memberInfo.getName())
+                .email(memberInfo.getEmail())
+                .role(MemberRole.USER)
+                .provider(socialProvider)
                 .progress(1L)
                 .experienceValue(0L)
                 .level(1L)
-                                                        .build();
+                .build();
 
         memberRepository.saveAndFlush(member);
 

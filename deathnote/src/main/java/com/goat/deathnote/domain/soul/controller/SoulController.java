@@ -34,8 +34,4 @@ public class SoulController {
         return soulService.getSoulById(id);
     }
 
-//    @DeleteMapping("/{id}")
-//    public void deleteSoul(@PathVariable Long id) {
-//        soulService.deleteSoul(id);
-//    }
 }

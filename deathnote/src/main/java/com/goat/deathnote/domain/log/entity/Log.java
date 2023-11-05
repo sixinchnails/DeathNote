@@ -22,11 +22,11 @@ public class Log {
     private Long id;
 
     @ManyToOne
-    @Column(name = "stage_id")
+    @JoinColumn(name = "stage_id")
     private Stage stage;
 
     @ManyToOne
-    @Column(name = "soul_name")
+    @JoinColumn(name = "soul_name")
     private Soul soul;
 
     @CreatedDate

@@ -1,6 +1,9 @@
 package com.goat.deathnote.domain.stage.entity;
 
+import com.goat.deathnote.domain.member.entity.Member;
+import com.goat.deathnote.domain.music.entity.Music;
 import com.goat.deathnote.domain.soul.entity.Soul;
+import com.goat.deathnote.domain.world.entity.World;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,17 +20,20 @@ public class Stage {
     @Column(name = "stage_id") // 기본 키
     private Long id;
 
-    @Column(name = "stage_id")
-    private Long musicId;
+    @OneToOne
+    @JoinColumn(name = "music_id")
+    private Music music;
 
-    @Column(name = "world_id")
-    private Long worldId;
+    @OneToOne
+    @JoinColumn(name = "world_id")
+    private World world;
 
     @OneToOne
     @JoinColumn(name = "soul_id", nullable = false)
     private Soul soul;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
 }

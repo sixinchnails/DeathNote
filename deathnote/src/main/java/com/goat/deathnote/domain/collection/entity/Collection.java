@@ -22,11 +22,11 @@ public class Collection {
     private Long id;
 
     @ManyToOne
-    @Column(name = "member_id")
+    @JoinColumn(name = "member_id")
     private Member memberId;
 
     @ManyToOne
-    @Column(name = "soul_id")
+    @JoinColumn(name = "soul_id")
     private Soul soulId;
 
     @CreatedDate

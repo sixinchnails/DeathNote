@@ -29,7 +29,7 @@ public class SecurityConfig {
     private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
@@ -46,12 +46,12 @@ public class SecurityConfig {
                 .userInfoEndpoint()
                 .userService(oAuth2MemberService)
                 .and()
-                        .successHandler(oAuth2AuthenticationSuccessHandler())
+                .successHandler(oAuth2AuthenticationSuccessHandler())
                 .failureHandler(oAuth2AuthenticationFailureHandler())
                 .permitAll().and().addFilterBefore
-                (new JwtAuthenticationFilter(jwtTokenProvider, memberRepository),
-                        UsernamePasswordAuthenticationFilter.class)
-                        .build(); //로그인 후 받아온 유저 정보 처리
+                        (new JwtAuthenticationFilter(jwtTokenProvider, memberRepository),
+                                UsernamePasswordAuthenticationFilter.class)
+                .build(); //로그인 후 받아온 유저 정보 처리
     }
 
     @Bean

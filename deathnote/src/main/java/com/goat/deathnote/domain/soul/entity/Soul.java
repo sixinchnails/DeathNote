@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-@Table(name = "soul")
 public class Soul {
 
     @Id @GeneratedValue

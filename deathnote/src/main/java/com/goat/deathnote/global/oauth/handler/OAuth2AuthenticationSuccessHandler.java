@@ -43,11 +43,13 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 										Authentication authentication) throws IOException {
 		String targetUrl = determineTargetUrl(request, response, authentication);
+		System.out.println(1234);
 		if (response.isCommitted()) {
 			log.error("Response has already been committed. Unable to redirect to " + targetUrl);
 			return;
 		}
 
+		System.out.println(targetUrl);
 		clearAuthenticationAttributes(request, response);
 		getRedirectStrategy().sendRedirect(request, response, targetUrl);
 	}
@@ -60,6 +62,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 			.map(Cookie::getValue);
 
 		String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
+		System.out.println(targetUrl);
 
 		// 아래는 전부 유저 정보로 토큰을 만드는 과정
 		OAuth2AuthenticationToken authToken = (OAuth2AuthenticationToken)authentication;
