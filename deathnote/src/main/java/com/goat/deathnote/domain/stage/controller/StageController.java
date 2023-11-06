@@ -1,5 +1,6 @@
 package com.goat.deathnote.domain.stage.controller;
 
+import com.goat.deathnote.domain.stage.dto.MemberRankingDTO;
 import com.goat.deathnote.domain.stage.entity.Stage;
 import com.goat.deathnote.domain.stage.service.StageService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,6 @@ import java.util.Optional;
 public class StageController {
 
     private final StageService stageService;
-
 
     @PostMapping
     public Stage createStage(@RequestBody Stage stage) {
@@ -31,8 +31,9 @@ public class StageController {
         return stageService.getStageById(id);
     }
 
-//    @DeleteMapping("/{id}")
-//    public void deleteMusic(@PathVariable Long id) {
-//        musicService.deleteMusic(id);
+//    @GetMapping("/{stageId}/ranking")
+//    public List<MemberRankingDTO> getRankingForStage(@PathVariable Long stageId) {
+//        Optional<Stage> stage = stageService.getStageById(stageId);
+//        return stageService.getRankingForStage(stage);
 //    }
 }

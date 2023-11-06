@@ -24,11 +24,8 @@ public class SoulService {
         return soulRepository.findAll();
     }
 
-    public Optional<Soul> getSoulById(Long id) {
-        return soulRepository.findById(id);
+    public Optional<Soul> getSoulByName(String name) {
+        return soulRepository.findBySoulName(name);
     }
 
-//        public void deleteSoul (Long id){
-//            soulRepository.deleteById(id);
-//        }
 }

@@ -7,6 +7,7 @@ import com.goat.deathnote.domain.world.entity.World;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,5 +36,4 @@ public class Stage {
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
-
 }
