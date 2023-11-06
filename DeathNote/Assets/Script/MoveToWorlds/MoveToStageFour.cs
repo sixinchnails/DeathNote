@@ -7,6 +7,6 @@ public class MoveToStageFour : MonoBehaviour
 {
     public void MoveToStageFourScene()
     {
-        SceneManager.LoadScene("StageFourScene");
+        SceneManager.LoadScene("WorldFourScene");
     }
 }

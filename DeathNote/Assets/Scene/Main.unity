@@ -2342,7 +2342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &949175312
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2546,7 +2546,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modalImage1: {fileID: 1704350155}
-  modalImage2: {fileID: 0}
 --- !u!4 &1027842313
 Transform:
   m_ObjectHideFlags: 0
