@@ -1,20 +1,23 @@
 using UnityEngine;
+using UnityEngine.UI; // UI 관련 네임스페이스
 
 public class fly : MonoBehaviour
 {
-    public float floatStrength = 0.5f; // 떠오르는 힘. 이 값을 조절하여 떠오르는 정도를 변경할 수 있습니다.
-    public float amplitude = 0.1f; // 움직임의 진폭을 조절하는 변수
-    private Vector3 originalPosition;
+    public float floatStrength = 0.5f;
+    public float amplitude = 0.1f;
+    private Vector2 originalPosition;
+
+    private RectTransform rectTransform; // RectTransform 변수 추가
 
     void Start()
     {
-        originalPosition = transform.position; // 초기 위치 저장
+        rectTransform = GetComponent<RectTransform>(); // RectTransform 컴포넌트를 가져옵니다.
+        originalPosition = rectTransform.anchoredPosition; // 초기 위치를 anchoredPosition으로 저장합니다.
     }
 
     void Update()
     {
-        // Mathf.Abs를 사용하여 Sin 함수의 값이 항상 양수가 되도록 합니다.
-        // 추가로 amplitude를 곱하여 움직임의 진폭을 조절합니다.
-        transform.position = originalPosition + new Vector3(0.0f, Mathf.Abs(Mathf.Sin(Time.time) * amplitude) * floatStrength, 0.0f);
+        rectTransform.anchoredPosition = originalPosition + new Vector2(0.0f, Mathf.Abs(Mathf.Sin(Time.time) * amplitude) * floatStrength);
+        // anchoredPosition을 사용하여 위치를 변경합니다.d
     }
 }
