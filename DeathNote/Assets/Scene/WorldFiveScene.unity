@@ -2673,7 +2673,7 @@ GameObject:
   - component: {fileID: 607375822}
   - component: {fileID: 607375821}
   m_Layer: 5
-  m_Name: RightBackground
+  m_Name: SettingModal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

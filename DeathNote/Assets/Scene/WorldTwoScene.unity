@@ -7456,7 +7456,7 @@ GameObject:
   - component: {fileID: 1440921115}
   - component: {fileID: 1440921114}
   m_Layer: 5
-  m_Name: RightBackground
+  m_Name: SettingModal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
