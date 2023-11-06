@@ -41,6 +41,7 @@ public class NextScript2 : MonoBehaviour
     }
     public void click2()
     {
+        print("가냐");
         //대사 시작하면 버튼 비활성화
         button.interactable = false;
         audioSource.Play();
