@@ -4,6 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< Updated upstream
   m_Scenes:
   - enabled: 1
 <<<<<<< HEAD
@@ -19,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/OpeningStory.unity
     guid: 9b6ca5ed372657e40bac3e3caaa97980
+=======
+  m_Scenes: []
+>>>>>>> Stashed changes
   m_configObjects: {}
