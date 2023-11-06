@@ -9,26 +9,23 @@ import java.util.Optional;
 
 @Service
 public class CollectionService {
-    
+
     private final CollectionRepository collectionRepository;
 
     public CollectionService(CollectionRepository collectionRepository) {
         this.collectionRepository = collectionRepository;
     }
 
-    public Collection saveMusic (Collection music){
-            return collectionRepository.save(music);
-        }
-
-        public List<Collection> getAllMusics () {
-            return collectionRepository.findAll();
-        }
-
-        public Optional<Collection> getMusicById (Long id){
-            return collectionRepository.findById(id);
-        }
-
-//        public void deleteMusic (Long id){
-//            musicRepository.deleteById(id);
-//        }
+    public Collection saveCollection(Collection collection) {
+        return collectionRepository.save(collection);
     }
+
+    public List<Collection> getAllCollections() {
+        return collectionRepository.findAll();
+    }
+
+    public Optional<Collection> getCollectionById(Long id) {
+        return collectionRepository.findById(id);
+    }
+
+}

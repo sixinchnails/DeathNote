@@ -29,13 +29,9 @@ public class SoulController {
         return soulService.getAllSouls();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Soul> getSoulById(@PathVariable Long id) {
-        return soulService.getSoulById(id);
+    @GetMapping("/{soulName}")
+    public Optional<Soul> getSoulByName(@PathVariable String soulName) {
+        return soulService.getSoulByName(soulName);
     }
 
-//    @DeleteMapping("/{id}")
-//    public void deleteSoul(@PathVariable Long id) {
-//        soulService.deleteSoul(id);
-//    }
 }

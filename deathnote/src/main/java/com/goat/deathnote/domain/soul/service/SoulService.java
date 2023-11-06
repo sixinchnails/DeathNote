@@ -9,26 +9,23 @@ import java.util.Optional;
 
 @Service
 public class SoulService {
-    
+
     private final SoulRepository soulRepository;
 
     public SoulService(SoulRepository soulRepository) {
         this.soulRepository = soulRepository;
     }
 
-    public Soul saveSoul (Soul soul){
-            return soulRepository.save(soul);
-        }
-
-        public List<Soul> getAllSouls () {
-            return soulRepository.findAll();
-        }
-
-        public Optional<Soul> getSoulById (Long id){
-            return soulRepository.findById(id);
-        }
-
-//        public void deleteSoul (Long id){
-//            soulRepository.deleteById(id);
-//        }
+    public Soul saveSoul(Soul soul) {
+        return soulRepository.save(soul);
     }
+
+    public List<Soul> getAllSouls() {
+        return soulRepository.findAll();
+    }
+
+    public Optional<Soul> getSoulByName(String name) {
+        return soulRepository.findBySoulName(name);
+    }
+
+}

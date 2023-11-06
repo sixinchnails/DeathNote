@@ -17,4 +17,7 @@ public class Music {
     @Column(name = "music_id") // 기본 키
     private Long id;
 
+    @Column(name = "music_title")
+    private String title;
+
 }

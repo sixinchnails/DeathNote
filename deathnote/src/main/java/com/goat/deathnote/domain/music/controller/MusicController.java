@@ -20,7 +20,6 @@ public class MusicController {
 
     private final MusicService musicService;
 
-
     @PostMapping
     public Music createMusic(@RequestBody Music music) {
         return musicService.saveMusic(music);

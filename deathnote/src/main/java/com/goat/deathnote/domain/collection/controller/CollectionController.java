@@ -12,30 +12,28 @@ import java.util.Optional;
 @RequestMapping("/collections")
 public class CollectionController {
 
-    private final CollectionService musicService;
+    private final CollectionService collectionService;
 
     @Autowired
-    public CollectionController(CollectionService musicService) {
-        this.musicService = musicService;
+    public CollectionController(CollectionService collectionService) {
+        this.collectionService = collectionService;
     }
 
     @PostMapping
-    public Collection createMusic(@RequestBody Collection music) {
-        return musicService.saveMusic(music);
+    public Collection createCollection(@RequestBody Collection music) {
+        return collectionService.saveCollection(music);
     }
 
     @GetMapping
-    public List<Collection> getAllMusics() {
-        return musicService.getAllMusics();
+    public List<Collection> getAllCollections() {
+        return collectionService.getAllCollections();
     }
 
     @GetMapping("/{id}")
-    public Optional<Collection> getWorldById(@PathVariable Long id) {
-        return musicService.getMusicById(id);
+    public Optional<Collection> getCollectionById(@PathVariable Long id) {
+        return collectionService.getCollectionById(id);
     }
 
-//    @DeleteMapping("/{id}")
-//    public void deleteMusic(@PathVariable Long id) {
 //        musicService.deleteMusic(id);
 //    }
 }

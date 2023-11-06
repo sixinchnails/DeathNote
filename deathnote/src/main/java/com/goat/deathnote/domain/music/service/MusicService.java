@@ -11,26 +11,26 @@ import java.util.Optional;
 
 @Service
 public class MusicService {
-    
+
     private final MusicRepository musicRepository;
 
     public MusicService(MusicRepository musicRepository) {
         this.musicRepository = musicRepository;
     }
 
-    public Music saveMusic (Music music){
-            return musicRepository.save(music);
-        }
+    public Music saveMusic(Music music) {
+        return musicRepository.save(music);
+    }
 
-        public List<Music> getAllMusics () {
-            return musicRepository.findAll();
-        }
+    public List<Music> getAllMusics() {
+        return musicRepository.findAll();
+    }
 
-        public Optional<Music> getMusicById (Long id){
-            return musicRepository.findById(id);
-        }
+    public Optional<Music> getMusicById(Long id) {
+        return musicRepository.findById(id);
+    }
 
 //        public void deleteMusic (Long id){
 //            musicRepository.deleteById(id);
 //        }
-    }
+}

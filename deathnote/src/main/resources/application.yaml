@@ -1,0 +1,29 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 13682224369-6hrc9lt7knsmdftscal0214377a3ftk8.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
+            scope:
+              - profile
+              - email
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/9oat?serverTimezone=Asia/Seoul
+    username: root
+    password: ssafy
+  jpa:
+    hibernate:
+      show_sql: true
+      format_sql: true
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+jwt:
+  key: TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309
