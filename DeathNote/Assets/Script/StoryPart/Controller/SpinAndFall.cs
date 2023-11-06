@@ -45,7 +45,6 @@ public class SpinAndFall : MonoBehaviour
         sound.Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (go)

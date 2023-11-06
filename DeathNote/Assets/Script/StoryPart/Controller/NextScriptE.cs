@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class NextScriptE : MonoBehaviour
 {
     public TalkManager talkManager;
+    public FlashBack flashback;
+    public Credit credit;
 
     public GameObject dark;
     public Animator scriptBox;
@@ -19,6 +21,11 @@ public class NextScriptE : MonoBehaviour
     public GoBackM goBackM;
     public GameObject me;
     public Button button;
+
+    public GameObject obj1;
+    public Image img1;
+    public GameObject obj2;
+    public Image img2;
 
     AudioSource audioSource;
 
@@ -72,7 +79,7 @@ public class NextScriptE : MonoBehaviour
         button.interactable = true;
     }
 
-    void Talk()
+    async void Talk()
     {
         content.text = null;
         nickname.text = null;
@@ -80,9 +87,18 @@ public class NextScriptE : MonoBehaviour
         nickname2.text = null;
         int storyId = talkManager.getStoryId();
         TalkData data = talkManager.getTalk(storyId, talkIdx);
-        if (talkIdx == 1)
+        if (talkIdx == 2)
         {
-            //과거회상장면
+            print("대사 시작");
+            //대사 잠시 내린다.
+            scriptBox.SetBool("isShow", false);
+            //과거회상장면 시작
+            await flashback.show(obj1, img1);
+            await flashback.hide(obj1, img1);
+            await flashback.show(obj2, img2);
+            await flashback.hide(obj2, img2);
+
+            scriptBox.SetBool("isShow", true);
         }
         if (talkIdx == 4)
         {
@@ -92,6 +108,7 @@ public class NextScriptE : MonoBehaviour
         {
             scriptBox.SetBool("isShow", false);
             //이제 엔딩크레딧으로
+            credit.up();
             //SceneManager.LoadScene("");
         }
         if (data.id == 0)

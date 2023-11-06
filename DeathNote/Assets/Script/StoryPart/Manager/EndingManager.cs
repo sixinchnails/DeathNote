@@ -7,14 +7,16 @@ public class EndingManager : MonoBehaviour
 {
     public NextScriptE next;
 
-    public GameObject dark;
     public GameObject book;
+    public GameObject past1;
+    public GameObject past2;
 
 
     private void Awake()
     {
         book.SetActive(false);
-        dark.SetActive(false);
+        past1.SetActive(false);
+        past2.SetActive(false);
     }
 
     private void Start()
