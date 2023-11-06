@@ -139,6 +139,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 981983522524377972, guid: 7b0782b5ed2075648a9cc654cc85b79a, type: 3}
   m_PrefabInstance: {fileID: 2247328464433404543}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &240478039 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5758637753466681019, guid: 7b0782b5ed2075648a9cc654cc85b79a, type: 3}
+  m_PrefabInstance: {fileID: 2247328464433404543}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &286320647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,7 +1199,7 @@ Animator:
   m_GameObject: {fileID: 1088054080}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a71ceee59fe0e8045979e7320a5cbdbb, type: 2}
+  m_Controller: {fileID: 9100000, guid: e8258e82b3dd74d4990d192c5f7a9ac6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1407,6 +1412,8 @@ MonoBehaviour:
   me: {fileID: 240478037}
   button: {fileID: 534469638}
   backgroundN: {fileID: 1498295576}
+  mm: {fileID: 240478039}
+  rr: {fileID: 1793313310}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -60,12 +60,6 @@ public class Credit : MonoBehaviour
 
             elapsedTime += Time.deltaTime;
 
-            //Debug.Log(elapsedTime+"df");
-            //if(elapsedTime == 0)
-            //{
-            //    logo.SetActive(true);
-            //}
-
             show();
 
             yield return null;

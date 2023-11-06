@@ -36,7 +36,7 @@ public class TalkManager : MonoBehaviour
             new TalkData(2, "『악보엔 정령들이 봉인되어 있어』"),
             new TalkData(2, "『하지만, 악보가 다 찢어져서 정령들이 뿔뿔이 흩어지고 말았어···』"),
             new TalkData(2, "『너라면 악보를 찾아 정령을 풀어줄 수 있을 것 같아!』"),
-            new TalkData(2, "『월드 버튼을 눌러봐. 나랑 악보를 찾아 여행을 떠나자』")
+            new TalkData(2, "『월드 버튼을 눌러봐. 나랑 악보를 찾아 여행을 떠나자!』")
         };
         scriptList.Add(-1, opening2Data);
 

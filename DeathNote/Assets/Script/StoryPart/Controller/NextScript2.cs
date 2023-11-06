@@ -19,6 +19,9 @@ public class NextScript2 : MonoBehaviour
     public GoBackR goBackR;
     public GoBackM goBackM;
 
+    public Animator mm;
+    public Animator rr;
+
     AudioSource audioSource;
 
     int talkIdx = -1;
@@ -87,16 +90,33 @@ public class NextScript2 : MonoBehaviour
         }
         else if (data.id == 1)
         {
+            mm.SetBool("turn", true);
+            StartCoroutine(meSpeak());
             goBackR.back();
             goBackM.forward();
             nickname.text = "사용자 닉네임 들어갈거임";
         }
         else if (data.id == 2)
         {
+            rr.SetBool("turn", true);
+            StartCoroutine(reSpeak());
             goBackR.forward();
             goBackM.back();
             nickname2.text = "악마";
         }
         StartCoroutine(Typing(data.content, data.id));
+    }
+
+    IEnumerator meSpeak()
+    {
+        ;
+        yield return new WaitForSeconds(1);
+        mm.SetBool("turn", false);
+    }
+
+    IEnumerator reSpeak()
+    {
+        yield return new WaitForSeconds(1);
+        rr.SetBool("turn", false);
     }
 }
