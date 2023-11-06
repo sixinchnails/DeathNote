@@ -9,11 +9,13 @@ public class SettingOpener : MonoBehaviour
 
     public void OnBackgroundClicked()
     {
-        modalImage1.SetActive(true); // 모달 이미지1 활성화
+        modalImage1.active = !modalImage1.active;
+//        modalImage1.SetActive(true); // 모달 이미지1 활성화
     }
 
     public void CloseModals()
     {
         modalImage1.SetActive(false); // 모달 이미지1 비활성화
+        
     }
 }
