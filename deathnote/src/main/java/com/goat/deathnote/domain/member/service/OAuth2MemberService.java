@@ -28,7 +28,6 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User user = super.loadUser(userRequest); // 유저를 불러옴
         try {
-            System.out.println(123);
             return this.process(userRequest, user);
         } catch (Exception ex) {
             log.error("CustomOAuth2UserService loadUser Error {} ", ex.getMessage());

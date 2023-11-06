@@ -6,7 +6,8 @@ spring:
           google:
             client-id: 13682224369-6hrc9lt7knsmdftscal0214377a3ftk8.apps.googleusercontent.com
             client-secret: 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
-            redirect-uri: http://localhost:8080/login/oauth2/code/google
+#            redirect-uri: http://thatsnote.site/login/oauth2/code/google
+            redirect-uri: https://thatsnote.site/login/oauth2/code/google
             scope:
               - profile
               - email
