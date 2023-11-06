@@ -120,11 +120,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-<<<<<<< HEAD
-    buildTarget: iPhone
-=======
-    buildTarget: WebGL
->>>>>>> a76a19f60c2f6223690d373ca7dca9f2e920452e
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -143,30 +139,9 @@ TextureImporter:
       name: Worlds_0
       rect:
         serializedVersion: 2
-        x: 250
-        y: 168
-        width: 122
-        height: 140
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a01bb5053543eaf4caec5c95729763cf
-      internalID: -514701990
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Worlds_3
-      rect:
-        serializedVersion: 2
         x: 10
         y: 173
-        width: 122
+        width: 123
         height: 145
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -175,18 +150,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22050a2fc16b5284fa578a97af352ce1
-      internalID: 93323959
+      spriteID: e4e7ab217bd1e1345afa1f6de7291265
+      internalID: -1946802378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Worlds_4
+      name: Worlds_1
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 170
+        width: 122
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82c2ce4341bad484fbf9f162195ef161
+      internalID: -1459136602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Worlds_2
       rect:
         serializedVersion: 2
         x: 506
-        y: 169
+        y: 170
         width: 124
         height: 144
       alignment: 0
@@ -196,61 +192,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b444ba8c44d54347a5f05598664ff40
-      internalID: -2087895922
+      spriteID: ddf1879693657a648aa6d954d28c9262
+      internalID: -870875867
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Worlds_23
+      name: Worlds_3
       rect:
         serializedVersion: 2
-        x: 621
-        y: 19
-        width: 129
-        height: 151
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 583d476a1e399fb43a576f8f416fbbcc
-      internalID: -536402893
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Worlds_25
-      rect:
-        serializedVersion: 2
-        x: 372
-        y: 23
-        width: 121
-        height: 141
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbd8db16c2c18234f987373079a8ff3f
-      internalID: 790549156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Worlds_28
-      rect:
-        serializedVersion: 2
-        x: 118
+        x: 119
         y: 21
-        width: 125
+        width: 122
         height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -259,8 +213,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a67434b1b02c3334399015d40b3edffe
-      internalID: 1654904126
+      spriteID: ad1d33d908e83984da6301c1244666aa
+      internalID: -866828839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Worlds_4
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 23
+        width: 121
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 231ca02a3ff8feb479f7f8f8733b97e5
+      internalID: -1731536963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Worlds_5
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 20
+        width: 127
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3619a6ad97235e24b8c3d4372ca85094
+      internalID: -1137083189
       vertices: []
       indices: 
       edges: []
@@ -268,7 +264,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 817d89aabb02cf5488f4863cb7129616
     internalID: 0
     vertices: []
     indices: 
@@ -276,53 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Worlds_0: -514701990
-      Worlds_1: -1857408641
-      Worlds_10: -405075714
-      Worlds_11: 59032262
-      Worlds_12: -1056259301
-      Worlds_13: -250012524
-      Worlds_14: 1551918656
-      Worlds_15: 987118822
-      Worlds_16: 756959938
-      Worlds_17: 1558391499
-      Worlds_18: 1775341943
-      Worlds_19: 1223239524
-      Worlds_2: 1093257771
-      Worlds_20: -1112996952
-      Worlds_21: 800929645
-      Worlds_22: 353134477
-      Worlds_23: -536402893
-      Worlds_24: 762002244
-      Worlds_25: 790549156
-      Worlds_26: -1708622050
-      Worlds_27: 77835437
-      Worlds_28: 1654904126
-      Worlds_29: -1679799303
-      Worlds_3: 93323959
-      Worlds_30: 2008301130
-      Worlds_31: -667247227
-      Worlds_32: 1016334010
-      Worlds_33: 1569297873
-      Worlds_34: -1871772190
-      Worlds_35: -68169888
-      Worlds_36: 1261234707
-      Worlds_37: 664215495
-      Worlds_38: 195394848
-      Worlds_39: 1607290692
-      Worlds_4: -2087895922
-      Worlds_40: 1499492925
-      Worlds_41: -639189948
-      Worlds_42: 4856047
-      Worlds_43: -1884716060
-      Worlds_44: -1733652099
-      Worlds_45: -104378684
-      Worlds_46: 154331571
-      Worlds_5: -1548750378
-      Worlds_6: 669666734
-      Worlds_7: -1279665042
-      Worlds_8: -1336670878
-      Worlds_9: 1419656139
+      Worlds_0: -1946802378
+      Worlds_1: -1459136602
+      Worlds_2: -870875867
+      Worlds_3: -866828839
+      Worlds_4: -1731536963
+      Worlds_5: -1137083189
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
