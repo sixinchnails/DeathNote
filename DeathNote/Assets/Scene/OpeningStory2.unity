@@ -710,6 +710,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1564182935 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5758637753466681019, guid: 7b0782b5ed2075648a9cc654cc85b79a, type: 3}
+  m_PrefabInstance: {fileID: 1600515039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1600515039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -960,6 +965,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4918ccf8a769b144fba672a5af9ba3a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2078625174 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3460732044925702933, guid: 7b0782b5ed2075648a9cc654cc85b79a, type: 3}
+  m_PrefabInstance: {fileID: 1600515039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2112169136 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2154888295655605620, guid: 7b0782b5ed2075648a9cc654cc85b79a, type: 3}
@@ -988,6 +998,8 @@ MonoBehaviour:
   content2: {fileID: 1944695434}
   goBackR: {fileID: 2078625172}
   goBackM: {fileID: 603035703}
+  mm: {fileID: 1564182935}
+  rr: {fileID: 2078625174}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
