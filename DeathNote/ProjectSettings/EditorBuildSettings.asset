@@ -5,22 +5,89 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scene/StartGame.unity
-    guid: 63d68894a116bb249b784efb1da7670c
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scene/ButtonRhythmPart.unity
+    guid: 3ada05d47d9559c49a441465d2214edb
+  - enabled: 1
+    path: Assets/Scene/DoGam.unity
+    guid: ec8e9b74e5474d346ba9a9209bacef18
+  - enabled: 1
+    path: Assets/Scene/EndingStory.unity
+    guid: 9e5c505f8c58679478aec5e60bc2d08c
+  - enabled: 1
+    path: Assets/Scene/GameResultScene.unity
+    guid: 65d116395197e504f9983103f347075f
+  - enabled: 1
+    path: Assets/Scene/GetSoul.unity
+    guid: fba11741f0aefa342ba6e1349dd9b54a
+  - enabled: 1
+    path: Assets/Scene/LogIn.unity
+    guid: fc66f02ad35a1024baee9655a421a03f
+  - enabled: 1
+    path: Assets/Scene/Main.unity
+    guid: f56fab353ff0bda459e40d33fc059d21
+  - enabled: 1
+    path: Assets/Scene/MetroRhythmPart.unity
+    guid: 4fe6516e3fc4a2042ab9f4b551021cdd
+  - enabled: 1
+    path: Assets/Scene/NormalRhythmPart.unity
+    guid: 43e7c9acada620c4a8b4325e73dc49e0
+  - enabled: 1
     path: Assets/Scene/OpeningStory.unity
     guid: 9b6ca5ed372657e40bac3e3caaa97980
   - enabled: 0
     path: Assets/Scene/Tutorial.unity
     guid: b5cdc0eeaaecab94e8d9760639adcd23
-  - enabled: 0
-    path: Assets/Scene/OpeningStory2.unity
-    guid: d2485ef94a3b00e4aaf72e9c4e474380
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/Main.unity
     guid: f56fab353ff0bda459e40d33fc059d21
   - enabled: 1
-    path: Assets/Scene/ButtonRhythmPart.unity
-    guid: 3ada05d47d9559c49a441465d2214edb
-  m_configObjects: {}
+    path: Assets/Scene/StageOneScene.unity
+    guid: 51e068c8627171944936f931123bfb12
+  - enabled: 1
+    path: Assets/Scene/StageTwoScene.unity
+    guid: cce5e17d1696b2c48abece747f49fee3
+  - enabled: 1
+    path: Assets/Scene/StageThreeScene.unity
+    guid: 11ad5754671d5fc4e97bab4a61aa9bf8
+  - enabled: 1
+    path: Assets/Scene/StageSixScene.unity
+    guid: 9cf3f20f66a1f9d4ca8079816489d2fb
+  - enabled: 1
+    path: Assets/Scene/StageFourScene.unity
+    guid: 716328fb3582b01459b61c77a5c0f329
+  - enabled: 1
+    path: Assets/Scene/StageFiveScene.unity
+    guid: 9ee3526792db1b147947ebe11aadece3
+  - enabled: 1
+    path: Assets/Scene/WorldMapScene.unity
+    guid: b4cf7a78bba57cd4da6b269247cb6872
+  - enabled: 1
+    path: Assets/Scene/WorldOneScene.unity
+    guid: c6d038a13b7c90646bd9e011bbd9950e
+  - enabled: 1
+    path: Assets/Scene/WorldTwoScene.unity
+    guid: 3c9ac86b8f7781c4fa3e5df952b59381
+  - enabled: 1
+    path: Assets/Scene/WorldThreeScene.unity
+    guid: e8b0220b41741b24a8156b0fe254ea0b
+  - enabled: 1
+    path: Assets/Scene/WorldFourScene.unity
+    guid: 3c414e9585b3ac9419452d2a4ed4d8da
+  - enabled: 1
+    path: Assets/Scene/WorldFiveScene.unity
+    guid: c9856c0e98438c149a800592612c4e8c
+  - enabled: 1
+    path: Assets/Scene/WorldSixScene.unity
+    guid: 52bb46dab337ea14a93e54cdcccfa946
+  - enabled: 1
+    path: Assets/Scene/DoGam.unity
+    guid: ec8e9b74e5474d346ba9a9209bacef18
+  - enabled: 1
+    path: Assets/Scene/RaMain.unity
+    guid: 1de81e0b593bacd4a810c90c759f571a
+  m_Scenes: []
+  m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 4daf5631f58fd1d4a9756ccdf21e147c, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: c43fa67bcdbb3f440a0de5e09c776461, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 6c4c74032a4f03544b73e1e2fc9053cf, type: 2}

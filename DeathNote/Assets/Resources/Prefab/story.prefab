@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4534403151343092544}
   - component: {fileID: 4672539439730665899}
   - component: {fileID: 1577383866700812859}
+  - component: {fileID: 5758637753466681019}
   m_Layer: 5
   m_Name: me
   m_TagString: Untagged
@@ -187,6 +188,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   me: {fileID: 4534403151343092544}
+--- !u!95 &5758637753466681019
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981983522524377972}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6c9bbcee60c58b1428eecbf4bf0f817a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1276418030423074527
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,8 +243,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.5003, y: -29.69}
-  m_SizeDelta: {x: 989.81, y: 105.5611}
+  m_AnchoredPosition: {x: -6.5003, y: -38.621}
+  m_SizeDelta: {x: 989.81, y: 123.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &718955559717098043
 CanvasRenderer:
@@ -429,8 +451,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 29.448181, y: 0}
-  m_SizeDelta: {x: 1578.8896, y: 189.699}
+  m_AnchoredPosition: {x: 29.448181, y: -7.4653}
+  m_SizeDelta: {x: 1578.8896, y: 254.8312}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &84997046285421869
 CanvasRenderer:
@@ -560,8 +582,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.5006, y: -29.69}
-  m_SizeDelta: {x: 989.81, y: 105.5611}
+  m_AnchoredPosition: {x: -6.5006, y: -38.621}
+  m_SizeDelta: {x: 989.81, y: 123.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3695585450225325195
 CanvasRenderer:
@@ -924,6 +946,7 @@ GameObject:
   - component: {fileID: 7648611997285972093}
   - component: {fileID: 2544292327068724790}
   - component: {fileID: 7488231850945921313}
+  - component: {fileID: 3460732044925702933}
   m_Layer: 5
   m_Name: reaper
   m_TagString: Untagged
@@ -1016,3 +1039,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reaper: {fileID: 7648611997285972093}
+--- !u!95 &3460732044925702933
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716086075232081887}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e8258e82b3dd74d4990d192c5f7a9ac6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
