@@ -29,6 +29,8 @@ spring:
 jwt:
   key: TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309
 
+
+
 #server:
 #  ssl:
 #    key-store: keystore.p12
