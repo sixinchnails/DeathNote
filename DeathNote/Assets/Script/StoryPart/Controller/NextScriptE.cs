@@ -14,13 +14,16 @@ public class NextScriptE : MonoBehaviour
     public Animator scriptBox;
     public Text nickname; //나중에 유저 닉네임 받아와서 넣을거임
     public Text content;
-    public Text nickname2; //사신
+    public Text nickname2; //악마
     public Text content2;
     public GameObject book;
     public GoBackR goBackR;
     public GoBackM goBackM;
     public GameObject me;
     public Button button;
+
+    public Animator mm;
+    public Animator rr;
 
     public GameObject obj1;
     public Image img1;
@@ -100,33 +103,42 @@ public class NextScriptE : MonoBehaviour
 
             scriptBox.SetBool("isShow", true);
         }
-        if (talkIdx == 4)
-        {
-            me.SetActive(false);
-        }
         if (data == null)
         {
+            me.SetActive(false);
             scriptBox.SetBool("isShow", false);
             //이제 엔딩크레딧으로
             credit.up();
             //SceneManager.LoadScene("");
         }
-        if (data.id == 0)
-        {
-            nickname.text = "";
-        }
         else if (data.id == 1)
         {
+            mm.SetBool("turn", true);
+            StartCoroutine(meSpeak());
             goBackR.back();
             goBackM.forward();
             nickname.text = "사용자 닉네임 들어갈거임";
         }
         else if (data.id == 2)
         {
+            rr.SetBool("turn", true);
+            StartCoroutine(reSpeak());
             goBackR.forward();
             goBackM.back();
             nickname2.text = "악마";
         }
         StartCoroutine(Typing(data.content, data.id));
+    }
+
+    IEnumerator meSpeak()
+    {;
+        yield return new WaitForSeconds(1);
+        mm.SetBool("turn", false);
+    }
+
+    IEnumerator reSpeak()
+    {
+        yield return new WaitForSeconds(1);
+        rr.SetBool("turn", false);
     }
 }
