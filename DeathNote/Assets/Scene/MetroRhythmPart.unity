@@ -1041,11 +1041,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalNoteInfo:
-  - goPrefab: {fileID: 1561946386407867748, guid: a6cd7e2f51144b34aa5099f67a84ac09, type: 3}
+  - goPrefab: {fileID: 3224571999155171555, guid: af800179b305b854292dadbf07b5650a, type: 3}
     count: 20
     tfPoolParent: {fileID: 71910357}
-  longNoteInfo: []
-  centerNoteInfo: []
+  longNoteInfo:
+  - goPrefab: {fileID: 2682371911601211622, guid: 2c31399bad619864cb5e29266348cace, type: 3}
+    count: 30
+    tfPoolParent: {fileID: 71910357}
+  centerNoteInfo:
+  - goPrefab: {fileID: 2361201279737753803, guid: f1afdec6675035f47bfad63391ee26b5, type: 3}
+    count: 80
+    tfPoolParent: {fileID: 71910357}
   endNoteInfo: []
 --- !u!1 &419269954
 GameObject:
