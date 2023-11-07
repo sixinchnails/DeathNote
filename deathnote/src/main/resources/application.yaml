@@ -31,8 +31,8 @@ jwt:
 
 
 
-server:
-  ssl:
-    key-store: keystore.p12
-    key-store-type: PKCS12
-    key-password: ssafy
+#server:
+#  ssl:
+#    key-store: keystore.p12
+#    key-store-type: PKCS12
+#    key-password: ssafy
