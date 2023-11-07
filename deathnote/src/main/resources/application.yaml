@@ -6,14 +6,14 @@ spring:
           google:
             client-id: 13682224369-6hrc9lt7knsmdftscal0214377a3ftk8.apps.googleusercontent.com
             client-secret: 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
-            redirect-uri: http://localhost:8080/login/oauth2/code/google
-#            redirect-uri: https://thatsnote.site/login/oauth2/code/google
+            # redirect-uri: http://localhost:8080/login/oauth2/code/google
+            redirect-uri: https://thatsnote.site/login/oauth2/code/google
             scope:
               - profile
               - email
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/9oat?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://3.36.98.164:3306/9oat?serverTimezone=Asia/Seoul
     username: root
     password: ssafy
   jpa:
