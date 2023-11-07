@@ -21,7 +21,6 @@ public class SoulController {
 
     @PostMapping
     public Soul createSoul(@RequestBody Soul soul) {
-        System.out.println("?!!");
         return soulService.saveSoul(soul);
     }
 

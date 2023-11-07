@@ -1,14 +1,12 @@
 package com.goat.deathnote.domain.member.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor // 기본생성자
 public class Member {
     @Id

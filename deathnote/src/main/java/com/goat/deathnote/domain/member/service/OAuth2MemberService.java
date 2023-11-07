@@ -69,4 +69,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
 
         return member;
     }
+
+    private void registNickname(){
+    }
 }
