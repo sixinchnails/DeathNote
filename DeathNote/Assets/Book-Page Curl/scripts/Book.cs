@@ -58,6 +58,9 @@ public class Book : MonoBehaviour
     public Image RightNext;
     public UnityEvent OnFlip;
     float radius1, radius2;
+    public Button nextButton; // 오른쪽으로 넘기는 버튼
+    public Button prevButton; // 왼쪽으로 넘기는 버튼
+
     //Spine Bottom
     Vector3 sb;
     //Spine Top
@@ -413,9 +416,22 @@ public class Book : MonoBehaviour
         // 오른쪽 페이지에 대한 페이지 번호 계산
         int pageNumber = (currentPage / 2) + 1;
         pageNumberText.text = pageNumber.ToString();
+        // 버튼 상태 업데이트
+        UpdateButtonStates();
     }
 
-
+    void UpdateButtonStates()
+    {
+        // 마지막 페이지 또는 마지막에서 하나 전 페이지인 경우 오른쪽 버튼 비활성화
+        if (currentPage >= bookPages.Length - 2)
+        {
+            nextButton.interactable = false;
+        }
+        else
+        {
+            nextButton.interactable = true;
+        }
+    }
 
     // 페이지를 앞쪽으로 부드럽게 넘기는 함수
     public void TweenForward()
