@@ -1,5 +1,6 @@
 package com.goat.deathnote.domain.member.controller;
 
+import com.goat.deathnote.domain.member.dto.MemberDto;
 import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,6 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @PostMapping
-    public ResponseEntity<Member> createMember(@RequestBody Member member) {
-        Member createdMember = memberService.createMember(member);
-        return new ResponseEntity<>(createdMember, HttpStatus.CREATED);
-    }
-
     @GetMapping
     public List<Member> getAllMembers() {
         return memberService.getAllMembers();
@@ -42,24 +37,19 @@ public class MemberController {
         }
     }
 
-    @PutMapping("/{memberId}")
-    public ResponseEntity<Member> updateMember(@PathVariable Long memberId, @RequestBody Member updatedMember) {
-        if (memberService.getMemberById(memberId).isPresent()) {
-            updatedMember.setId(memberId);
-            Member member = memberService.updateMember(updatedMember);
-            return new ResponseEntity<>(member, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @PutMapping("/{email}/nickname")
+    public Member updateNickname(@PathVariable String email, @RequestBody MemberDto newNickname) {
+        return memberService.updateNicknameByEmail(email, newNickname);
     }
 
-    @DeleteMapping("/{memberId}")
-    public ResponseEntity<Void> deleteMember(@PathVariable Long memberId) {
-        if (memberService.getMemberById(memberId).isPresent()) {
-            memberService.deleteMember(memberId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+
+//    @DeleteMapping("/{memberId}")
+//    public ResponseEntity<Void> deleteMember(@PathVariable Long memberId) {
+//        if (memberService.getMemberById(memberId).isPresent()) {
+//            memberService.deleteMember(memberId);
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 }

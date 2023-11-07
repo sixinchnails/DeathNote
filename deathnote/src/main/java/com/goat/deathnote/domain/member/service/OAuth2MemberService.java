@@ -7,6 +7,7 @@ import com.goat.deathnote.domain.member.repository.MemberRepository;
 import com.goat.deathnote.global.oauth.dto.MemberPrincipal;
 import com.goat.deathnote.global.oauth.info.OAuth2MemberInfo;
 import com.goat.deathnote.global.oauth.info.OAuth2UserInfoFactory;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -64,12 +65,16 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
                 .experienceValue(0L)
                 .level(1L)
                 .build();
+        String randomNickname = generateRandomNickname();
+        member.setNickName(randomNickname);
 
         memberRepository.saveAndFlush(member);
 
         return member;
     }
 
-    private void registNickname(){
+    private String generateRandomNickname() {
+        return RandomStringUtils.randomAlphabetic(8);
     }
+
 }

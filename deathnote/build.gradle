@@ -42,6 +42,9 @@ dependencies {
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
 	// Redis
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	// 랜덤영단어 생성
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0' // 현재 사용 가능한 버전에 따라 버전을 조정하세요.
+
 }
 
 tasks.named('test') {
