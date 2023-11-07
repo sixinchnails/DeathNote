@@ -1,10 +1,12 @@
 package com.goat.deathnote.domain.member.service;
 
+import com.goat.deathnote.domain.member.dto.MemberDto;
 import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +18,6 @@ public class MemberService {
     @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
-    }
-
-    public Member createMember(Member member) {
-        // 여기에 새로운 멤버 생성 및 저장 로직을 추가하세요.
-        return memberRepository.save(member);
     }
 
     public List<Member> getAllMembers() {
@@ -38,8 +35,15 @@ public class MemberService {
         memberRepository.deleteById(memberId);
     }
 
-    public Member updateMember(Member updatedMember) {
-        // 멤버 정보 업데이트 로직을 추가하세요.
-        return memberRepository.save(updatedMember);
+    public Member updateNicknameByEmail(String email, MemberDto newNickname) {
+        Member member = memberRepository.findByEmail(email);
+
+        if (member != null) {
+            member.setNickName(newNickname.getNickName());
+            return memberRepository.save(member);
+        }
+
+        // 유저를 찾을 수 없을 때 예외처리 (여기에서는 null을 반환하거나 예외를 던질 수 있음)
+        return null;
     }
 }
