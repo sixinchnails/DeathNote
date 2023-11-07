@@ -6,8 +6,8 @@ spring:
           google:
             client-id: 13682224369-6hrc9lt7knsmdftscal0214377a3ftk8.apps.googleusercontent.com
             client-secret: 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
-#            redirect-uri: http://thatsnote.site/login/oauth2/code/google
-            redirect-uri: https://thatsnote.site/login/oauth2/code/google
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
+#            redirect-uri: https://thatsnote.site/login/oauth2/code/google
             scope:
               - profile
               - email
@@ -20,7 +20,7 @@ spring:
     hibernate:
       show_sql: true
       format_sql: true
-      ddl-auto: create
+      ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
   redis:
     host: 127.0.0.1
@@ -29,10 +29,8 @@ spring:
 jwt:
   key: TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309TkvlrhxmB309
 
-
-
-server:
-  ssl:
-    key-store: keystore.p12
-    key-store-type: PKCS12
-    key-password: ssafy
+#server:
+#  ssl:
+#    key-store: keystore.p12
+#    key-store-type: PKCS12
+#    key-password: ssafy

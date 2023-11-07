@@ -5,8 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface SoulRepository extends JpaRepository<Soul, String> {
+public interface SoulRepository extends JpaRepository<Soul, Long> {
     Optional<Soul> findBySoulName(String name);
-
 
 }

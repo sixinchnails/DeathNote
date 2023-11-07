@@ -16,7 +16,7 @@ public class Soul {
     @Column(name = "soul_id")
     private Long id;
 
-    @Column(name = "soul_name")
+    @Column(name = "soul_name", unique = true)
     private String soulName;
 
     @Column(name = "soul_state")
