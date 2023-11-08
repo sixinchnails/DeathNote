@@ -27,11 +27,17 @@ public class CameraMover : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+
+            // 터치 위치에 캐릭터가 있는지 확인합니다.
             if (touch.phase == TouchPhase.Began)
             {
+                // 캐릭터가 있으면 이동하지 않습니다.
+                if (IsTouchingCharacter(touch.position))
+                    return;
+
                 SetMoveDirection(touch.position);
             }
-            else if (touch.phase == TouchPhase.Ended)
+            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
                 moveDirection = Vector3.zero;
             }
@@ -40,6 +46,10 @@ public class CameraMover : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                // 클릭 위치에 캐릭터가 있는지 확인합니다.
+                if (IsTouchingCharacter(Input.mousePosition))
+                    return;
+
                 SetMoveDirection(Input.mousePosition);
             }
             else if (Input.GetMouseButtonUp(0))
@@ -49,6 +59,14 @@ public class CameraMover : MonoBehaviour
         }
 
         MoveCamera();
+    }
+
+    // 캐릭터가 터치되었는지 확인하는 메소드
+    private bool IsTouchingCharacter(Vector2 screenPosition)
+    {
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+        RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+        return hit.collider != null && hit.collider.CompareTag("Character");
     }
 
     void SetMoveDirection(Vector2 screenPosition)
