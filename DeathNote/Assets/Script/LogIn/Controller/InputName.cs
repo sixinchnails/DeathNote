@@ -6,14 +6,12 @@ using UnityEngine.Networking;
 
 public class InputName : MonoBehaviour
 {
+    public LoginManager loginManager;
+    public NickNameBtn nickNameBtn;
+
     public InputField inputField;
     public Text nicknameTxt;
     private string nickname;
-
-    void Update()
-    {
-
-    }
 
     public void InputNickName()
     {
@@ -64,10 +62,18 @@ public class InputName : MonoBehaviour
         if (wwt.result != UnityWebRequest.Result.Success)
         {
             Debug.Log(wwt.error);
+            //if (아이디가 중복이면)
+            //{
+            loginManager.DuplicateName();
+            nickNameBtn.getResult(false);
+            //}
         }
         else
         {
+            //닉네임 등록이 성공했다면
             Debug.Log(wwt.downloadHandler.text);
+            loginManager.SuccessName();
+            nickNameBtn.getResult(true);
         }
 
     }
