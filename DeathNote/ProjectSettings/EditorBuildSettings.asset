@@ -63,22 +63,22 @@ EditorBuildSettings:
     path: Assets/Scene/WorldMapScene.unity
     guid: b4cf7a78bba57cd4da6b269247cb6872
   - enabled: 1
-    path: Assets/Scene/WorldOneScene.unity
+    path: Assets/Scene/Stages/WorldOneScene.unity
     guid: c6d038a13b7c90646bd9e011bbd9950e
   - enabled: 1
-    path: Assets/Scene/WorldTwoScene.unity
+    path: Assets/Scene/Stages/WorldTwoScene.unity
     guid: 3c9ac86b8f7781c4fa3e5df952b59381
   - enabled: 1
-    path: Assets/Scene/WorldThreeScene.unity
+    path: Assets/Scene/Stages/WorldThreeScene.unity
     guid: e8b0220b41741b24a8156b0fe254ea0b
   - enabled: 1
-    path: Assets/Scene/WorldFourScene.unity
+    path: Assets/Scene/Stages/WorldFourScene.unity
     guid: 3c414e9585b3ac9419452d2a4ed4d8da
   - enabled: 1
-    path: Assets/Scene/WorldFiveScene.unity
+    path: Assets/Scene/Stages/WorldFiveScene.unity
     guid: c9856c0e98438c149a800592612c4e8c
   - enabled: 1
-    path: Assets/Scene/WorldSixScene.unity
+    path: Assets/Scene/Stages/WorldSixScene.unity
     guid: 52bb46dab337ea14a93e54cdcccfa946
   - enabled: 1
     path: Assets/Scene/DoGam.unity
