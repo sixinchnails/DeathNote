@@ -25,41 +25,33 @@ public class MusicSelectBtn : MonoBehaviour
             limit = stage[idx] * w;
             if(Mathf.Abs(limit % 8) == 1)
             {
-                limit -= 1;
-                Debug.Log(limit);
+                limit += 1;
             }else if (Mathf.Abs(limit % 8) == 2)
             {
-                limit -= 2;
-                Debug.Log(limit);
+                limit += 2;
             }
             else if (Mathf.Abs(limit % 8) == 3)
             {
-                limit -= 3;
-                Debug.Log(limit);
+                limit += 3;
             }
             else if (Mathf.Abs(limit % 8) == 4)
             {
-                limit -= 4;
-                Debug.Log(limit);
+                limit += 4;
             }
             else if (Mathf.Abs(limit % 8) == 5)
             {
-                limit += 3;
-                Debug.Log(limit);
+                limit -= 3;
             }
             else if (Mathf.Abs(limit % 8) == 6)
             {
-                limit += 2;
-                Debug.Log(limit);
+                limit -= 2;
             }
             else if (Mathf.Abs(limit % 8) == 7)
             {
-                limit += 1;
-                Debug.Log(limit);
+                limit -= 1;
             }
             else
             {
-                Debug.Log(limit);
             }
         }
     }
@@ -73,39 +65,31 @@ public class MusicSelectBtn : MonoBehaviour
             if (Mathf.Abs(limit % 8) == 1)
             {
                 limit -= 1;
-                Debug.Log(limit);
             }
             else if (Mathf.Abs(limit % 8) == 2)
             {
                 limit -= 2;
-                Debug.Log(limit);
             }
             else if (Mathf.Abs(limit % 8) == 3)
             {
                 limit -= 3;
-                Debug.Log(limit);
             }
             else if (Mathf.Abs(limit % 8) == 4)
             {
                 limit -= 4;
-                Debug.Log(limit);
             }
             else if (Mathf.Abs(limit % 8) == 5)
             {
                 limit += 3;
-                Debug.Log(limit);
             }
             else if (Mathf.Abs(limit % 8) == 6)
             {
                 limit += 2;
-                Debug.Log(limit);
             }
             else if (Mathf.Abs(limit % 8) == 7)
             {
                 limit += 1;
-                Debug.Log(limit);
             }
-            Debug.Log(limit);
         }
     }
 }
