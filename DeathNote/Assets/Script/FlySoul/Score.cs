@@ -8,18 +8,20 @@ public class Score : MonoBehaviour
 {
     public static int score = 0;
     public static int bestscore = 0;
+    Text text = null;
     //static을 붙여줌으로써 다른 클래스에서도 score를 조절가능하다.
 
     // Start is called before the first frame update
     void Start()
     {
+        text = GetComponent<Text>();
         score = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text = score.ToString();
+        text.text = score.ToString();
         //GetComponent: Component를 들고와줌.
         //ToString : int형을 string으로 변환
     }
