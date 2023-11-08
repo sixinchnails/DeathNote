@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour
+public class ColliderMove : MonoBehaviour
 {
     public float speed;
     // Start is called before the first frame update
