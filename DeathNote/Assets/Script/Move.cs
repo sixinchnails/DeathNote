@@ -8,14 +8,12 @@ public class Move : MonoBehaviour
     public static float speed = 0;
     private int len;
     private int num;
-    // Start is called before the first frame update
     void Start()
     {
         w = Screen.width;
         speed = 8;
         len = w / 2;
         num = MusicSelectBtn.limit;
-        Debug.Log(w);
     }
 
     private void Update()
