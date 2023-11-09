@@ -29,7 +29,7 @@ public class MemberWithSoulResDto {
         this.nickname = member.getNickname();
         this.token = member.getToken();
         this.progress = member.getProgress();
-        this.gold = member.getGold();
         this.souls = souls;
+        this.gold = member.getGold();
     }
 }

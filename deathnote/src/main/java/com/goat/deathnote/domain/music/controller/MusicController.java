@@ -22,8 +22,8 @@ public class MusicController {
     private final MusicService musicService;
 
     @PostMapping
-    public Music createMusic(@RequestBody Music music) {
-        return musicService.saveMusic(music);
+    public ResponseEntity<Music> createMusic(@RequestBody Music music) {
+        return ResponseEntity.ok(musicService.saveMusic(music));
     }
 
     @GetMapping

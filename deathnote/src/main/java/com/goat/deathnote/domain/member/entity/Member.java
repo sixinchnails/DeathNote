@@ -30,7 +30,7 @@ public class Member {
     @Column(name = "member_provider", nullable = false)
     private SocialProvider provider; //공급자 (google, facebook ...)
 
-    @Column(name = "member_nickname", nullable = false)
+    @Column(name = "member_nickname", nullable = false, length = 5)
     private String nickname;
 
     @Column(name = "member_level", nullable = false)
