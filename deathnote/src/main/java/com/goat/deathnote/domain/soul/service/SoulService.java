@@ -48,7 +48,7 @@ public class SoulService {
         return soulRepository.findAll();
     }
 
-    public Optional<Soul> getSoulByName(String name) {
+    public List<Soul> getSoulByName(String name) {
         return soulRepository.findBySoulName(name);
     }
 }

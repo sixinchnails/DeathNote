@@ -23,10 +23,13 @@ public class MemberWithSoulResDto {
 
     private List<SoulDetailsDto> souls;
 
+    private Long gold;
+
     public MemberWithSoulResDto(Member member, List<SoulDetailsDto> souls) {
         this.nickname = member.getNickname();
         this.token = member.getToken();
         this.progress = member.getProgress();
+        this.gold = member.getGold();
         this.souls = souls;
     }
 }

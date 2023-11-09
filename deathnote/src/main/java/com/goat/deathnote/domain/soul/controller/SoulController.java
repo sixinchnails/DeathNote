@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/souls")
@@ -33,7 +32,7 @@ public class SoulController {
     }
 
     @GetMapping("/{soulName}")
-    public Optional<Soul> getSoulByName(@PathVariable String soulName) {
+    public List<Soul> getSoulByName(@PathVariable String soulName) {
         return soulService.getSoulByName(soulName);
     }
 

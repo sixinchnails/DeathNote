@@ -36,19 +36,13 @@ public class Member {
     @Column(name = "member_level")
     private Long level;
 
-    @Column(name = "member_experience_value")
-    private Long experienceValue; // 경험치
+    @Column(name = "member_gold")
+    private Long gold;
 
     @Column(name = "member_progress")
     private Long progress; // 진행도
 
     @Column(name = "member_token")
     private String token;
-
-//    @OneToMany(mappedBy = "member")
-//    private List<Soul> souls;
-//
-//    @OneToMany(mappedBy = "member")
-//    private List<Log> logs;
 
 }

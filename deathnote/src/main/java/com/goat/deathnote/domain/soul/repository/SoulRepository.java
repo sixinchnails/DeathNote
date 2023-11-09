@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface SoulRepository extends JpaRepository<Soul, Long> {
 
-    Optional<Soul> findBySoulName(String name);
+    List<Soul> findBySoulName(String name);
 
     List<Soul> findByMemberId(Long memberId);
 }

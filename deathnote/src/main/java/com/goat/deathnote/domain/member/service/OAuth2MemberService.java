@@ -62,7 +62,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
                 .role(MemberRole.USER)
                 .provider(socialProvider)
                 .level(1L)
-                .experienceValue(0L)
+                .gold(0L)
                 .progress(1L)
                 .build();
         String randomNickname = generateRandomNickname();
