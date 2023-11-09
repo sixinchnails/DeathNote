@@ -1,5 +1,6 @@
 package com.goat.deathnote.domain.soul.entity;
 
+import com.goat.deathnote.domain.member.entity.Member;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,22 +17,59 @@ public class Soul {
     @Column(name = "soul_id")
     private Long id;
 
-    @Column(name = "soul_name", unique = true)
+    @ManyToOne
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
+
+    @Column(name = "soul_name", nullable = false)
     private String soulName;
 
-    @Column(name = "soul_state")
-    private boolean state;
+    @Column(name = "soul_equip", nullable = false)
+    private Long equip;
 
-    @Column(name = "soul_passive")
-    private String passive;
+    @Column(name = "soul_critical", nullable = false)
+    private Long critical;
 
-    @Column(name = "soul_active1")
-    private String active1;
+    @Column(name = "soul_bonus", nullable = false)
+    private Long bonus;
 
-    @Column(name = "soul_active2")
-    private String active2;
+    @Column(name = "soul_combo", nullable = false)
+    private Long combo;
 
-    @Column(name = "soul_active3")
-    private String active3;
+    @Column(name = "soul_weight", nullable = false)
+    private Long weight;
+
+    @Column(name = "soul_beat", nullable = false)
+    private Long beat;
+
+    @Column(name = "soul_blue", nullable = false)
+    private Long blue;
+
+    @Column(name = "soul_mood", nullable = false)
+    private Long mood;
+
+    @Column(name = "soul_peace", nullable = false)
+    private Long peace;
+
+    @Column(name = "soul_heart", nullable = false)
+    private Long heart;
+
+    @Column(name = "soul_magna", nullable = false)
+    private Long magna;
+
+    @Column(name = "soul_body", nullable = false)
+    private Long body;
+
+    @Column(name = "soul_eyes", nullable = false)
+    private Long eyes;
+
+    @Column(name = "soul_acc", nullable = false)
+    private Long acc;
+
+    @Column(name = "soul_skill", nullable = false)
+    private Long skill;
+
+    @Column(name = "soul_revive", nullable = false)
+    private Long revive;
 
 }

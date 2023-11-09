@@ -61,12 +61,12 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
                 .email(memberInfo.getEmail())
                 .role(MemberRole.USER)
                 .provider(socialProvider)
-                .progress(1L)
-                .experienceValue(0L)
                 .level(1L)
+                .gold(0L)
+                .progress(1L)
                 .build();
         String randomNickname = generateRandomNickname();
-        member.setNickName(randomNickname);
+        member.setNickname(randomNickname);
 
         memberRepository.saveAndFlush(member);
 
