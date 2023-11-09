@@ -29,13 +29,13 @@ public class Log {
     @Column(name = "log_score")
     private Long score;
 
-    @Column(name = "log_story")
-    private Long story;
+    @Column(name = "log_code")
+    private Long code;
 
     @Column(name = "log_grade")
     private Float grade;
 
     @CreatedDate
-    @Column(name = "log_time", nullable = false)
-    private LocalDateTime log;
+    @Column(name = "log_date", nullable = false)
+    private LocalDateTime logDate;
 }

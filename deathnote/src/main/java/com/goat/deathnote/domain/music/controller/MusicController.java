@@ -8,6 +8,7 @@ import com.goat.deathnote.domain.world.entity.World;
 import com.goat.deathnote.domain.world.service.WorldService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,13 +27,13 @@ public class MusicController {
     }
 
     @GetMapping
-    public List<Music> getAllMusics() {
-        return musicService.getAllMusics();
+    public ResponseEntity<List<Music>> getAllMusics() {
+        return ResponseEntity.ok(musicService.getAllMusics());
     }
 
     @GetMapping("/{id}")
-    public Optional<Music> getMusicById(@PathVariable Long id) {
-        return musicService.getMusicById(id);
+    public ResponseEntity<Optional<Music>> getMusicById(@PathVariable Long id) {
+        return ResponseEntity.ok(musicService.getMusicById(id));
     }
 
 }

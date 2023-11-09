@@ -1,5 +1,6 @@
 package com.goat.deathnote.domain.soul.entity;
 
+import com.goat.deathnote.domain.garden.entity.Garden;
 import com.goat.deathnote.domain.member.entity.Member;
 import lombok.*;
 
@@ -9,7 +10,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 @Builder
 public class Soul {
 
@@ -20,6 +20,10 @@ public class Soul {
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
+
+    @ManyToOne
+    @JoinColumn(name = "garden_id", nullable = false)
+    private Garden garden;
 
     @Column(name = "soul_name", nullable = false)
     private String soulName;
