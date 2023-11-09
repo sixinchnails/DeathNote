@@ -16,15 +16,14 @@ import javax.persistence.*;
 public class Garden {
 
     @Id @GeneratedValue
-    @Column(name = "garden_id")
+    @Column(name = "garden_id", nullable = false)
     private Long id;
 
-    @Column(name = "garden_name")
-    private String name;
-
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
+    @Column(name = "garden_name", nullable = false)
+    private String name;
 
 }

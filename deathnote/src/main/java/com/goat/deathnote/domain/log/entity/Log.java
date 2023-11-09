@@ -19,20 +19,20 @@ import java.time.LocalDateTime;
 public class Log {
 
     @Id @GeneratedValue
-    @Column(name = "log_id")
+    @Column(name = "log_id", nullable = false)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @Column(name = "log_score")
+    @Column(name = "log_score", nullable = false)
     private Long score;
 
-    @Column(name = "log_code")
+    @Column(name = "log_code", nullable = false)
     private Long code;
 
-    @Column(name = "log_grade")
+    @Column(name = "log_grade", nullable = false)
     private Float grade;
 
     @CreatedDate
