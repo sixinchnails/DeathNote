@@ -30,7 +30,4 @@ public class MusicService {
         return musicRepository.findById(id);
     }
 
-//        public void deleteMusic (Long id){
-//            musicRepository.deleteById(id);
-//        }
 }

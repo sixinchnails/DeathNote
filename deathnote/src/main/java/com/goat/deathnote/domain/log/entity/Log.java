@@ -1,5 +1,6 @@
 package com.goat.deathnote.domain.log.entity;
 
+import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.soul.entity.Soul;
 import com.goat.deathnote.domain.stage.entity.Stage;
 import lombok.*;
@@ -22,14 +23,19 @@ public class Log {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "stage_id")
-    private Stage stage;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
-    @ManyToOne
-    @JoinColumn(name = "soul_name")
-    private Soul soul;
+    @Column(name = "log_score")
+    private Long score;
+
+    @Column(name = "log_story")
+    private Long story;
+
+    @Column(name = "log_grade")
+    private Float grade;
 
     @CreatedDate
-    @Column(name = "log_time")
+    @Column(name = "log_time", nullable = false)
     private LocalDateTime log;
 }

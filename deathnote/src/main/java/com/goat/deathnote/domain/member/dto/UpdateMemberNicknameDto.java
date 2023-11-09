@@ -3,7 +3,7 @@ package com.goat.deathnote.domain.member.dto;
 import lombok.Getter;
 
 @Getter
-public class MemberDto {
+public class UpdateMemberNicknameDto {
 
     private String nickName;
 }

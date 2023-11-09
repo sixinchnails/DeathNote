@@ -35,8 +35,4 @@ public class MusicController {
         return musicService.getMusicById(id);
     }
 
-//    @DeleteMapping("/{id}")
-//    public void deleteMusic(@PathVariable Long id) {
-//        musicService.deleteMusic(id);
-//    }
 }

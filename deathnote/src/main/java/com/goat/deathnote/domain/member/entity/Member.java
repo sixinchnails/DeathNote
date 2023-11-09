@@ -8,6 +8,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor // 기본생성자
+@AllArgsConstructor
+@Builder
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +31,7 @@ public class Member {
     private SocialProvider provider; //공급자 (google, facebook ...)
 
     @Column(name = "member_nickname")
-    private String nickName;
+    private String nickname;
 
     @Column(name = "member_level")
     private Long level;
@@ -40,16 +42,13 @@ public class Member {
     @Column(name = "member_progress")
     private Long progress; // 진행도
 
-    @Builder
-    public Member(Long id, String name, String email, MemberRole role, SocialProvider provider, String nickName, Long level, Long experienceValue, Long progress) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.role = role;
-        this.provider = provider;
-        this.nickName = nickName;
-        this.level = level;
-        this.experienceValue = experienceValue;
-        this.progress = progress;
-    }
+    @Column(name = "member_token")
+    private String token;
+
+//    @OneToMany(mappedBy = "member")
+//    private List<Soul> souls;
+//
+//    @OneToMany(mappedBy = "member")
+//    private List<Log> logs;
+
 }
