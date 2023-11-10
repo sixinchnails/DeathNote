@@ -25,7 +25,6 @@ public class OffsetChange : MonoBehaviour
 
     public void MinusOffset()
     {
-        print("¿Ë");
         if (curOffset > 0.1f)
         {
             curOffset -= 0.1f;
