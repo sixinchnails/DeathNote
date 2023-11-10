@@ -9,6 +9,7 @@ public class MusicSelectBtn : MonoBehaviour
     public static int idx = 0;
     public static int limit = 0;
     private int w;
+    private int h;
 
 
     public void Start()
@@ -16,6 +17,12 @@ public class MusicSelectBtn : MonoBehaviour
         limit = 0;
         idx = 0;
         w = Screen.width;
+        h = Screen.height;
+        
+        if(w > 1920)
+        {
+            w = (int)Mathf.Round(16 * (h / 9));
+        }
     }
     public void MoveNext()
     {
