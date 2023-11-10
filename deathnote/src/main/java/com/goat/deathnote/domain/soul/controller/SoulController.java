@@ -3,6 +3,7 @@ package com.goat.deathnote.domain.soul.controller;
 import com.goat.deathnote.domain.soul.dto.SoulPostDto;
 import com.goat.deathnote.domain.soul.entity.Soul;
 import com.goat.deathnote.domain.soul.service.SoulService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,15 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/souls")
 public class SoulController {
 
     private final SoulService soulService;
-
-    @Autowired
-    public SoulController(SoulService soulService) {
-        this.soulService = soulService;
-    }
 
     @PostMapping
     public Long createSoul(@RequestBody SoulPostDto soulDto) { // 등록된 정령 id만 달래서
@@ -36,6 +33,10 @@ public class SoulController {
         return soulService.getSoulByName(soulName);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteWorld(@PathVariable Long id) {
+        soulService.deleteSoul(id);
+    }
 
 
 }
