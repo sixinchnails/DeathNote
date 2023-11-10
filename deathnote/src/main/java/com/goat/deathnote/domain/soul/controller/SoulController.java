@@ -34,9 +34,8 @@ public class SoulController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteWorld(@PathVariable Long id) {
+    public void deleteSoul(@PathVariable Long id) {
         soulService.deleteSoul(id);
     }
-
 
 }
