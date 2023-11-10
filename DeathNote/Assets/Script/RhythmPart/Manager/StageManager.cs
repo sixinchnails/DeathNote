@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 
 
 public class StageManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class StageManager : MonoBehaviour
     public double currentTime; // 현재 게임 시간
     public double gameStart; // 게임 시작 시간
     public double songStart; // 노래 시작 시간
+    public int soulSeq = 0; // 소울
 
     public Color black = Color.black; // 어두운 색
     public Color white = Color.white; // 어두운 색
@@ -29,14 +31,15 @@ public class StageManager : MonoBehaviour
     private bool hasPlayed = false; // 음악 실행 여부
     private Animator bgAnimator;
 
-    [SerializeField] ClickNote[] clicknotes;
-    [SerializeField] EffectController[] effectControllers;
     [SerializeField] GameObject background;
     [SerializeField] Image thumbnail;
     [SerializeField] GameObject readyUI;
     [SerializeField] TextMeshProUGUI title; // 곡 제목
     [SerializeField] ResultManager resultManager;
+    [SerializeField] NotePool[] notePools;
+    [SerializeField] Effect[] effectControllers;
 
+    List<Soul> mySoulList;
 
     void Awake()
     {
@@ -54,7 +57,6 @@ public class StageManager : MonoBehaviour
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
         musicManager.SetKanon();
-        title.text = musicManager.musicTitle;
         scoreManager = ScoreManager.instance;
         audioSource = musicManager.audioSource;
         // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
@@ -63,12 +65,6 @@ public class StageManager : MonoBehaviour
         songStart = timePerBeat * (musicManager.songBeat * 2);
         speed = musicManager.bpm / 120;
         // 노트와 그 이펙트를 연결짓습니다.
-        for (int i = 0; i < 16; i++)
-        {
-            clicknotes[i].effectController = effectControllers[i];
-            clicknotes[i].speed = speed;
-
-        }
 
 
         // 큐에 각 노트의 데이터를 넣는다.
@@ -76,6 +72,10 @@ public class StageManager : MonoBehaviour
         {
             noteQueue.Enqueue(musicManager.getNoteData(i));
         }
+        
+        // 내가 장착한 소울 목록을 가져옵니다.
+        mySoulList = SoulManager.instance.Souls;
+        Debug.Log(mySoulList.Count);
 
         StartCoroutine(ReadyFinish());
         StartCoroutine(StartMusic(4.0f));
@@ -113,7 +113,6 @@ public class StageManager : MonoBehaviour
         {
             // 썸네일의 투명도를 고침
             float lerpValue = Mathf.Clamp01(((float)scoreManager.totalPercent / (musicManager.totalNote * 100))); // 보간(Clamp는 0~1로 제한)
-            Debug.Log(lerpValue);
             thumbnail.color = Color.Lerp(transparent, semiparent, lerpValue);
             currentTime = AudioSettings.dspTime; // 현재시간
             int now = (int)((currentTime - gameStart) / timePerBeat);
@@ -157,17 +156,17 @@ public class StageManager : MonoBehaviour
         resultManager.ShowResult(musicManager.musicTitle, (float)scoreManager.totalPercent / (musicManager.totalNote * 100), scoreManager.score.text);
 
     }
-    IEnumerator EnableNote(float info, ClickNote note, float delay)
+    IEnumerator EnableNote(ClickNote note, Soul turnSoul, float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (note.gameObject.activeSelf)
-        {
-            note.SetActive(false);
-            // 필요하다면 여기서 잠깐 대기할 수도 있습니다.
-            // yield return null; // 다음 프레임까지 대기
-        }
-        note.SetNoteInfo(info, timePerBeat);
+
         note.SetActive(true);
+
+        note.animator.SetTrigger("Jump");
+        note.animator.SetInteger("Body", turnSoul.customizes[0]);
+        note.animator.SetInteger("Eyes", turnSoul.customizes[1]);
+        note.animator.SetInteger("Acce", turnSoul.customizes[2]);
+
 
     }
 
@@ -185,69 +184,61 @@ public class StageManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    // 매 비트마다 발동하는 메서드로, 노트와 이펙트를 형성합니다.
     private void Metronome(int beatNumber)
     {
-        //String str = "{";
-        //for(int i = 1; i <= 300; i++)
-        //{
-        //    str += i * 10;
-        //    str += ", ";
-        //}
-        //str += "}";
-        //Debug.Log(str);
-        // isEarly는, 지금 현재의 비트넘버가 노트큐의 비트 차례보다 큰지를 의미한다.
-        // 동시에 나오거나, 렉등으로 못나온 노트 때문에 반복문을 돌린다.
         bool isEarly = false;
-
+        // 렉 등으로 인해 큐에 남아있는 데이터가 더 있을 수 있으므로, 반복문으로 선언
         while (!isEarly)
         {
-            // noteQueue에 남아있는 데이터가 있는지 확인
+            // noteQueue가 비어있는지 확인
             if (noteQueue.TryPeek(out NoteData noteData))
             {
-                // 데이터가 있다면 꺼냄(만약 이전에 안꺼낸 기록이 있으면(렉등으로) 같이 꺼냄)
+                // 데이터가 있으며, 비트가 현재 혹은 이전 비트에 해당
                 if (noteData.beat/10 <= beatNumber)
                 {
+                    // noteQueue에 있는 데이터를 빼냄
                     noteQueue.Dequeue();
 
-                    if (noteData.length == 0)
+                    // 오차를 계산하기 위해, 노트가 나타나는 정확한 시간을 계산 
+                    float exactTime = CheckTime((noteData.beat) / 10, noteData.beat % 10);
+                    // 노트 풀에서 노트와 이펙터를 꺼냄
+                    ClickNote note = notePools[noteData.pos].clickQueue.Dequeue().GetComponent<ClickNote>();
+                    Effect effect = notePools[noteData.pos].effectQueue.Peek().GetComponent < Effect>();
+
+                    // 노트에 데이터를 입력 (이펙터, 노트풀, 판정시간, 단위시간)
+                    note.SetNoteInfo(effect, notePools[noteData.pos], exactTime + 1.0f, timePerBeat);
+                    note.transform.SetAsFirstSibling();
+                    // 이번에 사용할 정령을 불러옴
+                    Soul turnSoul = mySoulList[soulSeq++];
+                    soulSeq = soulSeq % 4;
+                    // 정령의 세가지 스킬을 돌림
+                    for(int i = 0; i < 3; i++)
                     {
-                        float nextTime = CheckTime((noteData.beat + 1) / 10, noteData.beat % 10);
-                        ClickNote note = clicknotes[noteData.pos];
-                        
+                        // i 번째 스킬
+                        Skill now = SkillManager.instance.GetSkill(turnSoul.parameters[i]);
+                        // 발동 확률이 0퍼센트면 다음 스킬
+                        if (now.percent == 0) continue;
+                        // 0~99 사이의 랜덤 숫자
+                        int random = UnityEngine.Random.Range(0, 100);
+                        // 확률적으로 발동하면
+                        if(now.percent > random)
+                        {
+                            note.bonus = (int) (turnSoul.emotions[now.bonus[0]] * now.bonus[1] / 100.0f);
+                            note.combo = (int)(turnSoul.emotions[now.combo[0]] * now.combo[1] / 100.0f);
+                        }
 
-                        StartCoroutine(EnableNote(nextTime+speed, note, (float)(nextTime - currentTime)));
-                        
+                        break;
+
                     }
-                    //else if (noteData.length >= 1)
-                    //{
-                    //    // 롱노트인 경우
-                    //    float startPos = checkPositionX(beatNumber + 3, noteData.posX, timeDiff);
-                    //    gauges = new List<CenterNote>();
-
-                    //    int start = noteData.beat + 3;
-
-                    //    for (int i = 2; i <= noteData.length; i++)
-                    //    {
-                    //        GameObject centerNote = NotePool.instance.centerQueue.Dequeue();
-                    //        CenterNote scripts = centerNote.GetComponent<CenterNote>();
-                    //        scripts.SetNoteInfo(checkPositionX(start + i / 4, i % 4, timeDiff), areasY[noteData.posY], checkTime(start + i / 4, i % 4));
-                    //        gauges.Add(scripts);
-                    //        centerNote.SetActive(true);
-                    //    }
-
-                    //    GameObject longNote = NotePool.instance.longQueue.Dequeue();
-                    //    LongNote script = longNote.GetComponent<LongNote>();
-                    //    // 롱노트의 스크립트로 X축 위치, Y축 위치, 판정 시간, 시간 단위, 왼쪽/오른쪽 여부를 설정
-                    //    script.SetNoteInfo(startPos, areasY[noteData.posY], checkTime(noteData.beat + 3, noteData.posX), checkTime(noteData.beat + 3 + noteData.length / 4, noteData.length % 4), timePerBeat);
-                    //    script.gauges = gauges;
-                    //    longNote.SetActive(true);
+                    if (note.animator == null) note.animator = note.GetComponent<Animator>();
+                    Debug.Log(turnSoul.customizes[0] + "." + turnSoul.customizes[1]);
 
 
-                    //}
-                    //else
-                    //{
-                    //    // 슬라이스 노트인 경우
-                    //}
+                    double time = AudioSettings.dspTime;
+                    float nextTime = CheckTime((noteData.beat + 1) / 10, noteData.beat % 10);
+                    StartCoroutine(EnableNote(note, turnSoul, (float)(nextTime - time)));
+                        
 
                 }
                 else

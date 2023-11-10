@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Note
   - Character
+  - Sound
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Souls
+    uniqueID: 2807098109
     locked: 0
