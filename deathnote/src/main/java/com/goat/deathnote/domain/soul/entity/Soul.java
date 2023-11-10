@@ -17,12 +17,12 @@ public class Soul {
     @Column(name = "soul_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToOne
-    @JoinColumn(name = "garden_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "garden_id")
     private Garden garden;
 
     @Column(name = "soul_name", nullable = false)
