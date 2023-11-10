@@ -74,7 +74,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
     }
 
     private String generateRandomNickname() {
-        return RandomStringUtils.randomAlphabetic(8);
+        return RandomStringUtils.randomAlphabetic(5);
     }
 
 }

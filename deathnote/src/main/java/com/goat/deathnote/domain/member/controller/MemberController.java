@@ -20,25 +20,19 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @Autowired
-    public MemberController(MemberService memberService, SoulService soulService) {
-        this.memberService = memberService;
-    }
-
     @GetMapping
     public ResponseEntity<List<Member>> getAllMembers() {
         return ResponseEntity.ok(memberService.getAllMembers());
     }
 
-    @GetMapping("/{memberId}")
-    public ResponseEntity<MemberWithSoulResDto> getDetailMember(@PathVariable Long memberId) {
-       return ResponseEntity.ok(memberService.getMemberById(memberId));
+    @GetMapping("/{id}")
+    public ResponseEntity<MemberWithSoulResDto> getDetailMember(@PathVariable Long id) {
+       return ResponseEntity.ok(memberService.getMemberById(id));
     }
 
-
     @PutMapping("/{email}/nickname")
-    public Member updateNickname(@PathVariable String email, @RequestBody UpdateMemberNicknameDto newNickname) {
-        return memberService.updateNicknameByEmail(email, newNickname);
+    public ResponseEntity<Member> updateNickname(@PathVariable String email, @RequestBody UpdateMemberNicknameDto newNickname) {
+        return ResponseEntity.ok(memberService.updateNicknameByEmail(email, newNickname));
     }
 
 

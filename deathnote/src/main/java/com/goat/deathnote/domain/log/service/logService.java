@@ -2,30 +2,28 @@ package com.goat.deathnote.domain.log.service;
 
 import com.goat.deathnote.domain.log.entity.Log;
 import com.goat.deathnote.domain.log.repository.LogRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class logService {
 
-    private final LogRepository soulRepository;
+    private final LogRepository logRepository;
 
-    public logService(LogRepository soulRepository) {
-        this.soulRepository = soulRepository;
+    public Log saveLog(Log log) {
+        return logRepository.save(log);
     }
 
-    public Log saveSoul(Log log) {
-        return soulRepository.save(log);
+    public List<Log> getAllLogs() {
+        return logRepository.findAll();
     }
 
-    public List<Log> getAllSouls() {
-        return soulRepository.findAll();
-    }
-
-    public Optional<Log> getSoulById(Long id) {
-        return soulRepository.findById(id);
+    public Optional<Log> getLogById(Long id) {
+        return logRepository.findById(id);
     }
 
 //        public void deleteSoul (Long id){

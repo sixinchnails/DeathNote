@@ -51,4 +51,8 @@ public class SoulService {
     public List<Soul> getSoulByName(String name) {
         return soulRepository.findBySoulName(name);
     }
+
+    public void deleteSoul (Long id){
+        soulRepository.deleteById(id);
+    }
 }

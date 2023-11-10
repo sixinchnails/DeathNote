@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SoulPostDto {
 
-    private Long soulId;
-
     private Long memberId;
 
     private String soulName;

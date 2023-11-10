@@ -13,33 +13,33 @@ import javax.persistence.*;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
+    @Column(name = "member_id", nullable = false)
     private Long id; //기본키
 
-    @Column(name = "member_name")
+    @Column(name = "member_name", nullable = false)
     private String name; //유저 이름
 
-    @Column(name = "member_email")
+    @Column(name = "member_email", nullable = false)
     private String email; //유저 구글 이메일
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "member_role")
+    @Column(name = "member_role", nullable = false)
     private MemberRole role; //유저 권한 (일반 유저, 관리자)
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "member_provider")
+    @Column(name = "member_provider", nullable = false)
     private SocialProvider provider; //공급자 (google, facebook ...)
 
-    @Column(name = "member_nickname")
+    @Column(name = "member_nickname", nullable = false, length = 5)
     private String nickname;
 
-    @Column(name = "member_level")
+    @Column(name = "member_level", nullable = false)
     private Long level;
 
-    @Column(name = "member_gold")
+    @Column(name = "member_gold", nullable = false)
     private Long gold;
 
-    @Column(name = "member_progress")
+    @Column(name = "member_progress", nullable = false)
     private Long progress; // 진행도
 
     @Column(name = "member_token")
