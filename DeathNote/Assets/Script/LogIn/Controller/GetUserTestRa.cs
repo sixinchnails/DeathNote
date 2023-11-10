@@ -14,10 +14,11 @@ public class GetUserTestRa : MonoBehaviour
 
     IEnumerator getMember()
     {
-        //string url = "https://thatsnote.site/members";
-        string url = "http://localhost:8080/members/2";
+        string url = "https://thatsnote.site/members";
+        //string url = "http://localhost:8080/members/2";
+        string user_id = "2";
 
-        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        using (UnityWebRequest www = UnityWebRequest.Get(url+user_id))
         {
 
             yield return www.SendWebRequest();
