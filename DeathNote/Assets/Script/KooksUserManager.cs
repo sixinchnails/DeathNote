@@ -8,7 +8,7 @@ public class KooksUserManager : MonoBehaviour
 {
     void Awake()
     {
-        string url = "https://thatsnote.site/members/2"; // 원하는 URL로 바꿉니다.
+        string url = "https://thatsnote.site/members/3"; // 원하는 URL로 바꿉니다.
         StartCoroutine(SendGetRequest(url));
     }
     [System.Serializable]
