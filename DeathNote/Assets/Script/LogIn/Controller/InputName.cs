@@ -6,14 +6,12 @@ using UnityEngine.Networking;
 
 public class InputName : MonoBehaviour
 {
+    public LoginManager loginManager;
+    public NickNameBtn nickNameBtn;
+
     public InputField inputField;
     public Text nicknameTxt;
     private string nickname;
-
-    void Update()
-    {
-
-    }
 
     public void InputNickName()
     {
@@ -49,8 +47,8 @@ public class InputName : MonoBehaviour
         var json = JsonUtility.ToJson(data);
         byte[] jdata = System.Text.Encoding.UTF8.GetBytes(json);
 
-        //string url = "https://thatsnote.site/members/";
-        string url = "http://localhost:8080/members/";
+        string url = "https://thatsnote.site/members/";
+        //string url = "http://localhost:8080/members/";
         string member_email = "1";
 
         UnityWebRequest wwt = new UnityWebRequest(url + member_email, "PUT");
@@ -64,10 +62,18 @@ public class InputName : MonoBehaviour
         if (wwt.result != UnityWebRequest.Result.Success)
         {
             Debug.Log(wwt.error);
+            //if (아이디가 중복이면)
+            //{
+            loginManager.DuplicateName();
+            nickNameBtn.getResult(false);
+            //}
         }
         else
         {
+            //닉네임 등록이 성공했다면
             Debug.Log(wwt.downloadHandler.text);
+            loginManager.SuccessName();
+            nickNameBtn.getResult(true);
         }
 
     }
