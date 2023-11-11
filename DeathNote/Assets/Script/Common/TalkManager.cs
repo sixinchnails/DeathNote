@@ -31,8 +31,7 @@ public class TalkManager : MonoBehaviour
             new TalkData(2, "『너···! 어떻게 정령을 불러낸 거지?』"),
             new TalkData(1, "『어어···!  너··· 넌 뭐야!』"),
             new TalkData(2, "『악보를 완벽히 연주해야만 정령이 풀려나는데···』"),
-            new TalkData(2, "『난 악(樂)마야』"),
-            new TalkData(2, "『그 악보를 보관하고 있었지』"),
+            new TalkData(2, "『난 악보를 보관하는 악(樂)마야』"),
             new TalkData(2, "『악보엔 정령들이 봉인되어 있어』"),
             new TalkData(2, "『하지만, 악보가 다 찢어져서 정령들이 뿔뿔이 흩어지고 말았어···』"),
             new TalkData(2, "『너라면 악보를 찾아 정령을 풀어줄 수 있을 것 같아!』"),
@@ -40,7 +39,14 @@ public class TalkManager : MonoBehaviour
         };
         scriptList.Add(-1, opening2Data);
 
-
+        List<TalkData> soulGetData = new List<TalkData> {
+            new TalkData(0, "『0번대사 정령을 얻었다!』"),
+            new TalkData(0, "『1번대사』"),
+            new TalkData(0, "『2번대사』"),
+            new TalkData(0, "『3번대사』"),
+            new TalkData(0, "『4번대사』"),
+        };
+        scriptList.Add(2, soulGetData);
         //이렇게 각 스토리 씬마다 대사 넣고 storyId에 씬번호 넣어서 출력하면 됨.
         //월드1개마다 스토리 4개 들어가야되니까 대사 여러개 넣어놓고 랜덤으로 출력하게할까?
         //물어보는거임
