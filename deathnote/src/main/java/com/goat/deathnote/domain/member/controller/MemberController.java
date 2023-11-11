@@ -1,6 +1,8 @@
 package com.goat.deathnote.domain.member.controller;
 
+import com.goat.deathnote.domain.member.dto.LogInRequest;
 import com.goat.deathnote.domain.member.dto.MemberWithSoulResDto;
+import com.goat.deathnote.domain.member.dto.SignUpRequest;
 import com.goat.deathnote.domain.member.dto.UpdateMemberDto;
 import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.member.service.MemberNotFoundException;
@@ -29,6 +31,18 @@ public class MemberController {
         String email = (String)req.getAttribute("email");
         model.addAttribute("id", email);
         return "login";
+    }
+
+    // 회원가입 (이메일, 닉네임)
+    @PostMapping("/signup")
+    public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUpRequest) {
+        return ResponseEntity.ok(memberService.signUp(signUpRequest.getEmail(), signUpRequest.getNickname()));
+    }
+
+    // 로그인
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LogInRequest logInRequest) {
+        return ResponseEntity.ok(memberService.login(logInRequest.getEmail()));
     }
 
     // 유저 전체조회

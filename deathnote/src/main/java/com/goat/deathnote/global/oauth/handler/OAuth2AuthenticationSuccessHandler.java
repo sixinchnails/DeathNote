@@ -38,7 +38,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 	private final MemberRepository memberRepository;
 
 //	private String redirectUri = "http://localhost:8080/members/login";
-	private String redirectUri = "http://thatsnote.site/members/login";
+	private String redirectUri = "https://thatsnote.site/members/login";
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
