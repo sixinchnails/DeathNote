@@ -1,6 +1,7 @@
 package com.goat.deathnote.domain.soul.repository;
 
 import com.goat.deathnote.domain.member.entity.Member;
+import com.goat.deathnote.domain.soul.dto.SoulPostDto;
 import com.goat.deathnote.domain.soul.entity.Soul;
 import org.springframework.data.jpa.repository.JpaRepository;
 

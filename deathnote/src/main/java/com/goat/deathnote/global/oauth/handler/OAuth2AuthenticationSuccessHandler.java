@@ -37,19 +37,20 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 	private final JwtTokenProvider jwtTokenProvider;
 	private final MemberRepository memberRepository;
 
-	private String redirectUri = "http://localhost:3000/oauth/redirect";
+	private String redirectUri = "http://localhost:8080/members/login";
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 										Authentication authentication) throws IOException {
-		String targetUrl = determineTargetUrl(request, response, authentication);
+		String accessToken = determineTargetUrl(request, response, authentication);
 		if (response.isCommitted()) {
-			log.error("Response has already been committed. Unable to redirect to " + targetUrl);
+			log.error("Response has already been committed. Unable to redirect");
 			return;
 		}
 
+		String newUrl = redirectUri + "/" + accessToken;
 		clearAuthenticationAttributes(request, response);
-		getRedirectStrategy().sendRedirect(request, response, targetUrl);
+		getRedirectStrategy().sendRedirect(request, response, newUrl);
 	}
 
 	protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response,
@@ -87,12 +88,8 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 			tokenInfo.getRefreshToken(),
 			JwtTokenProvider.getRefreshTokenExpireTimeCookie());
 
-		// 아까 받아온 redirectUri로 토큰을 보내줌
-		return UriComponentsBuilder.fromUriString(targetUrl)
-			.queryParam("accessToken", tokenInfo.getAccessToken())
-			.queryParam("refreshToken", tokenInfo.getRefreshToken())
-			.build()
-			.toUriString();
+//		 아까 받아온 redirectUri로 토큰을 보내줌
+		return tokenInfo.getAccessToken();
 	}
 
 	protected void clearAuthenticationAttributes(HttpServletRequest request, HttpServletResponse response) {

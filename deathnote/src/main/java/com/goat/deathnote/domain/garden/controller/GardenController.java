@@ -1,5 +1,6 @@
 package com.goat.deathnote.domain.garden.controller;
 
+import com.goat.deathnote.domain.garden.dto.GardenPostDto;
 import com.goat.deathnote.domain.garden.entity.Garden;
 import com.goat.deathnote.domain.garden.service.GardenService;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,8 @@ public class GardenController {
     private final GardenService gardenService;
 
     @PostMapping
-    public ResponseEntity<Garden> createGarden(@RequestBody Garden garden) {
-        return ResponseEntity.ok(gardenService.saveGarden(garden));
+    public ResponseEntity<Garden> createGarden(@RequestBody GardenPostDto gardenPostDto) {
+        return ResponseEntity.ok(gardenService.saveGarden(gardenPostDto));
     }
 
     @GetMapping
