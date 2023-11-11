@@ -22,15 +22,15 @@ public class Log {
     @Column(name = "log_id", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @Column(name = "log_score", nullable = false)
-    private Long score;
-
     @Column(name = "log_code", nullable = false)
     private Long code;
+
+    @Column(name = "log_score", nullable = false)
+    private Long score;
 
     @Column(name = "log_grade", nullable = false)
     private Float grade;

@@ -1,14 +1,14 @@
 package com.goat.deathnote.domain.log.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class LogPostDto {
 
     private Long memberId;
@@ -19,5 +19,5 @@ public class LogPostDto {
 
     private Float grade;
 
-    private LocalDateTime logDate;
+//    private LocalDateTime logDate;
 }

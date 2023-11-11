@@ -4,6 +4,7 @@ import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.member.entity.MemberRole;
 import com.goat.deathnote.domain.member.entity.SocialProvider;
 import com.goat.deathnote.domain.member.repository.MemberRepository;
+import com.goat.deathnote.global.jwt.JwtTokenProvider;
 import com.goat.deathnote.global.oauth.dto.MemberPrincipal;
 import com.goat.deathnote.global.oauth.info.OAuth2MemberInfo;
 import com.goat.deathnote.global.oauth.info.OAuth2UserInfoFactory;
@@ -50,6 +51,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
         } else {
             savedMember = foundMember;
         }
+//        String jwtToken = JwtTokenProvider.generateToken(savedMember.getId());
 
         // 그리고 principal 만들어줌
         return MemberPrincipal.create(savedMember, user.getAttributes(), savedMember.getRole());
@@ -63,7 +65,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
                 .provider(socialProvider)
                 .level(1L)
                 .gold(0L)
-                .progress(1L)
+                .progress(0L)
                 .build();
         String randomNickname = generateRandomNickname();
         member.setNickname(randomNickname);

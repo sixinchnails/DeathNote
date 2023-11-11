@@ -28,11 +28,25 @@ public class JwtTokenProvider {
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000L;
     private static final int REFRESH_TOKEN_EXPIRE_TIME_COOKIE = 365 * 24 * 60 * 60;
     private Key key;
+//
+//    private static final String SECRET_KEY = "yourSecretKey"; // 임의의 시크릿 키
+//    private static final long EXPIRATION_TIME = 86400000; // 24시간
 
     public JwtTokenProvider(@Value("${jwt.key}") String secret) {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
+//    public static String generateToken(Long memberId) {
+//        Date now = new Date();
+//        Date expiryDate = new Date(now.getTime() + EXPIRATION_TIME);
+//
+//        return Jwts.builder()
+//                .setSubject(Long.toString(memberId))
+//                .setIssuedAt(now)
+//                .setExpiration(expiryDate)
+//                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+//                .compact();
+//    }
 
     public static int getRefreshTokenExpireTimeCookie() {
         return REFRESH_TOKEN_EXPIRE_TIME_COOKIE;
