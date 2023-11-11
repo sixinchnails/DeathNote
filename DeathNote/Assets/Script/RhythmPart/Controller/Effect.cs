@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class Effect : MonoBehaviour
 {
-    Animator hitAnimator = null; // 노트 클릭 애니메이션
-    Animator judgeAnimator = null; // 판정 애니메이션
+    public Animator hitAnimator = null; // 노트 클릭 애니메이션
+    public Animator judgeAnimator = null; // 판정 애니메이션
     TextMeshProUGUI comboData = null; // 콤보
     int currentCombo;
 

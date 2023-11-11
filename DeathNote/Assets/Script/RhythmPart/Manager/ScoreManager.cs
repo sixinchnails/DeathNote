@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
     MusicManager musicManager;
     [SerializeField] public TextMeshProUGUI score = null;
     [SerializeField] public TextMeshProUGUI grade = null;
-
+    [SerializeField] Image[] blur = null;
     private int totalNote;
     private int increaseScore = 10; // 노래의 기본 수치
     private int[] scoreBonus;
@@ -26,10 +26,22 @@ public class ScoreManager : MonoBehaviour
  
     public int totalPercent = 0; // 총 퍼센트
 
+    public Color white = Color.white; // 어두운 색
+    public Color[] backColor;
+    public Color[] finalColor;
+    public Color transparent; // 최종 색상 (반투명색)
+
 
     void Start()
     {
         instance = this;
+        backColor = new Color[11];
+        finalColor = new Color[11];
+        for(int i = 0; i < 11; i++)
+        {
+            backColor[i] = blur[i].color;
+            finalColor[i] = new Color(backColor[i].r, backColor[i].g, backColor[i].b, 0.2f); // 투명색상
+        }
         score.text = "000,000"; // 스코어 텍스트 초기화
         grade.text = "0.00%"; // 그레이드 텍스트 초기화
     }
@@ -51,7 +63,24 @@ public class ScoreManager : MonoBehaviour
         score.text = currentScore.ToString("000,000");
         Debug.Log(totalPercent);
         float realGrade = (float)totalPercent / (MusicManager.instance.totalNote * 100);
-        grade.text = realGrade.ToString("F2")+"%";
+        grade.text = (realGrade*100).ToString("F2")+"%";
+
+
+        for (int i = 0; i < 11; i++)
+        {
+            // lerpValue 계산
+
+            // 각 blur[i]에 대한 최대 lerpValue 범위 조정 (i가 증가함에 따라 더 천천히 바뀌도록)
+            float maxLerpRange = 1f - (i * 0.05f); // i가 증가할수록 maxLerpRange 감소
+
+            // baseLerpValue를 조정된 범위에 맞게 스케일링
+            float scaledLerpValue = Mathf.Clamp01(realGrade / maxLerpRange);
+
+            // 색상 변경
+            blur[i].color = Color.Lerp(backColor[i], finalColor[i], scaledLerpValue);
+        }
+
+
     }
 
     // 콤보를 올리거나 초기화 

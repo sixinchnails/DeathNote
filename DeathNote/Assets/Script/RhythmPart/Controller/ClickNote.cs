@@ -19,7 +19,7 @@ public class ClickNote : MonoBehaviour, IPointerDownHandler
 
     public int bonus; // 보너스 점수
     public int combo; // 콤보 보너스
-
+    public int perfect; // 퍼펙트 보너스
 
     void OnEnable()
     {
@@ -62,7 +62,7 @@ public class ClickNote : MonoBehaviour, IPointerDownHandler
     {
 
         double pressTime = AudioSettings.dspTime; // 누른 시간 측정
-        double bestTime = 0.05; // 최고 판정 기준 : 0.1초
+        double bestTime = 0.08; // 최고 판정 기준 : 0.1초
         if (Math.Abs(pressTime - checkTime) <= bestTime)
         {
             ScoreManager.instance.IncreaseCombo(true); // 콤보 추가
@@ -79,7 +79,7 @@ public class ClickNote : MonoBehaviour, IPointerDownHandler
         {
             float lerpValue = EvaluatePress((float)pressTime); // 판정 시간의 정확도를 계산
             Debug.Log("러프밸류:" + lerpValue);
-            if (lerpValue < 0.2)
+            if (lerpValue < 0.1)
             {
                 ScoreManager.instance.IncreaseCombo(false); //콤보 제거
                 effect.JudgeEffect("miss"); // 놓쳤다고 출력
@@ -107,7 +107,7 @@ public class ClickNote : MonoBehaviour, IPointerDownHandler
         float absDifference = Mathf.Abs((float)(checkTime - pressTime));
 
         // 허용된 최대 차이 시간 설정
-        float maxDifference = (float)(0.25 * timeUnit);
+        float maxDifference = (float)(0.5 * timeUnit);
         // absDifference가 maxDifference 이내일 경우 보간값 계산, 그렇지 않으면 0
         if (absDifference <= maxDifference)
         {

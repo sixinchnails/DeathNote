@@ -51,33 +51,59 @@ public class SkillManager : MonoBehaviour
     }
 
     // 스킬과 그 효과를 반환하는 메서드
-    public Skill GetSkill(int idx)
+    public Skill GetSkillInfo(int idx)
     {
         switch (idx)
         {
             case 1:
                 Console.WriteLine("num:10");
                 return new Skill("업 비트", "일반", "30%의 확률로 비트감에 비례한 낮은 보너스 점수를 얻는다.",
-                    30, new int[] { 0, 10 }, new int[] { 0, 0 }, new int[] { 0, 0 });
+                    10, new int[] { 0, 10 }, new int[] { 0, 0 }, new int[] { 0, 0 });
             case 2:
                 return new Skill("그대안의 블루", "일반", "30%의 확률로 감성에 비례한 낮은 보너스 점수를 얻는다.",
-                    30, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 1, 10 });
+                    10, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 1, 10 });
             case 3:
                 return new Skill("콤보팡", "일반", "50%의 확률로 무드에 비례한 낮은 콤보 점수를 얻는다.",
-                    30, new int[] { 0, 0 }, new int[] { 2, 10 }, new int[] { 0, 0 });
+                    10, new int[] { 0, 0 }, new int[] { 2, 10 }, new int[] { 0, 0 });
             case 4:
                 return new Skill("평오프", "일반", "30%의 확률로 평온함에 비례한 낮은 콤보 점수를 얻는다.",
-                    30, new int[] { 0, 0 }, new int[] { 3, 10 }, new int[] { 0, 0 });
+                    10, new int[] { 0, 0 }, new int[] { 3, 10 }, new int[] { 0, 0 });
             case 5:
-                return new Skill("설레임덕", "일반", "30%의 확률로 설렘에 비례한 낮은 보너스 점수를 얻는다.",
-                    30, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 4, 10 }, new int[] { 0, 0 }, new int[] { 0, 0 });
+                return new Skill("설레임덕", "일반", "30%의 확률로 설렘에 비례한 낮은 퍼펙 점수를 얻는다.",
+                    10, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 4, 10 });
             case 6:
                 return new Skill("실화냐가슴이웅장", "일반", "30%의 확률로 웅장함에 비례한 낮은 보너스 점수를 얻는다.",
-                    30, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 5, 10 }, new int[] { 0, 0 }, new int[] { 0, 0 });
+                    10, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 5, 10 });
             default:
                 Console.WriteLine(" num:?");
                 return null;
         }
+    }
+
+    public int GetSkill(Soul turnSoul, ClickNote note)
+    {
+        // 정령의 세가지 스킬을 돌림
+        for (int i = 0; i < 3; i++)
+        {
+            // i 번째 스킬
+            int idx = turnSoul.parameters[i];
+            Skill now = SkillManager.instance.GetSkillInfo(idx);
+            // 발동 확률이 0퍼센트면 다음 스킬
+            if (now.percent == 0) continue;
+            // 0~99 사이의 랜덤 숫자
+            int random = UnityEngine.Random.Range(0, 100);
+            // 확률적으로 발동하면
+            if (now.percent > random)
+            {
+                note.bonus = (int)(turnSoul.emotions[now.bonus[0]] * now.bonus[1] / 100.0f);
+                note.combo = (int)(turnSoul.emotions[now.combo[0]] * now.combo[1] / 100.0f);
+                note.perfect = (int)(turnSoul.emotions[now.combo[0]] * now.combo[1] / 100.0f);
+
+                return idx;
+            }          
+
+        }
+        return 0;
     }
 
     // 장비 반환

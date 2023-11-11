@@ -29,9 +29,8 @@ public class StageManager : MonoBehaviour
     public Color transparent; // 원래 색상 (투명색)
     private bool running = false; // 음악 실행중 여부
     private bool hasPlayed = false; // 음악 실행 여부
-    private Animator bgAnimator;
 
-    [SerializeField] GameObject background;
+
     [SerializeField] Image thumbnail;
     [SerializeField] GameObject readyUI;
     [SerializeField] TextMeshProUGUI title; // 곡 제목
@@ -52,7 +51,6 @@ public class StageManager : MonoBehaviour
     {
         readyUI.SetActive(true);
         noteQueue = new Queue<NoteData>(); // 노트 큐 선언
-        bgAnimator = background.GetComponent<Animator>(); // 배경 애니메이션 설정
         
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
@@ -93,7 +91,6 @@ public class StageManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        bgAnimator.speed = (float)musicManager.bpm / 240; // 애니메이션 설정
         // 노래가 재생중이라고 변경
         running = true;
         // 노래가 재생된 이력이 있다고 변경
@@ -103,7 +100,6 @@ public class StageManager : MonoBehaviour
         // 오디오 재생
         audioSource.PlayDelayed((float)timePerBeat * 4 + musicManager.offset + musicManager.customOffset + speed);
         StartCoroutine(UpdateNote());
-        bgAnimator.SetTrigger("start");
     }
 
     IEnumerator UpdateNote()
@@ -113,7 +109,7 @@ public class StageManager : MonoBehaviour
         {
             // 썸네일의 투명도를 고침
             float lerpValue = Mathf.Clamp01(((float)scoreManager.totalPercent / (musicManager.totalNote * 100))); // 보간(Clamp는 0~1로 제한)
-            thumbnail.color = Color.Lerp(transparent, semiparent, lerpValue);
+
             currentTime = AudioSettings.dspTime; // 현재시간
             int now = (int)((currentTime - gameStart) / timePerBeat);
 
@@ -139,17 +135,14 @@ public class StageManager : MonoBehaviour
     IEnumerator ExecuteAfterDelay(float delay)
     {
         float startVolume = audioSource.volume;
-        Color color = thumbnail.color;
         // fadeDuration 동안 점차 볼륨을 줄인다.
         while (audioSource.volume > 0)
         {
             float lerpValue = 1f - audioSource.volume / startVolume; // 볼륨이 줄어드는 비율에 따라 lerpValue를 계산합니다.
-            thumbnail.color = Color.Lerp(color, white, lerpValue); // 그 비율에 따라 색상을 변경합니다.
 
             audioSource.volume -= startVolume * Time.deltaTime / delay;
             yield return null;
         }
-        thumbnail.color = white;
         audioSource.Stop();
         audioSource.volume = startVolume; // 원본 볼륨으로 다시 설정 (재생 준비)
 
@@ -211,31 +204,21 @@ public class StageManager : MonoBehaviour
                     note.transform.SetAsFirstSibling();
                     // 이번에 사용할 정령을 불러옴
                     Soul turnSoul = mySoulList[soulSeq++];
-                    soulSeq = soulSeq % 4;
-                    // 정령의 세가지 스킬을 돌림
-                    for(int i = 0; i < 3; i++)
-                    {
-                        // i 번째 스킬
-                        Skill now = SkillManager.instance.GetSkill(turnSoul.parameters[i]);
-                        // 발동 확률이 0퍼센트면 다음 스킬
-                        if (now.percent == 0) continue;
-                        // 0~99 사이의 랜덤 숫자
-                        int random = UnityEngine.Random.Range(0, 100);
-                        // 확률적으로 발동하면
-                        if(now.percent > random)
-                        {
-                            note.bonus = (int) (turnSoul.emotions[now.bonus[0]] * now.bonus[1] / 100.0f);
-                            note.combo = (int)(turnSoul.emotions[now.combo[0]] * now.combo[1] / 100.0f);
-                        }
+                    // 다시 돌아가기 위해서, soulSeq를 돌림(0~5, 총 6마리)
+                    soulSeq = soulSeq % mySoulList.Count;
 
-                        break;
+                    // 이번에 발동할 스킬번호를 결정
+                    int skillNumber = SkillManager.instance.GetSkill(turnSoul, note);
+                    // effect의 애니메이터의 인티저를 변경
+                    Debug.Log(skillNumber);
+                    effect.hitAnimator.SetInteger("Num", skillNumber); 
 
-                    }
+                    // note는 비활성화된 상태로 시작하므로, 처음엔 Awake 메서드가 형성되지 않기 때문에 animator를 장착시켜줘야 함
                     if (note.animator == null) note.animator = note.GetComponent<Animator>();
-                    Debug.Log(turnSoul.customizes[0] + "." + turnSoul.customizes[1]);
 
-
+                    // 위 연산이 오래걸리기 때문에, 다시 시간 측정
                     double time = AudioSettings.dspTime;
+                    // 다음 노트와의 오차를 연산
                     float nextTime = CheckTime((noteData.beat + 1) / 10, noteData.beat % 10);
                     StartCoroutine(EnableNote(note, turnSoul, (float)(nextTime - time)));
                         

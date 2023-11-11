@@ -46,7 +46,7 @@ public class GardenBookUIManager : MonoBehaviour
 
             revive.text = "ÃÑ " + soul.revive.ToString() + " ¹øÂ°";
 
-            Skill skill = SkillManager.instance.GetSkill(soul.customizes[3]);
+            Skill skill = SkillManager.instance.GetSkillInfo(soul.customizes[3]);
             skillname.text = skill.name;
             skillDescription.text = skill.description;
             tier.transform.GetChild(0).GetComponent<Text>().text = skill.tier;
