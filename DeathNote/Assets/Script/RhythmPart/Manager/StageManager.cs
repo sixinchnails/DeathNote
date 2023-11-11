@@ -5,7 +5,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 
 
 public class StageManager : MonoBehaviour
@@ -54,7 +53,7 @@ public class StageManager : MonoBehaviour
         
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
-        musicManager.SetKanon();
+        musicManager.SetHBA();
         scoreManager = ScoreManager.instance;
         audioSource = musicManager.audioSource;
         Debug.Log("길이:"+musicManager.beat.Length);
