@@ -36,6 +36,7 @@ public class MemberController {
     // 회원가입 (이메일, 닉네임)
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUpRequest) {
+        System.out.println(signUpRequest);
         Member member = memberService.signUp(signUpRequest.getEmail(), signUpRequest.getNickname());
         return ResponseEntity.ok(memberService.getMemberWithSoul(member.getEmail()));
     }
@@ -43,6 +44,7 @@ public class MemberController {
     // 로그인
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LogInRequest logInRequest) {
+        System.out.println(logInRequest);
         return ResponseEntity.ok(memberService.getMemberWithSoul(logInRequest.getEmail()));
     }
 
