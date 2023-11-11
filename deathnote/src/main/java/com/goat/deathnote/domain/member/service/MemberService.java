@@ -60,7 +60,7 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public Member getMerberById(Long memberId){
+    public Member getMemberById(Long memberId){
         return memberRepository.findById(memberId).orElseThrow();
     }
 //    public MemberDetailResDto getMemberWithSoul(Long memberId) {

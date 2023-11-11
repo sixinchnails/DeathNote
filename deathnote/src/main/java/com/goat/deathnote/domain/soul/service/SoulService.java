@@ -44,6 +44,9 @@ public class SoulService {
         return soulRepository.save(soul);
     }
 
+    public Optional<Soul> getSoulById(Long id){
+        return soulRepository.findById(id);
+    }
     public List<Soul> getAllSouls() {
         return soulRepository.findAll();
     }
