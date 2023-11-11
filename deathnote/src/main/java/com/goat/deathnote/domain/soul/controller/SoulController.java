@@ -23,6 +23,8 @@ public class SoulController {
         return soul.getId();
     }
 
+
+
     @GetMapping
     public ResponseEntity<List<Soul>> getAllSouls() {
         return ResponseEntity.ok(soulService.getAllSouls());

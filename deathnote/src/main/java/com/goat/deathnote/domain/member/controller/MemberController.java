@@ -1,5 +1,8 @@
 package com.goat.deathnote.domain.member.controller;
 
+import com.goat.deathnote.domain.garden.dto.GardenDetailsDto;
+import com.goat.deathnote.domain.garden.entity.Garden;
+import com.goat.deathnote.domain.garden.service.GardenService;
 import com.goat.deathnote.domain.member.dto.LogInRequest;
 import com.goat.deathnote.domain.member.dto.MemberDetailResDto;
 import com.goat.deathnote.domain.member.dto.SignUpRequest;
@@ -7,6 +10,9 @@ import com.goat.deathnote.domain.member.dto.UpdateMemberDto;
 import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.member.service.MemberNotFoundException;
 import com.goat.deathnote.domain.member.service.MemberService;
+import com.goat.deathnote.domain.soul.dto.SoulDetailsDto;
+import com.goat.deathnote.domain.soul.entity.Soul;
+import com.goat.deathnote.domain.soul.service.SoulService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +29,18 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
+    private final SoulService soulService;
+    private final GardenService gardenService;
+
+    @PostMapping("/allLog")
+    public ResponseEntity<?> allLog(@RequestBody MemberDetailResDto dto){
+        List<SoulDetailsDto> souls = dto.getSouls();
+        List<GardenDetailsDto> gardens = dto.getGardens();
+        // 1. dto를 updateMemberDTO로 변환해서, update 수행
+        // 2. 아이디로 soul 다불러옴
+        // 3. soul 불러온거를 반복문 돌려서, souls에 있나 
+        return null;
+    }
 
     // 로그인하면 이동하는페이지
     @GetMapping("/login")
