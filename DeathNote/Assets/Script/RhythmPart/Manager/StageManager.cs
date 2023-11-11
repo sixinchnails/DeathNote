@@ -53,8 +53,7 @@ public class StageManager : MonoBehaviour
         
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
-        musicManager.SetSomeDay();
-        //musicManager.SetSecondRun();
+        musicManager.SetBecauseChristmas();
         title.text = musicManager.musicTitle;
         scoreManager = ScoreManager.instance;
         audioSource = musicManager.audioSource;
