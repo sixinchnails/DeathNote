@@ -28,7 +28,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uB178\uD2B8\uC0AC\uB77C\uC9C4\uB2E4_0"
+  m_Name: BookDisappear
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:

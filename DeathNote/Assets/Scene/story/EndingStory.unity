@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 429884307}
   - component: {fileID: 429884306}
   - component: {fileID: 429884305}
+  - component: {fileID: 429884308}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -446,6 +447,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &429884308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429884304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c557727ff10014e988daf108083680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &466407542 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4980604597881728256, guid: 7b0782b5ed2075648a9cc654cc85b79a, type: 3}
@@ -947,14 +960,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5254902}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e359886e5499e944e9aeb3e4fbbbe807, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26bd0fb365e95b34d80671c1bf3273f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -53,7 +53,7 @@ public class StageManager : MonoBehaviour
         
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
-        musicManager.SetBecauseChristmas();
+        musicManager.SetHBA();
         title.text = musicManager.musicTitle;
         scoreManager = ScoreManager.instance;
         audioSource = musicManager.audioSource;
@@ -114,7 +114,8 @@ public class StageManager : MonoBehaviour
         {
             // 썸네일의 투명도를 고침
             float lerpValue = Mathf.Clamp01(((float)scoreManager.totalPercent / (musicManager.totalNote * 100))); // 보간(Clamp는 0~1로 제한)
-            Debug.Log(lerpValue);
+            Debug.Log(lerpValue); //여기야여기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Debug.Log(beatNumber);
             thumbnail.color = Color.Lerp(transparent, semiparent, lerpValue);
             currentTime = AudioSettings.dspTime; // 현재시간
             int now = (int)((currentTime - gameStart) / timePerBeat);
