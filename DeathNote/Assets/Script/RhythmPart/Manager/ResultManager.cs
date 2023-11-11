@@ -1,42 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ResultManager : MonoBehaviour
 {
-    public int totalNoteNum;
-    
-    [SerializeField] GameObject resultUI = null;
+    [SerializeField] TextMeshProUGUI songTitle;
+    [SerializeField] GameObject paper;
+    [SerializeField] GameObject content;
+    [SerializeField] TextMeshProUGUI myPercent;
+    [SerializeField] TextMeshProUGUI myScore;
+    [SerializeField] Animator animator;
 
-    
-    [SerializeField] Text[] txtCount = null;
-    [SerializeField] Text songTitle = null;
-    [SerializeField] Text totalNote = null;
-    [SerializeField] Text totalCombo = null;
-    [SerializeField] Text score = null;
-    [SerializeField] Text grade = null;
-
-    ScoreManager scoreManager = null;
+    ScoreManager scoreManager;
 
     void Start()
     {
         scoreManager = FindObjectOfType<ScoreManager>();
-
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
-    public void ShowResult()
+    public void ShowResult(string title, float percent, string score)
     {
-        resultUI.SetActive(true);
+        songTitle.text = title;
+        myPercent.text = percent.ToString("F2");
+        myScore.text = score;
 
-        for(int i = 0; i < txtCount.Length; i++)
-        {
-            txtCount[i].text = "0";
-        }
-        songTitle.text = "";
-        totalNote.text = "0";
-        totalCombo.text = "0";
-        score.text = "0";
-        grade.text ="";
+        gameObject.SetActive(true);
+        StartCoroutine(ShowPaper());
+    }
+
+    IEnumerator ShowPaper()
+    {
+        animator.SetTrigger("showdown");
+        yield return new WaitForSeconds(2.0f);
+
+        content.SetActive(true);
     }
 }

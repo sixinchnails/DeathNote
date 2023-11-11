@@ -7,7 +7,7 @@ public class GotoOpening2 : MonoBehaviour
 {
     public void go()
     {
-        SceneManager.LoadScene("OpeningStory2");
+        SceneManager.LoadScene("NewOpeningStory");
     }
 
     private void Update()

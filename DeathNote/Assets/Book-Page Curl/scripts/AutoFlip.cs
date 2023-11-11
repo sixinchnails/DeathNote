@@ -12,7 +12,7 @@ public class AutoFlip : MonoBehaviour
     public float PageFlipTime = 1;           // 페이지를 넘기는 데 걸리는 시간
     public float TimeBetweenPages = 1;       // 페이지를 넘길 때마다 기다리는 시간
     public float DelayBeforeStarting = 0;    // 시작하기 전에 기다리는 시간
-    public bool AutoStartFlip = true;          // 시작할 때 자동으로 페이지를 넘길지의 여부
+    public bool AutoStartFlip = false;          // 시작할 때 자동으로 페이지를 넘길지의 여부
     public Book ControledBook;               // 제어하는 책 객체
     public int AnimationFramesCount = 40;    // 애니메이션 프레임 수
     bool isFlipping = false;                 // 현재 페이지를 넘기는 중인지 여부

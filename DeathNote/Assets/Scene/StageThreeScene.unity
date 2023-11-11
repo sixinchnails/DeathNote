@@ -142,7 +142,7 @@ PrefabInstance:
     - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: canvas
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1423223430}
     - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: background
       value: 
@@ -546,6 +546,7 @@ MonoBehaviour:
   AutoStartFlip: 0
   ControledBook: {fileID: 87045438}
   AnimationFramesCount: 20
+  rightPageNumberText: {fileID: 0}
 --- !u!1 &198620743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,7 +1288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 120, y: -6}
+  m_AnchoredPosition: {x: 120, y: 0}
   m_SizeDelta: {x: 180, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1789766322
@@ -1555,7 +1556,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -895, y: 465}
-  m_SizeDelta: {x: 70, y: 70}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1928924569
 MonoBehaviour:
@@ -1633,7 +1634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3908dc83002655a448ae5f8cd6e4060c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a9556c032500234193ea3ef1159037e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
