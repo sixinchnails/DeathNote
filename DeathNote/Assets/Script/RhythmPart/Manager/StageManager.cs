@@ -53,7 +53,7 @@ public class StageManager : MonoBehaviour
         
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
-        musicManager.SetSecondRun();
+        musicManager.SetBecauseChristmas();
         title.text = musicManager.musicTitle;
         scoreManager = ScoreManager.instance;
         audioSource = musicManager.audioSource;
@@ -126,7 +126,7 @@ public class StageManager : MonoBehaviour
             }
             
 
-            if (beatNumber == musicManager.totalNote)
+            if (noteQueue.Count == 0)
             {
                 running = false;
                 StartCoroutine(ExecuteAfterDelay(4.0f));
