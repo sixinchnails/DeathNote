@@ -38,7 +38,7 @@ namespace My
             AlignCloseButton();
 
             // for Test
-            Show("https://www.google.com/");
+            Show("https://thatsnote.site/oauth2/authorization/google?redirect_uri=http://thatsnote.site/oauth/redirect");
         }
 
         // Update is called once per frame
