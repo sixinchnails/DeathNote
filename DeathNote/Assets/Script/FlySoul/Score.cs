@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
     public static int score = 0;
-    public static int bestscore = 0;
     Text text = null;
     //static을 붙여줌으로써 다른 클래스에서도 score를 조절가능하다.
 

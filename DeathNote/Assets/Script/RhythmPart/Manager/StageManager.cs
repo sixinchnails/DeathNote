@@ -53,10 +53,12 @@ public class StageManager : MonoBehaviour
         
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
-        musicManager.SetSecondRun();
+        musicManager.SetSomeDay();
+        //musicManager.SetSecondRun();
         title.text = musicManager.musicTitle;
         scoreManager = ScoreManager.instance;
         audioSource = musicManager.audioSource;
+        Debug.Log("길이:"+musicManager.beat.Length);
         // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
         timePerBeat = (60d / musicManager.bpm);
         // song은 2마디( musicManger.songBeat의 두배 )에서 시작
@@ -126,7 +128,7 @@ public class StageManager : MonoBehaviour
             }
             
 
-            if (beatNumber == musicManager.totalNote)
+            if (noteQueue.Count == 0)
             {
                 running = false;
                 StartCoroutine(ExecuteAfterDelay(4.0f));
