@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Note
   - Character
+  - SoundEffectsSlider
+  - BackgroundMusicSlider
   layers:
   - Default
   - TransparentFX

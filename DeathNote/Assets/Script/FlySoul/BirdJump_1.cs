@@ -37,7 +37,6 @@ public class BirdJump_1 : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
         //OnCollisionEnter2D : 부딪히는 이벤트에 사용되는 메소드
     {
-        if(Score.score>Score.bestscore) Score.bestscore=Score.score;
         SceneManager.LoadScene("GameOverScene");
     }
 }
