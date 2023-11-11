@@ -44,7 +44,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
         // 얻어온 프로바이더로 해당 소셜에 맞는 유저 정보 가져옴
         OAuth2MemberInfo memberInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(socialProvider, user.getAttributes());
         // 해당 유저가 존재하는지 확인후 존재하지 않으면 회원가입
-        Member foundMember = memberRepository.findByEmail(memberInfo.getEmail());
+        Member foundMember = memberRepository.findByEmail(memberInfo.getEmail()).orElseThrow();
         Member savedMember;
         if (foundMember == null) {
             savedMember = createMember(memberInfo, socialProvider);

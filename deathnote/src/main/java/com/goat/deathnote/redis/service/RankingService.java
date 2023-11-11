@@ -21,7 +21,7 @@ public class RankingService {
         redisTemplate.opsForZSet().add(RANKING_KEY, member.getId().toString(), score);
     }
 
-    public Set<ZSetOperations.TypedTuple<String>> getTopMembers(int count) {
+    public Set<ZSetOperations.TypedTuple<String>> getTopMembers(Long count) {
         return redisTemplate.opsForZSet().reverseRangeWithScores(RANKING_KEY, 0, count - 1);
     }
 }

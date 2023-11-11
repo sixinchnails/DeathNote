@@ -78,7 +78,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 			memberRole = MemberRole.USER;
 		} else return null;
 
-		Member member = memberRepository.findByEmail(socialEmail); // 받아온 이메일로 멤버를 찾음
+		Member member = memberRepository.findByEmail(socialEmail).orElseThrow(); // 받아온 이메일로 멤버를 찾음
 		Token tokenInfo = jwtTokenProvider.createToken(member.getId(),
 			memberRole.name());
 

@@ -24,7 +24,7 @@ public class GardenService {
         Member member = memberRepository.findById(gardenPostDto.getMemberId()).orElseThrow();
         Garden garden = Garden.builder()
                 .member(member)
-                .name(gardenPostDto.getName())
+                .type(gardenPostDto.getType())
                 .build();
         return gardenRepository.save(garden);
     }

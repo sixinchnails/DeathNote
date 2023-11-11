@@ -23,7 +23,7 @@ public class Garden {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @Column(name = "garden_name", nullable = false)
-    private String name;
+    @Column(name = "garden_type", nullable = false)
+    private Long type;
 
 }

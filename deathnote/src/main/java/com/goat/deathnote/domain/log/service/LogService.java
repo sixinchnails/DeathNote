@@ -11,11 +11,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class logService {
+public class LogService {
 
     private final LogRepository logRepository;
     private final MemberRepository memberRepository;
@@ -44,8 +43,12 @@ public class logService {
         return logRepository.findAll();
     }
 
-    public Optional<Log> getLogById(Long id) {
-        return logRepository.findById(id);
+    public List<Log> getLogByNickname(String nickname) {
+        return logRepository.findByMemberNickname(nickname);
+    }
+
+    public List<Log> getLogByCode(Long code) {
+        return logRepository.findByCode(code);
     }
 
 //        public void deleteSoul (Long id){

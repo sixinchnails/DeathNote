@@ -1,6 +1,9 @@
 package com.goat.deathnote.domain.member.service;
 
-import com.goat.deathnote.domain.member.dto.MemberWithSoulResDto;
+import com.goat.deathnote.domain.garden.dto.GardenDetailsDto;
+import com.goat.deathnote.domain.garden.entity.Garden;
+import com.goat.deathnote.domain.garden.repository.GardenRepository;
+import com.goat.deathnote.domain.member.dto.MemberDetailResDto;
 import com.goat.deathnote.domain.member.dto.UpdateMemberDto;
 import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.member.entity.MemberRole;
@@ -10,13 +13,11 @@ import com.goat.deathnote.domain.soul.dto.SoulDetailsDto;
 import com.goat.deathnote.domain.soul.entity.Soul;
 import com.goat.deathnote.domain.soul.repository.SoulRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,18 +25,19 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final SoulRepository soulRepository;
+    private final GardenRepository gardenRepository;
 
     public Member signUp(String email, String nickname) {
         // 이메일 중복 체크
-        if (memberRepository.findByEmail(email) != null) {
+        Member member = memberRepository.findByEmail(email).orElse(null);
+        if (member != null) {
             throw new RuntimeException("이미 등록된 이메일입니다.");
         }
-
         // 닉네임 중복 체크
         if (memberRepository.findByNickname(nickname) != null) {
             throw new RuntimeException("이미 등록된 닉네임입니다.");
         }
-        Member member = Member.builder()
+        member = Member.builder()
                 .name("테스트")
                 .email(email)
                 .role(MemberRole.USER)
@@ -48,7 +50,7 @@ public class MemberService {
         return memberRepository.save(member);
     }
     public Member login(String email) {
-        Member member = memberRepository.findByEmail(email);
+        Member member = memberRepository.findByEmail(email).orElseThrow();
         if (member != null) {
             return member;
         }
@@ -61,8 +63,30 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public MemberWithSoulResDto getMemberById(Long memberId) {
-        Member member = memberRepository.findById(memberId).orElseThrow();
+    public Member getMerberById(Long memberId){
+        return memberRepository.findById(memberId).orElseThrow();
+    }
+//    public MemberDetailResDto getMemberWithSoul(Long memberId) {
+//        Member member = memberRepository.findById(memberId).orElseThrow();
+//
+//        List<Soul> souls = soulRepository.findByMemberId(member.getId());
+//        List<SoulDetailsDto> soulDetails = new ArrayList<>();
+//        for (Soul s : souls) {
+//            SoulDetailsDto soulDetailsDto = new SoulDetailsDto(s);
+//            soulDetails.add(soulDetailsDto);
+//        }
+//        List<Garden> gardens = gardenRepository.findByMemberId(member.getId());
+//        List<GardenDetailsDto> gardenDetails = new ArrayList<>();
+//        for (Garden g : gardens) {
+//            GardenDetailsDto gardenDetailsDto = new GardenDetailsDto(g);
+//            gardenDetails.add(gardenDetailsDto);
+//        }
+//
+//        MemberDetailResDto memberDetailResDto = new MemberDetailResDto(member, soulDetails, gardenDetails);
+//        return memberDetailResDto;
+//    }
+    public MemberDetailResDto getMemberWithSoul(String email) {
+        Member member = memberRepository.findByEmail(email).orElseThrow();
 
         List<Soul> souls = soulRepository.findByMemberId(member.getId());
         List<SoulDetailsDto> soulDetails = new ArrayList<>();
@@ -70,9 +94,15 @@ public class MemberService {
             SoulDetailsDto soulDetailsDto = new SoulDetailsDto(s);
             soulDetails.add(soulDetailsDto);
         }
+        List<Garden> gardens = gardenRepository.findByMemberId(member.getId());
+        List<GardenDetailsDto> gardenDetails = new ArrayList<>();
+        for (Garden g : gardens) {
+            GardenDetailsDto gardenDetailsDto = new GardenDetailsDto(g);
+            gardenDetails.add(gardenDetailsDto);
+        }
 
-        MemberWithSoulResDto memberWithSoulResDto = new MemberWithSoulResDto(member, soulDetails);
-        return memberWithSoulResDto;
+        MemberDetailResDto memberDetailResDto = new MemberDetailResDto(member, soulDetails, gardenDetails);
+        return memberDetailResDto;
     }
 
     public void deleteMember(Long memberId) {
