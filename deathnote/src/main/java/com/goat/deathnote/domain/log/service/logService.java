@@ -5,6 +5,7 @@ import com.goat.deathnote.domain.log.entity.Log;
 import com.goat.deathnote.domain.log.repository.LogRepository;
 import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.member.repository.MemberRepository;
+import com.goat.deathnote.redis.service.RankingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class logService {
 
     private final LogRepository logRepository;
     private final MemberRepository memberRepository;
+    private final RankingService rankingService;
 
     public Log saveLog(LogPostDto logPostDto) {
         Member member = memberRepository.findById(logPostDto.getMemberId()).orElseThrow();
@@ -31,7 +33,11 @@ public class logService {
         if (member.getProgress() < log.getCode()){
             member.setProgress(log.getCode());
         }
-        return logRepository.save(log);
+        logRepository.save(log);
+
+        // 랭킹 업데이트
+        rankingService.updateRanking(member, logPostDto.getScore());
+        return log;
     }
 
     public List<Log> getAllLogs() {
