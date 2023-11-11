@@ -15,5 +15,5 @@ public class GardenPostDto {
 
     private Long memberId;
 
-    private String name;
+    private Long type;
 }

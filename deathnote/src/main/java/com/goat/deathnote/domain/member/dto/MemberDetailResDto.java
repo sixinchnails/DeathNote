@@ -1,5 +1,6 @@
 package com.goat.deathnote.domain.member.dto;
 
+import com.goat.deathnote.domain.garden.dto.GardenDetailsDto;
 import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.soul.dto.SoulDetailsDto;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MemberWithSoulResDto {
+public class MemberDetailResDto {
+
+    private Long id;
 
     private String nickname;
 
@@ -21,15 +24,19 @@ public class MemberWithSoulResDto {
 
     private Long progress;
 
-    private List<SoulDetailsDto> souls;
-
     private Long gold;
 
-    public MemberWithSoulResDto(Member member, List<SoulDetailsDto> souls) {
+    private List<SoulDetailsDto> souls;
+
+    private List<GardenDetailsDto> gardens;
+
+    public MemberDetailResDto(Member member, List<SoulDetailsDto> souls, List<GardenDetailsDto> gardens) {
+        this.id = member.getId();
         this.nickname = member.getNickname();
         this.token = member.getToken();
         this.progress = member.getProgress();
-        this.souls = souls;
         this.gold = member.getGold();
+        this.souls = souls;
+        this.gardens = gardens;
     }
 }

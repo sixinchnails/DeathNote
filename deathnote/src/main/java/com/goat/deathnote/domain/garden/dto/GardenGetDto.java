@@ -15,6 +15,6 @@ public class GardenGetDto {
 
     private Member member;
 
-    private String name;
+    private Long type;
 
 }

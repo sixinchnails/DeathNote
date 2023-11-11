@@ -1,7 +1,7 @@
 package com.goat.deathnote.domain.member.controller;
 
 import com.goat.deathnote.domain.member.dto.LogInRequest;
-import com.goat.deathnote.domain.member.dto.MemberWithSoulResDto;
+import com.goat.deathnote.domain.member.dto.MemberDetailResDto;
 import com.goat.deathnote.domain.member.dto.SignUpRequest;
 import com.goat.deathnote.domain.member.dto.UpdateMemberDto;
 import com.goat.deathnote.domain.member.entity.Member;
@@ -36,13 +36,14 @@ public class MemberController {
     // 회원가입 (이메일, 닉네임)
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUpRequest) {
-        return ResponseEntity.ok(memberService.signUp(signUpRequest.getEmail(), signUpRequest.getNickname()));
+        Member member = memberService.signUp(signUpRequest.getEmail(), signUpRequest.getNickname());
+        return ResponseEntity.ok(memberService.getMemberWithSoul(member.getEmail()));
     }
 
     // 로그인
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LogInRequest logInRequest) {
-        return ResponseEntity.ok(memberService.login(logInRequest.getEmail()));
+        return ResponseEntity.ok(memberService.getMemberWithSoul(logInRequest.getEmail()));
     }
 
     // 유저 전체조회
@@ -53,8 +54,9 @@ public class MemberController {
 
     // 유저 조회 가지고있는 정령까지 싹다
     @GetMapping("/{id}")
-    public ResponseEntity<MemberWithSoulResDto> getDetailMember(@PathVariable Long id) {
-       return ResponseEntity.ok(memberService.getMemberById(id));
+    public ResponseEntity<MemberDetailResDto> getDetailMember(@PathVariable Long id) {
+       //return ResponseEntity.ok(memberService.getMemberWithSoul(id));
+        return null;
     }
 
     // 닉네임 변경
