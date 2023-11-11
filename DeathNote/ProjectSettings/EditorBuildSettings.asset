@@ -24,13 +24,13 @@ EditorBuildSettings:
     path: Assets/Scene/ButtonRhythmPart.unity
     guid: 3ada05d47d9559c49a441465d2214edb
   - enabled: 1
-    path: Assets/Scene/EndingStory.unity
+    path: Assets/Scene/story/EndingStory.unity
     guid: 9e5c505f8c58679478aec5e60bc2d08c
   - enabled: 1
     path: Assets/Scene/GameResultScene.unity
     guid: 65d116395197e504f9983103f347075f
   - enabled: 1
-    path: Assets/Scene/GetSoul.unity
+    path: Assets/Scene/story/GetSoul.unity
     guid: fba11741f0aefa342ba6e1349dd9b54a
   - enabled: 1
     path: Assets/Scene/LogIn.unity
@@ -45,7 +45,7 @@ EditorBuildSettings:
     path: Assets/Scene/NormalRhythmPart.unity
     guid: 43e7c9acada620c4a8b4325e73dc49e0
   - enabled: 1
-    path: Assets/Scene/OpeningStory.unity
+    path: Assets/Scene/story/OpeningStory.unity
     guid: 9b6ca5ed372657e40bac3e3caaa97980
   - enabled: 1
     path: Assets/Scene/Tutorial.unity
@@ -69,22 +69,22 @@ EditorBuildSettings:
     path: Assets/Scene/StageFiveScene.unity
     guid: 9ee3526792db1b147947ebe11aadece3
   - enabled: 1
-    path: Assets/Scene/WorldOneScene.unity
+    path: Assets/Scene/Stages/WorldOneScene.unity
     guid: c6d038a13b7c90646bd9e011bbd9950e
   - enabled: 1
-    path: Assets/Scene/WorldTwoScene.unity
+    path: Assets/Scene/Stages/WorldTwoScene.unity
     guid: 3c9ac86b8f7781c4fa3e5df952b59381
   - enabled: 1
-    path: Assets/Scene/WorldThreeScene.unity
+    path: Assets/Scene/Stages/WorldThreeScene.unity
     guid: e8b0220b41741b24a8156b0fe254ea0b
   - enabled: 1
-    path: Assets/Scene/WorldFourScene.unity
+    path: Assets/Scene/Stages/WorldFourScene.unity
     guid: 3c414e9585b3ac9419452d2a4ed4d8da
   - enabled: 1
-    path: Assets/Scene/WorldFiveScene.unity
+    path: Assets/Scene/Stages/WorldFiveScene.unity
     guid: c9856c0e98438c149a800592612c4e8c
   - enabled: 1
-    path: Assets/Scene/WorldSixScene.unity
+    path: Assets/Scene/Stages/WorldSixScene.unity
     guid: 52bb46dab337ea14a93e54cdcccfa946
   - enabled: 1
     path: Assets/Scene/GameOverScene.unity

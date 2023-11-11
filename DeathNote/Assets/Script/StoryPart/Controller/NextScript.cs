@@ -99,7 +99,8 @@ public class NextScript : MonoBehaviour
         {
             scriptBox.SetBool("isShow", false);
             //대화 끝났으면 튜토리얼으로 넘어간다.
-            SceneManager.LoadScene("Tutorial");
+            //SceneManager.LoadScene("Tutorial");
+            LoadingController.LoadScene("Tutorial");
         }
         else if (data.id == 1)
         {

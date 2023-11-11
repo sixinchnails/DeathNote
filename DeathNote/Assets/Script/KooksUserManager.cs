@@ -52,7 +52,6 @@ public class KooksUserManager : MonoBehaviour
             if (userData != null)
             {
                 SetUserData(userData);
-                Debug.Log(userData.name);
             }
         }
     }
