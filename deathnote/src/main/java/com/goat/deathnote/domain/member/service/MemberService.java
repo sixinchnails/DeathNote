@@ -27,19 +27,17 @@ public class MemberService {
     private final SoulRepository soulRepository;
     private final GardenRepository gardenRepository;
 
-    public Member signUp(String email, String nickname) {
+    public Member signUp(String nickname) {
         // 이메일 중복 체크
-        Member member = memberRepository.findByEmail(email).orElse(null);
-        if (member != null) {
-            throw new RuntimeException("이미 등록된 이메일입니다.");
-        }
+        Member member = memberRepository.findByNickname(nickname).orElse(null);
+
         // 닉네임 중복 체크
-        if (memberRepository.findByNickname(nickname) != null) {
+        if (member != null) {
             throw new RuntimeException("이미 등록된 닉네임입니다.");
         }
         member = Member.builder()
                 .name("테스트")
-                .email(email)
+                .email(nickname)
                 .role(MemberRole.USER)
                 .provider(SocialProvider.GOOGLE)
                 .nickname(nickname)
@@ -85,8 +83,8 @@ public class MemberService {
 //        MemberDetailResDto memberDetailResDto = new MemberDetailResDto(member, soulDetails, gardenDetails);
 //        return memberDetailResDto;
 //    }
-    public MemberDetailResDto getMemberWithSoul(String email) {
-        Member member = memberRepository.findByEmail(email).orElseThrow();
+    public MemberDetailResDto getMemberWithSoul(String nickname) {
+        Member member = memberRepository.findByNickname(nickname).orElseThrow();
 
         List<Soul> souls = soulRepository.findByMemberId(member.getId());
         List<SoulDetailsDto> soulDetails = new ArrayList<>();

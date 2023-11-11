@@ -35,15 +35,15 @@ public class MemberController {
 
     // 회원가입 (이메일, 닉네임)
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUpRequest) {
-        Member member = memberService.signUp(signUpRequest.getEmail(), signUpRequest.getNickname());
-        return ResponseEntity.ok(memberService.getMemberWithSoul(member.getEmail()));
+    public ResponseEntity<?> signUp(@RequestBody LogInRequest logInRequest) {
+        Member member = memberService.signUp(logInRequest.getNickname());
+        return ResponseEntity.ok(memberService.getMemberWithSoul(member.getNickname()));
     }
 
     // 로그인
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LogInRequest logInRequest) {
-        return ResponseEntity.ok(memberService.getMemberWithSoul(logInRequest.getEmail()));
+        return ResponseEntity.ok(memberService.getMemberWithSoul(logInRequest.getNickname()));
     }
 
     // 유저 전체조회
