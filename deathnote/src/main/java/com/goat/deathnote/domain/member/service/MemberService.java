@@ -28,7 +28,6 @@ public class MemberService {
     private final GardenRepository gardenRepository;
 
     public Member signUp(String nickname) {
-        // 이메일 중복 체크
         Member member = memberRepository.findByNickname(nickname).orElse(null);
 
         // 닉네임 중복 체크
