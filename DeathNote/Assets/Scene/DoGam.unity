@@ -651,15 +651,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 93b2a589cc4260a4aa158255ed0cde00, type: 3}
-    nickname: "\uC720\uBC0D\uAFCD"
-    skillDescription: "\"\uC870\uC544\uB530 \uBC0D\uAD6D^^\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1173849630}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &186635440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,15 +794,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 27665610bbc09274f9408dadbcb9b2af, type: 3}
-    nickname: "\uC138\uD6C8\uC138\uD6C8"
-    skillDescription: "\"\uC624\uB298 \uC0DD\uC77C\u314B\""
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
   defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
   selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
+  characterDisplayArea: {fileID: 0}
   innerCharacterImage: {fileID: 1318902780}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!1 &247716498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,16 +1297,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 04e33bf921da4fb4b9a253fa8e93bd5d, type: 3}
-    nickname: "\uB77C\uB77C\uB77C"
-    skillDescription: "\"\uB77C\uB9AC\uB7FD \uB77C\uB77C\uB77C \uB77C\uB9AC\uB7FD
-      \uB098\uB294 \uB2EC\uB9AC\uAC70\uB098 \uB118\uC5B4\uC9C0\uAC70\uB098\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 107326124}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &469964916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1453,15 +1470,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 27665610bbc09274f9408dadbcb9b2af, type: 3}
-    nickname: "\uC138\uD6C8\uC138\uD6C8"
-    skillDescription: "\"\uC624\uB298 \uC0DD\uC77C\u314B\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1032615975}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &534400972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1590,15 +1613,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 93b2a589cc4260a4aa158255ed0cde00, type: 3}
-    nickname: "\uC720\uBC0D\uAFCD"
-    skillDescription: "\"\uC870\uC544\uB530 \uBC0D\uAD6D^^\""
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
   defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
   selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 247716500}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 1318902780}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!1 &631659407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,16 +1755,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 04e33bf921da4fb4b9a253fa8e93bd5d, type: 3}
-    nickname: "\uB77C\uB77C\uB77C"
-    skillDescription: "\"\uB77C\uB9AC\uB7FD \uB77C\uB77C\uB77C \uB77C\uB9AC\uB7FD
-      \uB098\uB294 \uB2EC\uB9AC\uAC70\uB098 \uB118\uC5B4\uC9C0\uAC70\uB098\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 631659409}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &638622860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1826,15 +1860,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 8674b5eeab0e13d429c0ef2a63ccabcc, type: 3}
-    nickname: "\uC7AC\uC6A9\uC2DC\uCE58"
-    skillDescription: "\"\uC9D1 \uAC00\uACE0\uC2F6\uB2E4\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 17687074}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &677527100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1925,15 +1965,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 64dc806f30cd78e4ab8ef038c1cdc413, type: 3}
-    nickname: "two\uACBDone"
-    skillDescription: "\"\uC2A4\uD504\uB9C1 \uB118\uB098 \uC5B4\uB824\uC6B4\uAC83\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1596864819}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &711009480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2024,15 +2070,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 8674b5eeab0e13d429c0ef2a63ccabcc, type: 3}
-    nickname: "\uC7AC\uC6A9\uC2DC\uCE58"
-    skillDescription: "\"\uC9D1 \uAC00\uACE0\uC2F6\uB2E4\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1610930500}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &741055563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2161,15 +2213,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: d4974db14d57d684594fe60614f57fda, type: 3}
-    nickname: "\uC138\uD6C8\uC138\uD6C8"
-    skillDescription: "\"\uC0DD\uC77C \uC120\uBB3C \uC918^^\""
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
   defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
   selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1533617894}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 1318902780}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!1 &770951688
 GameObject:
   m_ObjectHideFlags: 0
@@ -2573,15 +2631,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: d4974db14d57d684594fe60614f57fda, type: 3}
-    nickname: "\uC138\uD6C8\uC138\uD6C8"
-    skillDescription: "\"\uC0DD\uC77C \uC120\uBB3C \uC918^^\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1691965914}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &956778071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2672,15 +2736,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 93b2a589cc4260a4aa158255ed0cde00, type: 3}
-    nickname: "\uC720\uBC0D\uAFCD"
-    skillDescription: "\"\uC870\uC544\uB530 \uBC0D\uAD6D^^\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 3958084}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &957743245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3590,15 +3660,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 8674b5eeab0e13d429c0ef2a63ccabcc, type: 3}
-    nickname: "\uC7AC\uC6A9\uC2DC\uCE58"
-    skillDescription: "\"\uC9D1 \uAC00\uACE0\uC2F6\uB2E4\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1980842933}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &1166107894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4265,16 +4341,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 04e33bf921da4fb4b9a253fa8e93bd5d, type: 3}
-    nickname: "\uB77C\uB77C\uB77C"
-    skillDescription: "\"\uB77C\uB9AC\uB7FD \uB77C\uB77C\uB77C \uB77C\uB9AC\uB7FD
-      \uB098\uB294 \uB2EC\uB9AC\uAC70\uB098 \uB118\uC5B4\uC9C0\uAC70\uB098\""
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
   defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
   selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 899282102}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 1318902780}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!224 &1300625472 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22443772, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
@@ -4948,7 +5029,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -0.6670889, y: 0.67542213, z: 0.67542213}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1300625472}
   m_Father: {fileID: 1565719628}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5046,15 +5128,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 27665610bbc09274f9408dadbcb9b2af, type: 3}
-    nickname: "\uC138\uD6C8\uC138\uD6C8"
-    skillDescription: "\"\uC624\uB298 \uC0DD\uC77C\u314B\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1576460657}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &1504885299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5145,15 +5233,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 64dc806f30cd78e4ab8ef038c1cdc413, type: 3}
-    nickname: "two\uACBDone"
-    skillDescription: "\"\uC2A4\uD504\uB9C1 \uB118\uB098 \uC5B4\uB824\uC6B4\uAC83\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1393904768}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &1514993663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5394,15 +5488,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: d4974db14d57d684594fe60614f57fda, type: 3}
-    nickname: "\uC138\uD6C8\uC138\uD6C8"
-    skillDescription: "\"\uC0DD\uC77C \uC120\uBB3C \uC918^^\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1271825118}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &1554867042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5538,7 +5638,6 @@ RectTransform:
   - {fileID: 1443998952}
   - {fileID: 1021661307}
   - {fileID: 1489654081}
-  - {fileID: 1300625472}
   - {fileID: 1191794925}
   - {fileID: 1093679586}
   - {fileID: 1059269834}
@@ -6035,16 +6134,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 04e33bf921da4fb4b9a253fa8e93bd5d, type: 3}
-    nickname: "\uB77C\uB77C\uB77C"
-    skillDescription: "\"\uB77C\uB9AC\uB7FD \uB77C\uB77C\uB77C \uB77C\uB9AC\uB7FD
-      \uB098\uB294 \uB2EC\uB9AC\uAC70\uB098 \uB118\uC5B4\uC9C0\uAC70\uB098\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1442569838}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &1652287514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6248,15 +6352,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 8674b5eeab0e13d429c0ef2a63ccabcc, type: 3}
-    nickname: "\uC7AC\uC6A9\uC2DC\uCE58"
-    skillDescription: "\"\uC9D1 \uAC00\uACE0\uC2F6\uB2E4\""
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
   defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
   selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 2092081745}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 1318902780}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!1 &1788635521
 GameObject:
   m_ObjectHideFlags: 0
@@ -6309,15 +6419,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 93b2a589cc4260a4aa158255ed0cde00, type: 3}
-    nickname: "\uC720\uBC0D\uAFCD"
-    skillDescription: "\"\uC870\uC544\uB530 \uBC0D\uAD6D^^\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 447049539}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &1788635524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6408,15 +6524,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 27665610bbc09274f9408dadbcb9b2af, type: 3}
-    nickname: "\uC138\uD6C8\uC138\uD6C8"
-    skillDescription: "\"\uC624\uB298 \uC0DD\uC77C\u314B\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1364154985}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &1816734476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6552,15 +6674,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: d4974db14d57d684594fe60614f57fda, type: 3}
-    nickname: "\uC138\uD6C8\uC138\uD6C8"
-    skillDescription: "\"\uC0DD\uC77C \uC120\uBB3C \uC918^^\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 8907125}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &1859028572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6931,15 +7059,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 64dc806f30cd78e4ab8ef038c1cdc413, type: 3}
-    nickname: "two\uACBDone"
-    skillDescription: "\"\uC2A4\uD504\uB9C1 \uB118\uB098 \uC5B4\uB824\uC6B4\uAC83\""
-  defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
-  selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 2146855112}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
+  defaultSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 0}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!114 &1995253221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7143,22 +7277,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfo:
-    characterSprite: {fileID: 21300000, guid: 64dc806f30cd78e4ab8ef038c1cdc413, type: 3}
-    nickname: "two\uACBDone"
-    skillDescription: "\"\uC2A4\uD504\uB9C1 \uB118\uB098 \uC5B4\uB824\uC6B4\uAC83\""
+    id: 0
+    soulName: 
+    state: 0
+    passive: 
+    active1: 
+    active2: 
+    active3: 
+    nickname: 
+    skillDescription: 
   defaultSprite: {fileID: 21300000, guid: 6f12195b82f81fd4c805e80d7d0ccd31, type: 3}
   selectedSprite: {fileID: 21300000, guid: 0ba2c052ce2d6744791cde44e32c7d4b, type: 3}
-  characterDisplayArea: {fileID: 892974256}
-  innerCharacterImage: {fileID: 1548781716}
-  nicknameText: {fileID: 308855879}
-  skillDescriptionText: {fileID: 1030789959}
+  characterDisplayArea: {fileID: 0}
+  innerCharacterImage: {fileID: 1318902780}
+  nicknameText: {fileID: 0}
+  skillDescriptionText: {fileID: 0}
 --- !u!1001 &2143193523
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1565719628}
+    m_TransformParent: {fileID: 1489654081}
     m_Modifications:
     - target: {fileID: 180032, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: m_Name
@@ -7449,6 +7589,18 @@ PrefabInstance:
       value: 734.332
       objectReference: {fileID: 0}
     - target: {fileID: 22443772, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1.4990506
+      objectReference: {fileID: 0}
+    - target: {fileID: 22443772, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4805555
+      objectReference: {fileID: 0}
+    - target: {fileID: 22443772, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4805555
+      objectReference: {fileID: 0}
+    - target: {fileID: 22443772, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -7466,7 +7618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22443772, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 22443772, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: m_LocalRotation.y
@@ -7478,11 +7630,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22443772, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 16.721
+      value: 585.4468
       objectReference: {fileID: 0}
     - target: {fileID: 22443772, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.714
+      value: 8.763436
       objectReference: {fileID: 0}
     - target: {fileID: 22443772, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
