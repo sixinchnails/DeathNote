@@ -5,18 +5,24 @@ using UnityEngine;
 public class ColliderMove : MonoBehaviour
 {
     public float speed;
-    // Start is called before the first frame update
-    void Start()
+    private bool isMoving = true; // 움직임을 제어하기 위한 플래그를 추가합니다.
+
+    // 움직임을 시작하거나 정지하기 위한 메서드를 추가합니다.
+    public void StartMoving()
     {
-        
+        isMoving = true;
     }
 
-    // Update is called once per frame
+    public void StopMoving()
+    {
+        isMoving = false;
+    }
+
     void Update()
     {
-        transform.position += Vector3.left*speed*Time.deltaTime;
-        //transform: 이건 바로 들고올 수 있다.
-        //Vector3.left : (-1, 0, 0)
-        //Time.deltaTime : 지난 프레임이 완료되는데까지 걸린 시간(FPS 보정용으로 사용)
+        if (isMoving) // 움직임 플래그를 체크합니다.
+        {
+            transform.position += Vector3.left * speed * Time.deltaTime;
+        }
     }
 }
