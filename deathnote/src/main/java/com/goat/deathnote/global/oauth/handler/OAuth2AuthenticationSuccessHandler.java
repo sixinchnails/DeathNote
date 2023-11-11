@@ -37,20 +37,21 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 	private final JwtTokenProvider jwtTokenProvider;
 	private final MemberRepository memberRepository;
 
-	private String redirectUri = "http://localhost:8080/members/login";
+//	private String redirectUri = "http://localhost:8080/members/login";
+	private String redirectUri = "http://thatsnote.site/members/login";
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 										Authentication authentication) throws IOException {
-		String accessToken = determineTargetUrl(request, response, authentication);
+		String email = determineTargetUrl(request, response, authentication);
 		if (response.isCommitted()) {
 			log.error("Response has already been committed. Unable to redirect");
 			return;
 		}
 
-		String newUrl = redirectUri + "/" + accessToken;
+		request.setAttribute("email", email);
 		clearAuthenticationAttributes(request, response);
-		getRedirectStrategy().sendRedirect(request, response, newUrl);
+		getRedirectStrategy().sendRedirect(request, response, redirectUri);
 	}
 
 	protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response,
@@ -78,7 +79,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 		} else return null;
 
 		Member member = memberRepository.findByEmail(socialEmail); // 받아온 이메일로 멤버를 찾음
-		Token tokenInfo = jwtTokenProvider.createToken(member.getEmail(),
+		Token tokenInfo = jwtTokenProvider.createToken(member.getId(),
 			memberRole.name());
 
 		log.info("successHanlder : " + member.getEmail());
@@ -87,9 +88,8 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 		CookieUtil.addCookie(response, OAuth2AuthorizationRequestBasedOnCookieRepository.REFRESH_TOKEN,
 			tokenInfo.getRefreshToken(),
 			JwtTokenProvider.getRefreshTokenExpireTimeCookie());
-
 //		 아까 받아온 redirectUri로 토큰을 보내줌
-		return tokenInfo.getAccessToken();
+		return socialEmail;
 	}
 
 	protected void clearAuthenticationAttributes(HttpServletRequest request, HttpServletResponse response) {

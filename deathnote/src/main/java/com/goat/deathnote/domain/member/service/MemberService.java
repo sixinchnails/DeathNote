@@ -44,8 +44,8 @@ public class MemberService {
         memberRepository.deleteById(memberId);
     }
 
-    public Member updateNicknameByEmail(String email, UpdateMemberDto updateMemberDto) {
-        Member member = memberRepository.findByEmail(email);
+    public Member updateNicknameById(Long id, UpdateMemberDto updateMemberDto) {
+        Member member = memberRepository.findById(id).orElseThrow();
 
         if (member != null) {
             member.setNickname(updateMemberDto.getNickname());
