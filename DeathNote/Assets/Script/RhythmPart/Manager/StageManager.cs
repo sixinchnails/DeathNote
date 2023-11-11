@@ -114,8 +114,8 @@ public class StageManager : MonoBehaviour
         {
             // 썸네일의 투명도를 고침
             float lerpValue = Mathf.Clamp01(((float)scoreManager.totalPercent / (musicManager.totalNote * 100))); // 보간(Clamp는 0~1로 제한)
-            //Debug.Log(lerpValue);
-            Debug.Log(beatNumber);
+            Debug.Log(lerpValue); //여기야여기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Debug.Log(beatNumber);
             thumbnail.color = Color.Lerp(transparent, semiparent, lerpValue);
             currentTime = AudioSettings.dspTime; // 현재시간
             int now = (int)((currentTime - gameStart) / timePerBeat);
@@ -128,7 +128,7 @@ public class StageManager : MonoBehaviour
             }
             
 
-            if (beatNumber == musicManager.totalNote)
+            if (noteQueue.Count == 0)
             {
                 running = false;
                 StartCoroutine(ExecuteAfterDelay(4.0f));
