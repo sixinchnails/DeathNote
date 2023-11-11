@@ -8,43 +8,51 @@ import com.goat.deathnote.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/members")
 public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/login/{id}")
-    public String login(Model model, @PathVariable String id) {
+    // 로그인하면 이동하는페이지
+    @GetMapping("/login")
+    public String login(HttpServletRequest req, Model model) {
         // 예제로, id를 "12345"라고 설정합니다
-        model.addAttribute("id", id);
+        String email = (String)req.getAttribute("email");
+        model.addAttribute("id", email);
         return "login";
     }
 
+    // 유저 전체조회
     @GetMapping
     public ResponseEntity<List<Member>> getAllMembers() {
         return ResponseEntity.ok(memberService.getAllMembers());
     }
 
+    // 유저 조회 가지고있는 정령까지 싹다
     @GetMapping("/{id}")
     public ResponseEntity<MemberWithSoulResDto> getDetailMember(@PathVariable Long id) {
        return ResponseEntity.ok(memberService.getMemberById(id));
     }
 
-    @PutMapping("/{email}/nickname")
-    public ResponseEntity<Member> updateNickname(@PathVariable String email, @RequestBody UpdateMemberDto newNickname) {
-        return ResponseEntity.ok(memberService.updateNicknameByEmail(email, newNickname));
+    // 닉네임 변경
+    @PatchMapping("/{id}/nickname")
+    public ResponseEntity<Member> updateNickname(@PathVariable Long id, @RequestBody UpdateMemberDto newNickname) {
+        return ResponseEntity.ok(memberService.updateNicknameById(id, newNickname));
     }
 
 
+    // 유저 정보 업데이트
     @PatchMapping("/{memberId}")
-    public ResponseEntity<String> updateMember(@PathVariable Long memberId, @RequestBody UpdateMemberDto updateMemberDto) {
+    public ResponseEntity<?> updateMember(@PathVariable Long memberId, @RequestBody UpdateMemberDto updateMemberDto) {
         try {
             memberService.updateMember(memberId, updateMemberDto);
             return ResponseEntity.ok("업데이트 성공");

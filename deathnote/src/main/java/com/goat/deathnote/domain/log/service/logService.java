@@ -28,6 +28,9 @@ public class logService {
                 .grade(logPostDto.getGrade())
                 .logDate(LocalDateTime.now())
                 .build();
+        if (member.getProgress() < log.getCode()){
+            member.setProgress(log.getCode());
+        }
         return logRepository.save(log);
     }
 

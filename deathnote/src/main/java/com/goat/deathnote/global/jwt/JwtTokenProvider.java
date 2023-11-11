@@ -52,12 +52,12 @@ public class JwtTokenProvider {
         return REFRESH_TOKEN_EXPIRE_TIME_COOKIE;
     }
 
-    public Token createToken(String email, String role) { // 토큰에 유저의 이메일 정보와 만료 기간이 담김
+    public Token createToken(Long id, String role) { // 토큰에 유저의 이메일 정보와 만료 기간이 담김
         long now = new Date().getTime();
 
         String accessToken = Jwts
                 .builder()
-                .setSubject(email)
+                .setSubject(String.valueOf(id))
                 .setIssuedAt(new Date())
                 .claim(AUTHORITIES_KEY, role)
                 .signWith(key, SignatureAlgorithm.HS256)
@@ -66,7 +66,7 @@ public class JwtTokenProvider {
 
         String refreshToken = Jwts
                 .builder()
-                .setSubject(email)
+                .setSubject(String.valueOf(id))
                 .setIssuedAt(new Date())
                 .claim(AUTHORITIES_KEY, role)
                 .signWith(key, SignatureAlgorithm.HS256)
