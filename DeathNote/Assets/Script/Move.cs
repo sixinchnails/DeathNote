@@ -6,13 +6,13 @@ public class Move : MonoBehaviour
 {
     private int w;
     public static float speed = 0;
-    private int len;
+   private int len;
     private int num;
     void Start()
     {
         w = Screen.width;
         speed = 8;
-        len = w / 2;
+        len = (int)Mathf.Round(w / 2);
         num = MusicSelectBtn.limit;
     }
 
@@ -28,6 +28,7 @@ public class Move : MonoBehaviour
                 transform.position = transform.position + new Vector3(1, 0, 0) * temp;
             }
             transform.position = transform.position + new Vector3(-1, 0, 0) * speed;
+            Debug.Log(transform.position);
         }
         else if(num > Mathf.Round(transform.position.x) - len)
         {
@@ -37,7 +38,8 @@ public class Move : MonoBehaviour
                 transform.position = transform.position + new Vector3(-1, 0, 0) * temp;
             }
             transform.position = transform.position + new Vector3(1, 0, 0) * speed;
+            Debug.Log(transform.position);
         }
-        
+       
     }
 }

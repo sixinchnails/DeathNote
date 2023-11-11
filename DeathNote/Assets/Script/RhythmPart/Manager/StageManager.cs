@@ -57,13 +57,13 @@ public class StageManager : MonoBehaviour
         musicManager.SetKanon();
         scoreManager = ScoreManager.instance;
         audioSource = musicManager.audioSource;
+        Debug.Log("길이:"+musicManager.beat.Length);
         // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
         timePerBeat = (60d / musicManager.bpm);
         // song은 2마디( musicManger.songBeat의 두배 )에서 시작
         songStart = timePerBeat * (musicManager.songBeat * 2);
         speed = musicManager.bpm / 120;
         // 노트와 그 이펙트를 연결짓습니다.
-
 
         // 큐에 각 노트의 데이터를 넣는다.
         for (int i = 0; i < musicManager.totalNote; i++)
@@ -109,7 +109,6 @@ public class StageManager : MonoBehaviour
         {
             // 썸네일의 투명도를 고침
             float lerpValue = Mathf.Clamp01(((float)scoreManager.totalPercent / (musicManager.totalNote * 100))); // 보간(Clamp는 0~1로 제한)
-
             currentTime = AudioSettings.dspTime; // 현재시간
             int now = (int)((currentTime - gameStart) / timePerBeat);
 
@@ -121,7 +120,7 @@ public class StageManager : MonoBehaviour
             }
             
 
-            if (beatNumber == musicManager.totalNote)
+            if (noteQueue.Count == 0)
             {
                 running = false;
                 StartCoroutine(ExecuteAfterDelay(4.0f));
@@ -188,7 +187,7 @@ public class StageManager : MonoBehaviour
             if (noteQueue.TryPeek(out NoteData noteData))
             {
                 // 데이터가 있으며, 비트가 현재 혹은 이전 비트에 해당
-                if (noteData.beat/10 <= beatNumber)
+                if (noteData.beat / 10 <= beatNumber)
                 {
                     // noteQueue에 있는 데이터를 빼냄
                     noteQueue.Dequeue();
@@ -197,7 +196,7 @@ public class StageManager : MonoBehaviour
                     float exactTime = CheckTime((noteData.beat) / 10, noteData.beat % 10);
                     // 노트 풀에서 노트와 이펙터를 꺼냄
                     ClickNote note = notePools[noteData.pos].clickQueue.Dequeue().GetComponent<ClickNote>();
-                    Effect effect = notePools[noteData.pos].effectQueue.Peek().GetComponent < Effect>();
+                    Effect effect = notePools[noteData.pos].effectQueue.Peek().GetComponent<Effect>();
 
                     // 노트에 데이터를 입력 (이펙터, 노트풀, 판정시간, 단위시간)
                     note.SetNoteInfo(effect, notePools[noteData.pos], exactTime + 1.0f, timePerBeat);
@@ -211,7 +210,7 @@ public class StageManager : MonoBehaviour
                     int skillNumber = SkillManager.instance.GetSkill(turnSoul, note);
                     // effect의 애니메이터의 인티저를 변경
                     Debug.Log(skillNumber);
-                    effect.hitAnimator.SetInteger("Num", skillNumber); 
+                    effect.hitAnimator.SetInteger("Num", skillNumber);
 
                     // note는 비활성화된 상태로 시작하므로, 처음엔 Awake 메서드가 형성되지 않기 때문에 animator를 장착시켜줘야 함
                     if (note.animator == null) note.animator = note.GetComponent<Animator>();
@@ -221,9 +220,39 @@ public class StageManager : MonoBehaviour
                     // 다음 노트와의 오차를 연산
                     float nextTime = CheckTime((noteData.beat + 1) / 10, noteData.beat % 10);
                     StartCoroutine(EnableNote(note, turnSoul, (float)(nextTime - time)));
-                        
+
 
                 }
+                //else if (noteData.length >= 1)
+                //{
+                //    // 롱노트인 경우
+                //    float startPos = checkPositionX(beatNumber + 3, noteData.posX, timeDiff);
+                //    gauges = new List<CenterNote>();
+
+                //    int start = noteData.beat + 3;
+
+                //    for (int i = 2; i <= noteData.length; i++)
+                //    {
+                //        GameObject centerNote = NotePool.instance.centerQueue.Dequeue();
+                //        CenterNote scripts = centerNote.GetComponent<CenterNote>();
+                //        scripts.SetNoteInfo(checkPositionX(start + i / 4, i % 4, timeDiff), areasY[noteData.posY], checkTime(start + i / 4, i % 4));
+                //        gauges.Add(scripts);
+                //        centerNote.SetActive(true);
+                //    }
+
+                //    GameObject longNote = NotePool.instance.longQueue.Dequeue();
+                //    LongNote script = longNote.GetComponent<LongNote>();
+                //    // 롱노트의 스크립트로 X축 위치, Y축 위치, 판정 시간, 시간 단위, 왼쪽/오른쪽 여부를 설정
+                //    script.SetNoteInfo(startPos, areasY[noteData.posY], checkTime(noteData.beat + 3, noteData.posX), checkTime(noteData.beat + 3 + noteData.length / 4, noteData.length % 4), timePerBeat);
+                //    script.gauges = gauges;
+                //    longNote.SetActive(true);
+
+
+                //}
+                //else
+                //{
+                //    // 슬라이스 노트인 경우
+                //}
                 else
                 {
                     // 현재 비트가 더 크다면 굳이 꺼낼필요 없으니 반복문 종료
