@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 using UnityEngine.UI;
-//ㄴㅇ
+
 public class ClickNote : MonoBehaviour, IPointerDownHandler
 {
     public int noteNum; // 노트번호
