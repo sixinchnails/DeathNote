@@ -2,8 +2,6 @@ package com.goat.deathnote.domain.log.dto;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @Builder
@@ -19,5 +17,6 @@ public class LogPostDto {
 
     private Float grade;
 
-//    private LocalDateTime logDate;
+    private String data;
+
 }

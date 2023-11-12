@@ -58,4 +58,8 @@ public class SoulService {
     public void deleteSoul (Long id){
         soulRepository.deleteById(id);
     }
+
+    public List<Soul> getSoulByMemberId(Long id) {
+        return soulRepository.findByMemberId(id);
+    }
 }
