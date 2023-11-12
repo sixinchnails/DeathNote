@@ -1,12 +1,11 @@
 package com.goat.deathnote.redis.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goat.deathnote.domain.log.entity.Log;
 import com.goat.deathnote.domain.log.service.LogService;
 import com.goat.deathnote.domain.soul.entity.Soul;
 import com.goat.deathnote.domain.soul.service.SoulService;
-import com.goat.deathnote.redis.dto.RankingResponseDto;
+import com.goat.deathnote.redis.dto.ReponseRankingDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -31,26 +30,27 @@ public class RankingService {
     private ObjectMapper objectMapper; // Jackson ObjectMapper
 
 //    @Scheduled(fixedRate = 3600000)
-    public List<RankingResponseDto> updateRanking() throws JsonProcessingException {
+    public List<ReponseRankingDto> createRankingResponse(){
         Set<Long> codes = logService.getAllCodes();
-        List<RankingResponseDto> rankingResponseDtos = new ArrayList<>();
+        List<ReponseRankingDto> reponseRankingDtos = new ArrayList<>();
         for(Long code : codes){
             List<Log> logs = logService.getTopLogsByCode(code);
             for (Log l : logs){
-                RankingResponseDto rankingResponseDto = new RankingResponseDto();
-                rankingResponseDto.setNicknames(l.getMember().getNickname());
-                rankingResponseDto.setScores(l.getScore());
+                ReponseRankingDto reponseRankingDto = new ReponseRankingDto();
+                reponseRankingDto.setCode(l.getCode());
+                reponseRankingDto.setNickname(l.getMember().getNickname());
+                reponseRankingDto.setScore(l.getScore());
                 //정령 조회 SQL 하나 더 해서
                 List<Soul> souls = soulService.getSoulByMemberId(l.getMember().getId());
                 List<String> soulsName = new ArrayList<>();
                 for(Soul soul : souls) {
                     soulsName.add(soul.getSoulName());
                 }
-                rankingResponseDto.setSoulNames(soulsName);
-                rankingResponseDtos.add(rankingResponseDto);
+                reponseRankingDto.setSoulNames(soulsName);
+                reponseRankingDtos.add(reponseRankingDto);
             }
         }
-        return rankingResponseDtos;
+        return reponseRankingDtos;
 
     }
 

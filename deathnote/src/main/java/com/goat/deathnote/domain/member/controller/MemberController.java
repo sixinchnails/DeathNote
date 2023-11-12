@@ -86,7 +86,6 @@ public class MemberController {
     public ResponseEntity<String> updateToken(@RequestBody UpdateTokenDto updateTokenDto) {
         memberService.updateTokenByNickname(updateTokenDto.getNickname(), updateTokenDto.getToken());
         return ResponseEntity.ok("토큰 업데이트 성공");
-
     }
 
     // 유저 정보 업데이트

@@ -1,6 +1,6 @@
 package com.goat.deathnote.redis.controller;
 
-import com.goat.deathnote.redis.dto.RankingResponseDto;
+import com.goat.deathnote.redis.dto.ReponseRankingDto;
 import com.goat.deathnote.redis.service.RankingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -55,9 +55,9 @@ public class RankingController {
 //    }
 
     @GetMapping
-    public ResponseEntity<List<RankingResponseDto>> getRankingByCode() {
+    public ResponseEntity<List<ReponseRankingDto>> getRankingByCode() {
         try {
-            return ResponseEntity.ok(rankingService.updateRanking());
+            return ResponseEntity.ok(rankingService.createRankingResponse());
         } catch (Exception e){
             return ResponseEntity.badRequest().build();
         }

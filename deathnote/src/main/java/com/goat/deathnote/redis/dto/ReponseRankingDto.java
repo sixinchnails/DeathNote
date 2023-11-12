@@ -1,19 +1,22 @@
 package com.goat.deathnote.redis.dto;
 
-import com.goat.deathnote.domain.log.entity.Log;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ScoreListDto {
-    private Long score;
+public class ReponseRankingDto implements Serializable {
 
-    public ScoreListDto(Log log) {
-        this.score = log.getScore();
-    }
+    private Long code;
+    private Long score;
+    private String nickname;
+    private List<String> soulNames;
+
 }
