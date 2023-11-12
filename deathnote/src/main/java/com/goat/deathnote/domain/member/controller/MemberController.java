@@ -48,10 +48,10 @@ public class MemberController {
         return "login";
     }
 
-    // 회원가입 (이메일, 닉네임)
+    // 회원가입
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@RequestBody LogInRequest logInRequest) {
-        Member member = memberService.signUp(logInRequest.getNickname());
+    public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUpRequest) {
+        Member member = memberService.signUp(signUpRequest.getNickname());
         return ResponseEntity.ok(memberService.getMemberWithSoul(member.getEmail()));
     }
 

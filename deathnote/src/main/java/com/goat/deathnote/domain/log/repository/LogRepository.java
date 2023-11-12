@@ -17,4 +17,7 @@ public interface LogRepository extends JpaRepository<Log, Long> {
     List<Log> findByCode(Long code);
 
     List<Log> findByMemberId(Long id);
+
+    @Query("SELECT l FROM Log l WHERE l.code = :code ORDER BY l.score DESC")
+    List<Log> findByCodeOrderByScoreDesc(@Param("code") Long code);
 }

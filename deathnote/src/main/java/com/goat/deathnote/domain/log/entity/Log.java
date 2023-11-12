@@ -1,8 +1,6 @@
 package com.goat.deathnote.domain.log.entity;
 
 import com.goat.deathnote.domain.member.entity.Member;
-import com.goat.deathnote.domain.soul.entity.Soul;
-import com.goat.deathnote.domain.stage.entity.Stage;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -34,6 +32,9 @@ public class Log {
 
     @Column(name = "log_grade", nullable = false)
     private Float grade;
+
+    @Column(name = "log_data")
+    private String data;
 
     @CreatedDate
     @Column(name = "log_date", nullable = false)
