@@ -34,8 +34,12 @@ public class LogService {
         }
         logRepository.save(log);
 
-        // 랭킹 업데이트
-        rankingService.updateRanking(member, logPostDto.getScore());
+        try{
+            rankingService.updateRanking(String.valueOf(log.getCode()), logPostDto.getScore());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         return log;
     }
 
@@ -44,9 +48,13 @@ public class LogService {
     }
 
     public List<Log> getLogByNickname(String nickname) {
+        System.out.println(nickname);
         return logRepository.findByMemberNickname(nickname);
     }
 
+    public List<Log> getLogByMemberId(Long id){
+        return logRepository.findByMemberId(id);
+    }
     public List<Log> getLogByCode(Long code) {
         return logRepository.findByCode(code);
     }

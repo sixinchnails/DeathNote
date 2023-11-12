@@ -60,7 +60,7 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public Member getMerberById(Long memberId){
+    public Member getMemberById(Long memberId){
         return memberRepository.findById(memberId).orElseThrow();
     }
 //    public MemberDetailResDto getMemberWithSoul(Long memberId) {
@@ -141,6 +141,14 @@ public class MemberService {
         }
 
         // 저장
+        memberRepository.save(member);
+    }
+
+    @Transactional
+    public void updateTokenByNickname(String nickname, String token) {
+        Member member = memberRepository.findByNickname(nickname)
+                .orElseThrow(() -> new RuntimeException("유저를 찾을 수 없습니다."));
+        member.setToken(token);
         memberRepository.save(member);
     }
 
