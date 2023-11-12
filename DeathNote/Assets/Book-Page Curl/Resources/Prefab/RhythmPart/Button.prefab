@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5457858285175191051}
   - component: {fileID: 896690709144273889}
-  - component: {fileID: 5574813758401030749}
   - component: {fileID: 2269546888747809755}
+  - component: {fileID: 2797217115492128803}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -50,25 +50,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59070766120998746}
   m_CullTransparentMesh: 1
---- !u!114 &5574813758401030749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59070766120998746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7786980a38fdaea4ebe9e04bdd0571eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noteNum: 0
-  animator: {fileID: 0}
-  effect: {fileID: 0}
-  checkTime: 0
-  speed: 0
-  bonus: 0
-  combo: 0
 --- !u!95 &2269546888747809755
 Animator:
   serializedVersion: 5
@@ -90,6 +71,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2797217115492128803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59070766120998746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7786980a38fdaea4ebe9e04bdd0571eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteNum: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
+  checkTime: 0
+  speed: 1
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!1 &904794148894094991
 GameObject:
   m_ObjectHideFlags: 0
