@@ -15,4 +15,6 @@ public interface LogRepository extends JpaRepository<Log, Long> {
     List<Log> findByMemberNickname(@Param("nickname") String nickname);
 
     List<Log> findByCode(Long code);
+
+    List<Log> findByMemberId(Long id);
 }

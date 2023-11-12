@@ -7,20 +7,31 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.redis.core.ZSetOperations;
+
+import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
-public class RankingResponseDto {
+public class RankingResponseDto implements Serializable {
 
-    private String nickname;
-    private Long score;
-    private String soulName;
+    private List<ScoreListDto> scores;
+    private List<NicnknameListDto> nicknames;
+    private List<SoulListDto> soulNames;
 
-    public RankingResponseDto(Member member, Log log, Soul soul) {
-        this.nickname = member.getNickname();
-        this.score = log.getScore();
-        this.soulName = soul.getSoulName();
+    public RankingResponseDto(List<ScoreListDto> scores, List<NicnknameListDto> nicknames, List<SoulListDto> souls) {
+        this.scores = scores;
+        this.nicknames = nicknames;
+        this.soulNames = souls;
     }
+
+//    public static RankingResponseDto fromTuple(ZSetOperations.TypedTuple<String> memberTuple, Member member, Log log, Soul soul) {
+//        return RankingResponseDto.builder()
+//                .nickname(member.getNickname())
+//                .score(memberTuple.getScore().longValue())
+//                .soulName(soul.getSoulName())
+//                .build();
+//    }
 }

@@ -144,4 +144,12 @@ public class MemberService {
         memberRepository.save(member);
     }
 
+    @Transactional
+    public void updateTokenByNickname(String nickname, String token) {
+        Member member = memberRepository.findByNickname(nickname)
+                .orElseThrow(() -> new RuntimeException("유저를 찾을 수 없습니다."));
+        member.setToken(token);
+        memberRepository.save(member);
+    }
+
 }

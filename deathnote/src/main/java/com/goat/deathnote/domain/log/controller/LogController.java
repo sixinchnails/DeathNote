@@ -17,7 +17,7 @@ public class LogController {
     private final LogService logService;
 
     @PostMapping
-    public ResponseEntity<?> createLog(@RequestBody LogPostDto logPostDto) {
+    public ResponseEntity<Log> createLog(@RequestBody LogPostDto logPostDto) {
         Log log = logService.saveLog(logPostDto);
         return ResponseEntity.ok(log);
     }

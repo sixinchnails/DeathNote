@@ -3,10 +3,7 @@ package com.goat.deathnote.domain.member.controller;
 import com.goat.deathnote.domain.garden.dto.GardenDetailsDto;
 import com.goat.deathnote.domain.garden.entity.Garden;
 import com.goat.deathnote.domain.garden.service.GardenService;
-import com.goat.deathnote.domain.member.dto.LogInRequest;
-import com.goat.deathnote.domain.member.dto.MemberDetailResDto;
-import com.goat.deathnote.domain.member.dto.SignUpRequest;
-import com.goat.deathnote.domain.member.dto.UpdateMemberDto;
+import com.goat.deathnote.domain.member.dto.*;
 import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.member.service.MemberNotFoundException;
 import com.goat.deathnote.domain.member.service.MemberService;
@@ -33,7 +30,7 @@ public class MemberController {
     private final GardenService gardenService;
 
     @PostMapping("/allLog")
-    public ResponseEntity<?> allLog(@RequestBody MemberDetailResDto dto){
+    public ResponseEntity<?> allLog(@RequestBody MemberDetailResDto dto) {
         List<SoulDetailsDto> souls = dto.getSouls();
         List<GardenDetailsDto> gardens = dto.getGardens();
         // 1. dto를 updateMemberDTO로 변환해서, update 수행
@@ -46,7 +43,7 @@ public class MemberController {
     @GetMapping("/login")
     public String login(HttpServletRequest req, Model model) {
         // 예제로, id를 "12345"라고 설정합니다
-        String email = (String)req.getAttribute("email");
+        String email = (String) req.getAttribute("email");
         model.addAttribute("id", email);
         return "login";
     }
@@ -74,7 +71,7 @@ public class MemberController {
     // 유저 조회 가지고있는 정령까지 싹다
     @GetMapping("/{id}")
     public ResponseEntity<MemberDetailResDto> getDetailMember(@PathVariable Long id) {
-       //return ResponseEntity.ok(memberService.getMemberWithSoul(id));
+//       return ResponseEntity.ok(memberService.getMemberWithSoul(id));
         return null;
     }
 
@@ -84,6 +81,13 @@ public class MemberController {
         return ResponseEntity.ok(memberService.updateNicknameById(id, newNickname));
     }
 
+    // 토큰 변경
+    @PatchMapping("/updatetoken")
+    public ResponseEntity<String> updateToken(@RequestBody UpdateTokenDto updateTokenDto) {
+        memberService.updateTokenByNickname(updateTokenDto.getNickname(), updateTokenDto.getToken());
+        return ResponseEntity.ok("토큰 업데이트 성공");
+
+    }
 
     // 유저 정보 업데이트
     @PatchMapping("/{memberId}")
