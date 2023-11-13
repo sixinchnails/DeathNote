@@ -14,6 +14,8 @@ public class SoulPostDto {
 
     private Long memberId;
 
+    private Long gardenId;
+
     private String soulName;
 
     private Long equip;

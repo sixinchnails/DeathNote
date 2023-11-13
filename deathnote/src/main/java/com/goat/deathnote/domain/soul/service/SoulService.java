@@ -1,5 +1,7 @@
 package com.goat.deathnote.domain.soul.service;
 
+import com.goat.deathnote.domain.garden.entity.Garden;
+import com.goat.deathnote.domain.garden.repository.GardenRepository;
 import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.member.repository.MemberRepository;
 import com.goat.deathnote.domain.soul.dto.SoulPostDto;
@@ -17,11 +19,14 @@ public class SoulService {
 
     private final SoulRepository soulRepository;
     private final MemberRepository memberRepository;
+    private final GardenRepository gardenRepository;
 
     public Soul saveSoul(SoulPostDto soulPostDto) {
         Member member = memberRepository.findById(soulPostDto.getMemberId()).orElseThrow();
+        Garden garden = gardenRepository.findById(soulPostDto.getGardenId()).orElseThrow();
         Soul soul = Soul.builder()
                 .member(member)
+                .garden(garden)
                 .soulName(soulPostDto.getSoulName())
                 .equip(soulPostDto.getEquip())
                 .critical(soulPostDto.getCritical())
@@ -47,6 +52,7 @@ public class SoulService {
     public Optional<Soul> getSoulById(Long id){
         return soulRepository.findById(id);
     }
+
     public List<Soul> getAllSouls() {
         return soulRepository.findAll();
     }
