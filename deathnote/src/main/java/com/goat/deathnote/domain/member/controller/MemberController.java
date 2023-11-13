@@ -86,7 +86,6 @@ public class MemberController {
     public ResponseEntity<String> updateToken(@RequestBody UpdateTokenDto updateTokenDto) {
         memberService.updateTokenByNickname(updateTokenDto.getNickname(), updateTokenDto.getToken());
         return ResponseEntity.ok("토큰 업데이트 성공");
-
     }
 
     // 유저 정보 업데이트
@@ -99,6 +98,7 @@ public class MemberController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("멤버를 찾을 수 없음");
         }
     }
+
 //    @DeleteMapping("/{memberId}")
 //    public ResponseEntity<Void> deleteMember(@PathVariable Long memberId) {
 //        if (memberService.getMemberById(memberId).isPresent()) {

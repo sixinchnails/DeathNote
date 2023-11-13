@@ -34,7 +34,7 @@ public class LogController {
     }
 
     //닉네임으로 로그찾기
-    @GetMapping("/{nickname}")
+    @GetMapping("/nickname/{nickname}")
     public ResponseEntity<?> getLogByNickname(@PathVariable String nickname) {
         return ResponseEntity.ok(logService.getLogByNickname(nickname));
     }
