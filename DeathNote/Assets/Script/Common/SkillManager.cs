@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// 스킬 매니저입니ㅏ.
 public class Skill
 {
     public string name;

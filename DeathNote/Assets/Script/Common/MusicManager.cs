@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //using static UnityEditor.PlayerSettings;
 using UnityEngine.UIElements;
 
@@ -41,7 +42,15 @@ public class MusicManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // 씬 전환시 파괴되지 않도록 설정
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject); // 중복 인스턴스를 파괴
+        }
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -97,6 +106,7 @@ public class MusicManager : MonoBehaviour
     //    Debug.Log(pos.Length);
     //    Debug.Log(length.Length);
     //}
+
 
     public void SetSomeDay()
     {
@@ -301,6 +311,8 @@ public class MusicManager : MonoBehaviour
         Debug.Log(beat.Length);
         Debug.Log(pos.Length);
         Debug.Log(length.Length);
+
+        SceneManager.LoadScene("ButtonRhythmPart");
     }
 }
 

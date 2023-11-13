@@ -14,7 +14,7 @@ public class GardenSoul : MonoBehaviour, IPointerClickHandler
     private bool timer;
 
     [SerializeField] SpriteRenderer[] sprites;
-    GardenBookUIManager gardenBookUIManager;
+    SoulDetail gardenBookUIManager;
     GardenCamera camera;
 
     // 스프라이트를 바꿔야 하는 요소들
@@ -25,7 +25,7 @@ public class GardenSoul : MonoBehaviour, IPointerClickHandler
     {
         timer = false;
 
-        gardenBookUIManager = FindObjectOfType<GardenBookUIManager>();
+        gardenBookUIManager = FindObjectOfType<SoulDetail>();
         camera = FindObjectOfType<GardenCamera>();
         // 스프라이트와 애니메이터 초기화
         animator = GetComponent<Animator>();
@@ -43,10 +43,14 @@ public class GardenSoul : MonoBehaviour, IPointerClickHandler
         {
             boundarySize = boundaryTransform.GetComponent<SpriteRenderer>().bounds.size;
         }
-        animator.SetInteger("Body", soul.customizes[0]);
-        animator.SetInteger("Eyes", soul.customizes[1]);
-        animator.SetInteger("Acce", soul.customizes[2]);
-        animator.SetTrigger("Idle");
+        if(soul != null)
+        {
+            animator.SetInteger("body", soul.customizes[0]);
+            animator.SetInteger("eyes", soul.customizes[1]);
+            animator.SetInteger("bcolor", soul.customizes[2]);
+            animator.SetInteger("ecolor", soul.customizes[3]);
+        }
+
     }
 
 
@@ -96,7 +100,7 @@ public class GardenSoul : MonoBehaviour, IPointerClickHandler
     // isMoving동안 움직이는 코루틴 
     IEnumerator Moving()
     {
-        animator.SetTrigger("Move");
+        animator.SetTrigger("move");
 
         while (isMoving)
         {
@@ -117,7 +121,7 @@ public class GardenSoul : MonoBehaviour, IPointerClickHandler
             yield return null;
         }
 
-        animator.SetTrigger("Idle");
+        animator.SetTrigger("idle");
     }
 
 

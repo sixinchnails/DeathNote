@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 
 // 정령
@@ -16,6 +18,23 @@ public class Soul
     public int[] emotions; // 6가지 수치
     public int revive; // 총 환생 횟수
     public int garden; // 현재 가든 위치
+
+    public Soul(string name, int equip, int[] parameters, int[] customizes, int[] emotions, int revive, int garden)
+    {
+        this.name = name;
+        this.equip = equip;
+        this.parameters = parameters;
+        this.customizes = customizes;
+        this.emotions = emotions;
+        this.revive = revive;
+        this.garden = garden;
+    }
+}
+
+public class GardenData
+{
+    public int id;
+    public int type;
 }
 
 public class SoulManager : MonoBehaviour
@@ -45,6 +64,33 @@ public class SoulManager : MonoBehaviour
         Equip = new Soul[16];
     }
     
+    // 소울을 새롭게 추가합니다.
+    public void AddSoul(Soul soul)
+    {
+        UserData userData = UserManager.instance.userData;
+        userData.souls.Add(soul);
+
+        String token = JsonUtility.ToJson(userData);
+
+        PlayerPrefs.SetString("UserData", token);
+        UserManager.instance.PatchData(token);
+    }
+
+    // 소울을 삭제합니다.
+    public void DeleteSoul(int idx)
+    {
+        UserData userData = UserManager.instance.userData;
+        if (idx >= 0 && idx < userData.souls.Count)
+        {
+            userData.souls.RemoveAt(idx);
+        }
+
+        String token = JsonUtility.ToJson(userData);
+
+        PlayerPrefs.SetString("UserData", token);
+        UserManager.instance.PatchData(token);
+    }
+
     // 내 정령을 등록
     public void SetSoul(List<Soul> souls)
     {
@@ -65,5 +111,8 @@ public class SoulManager : MonoBehaviour
     {
         Debug.Log("정령 환생");
     }
+
+    //JSON 정보를 보내는 코루틴
+
 
 }

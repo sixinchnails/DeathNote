@@ -12,6 +12,9 @@ public class WorldOnOffController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        progressNum = UserManager.instance.userData.progress;
+        Debug.Log(progressNum);
         //!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@로컬스토리지에서 해당 정보 가져오기 미리 만든 부분 !!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@
         //progressNum = PlayerPrefs.GetInt("progress");
         //!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@로컬스토리지에서 해당 정보 가져오기 미리 만든 부분 !!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@
@@ -19,8 +22,7 @@ public class WorldOnOffController : MonoBehaviour
         kooksUserManager = FindObjectOfType<KooksUserManager>();
         if (kooksUserManager != null)
         {
-            userData = kooksUserManager.GetUserData(); // KooksUserManager 스크립트에서 UserData를 가져옵니다.
-            progressNum = userData.progress;
+     
             if(progressNum == 0)
             {
                 // 라현 flow 물어보기
