@@ -5,11 +5,13 @@ import com.goat.deathnote.domain.log.entity.Log;
 import com.goat.deathnote.domain.log.service.LogService;
 import com.goat.deathnote.domain.soul.entity.Soul;
 import com.goat.deathnote.domain.soul.service.SoulService;
+import com.goat.deathnote.global.config.RedisRepositoryConfig;
 import com.goat.deathnote.redis.dto.ReponseRankingDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ZSetOperations;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,10 +23,9 @@ import java.util.Set;
 public class RankingService {
 
     private final String RANKING_KEY = "ranking";
-
-    private final StringRedisTemplate redisTemplate;
     private final LogService logService;
     private final SoulService soulService;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
     private ObjectMapper objectMapper; // Jackson ObjectMapper
@@ -33,8 +34,13 @@ public class RankingService {
     public List<ReponseRankingDto> createRankingResponse(){
         Set<Long> codes = logService.getAllCodes();
         List<ReponseRankingDto> reponseRankingDtos = new ArrayList<>();
+
+        flushDb(); // 레디스 초기화
+
         for(Long code : codes){
             List<Log> logs = logService.getTopLogsByCode(code);
+            int cnt = 0;
+
             for (Log l : logs){
                 ReponseRankingDto reponseRankingDto = new ReponseRankingDto();
                 reponseRankingDto.setCode(l.getCode());
@@ -48,14 +54,26 @@ public class RankingService {
                 }
                 reponseRankingDto.setSoulNames(soulsName);
                 reponseRankingDtos.add(reponseRankingDto);
+
+                if (++cnt == 20) break;
             }
+            try {
+                redisTemplate.opsForValue().set(String.valueOf(code), reponseRankingDtos);
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+            reponseRankingDtos.clear();
         }
         return reponseRankingDtos;
-
     }
 
-    public Set<ZSetOperations.TypedTuple<String>> getTopMembers(Long count) {
-        return redisTemplate.opsForZSet().reverseRangeWithScores(RANKING_KEY, 0, count - 1);
+    public List<ReponseRankingDto> getRankingResponse(String key) {
+        return (List<ReponseRankingDto>) redisTemplate.opsForValue().get(key);
     }
-
+    public void flushDb() {
+        redisTemplate.execute((RedisCallback<Object>) connection -> {
+            connection.flushDb();
+            return null;
+        });
+    }
 }

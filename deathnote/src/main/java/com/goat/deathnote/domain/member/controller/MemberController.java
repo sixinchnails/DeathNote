@@ -98,6 +98,7 @@ public class MemberController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("멤버를 찾을 수 없음");
         }
     }
+
 //    @DeleteMapping("/{memberId}")
 //    public ResponseEntity<Void> deleteMember(@PathVariable Long memberId) {
 //        if (memberService.getMemberById(memberId).isPresent()) {
