@@ -32,4 +32,8 @@ public class GardenController {
         return ResponseEntity.ok(gardenService.getGardenById(id));
     }
 
+    @GetMapping("/nickname/{nickname}")
+    public ResponseEntity<List<Garden>> getGardenByNickname(@PathVariable String nickname) {
+        return ResponseEntity.ok(gardenService.getGardenByNickname(nickname));
+    }
 }

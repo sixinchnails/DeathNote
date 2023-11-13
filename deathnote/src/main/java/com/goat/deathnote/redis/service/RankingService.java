@@ -15,6 +15,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,21 +28,22 @@ public class RankingService {
     private final SoulService soulService;
     private final RedisTemplate<String, Object> redisTemplate;
 
-    @Autowired
-    private ObjectMapper objectMapper; // Jackson ObjectMapper
-
-//    @Scheduled(fixedRate = 3600000)
-    public List<ReponseRankingDto> createRankingResponse(){
+    @Scheduled(fixedRate = 1800000) // 30분마다실행
+    public void createRankingResponse(){
         Set<Long> codes = logService.getAllCodes();
         List<ReponseRankingDto> reponseRankingDtos = new ArrayList<>();
 
+        System.out.println(1);
         flushDb(); // 레디스 초기화
 
         for(Long code : codes){
             List<Log> logs = logService.getTopLogsByCode(code);
             int cnt = 0;
+            Set<String> users_set = new HashSet<>();
 
             for (Log l : logs){
+                if (users_set.contains(l.getMember().getNickname())) continue;
+                users_set.add(l.getMember().getNickname());
                 ReponseRankingDto reponseRankingDto = new ReponseRankingDto();
                 reponseRankingDto.setCode(l.getCode());
                 reponseRankingDto.setNickname(l.getMember().getNickname());
@@ -64,7 +66,7 @@ public class RankingService {
             }
             reponseRankingDtos.clear();
         }
-        return reponseRankingDtos;
+//        return reponseRankingDtos;
     }
 
     public List<ReponseRankingDto> getRankingResponse(String key) {

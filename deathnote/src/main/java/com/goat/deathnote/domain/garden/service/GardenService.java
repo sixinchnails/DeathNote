@@ -37,6 +37,10 @@ public class GardenService {
         return gardenRepository.findById(id);
     }
 
+    public List<Garden> getGardenByNickname(String nickname) {
+        return gardenRepository.findByMemberNickname(nickname);
+    }
+
 //        public void deleteSoul (Long id){
 //            soulRepository.deleteById(id);
 //        }
