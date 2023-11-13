@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface GardenRepository extends JpaRepository<Garden, Long> {
     List<Garden> findByMemberId(Long id);
+
+    List<Garden> findByMemberNickname(String nickname);
 }
