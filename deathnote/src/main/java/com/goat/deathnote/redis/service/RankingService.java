@@ -1,6 +1,5 @@
 package com.goat.deathnote.redis.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goat.deathnote.domain.log.entity.Log;
 import com.goat.deathnote.domain.log.service.LogService;
 import com.goat.deathnote.domain.soul.entity.Soul;
@@ -8,7 +7,6 @@ import com.goat.deathnote.domain.soul.service.SoulService;
 import com.goat.deathnote.global.config.RedisRepositoryConfig;
 import com.goat.deathnote.redis.dto.ReponseRankingDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
