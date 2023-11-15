@@ -177,6 +177,7 @@ public class StageManager : MonoBehaviour
 
     public void SceneChange()
     {
+        audioSource.Stop();
         SceneManager.LoadScene("StageScene");
     }
 

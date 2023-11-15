@@ -71,13 +71,8 @@ public class SoulManager : MonoBehaviour
         UserData userData = UserManager.instance.userData;
         userData.souls.Add(soul);
 
-        String token = JsonUtility.ToJson(userData);
-
-        PlayerPrefs.SetString("UserData", token);
         UserManager.instance.SaveData();
     }
-
-
 
     // 내 정령을 등록
     public void SetSoul(List<Soul> souls)

@@ -69,13 +69,17 @@ public class MusicManager : MonoBehaviour
 
         switch (code)
         {
-            case 100: break;
+            case 100: SetTutorial(); break;
             case 101: SetSecondRun(); break;
             case 102: break;
             case 103: SetKanon(); break;
             case 200: SetHBA(); break;
             case 201: SetHowAboutYou(); break;
-            case 300: break;
+            case 202: SetSomeDay(); break;
+            case 203: SetButterfly(); break;
+            case 300: SetBecauseChristmas(); break;
+            case 301: SetAIWFCIU(); break;
+            case 302: break;
         }
     }
 
@@ -94,6 +98,7 @@ public class MusicManager : MonoBehaviour
         songBeat = 4;
         stdBeat = 4;
         offset = (float)-0.4f;
+        customOffset = (float)0.0;
         totalNote = 207;
         beat = new int[] { 50,61,62,64, 90,101,102,104, 130,141,142,144,147,  // 전주
             //1절 하이라이트
@@ -171,6 +176,7 @@ public class MusicManager : MonoBehaviour
         songBeat = 4;
         stdBeat = 4;
         offset = (float)-0.8f;
+        customOffset = (float)0.0;
         totalNote = 211;
         beat = new int[] { 
             50,60,70,71,73,80,
@@ -325,6 +331,7 @@ public class MusicManager : MonoBehaviour
         songBeat = 4;
         stdBeat = 4;
         offset = (float)-0.81f;
+        customOffset = (float)0.0;
         totalNote = 232;   
         beat = new int[] { 41, 61, 71, 81, 91, 91, 93, 93, 101, 101, 112, 112, 122, 142, 152, 162, 172, 173, 180, 183, 193, 203, 203, 223, 223, 243, 263, 273, 281, 283, 291, 293, 301, 313, 332, 332, 332, 332, 
             362, 381, 382, 390, 402, 402, 422, 422, //Balloons are deflated
@@ -595,6 +602,7 @@ public class MusicManager : MonoBehaviour
         songBeat = 4;
         stdBeat = 4;
         offset = (float)-0.81f;
+        customOffset = (float)0.0;
         totalNote = 354;
         beat = new int[] {
             // 전주
@@ -740,6 +748,7 @@ public class MusicManager : MonoBehaviour
         songBeat = 4;
         stdBeat = 4;
         offset = (float)-0.81f;
+        customOffset = (float)0.0;
         totalNote = 392;
         beat = new int[] { 60, 60, 80, 90, 100, 103, 110, 122, 130, 132, 140, 160, 160, //그래 그리 쉽지는 않겠지
             170, 172, 180, 180, 200, 200, 220, 220, //나를 허락해준 세상이란
@@ -816,6 +825,8 @@ public class MusicManager : MonoBehaviour
         Debug.Log(beat.Length);
         Debug.Log(pos.Length);
         Debug.Log(length.Length);
+
+        SceneManager.LoadScene("ButtonRhythmPart");
     }
 
     public void SetKanon()
