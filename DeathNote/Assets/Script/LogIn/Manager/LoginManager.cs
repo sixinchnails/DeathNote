@@ -102,7 +102,7 @@ public class LoginManager : MonoBehaviour
         else
         {
             // SceneManager.LoadScene("OpeningScene 1");
-            SceneManager.LoadScene("GardenScene");
+            SceneManager.LoadScene("MainScene");
         }
     }
 
@@ -152,15 +152,24 @@ public class LoginManager : MonoBehaviour
                 {
                     Debug.Log(www.downloadHandler.text);
                     load = 2;
+                    //PlayerPrefs.DeleteAll();
                     UserManager.instance.userData = saveData;
                 }
                 else
                 {
                     logoutButton.SetActive(true);
                     UserDataDTO dto = JsonUtility.FromJson<UserDataDTO>(www.downloadHandler.text);
-                    Debug.Log("token:" + dto.token);
-                    PlayerPrefs.SetString("UserData", dto.token);
                     UserManager.instance.userData = JsonUtility.FromJson<UserData>(dto.token);
+                    UserManager.instance.SaveData();
+
+                    foreach(Soul soul in UserManager.instance.userData.souls)
+                    {
+                        if(soul.equip != -1)
+                        {
+                            Debug.Log("equip의 길이:" + SkillManager.instance.equip.Count);
+                            SkillManager.instance.equip[soul.equip] = soul;
+                        }
+                    }
                     myName.text = nickname;
                     load = 3;
                 }
@@ -243,12 +252,12 @@ public class LoginManager : MonoBehaviour
                 };
                 userData.souls = new List<Soul>
                 {
-                    new Soul("이름", 0, new int[]{1, 0, 0, 0}, new int[]{1, 1, 1, 1}, new int[]{10, 10, 10, 10, 10, 10 }, 0, 0)
+                    new Soul("이름", 0, new int[]{1, 0, 0, 5}, new int[]{1, 1, 0, 0}, new int[]{10, 10, 10, 10, 10, 10 }, 0, 0)
                 };
-
+                userData.record = new List<RecordData>();
                 string tokenData = JsonUtility.ToJson(userData);
                 UserManager.instance.userData = userData;
-                PlayerPrefs.SetString("UserData", www.downloadHandler.text);
+                UserManager.instance.SaveData();
                 StartCoroutine(SendToken(nickname, tokenData));
             }
         }
@@ -257,6 +266,8 @@ public class LoginManager : MonoBehaviour
     //JSON 정보를 보내는 코루틴
     IEnumerator SendToken(string nickname, string token)
     {
+        Debug.Log("nickname:" + nickname);
+        Debug.Log("token:" + token);
         // URL 설정
         string url = "https://thatsnote.site/members/updatetoken";
 
@@ -286,7 +297,7 @@ public class LoginManager : MonoBehaviour
             }
             else
             {
-                // 현재 활성 씬을 다시 로드합니다.
+                Debug.Log("오예오예오오옹예");
                 string sceneName = SceneManager.GetActiveScene().name;
                 SceneManager.LoadScene(sceneName);
             }

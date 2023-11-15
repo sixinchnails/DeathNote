@@ -8,14 +8,14 @@ using UnityEngine;
 public class Skill
 {
     public string name;
-    public string tier;
+    public int tier;
     public string description;
     public int percent;
     public int[] bonus;
     public int[] combo;
     public int[] perfect;
 
-    public Skill(string name, string tier, string descrition, int percent, int[] bonus, int[] combo, int[] perfect)
+    public Skill(string name, int tier, string descrition, int percent, int[] bonus, int[] combo, int[] perfect)
     {
         this.name = name; // 스킬명
         this.tier = tier; // 티어
@@ -44,36 +44,51 @@ public class SkillManager : MonoBehaviour
         {
             Destroy(gameObject); // 중복 인스턴스를 파괴
         }
+
+        equip = new List<Soul>(6);
+        for(int i = 0; i < 6; i++)
+        {
+            equip.Add(null);
+        }
+        Debug.Log("우후후훟후");
     }
 
-    void Start()
-    {
-        equip = SoulManager.instance.Souls;
-    }
 
     // 스킬과 그 효과를 반환하는 메서드
     public Skill GetSkillInfo(int idx)
     {
         switch (idx)
         {
-            case 1:
+            case 0:
                 Console.WriteLine("num:10");
-                return new Skill("업 비트", "일반", "30%의 확률로 비트감에 비례한 낮은 보너스 점수를 얻는다.",
+                return new Skill("업 비트", 0, "30%의 확률로 비트감에 비례한 낮은 보너스 점수를 얻는다.",
                     10, new int[] { 0, 10 }, new int[] { 0, 0 }, new int[] { 0, 0 });
-            case 2:
-                return new Skill("그대안의 블루", "일반", "30%의 확률로 감성에 비례한 낮은 보너스 점수를 얻는다.",
+            case 1:
+                return new Skill("그대안의 블루", 0, "30%의 확률로 감성에 비례한 낮은 보너스 점수를 얻는다.",
                     10, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 1, 10 });
-            case 3:
-                return new Skill("콤보팡", "일반", "50%의 확률로 무드에 비례한 낮은 콤보 점수를 얻는다.",
+            case 2:
+                return new Skill("콤보팡", 0, "50%의 확률로 무드에 비례한 낮은 콤보 점수를 얻는다.",
                     10, new int[] { 0, 0 }, new int[] { 2, 10 }, new int[] { 0, 0 });
-            case 4:
-                return new Skill("평오프", "일반", "30%의 확률로 평온함에 비례한 낮은 콤보 점수를 얻는다.",
+            case 3:
+                return new Skill("평오프", 0, "30%의 확률로 평온함에 비례한 낮은 콤보 점수를 얻는다.",
                     10, new int[] { 0, 0 }, new int[] { 3, 10 }, new int[] { 0, 0 });
-            case 5:
-                return new Skill("설레임덕", "일반", "30%의 확률로 설렘에 비례한 낮은 퍼펙 점수를 얻는다.",
+            case 4:
+                return new Skill("설레임덕", 0, "30%의 확률로 설렘에 비례한 낮은 퍼펙 점수를 얻는다.",
                     10, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 4, 10 });
-            case 6:
-                return new Skill("실화냐가슴이웅장", "일반", "30%의 확률로 웅장함에 비례한 낮은 보너스 점수를 얻는다.",
+            case 5:
+                return new Skill("실화냐가슴이웅장", 0, "30%의 확률로 웅장함에 비례한 낮은 보너스 점수를 얻는다.",
+                    10, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 5, 10 });
+            case 100:
+                return new Skill("매우 강한 스킬", 1, "일단 센스킬이다.",
+                    10, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 5, 10 });
+            case 101:
+                return new Skill("매우 강한 스킬2", 1, "일단 센스킬이다.",
+                    10, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 5, 10 });
+            case 102:
+                return new Skill("매우 강한 스킬3", 1, "일단 센스킬이다.",
+                    10, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 5, 10 });
+            case 200:
+                return new Skill("싸피급 스킬", 2, "진짜 센 전설 스킬",
                     10, new int[] { 0, 0 }, new int[] { 0, 0 }, new int[] { 5, 10 });
             default:
                 Console.WriteLine(" num:?");

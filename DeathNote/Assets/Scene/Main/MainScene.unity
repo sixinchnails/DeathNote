@@ -735,7 +735,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB3C4\uAC10"
+  m_Text: "\uC815\uC6D0\n"
 --- !u!222 &139850517
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7777,7 +7777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4596058728d8793468d748ee8cad4fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: DoGam
+  targetSceneName: GardenScene
 --- !u!114 &1504733307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7803,7 +7803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4596058728d8793468d748ee8cad4fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: Garden
+  targetSceneName: GardenScene
 --- !u!1 &1548132280
 GameObject:
   m_ObjectHideFlags: 0
@@ -9412,7 +9412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &2111207108
 AudioSource:
   m_ObjectHideFlags: 0

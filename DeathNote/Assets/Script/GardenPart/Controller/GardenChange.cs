@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GardenChange : MonoBehaviour
 {
+    [SerializeField] GameObject UI;
     [SerializeField] GardenManager gardenManager;
     [SerializeField] TextMeshProUGUI gardenCurrentName;
     [SerializeField] TextMeshProUGUI gardenCurrentPrice;
@@ -14,21 +15,21 @@ public class GardenChange : MonoBehaviour
     [SerializeField] Button buyButton;
     [SerializeField] Image gardenCurrentImage;
     [SerializeField] Sprite[] sprites;
+    [SerializeField] TextMeshProUGUI menuUI;
     string[] gardenName;
     string[] gardenImage;
     int[] gardenPrice;
-
-    List<Garden> gardens;
 
     int page = 0;
 
     // Start is called before the first frame update
 
 
-    void Start()
+    void Awake()
     {
+        gardenManager.OpenMenu();
         gardenName = new string[] { "얼어붙은 땅", "꽃피는 정원", "정령의 바다" };
-        gardenImage = new string[] { "frozenland", "blossomflower", "spiritocean" };
+        gardenImage = new string[] { "0", "1", "2" };
         gardenPrice = new int[] { 0, 30000, 100000 };
         InitUI();
 
@@ -36,6 +37,9 @@ public class GardenChange : MonoBehaviour
 
     public void InitUI()
     {
+
+        gardenManager.OpenMenu();
+        UI.SetActive(true);
         for (int i = 0; i < UserManager.instance.userData.gardens.Count; i++)
         {
             gardenPrice[UserManager.instance.userData.gardens[i].type] = 0;
@@ -90,8 +94,10 @@ public class GardenChange : MonoBehaviour
                 data.gold -= gardenPrice[page];
                 data.gardens.Add(new Garden(page));
                 gardenManager.UpdateInspirit();
+                menuUI.text = gardenName[page];
                 InitUI();
-                // 통신
+                UserManager.instance.SaveData();
+                UI.SetActive(false);
             }
 
             else
@@ -100,6 +106,11 @@ public class GardenChange : MonoBehaviour
             }
 
         }
+    }
+
+    public void CloseUI()
+    {
+        UI.SetActive(false);
     }
 
     // 

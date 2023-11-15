@@ -41,7 +41,8 @@ public class SoulManager : MonoBehaviour
 {
     public static SoulManager instance;
     [SerializeField] public List<Soul> Souls;
- 
+    public Soul jumpSoul;
+    
     public Soul[] Equip // 내 장착
     {
         get; private set;
@@ -73,23 +74,10 @@ public class SoulManager : MonoBehaviour
         String token = JsonUtility.ToJson(userData);
 
         PlayerPrefs.SetString("UserData", token);
-        UserManager.instance.PatchData(token);
+        UserManager.instance.SaveData();
     }
 
-    // 소울을 삭제합니다.
-    public void DeleteSoul(int idx)
-    {
-        UserData userData = UserManager.instance.userData;
-        if (idx >= 0 && idx < userData.souls.Count)
-        {
-            userData.souls.RemoveAt(idx);
-        }
 
-        String token = JsonUtility.ToJson(userData);
-
-        PlayerPrefs.SetString("UserData", token);
-        UserManager.instance.PatchData(token);
-    }
 
     // 내 정령을 등록
     public void SetSoul(List<Soul> souls)

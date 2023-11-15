@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3316034435199243608}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.55, y: 4.95, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -111,6 +111,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 3085578316162567025}
   - {fileID: 7070307594635996414}
+  soulDetail: {fileID: 0}
 --- !u!212 &9106096425460707105
 SpriteRenderer:
   m_ObjectHideFlags: 0

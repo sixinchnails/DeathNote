@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,7 @@ public class UserData
     public int gold;
     public List<Soul> souls = null;
     public List<Garden> gardens = null;
+    public List<RecordData> record = null;
 }
 [System.Serializable]
 
@@ -55,12 +57,16 @@ public class UserManager : MonoBehaviour
         }
     }
 
-    public void PatchData(string token)
+    public void SaveData()
     {
         string nickname = userData.nickname;
-        StartCoroutine(PatchData(nickname, token));
+        String token = JsonUtility.ToJson(userData);
+        PlayerPrefs.SetString("UserData", token);
+
+        StartCoroutine(SendToken(nickname, token));
     }
-    IEnumerator PatchData(string nickname, string token)
+
+    IEnumerator SendToken(string nickname, string token)
     {
         // URL 설정
         string url = "https://thatsnote.site/members/updatetoken";
@@ -71,7 +77,6 @@ public class UserManager : MonoBehaviour
             nickname = nickname,
             token = token
         };
-
         string jsonData = JsonUtility.ToJson(data);
 
         // UnityWebRequest 생성 및 설정
@@ -90,7 +95,7 @@ public class UserManager : MonoBehaviour
             {
                 Debug.Log(www.downloadHandler.text);
             }
+
         }
     }
-
 }
