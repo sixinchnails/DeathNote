@@ -50,6 +50,15 @@ public class LogService {
         return codes;
     }
 
+    public Set<Long> getAlldata() {
+        List<Log> logs = logRepository.findAll();
+        Set<Long> data = new HashSet<>();
+        for (Log l : logs){
+            data.add(l.getCode());
+        }
+        return data;
+    }
+
     public List<Log> getAllLogs() {
         return logRepository.findAll();
     }

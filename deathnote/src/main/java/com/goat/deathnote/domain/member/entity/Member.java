@@ -43,7 +43,7 @@ public class Member {
     @Column(name = "member_progress", nullable = false)
     private Long progress; // 진행도
 
-    @Column(name = "member_token")
+    @Column(name = "member_token", columnDefinition = "TEXT")
     private String token;
 
 }

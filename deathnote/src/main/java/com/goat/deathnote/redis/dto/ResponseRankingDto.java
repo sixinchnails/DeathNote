@@ -12,11 +12,12 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReponseRankingDto implements Serializable {
+public class ResponseRankingDto implements Serializable {
 
     private Long code;
     private Long score;
     private String nickname;
     private List<String> soulNames;
+    private String data;
 
 }
