@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
-public class GardenSoul : MonoBehaviour, IPointerClickHandler
+public class GardenSoul : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public float speed = 10.0f;  // 캐릭터의 움직임 속도
     private Vector2 direction;  // 캐릭터가 움직일 방향
@@ -13,9 +14,16 @@ public class GardenSoul : MonoBehaviour, IPointerClickHandler
     private bool isMoving; // 움직이고 있는지
     private bool timer;
 
+    private bool isPointerDown = false;
+    private float pointerDownTimer = 0;
+
+    private Coroutine myCoroutine;
+    public float requiredHoldTime = 3.0f;
+
+
     [SerializeField] SpriteRenderer[] sprites;
-    GardenBookUIManager gardenBookUIManager;
-    GardenCamera camera;
+    public SoulDetail soulDetail;
+    GardenCamera gardenCamera;
 
     // 스프라이트를 바꿔야 하는 요소들
     Animator animator;
@@ -25,8 +33,7 @@ public class GardenSoul : MonoBehaviour, IPointerClickHandler
     {
         timer = false;
 
-        gardenBookUIManager = FindObjectOfType<GardenBookUIManager>();
-        camera = FindObjectOfType<GardenCamera>();
+        gardenCamera = FindObjectOfType<GardenCamera>();
         // 스프라이트와 애니메이터 초기화
         animator = GetComponent<Animator>();
         // 움직임을 제한할 이미지의 크기를 SpriteRenderer 컴포넌트를 통해 가져옵니다.
@@ -43,10 +50,23 @@ public class GardenSoul : MonoBehaviour, IPointerClickHandler
         {
             boundarySize = boundaryTransform.GetComponent<SpriteRenderer>().bounds.size;
         }
-        animator.SetInteger("Body", soul.customizes[0]);
-        animator.SetInteger("Eyes", soul.customizes[1]);
-        animator.SetInteger("Acce", soul.customizes[2]);
-        animator.SetTrigger("Idle");
+        if(soul != null)
+        {
+            animator.SetInteger("body", soul.customizes[0]);
+            animator.SetInteger("eyes", soul.customizes[1]);
+            animator.SetInteger("bcolor", soul.customizes[2]);
+            animator.SetInteger("ecolor", soul.customizes[3]);
+        }
+
+    }
+
+    public void ReRender()
+    {
+        animator.SetInteger("body", soul.customizes[0]);
+        animator.SetInteger("eyes", soul.customizes[1]);
+        animator.SetInteger("bcolor", soul.customizes[2]);
+        animator.SetInteger("ecolor", soul.customizes[3]);
+        animator.SetTrigger("spawn");
     }
 
 
@@ -96,7 +116,7 @@ public class GardenSoul : MonoBehaviour, IPointerClickHandler
     // isMoving동안 움직이는 코루틴 
     IEnumerator Moving()
     {
-        animator.SetTrigger("Move");
+        animator.SetTrigger("move");
 
         while (isMoving)
         {
@@ -117,7 +137,7 @@ public class GardenSoul : MonoBehaviour, IPointerClickHandler
             yield return null;
         }
 
-        animator.SetTrigger("Idle");
+        animator.SetTrigger("idle");
     }
 
 
@@ -144,10 +164,45 @@ public class GardenSoul : MonoBehaviour, IPointerClickHandler
         direction = new Vector2(h, v).normalized;  // 방향을 정규화하여 길이가 1이 되도록 합니다.
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        camera.SetTarget(transform);
-        gardenBookUIManager.OpenBook(soul);
+        isPointerDown = true;
+        myCoroutine = StartCoroutine(Countdown());
+        gardenCamera.SetTarget(transform);
+        soulDetail.OpenBook(this);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Reset();
+    }
+
+    private void Reset()
+    {
+        StopCoroutine(myCoroutine);
+        isPointerDown = false;
+        pointerDownTimer = 0;
+    }
+
+    private void OnLongPress()
+    {
+        SoulManager.instance.jumpSoul = soul;
+        SceneManager.LoadScene("PlayScene");
+    }
+
+    private IEnumerator Countdown()
+    {
+        
+        while (isPointerDown && pointerDownTimer < requiredHoldTime)
+        {
+            pointerDownTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        if (pointerDownTimer >= requiredHoldTime)
+        {
+            OnLongPress();
+        }
     }
 }
 
