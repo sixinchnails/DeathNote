@@ -5,7 +5,6 @@ import com.goat.deathnote.domain.log.service.LogService;
 import com.goat.deathnote.domain.soul.entity.Soul;
 import com.goat.deathnote.domain.soul.service.SoulService;
 import com.goat.deathnote.redis.dto.ResponseRankingDto;
-import com.goat.deathnote.redis.dto.ResponseRankingDtos;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,10 +25,9 @@ public class RankingService {
     private final SoulService soulService;
     private final RedisTemplate<String, Object> redisTemplate;
 
-    @Scheduled(fixedRate = 1800000) // 30분마다실행
+    @Scheduled(fixedRate = 60000) // 1분마다실행
     public void createRankingResponse(){
         Set<Long> codes = logService.getAllCodes();
-        Set<Long> data = logService.getAlldata();
         List<ResponseRankingDto> responseRankingDtos = new ArrayList<>();
 
         System.out.println(1); // 자동실행되는지 확인좀
@@ -68,7 +66,7 @@ public class RankingService {
         }
 //        return reponseRankingDtos;
     }
- 
+
     public List<ResponseRankingDto> getRankingResponse(String key) {
         return (List<ResponseRankingDto>) redisTemplate.opsForValue().get(key);
     }
