@@ -1,9 +1,8 @@
 package com.goat.deathnote.redis.controller;
 
-import com.goat.deathnote.redis.dto.ReponseRankingDto;
+import com.goat.deathnote.redis.dto.ResponseRankingDto;
 import com.goat.deathnote.redis.service.RankingService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +27,7 @@ public class RankingController {
 //    }
 
     @GetMapping("/{code}")
-    public List<ReponseRankingDto> getRankingResponse(@PathVariable String code) {
+    public List<ResponseRankingDto> getRankingResponse(@PathVariable String code) {
         return rankingService.getRankingResponse(code);
     }
 

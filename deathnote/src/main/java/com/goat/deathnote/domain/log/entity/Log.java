@@ -33,10 +33,11 @@ public class Log {
     @Column(name = "log_grade", nullable = false)
     private Float grade;
 
-    @Column(name = "log_data")
+    @Column(name = "log_data", columnDefinition = "TEXT")
     private String data;
 
     @CreatedDate
     @Column(name = "log_date", nullable = false)
     private LocalDateTime logDate;
+
 }

@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(c -> c.configurationSource(corsConfigurationSource()))
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .authorizeRequests(auth -> auth.antMatchers("/**").hasAnyRole("USER").anyRequest().authenticated()) // 모든 uri에 대해 유저 권한이 있는 사람만 허용
+//                .authorizeRequests(auth -> auth.antMatchers("/**").hasAnyRole("USER").anyRequest().authenticated()) // 모든 uri 에 대해 유저 권한이 있는 사람만 허용
                 .authorizeHttpRequests(auth -> auth.antMatchers("/**").permitAll())
                 .oauth2Login()
                 .authorizationEndpoint()
