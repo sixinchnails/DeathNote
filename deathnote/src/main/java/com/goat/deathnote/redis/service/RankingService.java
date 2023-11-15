@@ -5,6 +5,7 @@ import com.goat.deathnote.domain.log.service.LogService;
 import com.goat.deathnote.domain.soul.entity.Soul;
 import com.goat.deathnote.domain.soul.service.SoulService;
 import com.goat.deathnote.redis.dto.ResponseRankingDto;
+import com.goat.deathnote.redis.dto.ResponseRankingDtos;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
