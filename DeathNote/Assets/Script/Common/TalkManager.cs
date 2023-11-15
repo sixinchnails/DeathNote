@@ -68,30 +68,30 @@ public class TalkManager : MonoBehaviour
         // 오프닝 데이터
         List<TalkData> openingData = new List<TalkData> {
             new TalkData(1, "『··· 이게 뭐지』", "landscape"),
-            new TalkData(2, "『앗! 떨어트렸다』", "nightsky"),
+            new TalkData(2, "『앗! 떨어트렸다』", "6"),
             new TalkData(1, "『노트가 다 찢어져있네』","landscape"),
             new TalkData(1, "『악보를 멀리한 지도 오래됐구나··· 』"),
             new TalkData(1, "『오랜만에 연주나 해볼까···?』"),
-            new TalkData(1, "『아냐, 됐어.. 이제 악기라면 지긋지긋···"),
-            new TalkData(4, "[[ ♩♬ - ! ]]"),
-            new TalkData(1, "『뭐, 뭐야 이건...?』", "landscape"),
-            new TalkData(1, "『생긴 건 조팡맹이처럼 생긴게 진짜 시끄럽네···』"),
-            new TalkData(1, "『이 악보를 연주하라는 건가···?"),
-            new TalkData(1, "『별 수 없네, 그럼 한번 연주해볼까···"),
+            new TalkData(1, "『아냐, 됐어··· 이제 악기라면 지긋지긋···』"),
+            new TalkData(4, "[[ ♩♬ - ! ]]          "),
+            new TalkData(1, "『뭐, 뭐야 이건···!?』", "landscape"),
+            new TalkData(1, "『비···비켜줄래!』"),
+            new TalkData(1, "『···이 악보를 연주하라는 건가?』"),
+            new TalkData(1, "『별 수 없네, 그럼 한번 연주해볼까···』"),
         };
         scriptList.Add(0, openingData);
 
         List<TalkData> opening2Data = new List<TalkData> {
-            new TalkData(1, "『···오랜만이니까 손이 많이 굳었네.", "landscape"),
-            new TalkData(1, "『자, 이제 됐으니까 사라져 줄래 조팡맹이야?"),
+            new TalkData(1, "『···오랜만이라 손이 많이 굳었네.』", "landscape"),
+            new TalkData(1, "『자, 이제 됐으니까 사라져 줄래 초록 슬라임아?』"),
             new TalkData(2, "『너···! 어떻게 정령을 불러낸 거지?』"),
             new TalkData(1, "『어어···!  너··· 넌 뭐야!』"),
-            new TalkData(2, "『정령은 뛰어난 음악가의 냄새를 맡아야만 풀려나는데···』"),
+            new TalkData(2, "『정령은 뛰어난 영감이 있어야만 나타나는데··· ···』"),
             new TalkData(2, "『난 악보를 보관하는 악(樂)마야』"),
-            new TalkData(2, "『악보엔 정령들이 봉인되어 있어』"),
             new TalkData(2, "『하지만, 악보가 다 찢어져서 정령들이 뿔뿔이 흩어지고 말았어···』"),
-            new TalkData(2, "『너라면 악보를 찾아 정령을 풀어줄 수 있을 것 같아!』"),
-            new TalkData(2, "『월드 버튼을 눌러봐. 나랑 악보를 찾아 여행을 떠나자!』")
+            new TalkData(2, "『악보를 찾아 영감을 얻어봐~!』"),
+            new TalkData(2, "『귀여운 정령들을 만날 수 있을거야!』"),
+            new TalkData(2, "『나랑 악보를 찾아 여행을 떠나자!』")
         };
         scriptList.Add(-1, opening2Data);
 
@@ -109,10 +109,14 @@ public class TalkManager : MonoBehaviour
 
         List<TalkData> endingData = new List<TalkData>
         {
+            new TalkData(2, "『드디어 모든 악보를 찾았구나!』"),
             new TalkData(1, "『···  ···  !』", "landscape"),
             new TalkData(1, "『이 노래··· 어딘가 익숙한데?』"),
             new TalkData(1, "『내가 어릴 때 작곡한 노래잖아?!』"),
-            new TalkData(2, "『정령을 찾아줘서 고마워 그럼 이만···』"),
+            new TalkData(2, "『드디어 기억이 떠올랐니?』"),
+            new TalkData(2, "『이 순간을 기억해. 넌, 대단한 아이야』"),
+            new TalkData(2, "『앞으로 잘 지내.』"),
+            new TalkData(2, "『그럼 이만···』"),
             new TalkData(1, "『안녕···』"),
         };
         scriptList.Add(7, endingData);
@@ -129,12 +133,10 @@ public class TalkManager : MonoBehaviour
         return storyId;
     }
 
-
     public void BoxAppear(bool param)
     {
         //대사 박스 나타난다.
         scriptBox.SetBool("isShow", param);
-
     }
 
     public void click()
@@ -163,9 +165,10 @@ public class TalkManager : MonoBehaviour
             rects[0].SetAsLastSibling();
             images[1].color = new Color(255, 255, 255, 0.5f);
             rects[1].SetAsFirstSibling();
-            sayname.text = UserManager.instance.userData.nickname;
+            sayname.text = "닉네임이당";
+            //sayname.text = UserManager.instance.userData.nickname;
             sayname.alignment = TextAnchor.MiddleLeft;
-            content.alignment = TextAnchor.MiddleLeft;
+            content.alignment = TextAnchor.UpperLeft;
 
             StartCoroutine(Speaking(textAnimation[0]));
 
@@ -190,7 +193,7 @@ public class TalkManager : MonoBehaviour
 
             
             sayname.alignment = TextAnchor.MiddleRight;
-            content.alignment = TextAnchor.MiddleRight;
+            content.alignment = TextAnchor.UpperRight;
 
             StartCoroutine(Speaking(textAnimation[1]));
             

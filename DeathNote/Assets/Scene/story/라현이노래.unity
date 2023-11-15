@@ -502,9 +502,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &21709737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,9 +1027,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &69879778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,9 +1145,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &78711575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,6 +1595,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &147419125
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1798,9 +1812,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &157778093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,9 +2198,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &196868676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2272,6 +2294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &197530304
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2487,9 +2511,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &202204133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2680,6 +2708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &223757642
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2934,6 +2964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &242281671
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3068,6 +3100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &262897586
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3322,6 +3356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &331279150
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6446,9 +6482,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &583315440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6733,6 +6773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &619946868
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6792,6 +6834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &622630755
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6906,6 +6950,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &648230461
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7770,21 +7816,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2f641c7f92bb0498c6608bd4403e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equip: ffffffffffffffff
-  scoreBonus: 00000000000000000000000000000000
-  scoreCrit: 00000000000000000000000000000000
-  comboUnbreakRatio: 0
-  comboBonus: 0000000000000000
-  judgeBonus: 0
-  expBonus: 000000000000000000000000000000000000000000000000
-  worldBonus:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
+  Souls: []
+  jumpSoul:
+    id: 0
+    name: 
+    equip: 0
+    parameters: 
+    customizes: 
+    emotions: 
+    revive: 0
+    garden: 0
 --- !u!1 &766553678
 GameObject:
   m_ObjectHideFlags: 0
@@ -8104,40 +8145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410dedb7827931344839785a87978228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickNotePool:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  effectPool:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  note: {fileID: 0}
+  effect: {fileID: 0}
 --- !u!1 &793260097
 GameObject:
   m_ObjectHideFlags: 0
@@ -9417,9 +9426,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &944329645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9933,9 +9946,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &970641087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10159,6 +10176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &996129934
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10351,11 +10370,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 113032414}
+  grade: {fileID: 0}
+  blur: []
   currentScore: 0
   currentCombo: 0
   maxCombo: 0
   totalPerfect: 0
   totalPercent: 0
+  white: {r: 1, g: 1, b: 1, a: 1}
+  backColor: []
+  finalColor: []
+  transparent: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1060318825
 GameObject:
   m_ObjectHideFlags: 0
@@ -11749,6 +11774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &1282600916
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12403,9 +12430,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &1460265193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13636,9 +13667,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &1574568515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13811,9 +13846,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &1606171950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13903,6 +13942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &1627366121
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13984,9 +14025,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &1628598759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14480,9 +14525,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &1663208263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14572,6 +14621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &1672916403
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14631,6 +14682,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &1676576463
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15326,6 +15379,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &1852034291
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15391,27 +15446,16 @@ MonoBehaviour:
   currentTime: 0
   gameStart: 0
   songStart: 0
+  soulSeq: 0
   black: {r: 0, g: 0, b: 0, a: 1}
   white: {r: 1, g: 1, b: 1, a: 1}
   semiparent: {r: 0, g: 0, b: 0, a: 0}
   transparent: {r: 0, g: 0, b: 0, a: 0}
-  clicknotes:
-  - {fileID: 78711574}
-  - {fileID: 1606171949}
-  - {fileID: 944329644}
-  - {fileID: 1460265192}
-  - {fileID: 21709736}
-  - {fileID: 202204132}
-  - {fileID: 970641086}
-  - {fileID: 69879777}
-  - {fileID: 1574568514}
-  - {fileID: 157778092}
-  - {fileID: 2129159335}
-  - {fileID: 2043940800}
-  - {fileID: 196868675}
-  - {fileID: 1663208262}
-  - {fileID: 583315439}
-  - {fileID: 1628598758}
+  thumbnail: {fileID: 1760106564}
+  readyUI: {fileID: 1854682687}
+  title: {fileID: 1243804686}
+  resultManager: {fileID: 630375803}
+  notePools: []
   effectControllers:
   - {fileID: 622630754}
   - {fileID: 147419124}
@@ -15429,11 +15473,6 @@ MonoBehaviour:
   - {fileID: 1672916402}
   - {fileID: 1282600915}
   - {fileID: 1854884122}
-  background: {fileID: 1541646641}
-  thumbnail: {fileID: 1760106564}
-  readyUI: {fileID: 1854682687}
-  title: {fileID: 1243804686}
-  resultManager: {fileID: 630375803}
 --- !u!82 &1853948305
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15617,6 +15656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a01967196cfa2048add27a710d197c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimator: {fileID: 0}
+  judgeAnimator: {fileID: 0}
 --- !u!222 &1854884123
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16677,9 +16718,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &2043940801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16863,6 +16908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82745075422953f4391f6fc77ad040e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowWorld: 1
+  code: 0
   audioSource: {fileID: 2098931549}
   musicTitle: 
   musicLength: 0
@@ -16873,6 +16920,7 @@ MonoBehaviour:
   stdBeat: 4
   offset: 0
   customOffset: 0
+  beat: 
 --- !u!1 &2119353467
 GameObject:
   m_ObjectHideFlags: 0
@@ -17383,9 +17431,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteNum: 0
-  effectController: {fileID: 0}
-  speed: 0
+  animator: {fileID: 0}
+  effect: {fileID: 0}
   checkTime: 0
+  speed: 0
+  bonus: 0
+  combo: 0
+  perfect: 0
 --- !u!114 &2129159336
 MonoBehaviour:
   m_ObjectHideFlags: 0

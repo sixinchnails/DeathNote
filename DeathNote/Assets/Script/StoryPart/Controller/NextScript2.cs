@@ -39,7 +39,7 @@ public class NextScript2 : MonoBehaviour
         scriptBox.SetBool("isShow", true);
         Action();
     }
-    public void click2()
+    public void click()
     {
         //대사 시작하면 버튼 비활성화
         button.interactable = false;
