@@ -9,6 +9,11 @@ public class MoveSetting : MonoBehaviour
     public Vector3 onScreenPosition; // 화면 안의 위치
     public float moveSpeed = 1.0f; // 이동 속도
 
+
+    public void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     // 화면 안으로 이동
     public void MoveIn()
     {
@@ -18,6 +23,7 @@ public class MoveSetting : MonoBehaviour
     // 화면 밖으로 이동
     public void MoveOut()
     {
+        Debug.Log("ㅎㅇ");
         StartCoroutine(Move(uiElement, offScreenPosition, moveSpeed));
     }
 

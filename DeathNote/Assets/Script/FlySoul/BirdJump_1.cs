@@ -8,6 +8,7 @@ public class BirdJump_1 : MonoBehaviour
     //: MonoBehaviour: 라는 걸 상속 받는다.
 {
     Rigidbody2D rb;
+    [SerializeField] Animator birdAnimator;
 
     public float jumpPower;
     //public으로 선언하면 유니티에서도 값을 조절할 수 있음
@@ -16,6 +17,11 @@ public class BirdJump_1 : MonoBehaviour
     void Start()
     {
         rb=GetComponent<Rigidbody2D>();
+        birdAnimator.SetInteger("body", SoulManager.instance.jumpSoul.customizes[0]);
+        birdAnimator.SetInteger("eyes", SoulManager.instance.jumpSoul.customizes[1]);
+        birdAnimator.SetInteger("bcolor", SoulManager.instance.jumpSoul.customizes[2]);
+        birdAnimator.SetInteger("ecolor", SoulManager.instance.jumpSoul.customizes[3]);
+        jumpPower = (float)SoulManager.instance.jumpSoul.parameters[3];
         //Rigidbody2D라는 컴포넌트를 들고와서 rb에 담겠다.
     }
 
@@ -26,6 +32,7 @@ public class BirdJump_1 : MonoBehaviour
             //Input.GetMouseButtonDown : 마우스를 눌렀을 때
             //Input.GetMouseButton(0) : 왼쪽 마우스를 눌렀을 때
         {
+            birdAnimator.SetTrigger("idle");
             GetComponent<AudioSource>().Play();
             // 눌렀을 때 소리가 나오도록 해주는 함수
             rb.velocity = Vector2.up * jumpPower; // (0,1)

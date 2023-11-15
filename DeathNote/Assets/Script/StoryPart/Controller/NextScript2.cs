@@ -83,9 +83,11 @@ public class NextScript2 : MonoBehaviour
         TalkData data = talkManager.getTalk(storyId, talkIdx);
         if (data == null)
         {
+            UserManager.instance.userData.progress = 100;
+            PlayerPrefs.SetString("UserData", JsonUtility.ToJson(UserManager.instance.userData));
             scriptBox.SetBool("isShow", false);
             //대화 끝났으면 메인으로
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("MainScene");
             return;
         }
         else if (data.id == 1)

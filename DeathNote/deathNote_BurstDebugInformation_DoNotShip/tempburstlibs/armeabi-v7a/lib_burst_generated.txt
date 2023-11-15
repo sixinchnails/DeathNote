@@ -15,7 +15,6 @@ Library: C:\Users\SSAFY\Desktop\URR\S09P31B309\DeathNote\Temp\BurstOutput\tempbu
 --assembly-defines=Unity.VisualScripting.Flow;
 --assembly-defines=Unity.RenderPipelines.Core.ShaderLibrary;
 --assembly-defines=Unity.Collections;
---assembly-defines=Unity.AdaptivePerformance.Google.Android;
 --assembly-defines=Unity.2D.SpriteShape.Runtime;
 --assembly-defines=Unity.2D.PixelPerfect;
 --assembly-defines=Unity.TextMeshPro;
