@@ -6,14 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scene/Rhythm/ButtonRhythmPart.unity
-    guid: 3ada05d47d9559c49a441465d2214edb
+    path: Assets/Scene/RaMain 1.unity
+    guid: a275ca0405b8bef40a2b806dd21df943
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scene/Main/MainScene.unity
     guid: 1de81e0b593bacd4a810c90c759f571a
+=======
+    path: Assets/Scene/Garden/GameOverScene.unity
+    guid: e38b9be6438ed6d4c964b81def7f44e1
+>>>>>>> 9b014a6b60eaf9c63db9f8af2155bbb19091a51b
   - enabled: 1
-    path: Assets/Scene/DoGam.unity
-    guid: ec8e9b74e5474d346ba9a9209bacef18
+    path: Assets/Scene/Garden/GardenScene.unity
+    guid: 163c334272d5dda4d9b15480a3389df6
   - enabled: 1
     path: Assets/Scene/Garden/Main.unity
     guid: f56fab353ff0bda459e40d33fc059d21
@@ -21,12 +26,16 @@ EditorBuildSettings:
     path: Assets/Scene/Garden/PlayScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scene/Stages/WorldMapScene.unity
-    guid: b4cf7a78bba57cd4da6b269247cb6872
+    path: Assets/Scene/LogIn/LoginScene.unity
+    guid: 63d68894a116bb249b784efb1da7670c
+  - enabled: 1
+    path: Assets/Scene/Main/MainScene.unity
+    guid: 1de81e0b593bacd4a810c90c759f571a
   - enabled: 1
     path: Assets/Scene/Rhythm/ButtonRhythmPart.unity
     guid: 3ada05d47d9559c49a441465d2214edb
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scene/RaMain 1.unity
     guid: a275ca0405b8bef40a2b806dd21df943
   - enabled: 1
@@ -80,13 +89,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/FirstStep.unity
     guid: 06ed35ee559ee304292c76ccc78df0f1
+=======
+    path: Assets/Scene/Stages/WorldMapScene.unity
+    guid: b4cf7a78bba57cd4da6b269247cb6872
+>>>>>>> 9b014a6b60eaf9c63db9f8af2155bbb19091a51b
   - enabled: 1
     path: Assets/Scene/Stages/StageScene.unity
     guid: c6d038a13b7c90646bd9e011bbd9950e
   - enabled: 1
-    path: Assets/Scene/Stages/Legacy/WorldTwoScene.unity
-    guid: 3c9ac86b8f7781c4fa3e5df952b59381
+    path: Assets/Scene/Story/OpeningScene.unity
+    guid: 9b6ca5ed372657e40bac3e3caaa97980
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scene/Stages/Legacy/WorldThreeScene.unity
     guid: e8b0220b41741b24a8156b0fe254ea0b
   - enabled: 1
@@ -121,3 +135,8 @@ EditorBuildSettings:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: acf05e6089792ba45874b73fd7f5fa33, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: c43fa67bcdbb3f440a0de5e09c776461, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 6c4c74032a4f03544b73e1e2fc9053cf, type: 2}
+=======
+    path: Assets/Scene/Story/GetSoul.unity
+    guid: fba11741f0aefa342ba6e1349dd9b54a
+  m_configObjects: {}
+>>>>>>> 9b014a6b60eaf9c63db9f8af2155bbb19091a51b
