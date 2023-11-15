@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scene/Rhythm/ButtonRhythmPart.unity
     guid: 3ada05d47d9559c49a441465d2214edb
   - enabled: 1
+    path: Assets/Scene/RaMain 1.unity
+    guid: a275ca0405b8bef40a2b806dd21df943
+  - enabled: 1
     path: Assets/Scene/story/EndingStory.unity
     guid: 9e5c505f8c58679478aec5e60bc2d08c
   - enabled: 1
@@ -53,7 +56,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Tutorial.unity
     guid: b5cdc0eeaaecab94e8d9760639adcd23
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/StageOneScene.unity
     guid: 51e068c8627171944936f931123bfb12
   - enabled: 0

@@ -53,6 +53,7 @@ public class MoveChar : MonoBehaviour
 
     void Update()
     {
+        //눌렀을 때 캐릭터 멈추게 하기
         if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
