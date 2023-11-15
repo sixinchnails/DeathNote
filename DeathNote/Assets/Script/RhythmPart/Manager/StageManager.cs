@@ -210,7 +210,6 @@ public class StageManager : MonoBehaviour
                     // 노트 풀에서 노트와 이펙터를 꺼냄
                     ClickNote note = notePools[noteData.pos].clickQueue.Dequeue().GetComponent<ClickNote>();
                     Effect effect = notePools[noteData.pos].effectQueue.Peek().GetComponent<Effect>();
-
                     // 노트에 데이터를 입력 (이펙터, 노트풀, 판정시간, 단위시간)
                     note.SetNoteInfo(effect, notePools[noteData.pos], exactTime + 1.0f, timePerBeat);
                     note.transform.SetAsFirstSibling();
