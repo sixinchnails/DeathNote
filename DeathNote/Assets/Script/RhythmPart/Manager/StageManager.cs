@@ -53,7 +53,7 @@ public class StageManager : MonoBehaviour
         
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
-        musicManager.SetSomeDay();
+        musicManager.SetSummer();
         scoreManager = ScoreManager.instance;
         audioSource = musicManager.audioSource;
         Debug.Log("길이:"+musicManager.beat.Length);
