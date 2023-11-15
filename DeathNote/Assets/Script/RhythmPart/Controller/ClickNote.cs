@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class ClickNote : MonoBehaviour, IPointerDownHandler
 {
+    //ㅎㅇㅎㅇ
     public int noteNum; // 노트번호
     public Animator animator; // 노트 애니메이터
     private NotePool notePool; // 연결된 노트풀
