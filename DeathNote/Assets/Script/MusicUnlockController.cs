@@ -6,7 +6,7 @@ using static KooksUserManager;
 public class MusicUnlockController : MonoBehaviour
 {
     KooksUserManager kooksUserManager;
-    KooksUserManager.UserData userData;
+    UserData userData;
     private int progressNum = 0;
     public int WorldNum;    // 지금 몇번째 월드인지 !
     void Start()
@@ -19,7 +19,7 @@ public class MusicUnlockController : MonoBehaviour
         kooksUserManager = FindObjectOfType<KooksUserManager>();
         if (kooksUserManager != null)
         {
-            userData = kooksUserManager.GetUserData(); // KooksUserManager 스크립트에서 UserData를 가져옵니다.
+            userData = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString("UserData"));
             progressNum = userData.progress;
             GameObject[] Lockers = { GameObject.Find("LockedMusic1"), GameObject.Find("LockedMusic2"), GameObject.Find("LockedMusic3"), GameObject.Find("LockedMusic4") };
             GameObject[] Musics = { GameObject.Find("MusicInform1"), GameObject.Find("MusicInform2"), GameObject.Find("MusicInform3"), GameObject.Find("MusicInform4") };

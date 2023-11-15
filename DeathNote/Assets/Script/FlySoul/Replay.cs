@@ -13,6 +13,6 @@ public class Replay : MonoBehaviour
 
     public void MoveToGarden()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("GardenScene");
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,12 +13,12 @@ public class Move : MonoBehaviour
         w = Screen.width;
         speed = 8;
         len = (int)Mathf.Round(w / 2);
-        num = MusicSelectBtn.limit;
+        num = MusicSelect.limit;
     }
 
     private void Update()
     {
-        num = MusicSelectBtn.limit;
+        num = MusicSelect.limit;
         ////일단 옮기고 내자리랑 limit이랑 차이를 구해서 그 차이가 8보다 작을 때 그냥 그만큼만 그속도로 그방향으로 보내준다.
         if (num < Mathf.Round(transform.position.x) - len) 
         {
@@ -28,7 +28,7 @@ public class Move : MonoBehaviour
                 transform.position = transform.position + new Vector3(1, 0, 0) * temp;
             }
             transform.position = transform.position + new Vector3(-1, 0, 0) * speed;
-            Debug.Log(transform.position);
+            // Debug.Log(transform.position);
         }
         else if(num > Mathf.Round(transform.position.x) - len)
         {
@@ -38,7 +38,7 @@ public class Move : MonoBehaviour
                 transform.position = transform.position + new Vector3(-1, 0, 0) * temp;
             }
             transform.position = transform.position + new Vector3(1, 0, 0) * speed;
-            Debug.Log(transform.position);
+            //Debug.Log(transform.position);
         }
        
     }
