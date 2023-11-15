@@ -20,7 +20,7 @@ public class MusicController {
 
     private final MusicService musicService;
 
-    @GetMapping("/play-audio")
+    @GetMapping("/play/audio")
     public String playAudio(HttpServletRequest req, Model model) {
         try {
             byte[] audioBytes = musicService.getAudioFile(); // Fetch WAV file from Python server
