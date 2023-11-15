@@ -60,7 +60,7 @@ public class MusicManager : MonoBehaviour
         bpm = 98;
         songBeat = 4;
         stdBeat = 4;
-        offset = (float)-0.4f;
+        offset = (float)-0.25f;
         customOffset = (float)0.0;
         totalNote = 207;
         beat = new int[] { 50,61,62,64, 90,101,102,104, 130,141,142,144,147,  // ÀüÁÖ

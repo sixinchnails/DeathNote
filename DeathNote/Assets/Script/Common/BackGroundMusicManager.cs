@@ -115,9 +115,25 @@ public class BackGroundMusicManager : MonoBehaviour
             PlayerPrefs.SetFloat("MusicVolume", volume);
             PlayerPrefs.Save();
 
-            if (isMuted)
+            // 볼륨이 0이면 음소거로 간주하고 이미지를 음소거 이미지로 변경합니다.
+            if (volume == 0)
             {
-                isMuted = false;
+                if (!isMuted)
+                {
+                    // 볼륨이 0이 되어 음소거 상태가 되었으므로 이전 볼륨을 저장합니다.
+                    previousVolume = volume;
+                    isMuted = true;
+                }
+                volumeButtonImage.sprite = muteSprite; // 음소거 이미지로 변경
+            }
+            else
+            {
+                // 볼륨이 0보다 크면 음소거 상태를 해제하고 이미지를 볼륨 이미지로 변경합니다.
+                if (isMuted)
+                {
+                    // 이전에 음소거 상태였다면 음소거를 해제합니다.
+                    isMuted = false;
+                }
                 volumeButtonImage.sprite = volumeSprite; // 볼륨 이미지로 변경
             }
         }
