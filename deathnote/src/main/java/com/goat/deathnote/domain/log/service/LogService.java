@@ -23,7 +23,7 @@ public class LogService {
     private final MemberRepository memberRepository;
 
     public Log saveLog(LogPostDto logPostDto) {
-        Member member = memberRepository.findById(logPostDto.getMemberId()).orElseThrow();
+        Member member = memberRepository.findByNickname(logPostDto.getNickname()).get();
         Log log = Log.builder()
                 .member(member)
                 .code(logPostDto.getCode())

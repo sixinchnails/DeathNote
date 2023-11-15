@@ -47,6 +47,7 @@ public class RankingService {
                 responseRankingDto.setCode(l.getCode());
                 responseRankingDto.setNickname(l.getMember().getNickname());
                 responseRankingDto.setScore(l.getScore());
+                responseRankingDto.setData(l.getData());
                 //정령 조회 SQL 하나 더 해서
                 List<Soul> souls = soulService.getSoulByMemberId(l.getMember().getId());
                 List<String> soulsName = new ArrayList<>();

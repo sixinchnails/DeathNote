@@ -13,6 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ResponseRankingDtos {
 
-    private List<ResponseRankingDto> responseRankingDtoList;
+    private List<ResponseRankingDto> records;
 
 }

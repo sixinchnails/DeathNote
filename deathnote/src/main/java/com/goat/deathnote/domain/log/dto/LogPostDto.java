@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class LogPostDto {
 
-    private Long memberId;
+    private String nickname;
 
     private Long code;
 
