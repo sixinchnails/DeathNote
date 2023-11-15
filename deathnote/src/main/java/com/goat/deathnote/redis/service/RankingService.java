@@ -68,7 +68,7 @@ public class RankingService {
         }
 //        return reponseRankingDtos;
     }
-
+ 
     public List<ResponseRankingDto> getRankingResponse(String key) {
         return (List<ResponseRankingDto>) redisTemplate.opsForValue().get(key);
     }
