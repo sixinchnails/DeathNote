@@ -9,13 +9,9 @@ using UnityEditor;
 public class OpeningManager : MonoBehaviour
 {
     public GameObject rBook;
-    public GameObject dark;
-    public GameObject backgroundN;
 
     void Awake()
     {
         rBook.SetActive(false);
-        dark.SetActive(false);
-        backgroundN.SetActive(false);
     }
 }

@@ -71,7 +71,7 @@ public class StageManager : MonoBehaviour
         }
         
         // 내가 장착한 소울 목록을 가져옵니다.
-        mySoulList = SoulManager.instance.Souls;
+        mySoulList = SkillManager.instance.equip;
         Debug.Log(mySoulList.Count);
 
         StartCoroutine(ReadyFinish());
@@ -144,7 +144,10 @@ public class StageManager : MonoBehaviour
         audioSource.Stop();
         audioSource.volume = startVolume; // 원본 볼륨으로 다시 설정 (재생 준비)
 
-        resultManager.ShowResult(musicManager.musicTitle, (float)scoreManager.totalPercent / (musicManager.totalNote * 100), scoreManager.score.text);
+        float grade = (float)scoreManager.totalPercent / (musicManager.totalNote * 100);
+
+        resultManager.ShowResult(musicManager.musicTitle, grade, scoreManager.score.text);
+        RecordManager.instance.SetMyRank(MusicManager.instance.code, grade, scoreManager.currentScore, SkillManager.instance.equip[0]);
 
     }
     IEnumerator EnableNote(ClickNote note, Soul turnSoul, float delay)
@@ -152,18 +155,31 @@ public class StageManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         note.SetActive(true);
+        if(turnSoul != null)
+        {
+            note.animator.SetTrigger("Jump");
+            note.animator.SetInteger("body", turnSoul.customizes[0]);
+            note.animator.SetInteger("eyes", turnSoul.customizes[1]);
+            note.animator.SetInteger("bcol", turnSoul.customizes[2]);
+            note.animator.SetInteger("ecol", turnSoul.customizes[3]);
+        }
+        else
+        {
+            note.animator.SetTrigger("Jump");
+            note.animator.SetInteger("body", 1);
+            note.animator.SetInteger("eyes", 1);
+            note.animator.SetInteger("bcol", -1);
+            note.animator.SetInteger("ecol", 0);
+        }
 
-        note.animator.SetTrigger("Jump");
-        note.animator.SetInteger("Body", turnSoul.customizes[0]);
-        note.animator.SetInteger("Eyes", turnSoul.customizes[1]);
-        note.animator.SetInteger("Acce", turnSoul.customizes[2]);
 
 
     }
 
     public void SceneChange()
     {
-
+        audioSource.Stop();
+        SceneManager.LoadScene("StageScene");
     }
 
     public void SceneRestart()
@@ -200,15 +216,19 @@ public class StageManager : MonoBehaviour
                     note.SetNoteInfo(effect, notePools[noteData.pos], exactTime + 1.0f, timePerBeat);
                     note.transform.SetAsFirstSibling();
                     // 이번에 사용할 정령을 불러옴
+                    Debug.Log("이번차례:" +soulSeq);
                     Soul turnSoul = mySoulList[soulSeq++];
                     // 다시 돌아가기 위해서, soulSeq를 돌림(0~5, 총 6마리)
                     soulSeq = soulSeq % mySoulList.Count;
+                    if(turnSoul != null)
+                    {
+                        // 이번에 발동할 스킬번호를 결정
+                        int skillNumber = SkillManager.instance.GetSkill(turnSoul, note);
+                        // effect의 애니메이터의 인티저를 변경
+                        Debug.Log(skillNumber);
+                        effect.hitAnimator.SetInteger("Num", skillNumber);
+                    }
 
-                    // 이번에 발동할 스킬번호를 결정
-                    int skillNumber = SkillManager.instance.GetSkill(turnSoul, note);
-                    // effect의 애니메이터의 인티저를 변경
-                    Debug.Log(skillNumber);
-                    effect.hitAnimator.SetInteger("Num", skillNumber);
 
                     // note는 비활성화된 상태로 시작하므로, 처음엔 Awake 메서드가 형성되지 않기 때문에 animator를 장착시켜줘야 함
                     if (note.animator == null) note.animator = note.GetComponent<Animator>();

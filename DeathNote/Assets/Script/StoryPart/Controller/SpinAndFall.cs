@@ -7,7 +7,7 @@ public class SpinAndFall : MonoBehaviour
 {
     public OpeningManager manager;
     public GameObject book;
-    public NextScript next;
+    public La next;
 
     AudioSource sound;
     public AudioClip drop;

@@ -23,6 +23,7 @@ public class ColliderMove : MonoBehaviour
         if (isMoving) // 움직임 플래그를 체크합니다.
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
+            speed = speed + 0.0001f;
         }
     }
 }
