@@ -11,7 +11,7 @@
 
             // Unity.call 함수가 있는지 확인하고 호출합니다.
             if (typeof Unity !== 'undefined' && typeof Unity.call === 'function') {
-                Unity.call(id);
+                Unity.call(nickname);
             } else {
                 console.log('Unity.call 함수가 이 환경에서는 사용할 수 없습니다.');
             }
