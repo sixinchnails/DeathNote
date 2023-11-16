@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0920d272fecd6df49a4428622040a444
+guid: d0f92150acfb1a64a8a57121429a5a42
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,6 +94,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -119,43 +132,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Worlds_0
+      name: worlds_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 88
-        width: 217
-        height: 176
+        x: 15
+        y: 85
+        width: 172
+        height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4e7ab217bd1e1345afa1f6de7291265
-      internalID: -1946802378
+      spriteID: 1660b3530fbc29e4b8f745c79de10221
+      internalID: -1171615085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Worlds_1
+      name: worlds_1
       rect:
         serializedVersion: 2
-        x: 246
-        y: 9
-        width: 226
-        height: 151
+        x: 217
+        y: 15
+        width: 221
+        height: 185
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82c2ce4341bad484fbf9f162195ef161
-      internalID: -1459136602
+      spriteID: 20c771d6e0a798f418e07d8ec26b0ed1
+      internalID: 126952045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Worlds_2
+      name: worlds_2
       rect:
         serializedVersion: 2
-        x: 507
-        y: 76
-        width: 176
-        height: 155
+        x: 449
+        y: 82
+        width: 189
+        height: 217
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddf1879693657a648aa6d954d28c9262
-      internalID: -870875867
+      spriteID: ffa3f072ff1a03d4c89c89581421be8d
+      internalID: 193603857
       vertices: []
       indices: 
       edges: []
@@ -214,7 +201,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 817d89aabb02cf5488f4863cb7129616
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -222,10 +209,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Worlds_0: -1946802378
-      Worlds_1: -1459136602
-      Worlds_2: -870875867
-      Worlds_3: -866828839
+      worlds_0: -1171615085
+      worlds_1: 126952045
+      worlds_2: 193603857
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
