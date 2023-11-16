@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class Effect : MonoBehaviour
 {
+    private ScoreManager scoreManager;
     public Animator hitAnimator = null; // 노트 클릭 애니메이션
     public Animator judgeAnimator = null; // 판정 애니메이션
     TextMeshProUGUI comboData = null; // 콤보
@@ -19,6 +20,7 @@ public class Effect : MonoBehaviour
         hitAnimator = transform.GetChild(0).GetComponent<Animator>();
         judgeAnimator = transform.GetChild(1).GetComponent<Animator>();
         comboData = transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     public void NoteHitEffect()
@@ -29,7 +31,7 @@ public class Effect : MonoBehaviour
     // 판정에 따라서 콤보나 break를 나타냄
     public void JudgeEffect(string judge)
     {
-        currentCombo = ScoreManager.instance.currentCombo;
+        currentCombo = scoreManager.currentCombo;
         comboData.text = string.Format("{0}", currentCombo);
         judgeAnimator.SetTrigger(judge); // 특정 상태로 변경
     }
