@@ -3,14 +3,19 @@ spring:
     oauth2:
       client:
         registration:
-          google:
-            client-id: 13682224369-6hrc9lt7knsmdftscal0214377a3ftk8.apps.googleusercontent.com
-            client-secret: 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
-#            redirect-uri: http://localhost:8080/login/oauth2/code/google
-            redirect-uri: https://thatsnote.site/login/oauth2/code/google
-            scope:
-              - profile
-              - email
+          kakao:
+            client-id: 44f553ce1045b3d5d22c41f17e79930d
+            redirect-uri: "http://localhost:8080/login/oauth2/code/{registrationId}"
+            client-authentication-method: client_secret_post
+            authorization-grant-type: authorization_code
+            scope: profile_nickname, account_email #동의 항목
+            client-name: Kakao
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://3.36.98.164:3306/9oat?serverTimezone=Asia/Seoul

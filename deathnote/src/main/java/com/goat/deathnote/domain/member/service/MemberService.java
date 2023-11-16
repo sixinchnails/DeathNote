@@ -12,6 +12,7 @@ import com.goat.deathnote.domain.member.repository.MemberRepository;
 import com.goat.deathnote.domain.soul.dto.SoulDetailsDto;
 import com.goat.deathnote.domain.soul.entity.Soul;
 import com.goat.deathnote.domain.soul.repository.SoulRepository;
+import io.lettuce.core.Value;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

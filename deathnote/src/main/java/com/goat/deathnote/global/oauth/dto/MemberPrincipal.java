@@ -35,8 +35,8 @@ public class MemberPrincipal implements OAuth2User, UserDetails, OidcUser {
 
 	public static MemberPrincipal create(Member member, MemberRole memberRole) {
 		return new MemberPrincipal(member.getEmail(),
-			member.getName(),
-			"",
+			member.getEmail(),
+			null,
 			member.getProvider(),
 			memberRole,
 			Collections.singletonList(new SimpleGrantedAuthority(memberRole.name())));

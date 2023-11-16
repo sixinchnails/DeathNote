@@ -17,10 +17,10 @@ public class Member {
     @Column(name = "member_id", nullable = false)
     private Long id; //기본키
 
-    @Column(name = "member_name", nullable = false)
+    @Column(name = "member_name")
     private String name; //유저 이름
 
-    @Column(name = "member_email", nullable = false)
+    @Column(name = "member_email")
     private String email; //유저 구글 이메일
 
     @Enumerated(EnumType.STRING)
@@ -31,7 +31,7 @@ public class Member {
     @Column(name = "member_provider", nullable = false)
     private SocialProvider provider; //공급자 (google, facebook ...)
 
-    @Column(name = "member_nickname", nullable = false, length = 5)
+    @Column(name = "member_nickname")
     private String nickname;
 
     @Column(name = "member_level", nullable = false)

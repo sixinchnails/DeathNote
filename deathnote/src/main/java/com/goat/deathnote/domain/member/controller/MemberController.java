@@ -1,14 +1,12 @@
 package com.goat.deathnote.domain.member.controller;
 
 import com.goat.deathnote.domain.garden.dto.GardenDetailsDto;
-import com.goat.deathnote.domain.garden.entity.Garden;
 import com.goat.deathnote.domain.garden.service.GardenService;
 import com.goat.deathnote.domain.member.dto.*;
 import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.member.service.MemberNotFoundException;
 import com.goat.deathnote.domain.member.service.MemberService;
 import com.goat.deathnote.domain.soul.dto.SoulDetailsDto;
-import com.goat.deathnote.domain.soul.entity.Soul;
 import com.goat.deathnote.domain.soul.service.SoulService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
