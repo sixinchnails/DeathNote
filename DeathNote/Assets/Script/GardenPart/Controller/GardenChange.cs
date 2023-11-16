@@ -23,6 +23,7 @@ public class GardenChange : MonoBehaviour
     string[] gardenImage;
     int[] gardenPrice;
 
+    bool canGo;
     int page = 0;
 
     // Start is called before the first frame update
@@ -30,7 +31,6 @@ public class GardenChange : MonoBehaviour
 
     void Awake()
     {
-        gardenManager.OpenMenu();
         gardenName = new string[] { "얼어붙은 땅", "꽃피는 정원", "정령의 바다" };
         gardenImage = new string[] { "0", "1", "2" };
         gardenPrice = new int[] { 0, 30000, 100000 };
@@ -41,7 +41,6 @@ public class GardenChange : MonoBehaviour
     public void InitUI()
     {
 
-        gardenManager.OpenMenu();
         UI.SetActive(true);
         for (int i = 0; i < UserManager.instance.userData.gardens.Count; i++)
         {
@@ -69,31 +68,29 @@ public class GardenChange : MonoBehaviour
     {
         gardenCurrentName.text = gardenName[page];
         gardenCurrentImage.sprite = sprites[page];
+        canGo = false;
 
         foreach(Garden garden in UserManager.instance.userData.gardens)
         {
             if(garden.type == page)
             {
-
+                canGo = true;
+                purchaseButton.SetActive(false);
+                break;
             }
         }
-        if (gardenPrice[page] == 0)
+       
+        if(!canGo)
         {
-            gardenCurrentPrice.text = "이동";
-            lockImage.SetActive(false);
-        }
-        else
-        {
+            purchaseButton.SetActive(true);
             gardenCurrentPrice.text = gardenPrice[page].ToString();
-            lockImage.SetActive(true);
+
         }
     }
 
-
-    // 구매
-    public void Purchase()
+    public void ChangeGarden()
     {
-        if (gardenPrice[page] == 0)
+        if (canGo)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -102,25 +99,26 @@ public class GardenChange : MonoBehaviour
             }
             gardenManager.ChangeGarden(page);
         }
+    }
+
+    // 구매
+    public void Purchase()
+    {
+        UserData data = UserManager.instance.userData;
+        if (data.gold >= gardenPrice[page])
+        {
+            data.gold -= gardenPrice[page];
+            data.gardens.Add(new Garden(page));
+            gardenManager.UpdateInspirit();
+            menuUI.text = gardenName[page];
+            InitUI();
+            UserManager.instance.SaveData();
+            UI.SetActive(false);
+        }
+
         else
         {
-            UserData data = UserManager.instance.userData;
-            if (data.gold >= gardenPrice[page])
-            {
-                data.gold -= gardenPrice[page];
-                data.gardens.Add(new Garden(page));
-                gardenManager.UpdateInspirit();
-                menuUI.text = gardenName[page];
-                InitUI();
-                UserManager.instance.SaveData();
-                UI.SetActive(false);
-            }
-
-            else
-            {
-                lessMoney.SetTrigger("less");
-            }
-
+            lessMoney.SetTrigger("less");
         }
     }
 

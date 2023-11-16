@@ -156,6 +156,7 @@ RectTransform:
   m_Children:
   - {fileID: 2069495134}
   - {fileID: 1376830301}
+  - {fileID: 243626250}
   m_Father: {fileID: 1438116259}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2877,7 +2878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 311, y: -245.62}
+  m_AnchoredPosition: {x: 0, y: 201}
   m_SizeDelta: {x: 312.6096, y: 78.152}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &235207818
@@ -3103,11 +3104,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1438116259}
+  m_Father: {fileID: 746117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 46.000008}
+  m_AnchoredPosition: {x: -0.000061035156, y: 185.9}
   m_SizeDelta: {x: 229.1545, y: 229.1545}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &243626251
@@ -18541,7 +18542,6 @@ RectTransform:
   m_Children:
   - {fileID: 847651735}
   - {fileID: 1563774923}
-  - {fileID: 243626250}
   - {fileID: 746117}
   - {fileID: 1149589408}
   - {fileID: 1948377356}
@@ -18568,14 +18568,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 1404570662}
   gardenManager: {fileID: 391541557}
-  gardenCurrentName: {fileID: 0}
+  gardenCurrentName: {fileID: 701220132}
   gardenCurrentPrice: {fileID: 2069495135}
   lockImage: {fileID: 0}
   lessMoney: {fileID: 235207820}
   buyButton: {fileID: 746118}
-  gardenCurrentImage: {fileID: 0}
-  purchaseButton: {fileID: 0}
-  sprites: []
+  gardenCurrentImage: {fileID: 1563774925}
+  purchaseButton: {fileID: 746116}
+  sprites:
+  - {fileID: 21300000, guid: 89be2a1283db40b4da457d95da22470c, type: 3}
+  - {fileID: 21300000, guid: ac3a17328700b964080a8b3766d19831, type: 3}
+  - {fileID: 21300000, guid: 345d7ce210648c2488703834731fab34, type: 3}
   menuUI: {fileID: 701220132}
   particles:
   - {fileID: 1247021382}
