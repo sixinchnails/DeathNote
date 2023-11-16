@@ -27,6 +27,7 @@ public class SoulGet : MonoBehaviour
     public void EnableUI()
     {
 
+
          animationUI.SetActive(false);
 
         if (!soulGetUI.activeSelf)
