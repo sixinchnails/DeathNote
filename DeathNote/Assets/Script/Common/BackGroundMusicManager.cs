@@ -12,7 +12,7 @@ public class BackGroundMusicManager : MonoBehaviour
     public AudioClip[] musicClips;
     // 오디오를 재생하는 컴포넌트에 대한 참조.
     private AudioSource audioSource;
-    // 사용자가 조정할 수 있는 볼륨 슬라이더 UI에 대한 참조.
+    // 사용자가 조정할 수 있는 볼륨 슬라이더 UI에 대한 참조(태그)
     public Slider volumeSlider;
     // 현재 음소거 상태인지를 저장하는 변수.
     private bool isMuted;
@@ -92,23 +92,20 @@ public class BackGroundMusicManager : MonoBehaviour
 
     public void PlayMusic(int sceneIndex)
     {
-        Debug.Log("노래 시작해주는 함수");
-        if (musicClips[sceneIndex] != null && audioSource.clip != musicClips[sceneIndex])
+        if (musicClips[sceneIndex] != null && audioSource.clip != musicClips[sceneIndex]) // 뮤직클립이 없지않고, 바뀌었다면
         {
             audioSource.clip = musicClips[sceneIndex];
             audioSource.Play();
         }
+        else if (musicClips[sceneIndex] == null) 
+        { 
+            audioSource.Stop();
+        }
     }
 
-    public void StopMusic()
-    {
-        audioSource.Stop();
-    }
-
+    // 음악 볼륨 변경
     public void SetMusicVolume(float volume)
     {
-        Debug.Log("볼륨 조절해주는 함수");
-
         if (audioSource != null)
         {
             audioSource.volume = volume;

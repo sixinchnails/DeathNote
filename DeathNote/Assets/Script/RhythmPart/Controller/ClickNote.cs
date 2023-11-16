@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ClickNote : MonoBehaviour, IPointerDownHandler
 {
-    //ㅎㅇㅎㅇ
+    ScoreManager scoreManager;
     public int noteNum; // 노트번호
     public Animator animator; // 노트 애니메이터
     private NotePool notePool; // 연결된 노트풀
@@ -21,11 +21,15 @@ public class ClickNote : MonoBehaviour, IPointerDownHandler
     public int bonus; // 보너스 점수
     public int combo; // 콤보 보너스
     public int perfect; // 퍼펙트 보너스
+    public int gold; // 골드 보너스
 
     void OnEnable()
     {
         transform.localScale = Vector3.one; // 스케일 변경
-
+        if(scoreManager == null)
+        {
+            scoreManager = FindObjectOfType<ScoreManager>();  
+        }
     }
 
     void Update()
@@ -35,7 +39,7 @@ public class ClickNote : MonoBehaviour, IPointerDownHandler
         // 판정시간의 반비트 뒤에, 클릭이 되지 않았다면 이미지가 사라짐
         if (currentTime >= checkTime + 0.25 * timeUnit)
         {
-            ScoreManager.instance.IncreaseCombo(false); //콤보 제거
+            scoreManager.IncreaseCombo(false); //콤보 제거
             effect.JudgeEffect("miss"); // 놓쳤다고 출력
             SetActive(false);// 노트 비활성화 
             notePool.clickQueue.Enqueue(gameObject); // 오브젝트를 다시 풀에 넣음
@@ -66,8 +70,8 @@ public class ClickNote : MonoBehaviour, IPointerDownHandler
         double bestTime = 0.08; // 최고 판정 기준 : 0.1초
         if (Math.Abs(pressTime - checkTime) <= bestTime)
         {
-            ScoreManager.instance.IncreaseCombo(true); // 콤보 추가
-            ScoreManager.instance.IncreaseScore(100); // 점수 추가
+            scoreManager.IncreaseCombo(true); // 콤보 추가
+            scoreManager.IncreaseScore(100, bonus, combo, perfect, gold); // 점수 추가
             effect.NoteHitEffect(); // 타격 이펙트 출력
             effect.JudgeEffect("perfect"); // 판정 이벤트 출력
             SetActive(false); // 노트 비활성화
@@ -79,10 +83,9 @@ public class ClickNote : MonoBehaviour, IPointerDownHandler
         else
         {
             float lerpValue = EvaluatePress((float)pressTime); // 판정 시간의 정확도를 계산
-            Debug.Log("러프밸류:" + lerpValue);
             if (lerpValue < 0.1)
             {
-                ScoreManager.instance.IncreaseCombo(false); //콤보 제거
+                scoreManager.IncreaseCombo(false); //콤보 제거
                 effect.JudgeEffect("miss"); // 놓쳤다고 출력
                 SetActive(false);// 노트 비활성화 
                 notePool.clickQueue.Enqueue(gameObject); // 오브젝트를 다시 풀에 넣음
@@ -90,8 +93,8 @@ public class ClickNote : MonoBehaviour, IPointerDownHandler
             }
             else
             {
-                ScoreManager.instance.IncreaseCombo(true); // 콤보 추가
-                ScoreManager.instance.IncreaseScore((int)(lerpValue * 100)); // 점수는 계산에 따라
+                scoreManager.IncreaseCombo(true); // 콤보 추가
+                scoreManager.IncreaseScore((int)(lerpValue * 100), bonus, combo, perfect, gold); // 점수는 계산에 따라
                 effect.NoteHitEffect(); // 판정 이벤트 출력
                 effect.JudgeEffect("good"); // 이펙트는 good으로
                 SetActive(false); // 노트 비활성화

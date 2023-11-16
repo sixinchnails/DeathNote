@@ -6,12 +6,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class StageManager : MonoBehaviour
 {
     AudioSource audioSource; // 오디오 정보
     MusicManager musicManager; // 노래 정보를 담고 있는 객체
-    ScoreManager scoreManager; // 점수 정보를 담고 있는 객체
    
     public int beatNumber = 0; // 진행중인 현재의 비트 번호
     public double timePerBeat; // 비트 당 걸리는 시간
@@ -27,9 +25,9 @@ public class StageManager : MonoBehaviour
     public Color semiparent; // 최종 색상 (반투명색)
     public Color transparent; // 원래 색상 (투명색)
     private bool running = false; // 음악 실행중 여부
-    private bool hasPlayed = false; // 음악 실행 여부
+ 
 
-
+    [SerializeField] ScoreManager scoreManager;
     [SerializeField] Image thumbnail;
     [SerializeField] GameObject readyUI;
     [SerializeField] TextMeshProUGUI title; // 곡 제목
@@ -43,7 +41,6 @@ public class StageManager : MonoBehaviour
     {
         transparent = new Color(white.r, white.g, white.b, 0); // 투명색상
         semiparent = new Color(white.r, white.g, white.b, 150f / 255f); // 최대색상
-
     }
 
     void Start()
@@ -53,9 +50,7 @@ public class StageManager : MonoBehaviour
         
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
-        scoreManager = ScoreManager.instance;
         audioSource = musicManager.audioSource;
-        Debug.Log("길이:"+musicManager.beat.Length);
         // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
         timePerBeat = (60d / musicManager.bpm);
         // song은 2마디( musicManger.songBeat의 두배 )에서 시작
@@ -68,21 +63,30 @@ public class StageManager : MonoBehaviour
         {
             noteQueue.Enqueue(musicManager.getNoteData(i));
         }
-        
+
         // 내가 장착한 소울 목록을 가져옵니다.
         mySoulList = SkillManager.instance.equip;
-        Debug.Log(mySoulList.Count);
 
         StartCoroutine(ReadyFinish());
-        StartCoroutine(StartMusic(4.0f));
+        StartCoroutine(StartMusic(2.0f));
     }
 
     IEnumerator ReadyFinish()
     {
-        yield return new WaitForSeconds(2.0f); // 2초의 시간을 기다림
-        readyUI.SetActive(false); // 다시 안보이게함
+        int idx = 0;
+        string[] text = { "<color=#000000>R</color>EADY", "R<color=#000000>E</color>ADY" ,
+            "RE<color=#000000>A</color>DY", "REA<color=#000000>D</color>Y", "READ<color=#000000>Y</color>",
+            "REA<color=#000000>D</color>Y", "RE<color=#000000>A</color>DY", "R<color=#000000>E</color>ADY", "<color=#000000>R</color>EADY" };
+        TextMeshProUGUI textMesh = readyUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        while (idx < 9)
+        {
+            textMesh.text = text[idx++];
+            yield return new WaitForSeconds(0.2f); // 0.2초의 시간을 기다림
+        }
 
-        
+        readyUI.GetComponent<Animator>().SetTrigger("finish");
+        yield return new WaitForSeconds(0.3f);
+        readyUI.SetActive(false); // 다시 안보이게함 
     }
 
     IEnumerator StartMusic(float delay)
@@ -91,12 +95,13 @@ public class StageManager : MonoBehaviour
 
         // 노래가 재생중이라고 변경
         running = true;
-        // 노래가 재생된 이력이 있다고 변경
-        hasPlayed = true;
+
         // 게임 시작시간을 저장
         gameStart = AudioSettings.dspTime;
         // 오디오 재생
-        audioSource.PlayDelayed((float)timePerBeat * 4 + musicManager.offset + musicManager.customOffset + speed);
+        delay = Mathf.Max((float)timePerBeat * 4 + musicManager.offset + musicManager.customOffset + 1.0f, 0);
+        audioSource.PlayDelayed(delay);
+
         StartCoroutine(UpdateNote());
     }
 
@@ -105,12 +110,12 @@ public class StageManager : MonoBehaviour
 
         while (running)
         {
-            // 썸네일의 투명도를 고침
-            float lerpValue = Mathf.Clamp01(((float)scoreManager.totalPercent / (musicManager.totalNote * 100))); // 보간(Clamp는 0~1로 제한)
+            // 썸네일의 투명도를 고침 
             currentTime = AudioSettings.dspTime; // 현재시간
             int now = (int)((currentTime - gameStart) / timePerBeat);
+            
 
-            if(beatNumber != now)
+            if (beatNumber != now)
             {
                 beatNumber = now;
                 // 메트로눔 실행
@@ -171,8 +176,6 @@ public class StageManager : MonoBehaviour
             note.animator.SetInteger("ecol", 0);
         }
 
-
-
     }
 
     public void SceneChange()
@@ -224,7 +227,7 @@ public class StageManager : MonoBehaviour
                         // 이번에 발동할 스킬번호를 결정
                         int skillNumber = SkillManager.instance.GetSkill(turnSoul, note);
                         // effect의 애니메이터의 인티저를 변경
-                        Debug.Log(skillNumber);
+                       
                         effect.hitAnimator.SetInteger("Num", skillNumber);
                     }
 
