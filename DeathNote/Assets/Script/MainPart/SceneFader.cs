@@ -8,6 +8,7 @@ public class SceneFader : MonoBehaviour
 {
     public Image fadeOutUIImage;
     public float fadeSpeed = 0.8f;
+    private static bool shouldFadeOut = true;
 
     public enum FadeDirection
     {
@@ -15,10 +16,18 @@ public class SceneFader : MonoBehaviour
         Out // Alpha = 0
     }
 
-    // 씬 로드 후 페이드 인을 시작할 때 호출
     void OnEnable()
     {
-        StartCoroutine(Fade(FadeDirection.Out));
+        if (shouldFadeOut)
+        {
+            StartCoroutine(Fade(FadeDirection.Out));
+        }
+        shouldFadeOut = true; // 다음 번에는 페이드 아웃 실행
+    }
+
+    public static void DisableNextFadeOut()
+    {
+        shouldFadeOut = false;
     }
 
     // 페이드 인/아웃 코루틴

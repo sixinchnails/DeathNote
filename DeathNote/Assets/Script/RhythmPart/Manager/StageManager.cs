@@ -46,36 +46,36 @@ public class StageManager : MonoBehaviour
 
     }
 
-    void Start()
-    {
-        readyUI.SetActive(true);
-        noteQueue = new Queue<NoteData>(); // 노트 큐 선언
+    //void Start()
+    //{
+    //    readyUI.SetActive(true);
+    //    noteQueue = new Queue<NoteData>(); // 노트 큐 선언
         
-        // MusicManager 싱글턴을 불러오고, 노래 설정
-        musicManager = MusicManager.instance;
-        scoreManager = ScoreManager.instance;
-        audioSource = musicManager.audioSource;
-        Debug.Log("길이:"+musicManager.beat.Length);
-        // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
-        timePerBeat = (60d / musicManager.bpm);
-        // song은 2마디( musicManger.songBeat의 두배 )에서 시작
-        songStart = timePerBeat * (musicManager.songBeat * 2);
-        speed = musicManager.bpm / 120;
-        // 노트와 그 이펙트를 연결짓습니다.
+    //    // MusicManager 싱글턴을 불러오고, 노래 설정
+    //    musicManager = MusicManager.instance;
+    //    scoreManager = ScoreManager.instance;
+    //    audioSource = musicManager.audioSource;
+    //    Debug.Log("길이:"+musicManager.beat.Length);
+    //    // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
+    //    timePerBeat = (60d / musicManager.bpm);
+    //    // song은 2마디( musicManger.songBeat의 두배 )에서 시작
+    //    songStart = timePerBeat * (musicManager.songBeat * 2);
+    //    speed = musicManager.bpm / 120;
+    //    // 노트와 그 이펙트를 연결짓습니다.
 
-        // 큐에 각 노트의 데이터를 넣는다.
-        for (int i = 0; i < musicManager.totalNote; i++)
-        {
-            noteQueue.Enqueue(musicManager.getNoteData(i));
-        }
+    //    // 큐에 각 노트의 데이터를 넣는다.
+    //    for (int i = 0; i < musicManager.totalNote; i++)
+    //    {
+    //        noteQueue.Enqueue(musicManager.getNoteData(i));
+    //    }
         
-        // 내가 장착한 소울 목록을 가져옵니다.
-        mySoulList = SkillManager.instance.equip;
-        Debug.Log(mySoulList.Count);
+    //    // 내가 장착한 소울 목록을 가져옵니다.
+    //    mySoulList = SkillManager.instance.equip;
+    //    Debug.Log(mySoulList.Count);
 
-        StartCoroutine(ReadyFinish());
-        StartCoroutine(StartMusic(4.0f));
-    }
+    //    StartCoroutine(ReadyFinish());
+    //    StartCoroutine(StartMusic(4.0f));
+    //}
 
     IEnumerator ReadyFinish()
     {
