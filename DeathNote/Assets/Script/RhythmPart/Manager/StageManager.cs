@@ -6,17 +6,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class StageManager : MonoBehaviour
 {
     AudioSource audioSource; // 오디오 정보
     MusicManager musicManager; // 노래 정보를 담고 있는 객체
-    ScoreManager scoreManager; // 점수 정보를 담고 있는 객체
-   
+
     public int beatNumber = 0; // 진행중인 현재의 비트 번호
     public double timePerBeat; // 비트 당 걸리는 시간
     public Queue<NoteData> noteQueue; // 노트 정보를 담을 큐
-    public float speed ;
+    public float speed;
     public double currentTime; // 현재 게임 시간
     public double gameStart; // 게임 시작 시간
     public double songStart; // 노래 시작 시간
@@ -27,9 +25,9 @@ public class StageManager : MonoBehaviour
     public Color semiparent; // 최종 색상 (반투명색)
     public Color transparent; // 원래 색상 (투명색)
     private bool running = false; // 음악 실행중 여부
-    private bool hasPlayed = false; // 음악 실행 여부
 
 
+    [SerializeField] ScoreManager scoreManager;
     [SerializeField] Image thumbnail;
     [SerializeField] GameObject readyUI;
     [SerializeField] TextMeshProUGUI title; // 곡 제목
@@ -46,43 +44,52 @@ public class StageManager : MonoBehaviour
 
     }
 
-    //void Start()
-    //{
-    //    readyUI.SetActive(true);
-    //    noteQueue = new Queue<NoteData>(); // 노트 큐 선언
-        
-    //    // MusicManager 싱글턴을 불러오고, 노래 설정
-    //    musicManager = MusicManager.instance;
-    //    scoreManager = ScoreManager.instance;
-    //    audioSource = musicManager.audioSource;
-    //    Debug.Log("길이:"+musicManager.beat.Length);
-    //    // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
-    //    timePerBeat = (60d / musicManager.bpm);
-    //    // song은 2마디( musicManger.songBeat의 두배 )에서 시작
-    //    songStart = timePerBeat * (musicManager.songBeat * 2);
-    //    speed = musicManager.bpm / 120;
-    //    // 노트와 그 이펙트를 연결짓습니다.
+    void Start()
+    {
+        readyUI.SetActive(true);
+        noteQueue = new Queue<NoteData>(); // 노트 큐 선언
 
-    //    // 큐에 각 노트의 데이터를 넣는다.
-    //    for (int i = 0; i < musicManager.totalNote; i++)
-    //    {
-    //        noteQueue.Enqueue(musicManager.getNoteData(i));
-    //    }
-        
-    //    // 내가 장착한 소울 목록을 가져옵니다.
-    //    mySoulList = SkillManager.instance.equip;
-    //    Debug.Log(mySoulList.Count);
+        // MusicManager 싱글턴을 불러오고, 노래 설정
+        musicManager = MusicManager.instance;
+        musicManager.gameStart = true;
+        audioSource = musicManager.audioSource;
+        audioSource.Stop();
+        // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
+        timePerBeat = (60d / musicManager.bpm);
+        // song은 2마디( musicManger.songBeat의 두배 )에서 시작
+        songStart = timePerBeat * (musicManager.songBeat * 2);
+        speed = musicManager.bpm / 120;
+        // 노트와 그 이펙트를 연결짓습니다.
 
-    //    StartCoroutine(ReadyFinish());
-    //    StartCoroutine(StartMusic(4.0f));
-    //}
+        // 큐에 각 노트의 데이터를 넣는다.
+        for (int i = 0; i < musicManager.totalNote; i++)
+        {
+            noteQueue.Enqueue(musicManager.getNoteData(i));
+        }
+
+        // 내가 장착한 소울 목록을 가져옵니다.
+        mySoulList = SkillManager.instance.equip;
+
+        StartCoroutine(ReadyFinish());
+        StartCoroutine(StartMusic(2.0f));
+    }
 
     IEnumerator ReadyFinish()
     {
-        yield return new WaitForSeconds(2.0f); // 2초의 시간을 기다림
-        readyUI.SetActive(false); // 다시 안보이게함
+        int idx = 0;
+        string[] text = { "<color=#000000>R</color>EADY", "R<color=#000000>E</color>ADY" ,
+            "RE<color=#000000>A</color>DY", "REA<color=#000000>D</color>Y", "READ<color=#000000>Y</color>",
+            "REA<color=#000000>D</color>Y", "RE<color=#000000>A</color>DY", "R<color=#000000>E</color>ADY", "<color=#000000>R</color>EADY" };
+        TextMeshProUGUI textMesh = readyUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        while (idx < 9)
+        {
+            textMesh.text = text[idx++];
+            yield return new WaitForSeconds(0.2f); // 0.2초의 시간을 기다림
+        }
 
-        
+        readyUI.GetComponent<Animator>().SetTrigger("finish");
+        yield return new WaitForSeconds(0.3f);
+        readyUI.SetActive(false); // 다시 안보이게함 
     }
 
     IEnumerator StartMusic(float delay)
@@ -91,12 +98,13 @@ public class StageManager : MonoBehaviour
 
         // 노래가 재생중이라고 변경
         running = true;
-        // 노래가 재생된 이력이 있다고 변경
-        hasPlayed = true;
+
         // 게임 시작시간을 저장
         gameStart = AudioSettings.dspTime;
         // 오디오 재생
-        audioSource.PlayDelayed((float)timePerBeat * 4 + musicManager.offset + musicManager.customOffset + speed);
+        delay = Mathf.Max((float)timePerBeat * 4 + musicManager.offset + musicManager.customOffset + 1.0f, 0);
+        audioSource.PlayDelayed(delay);
+
         StartCoroutine(UpdateNote());
     }
 
@@ -105,18 +113,18 @@ public class StageManager : MonoBehaviour
 
         while (running)
         {
-            // 썸네일의 투명도를 고침
-            float lerpValue = Mathf.Clamp01(((float)scoreManager.totalPercent / (musicManager.totalNote * 100))); // 보간(Clamp는 0~1로 제한)
+            // 썸네일의 투명도를 고침 
             currentTime = AudioSettings.dspTime; // 현재시간
             int now = (int)((currentTime - gameStart) / timePerBeat);
 
-            if(beatNumber != now)
+
+            if (beatNumber != now)
             {
                 beatNumber = now;
                 // 메트로눔 실행
                 Metronome(beatNumber);
             }
-            
+
 
             if (noteQueue.Count == 0)
             {
@@ -126,7 +134,7 @@ public class StageManager : MonoBehaviour
 
             yield return null;
         }
-        
+
     }
 
     IEnumerator ExecuteAfterDelay(float delay)
@@ -143,9 +151,16 @@ public class StageManager : MonoBehaviour
         audioSource.Stop();
         audioSource.volume = startVolume; // 원본 볼륨으로 다시 설정 (재생 준비)
 
-        float grade = (float)scoreManager.totalPercent / (musicManager.totalNote * 100);
+        float grade = (float)scoreManager.totalPercent / musicManager.totalNote;
+        int gold = (int)(scoreManager.totalInspirit + scoreManager.totalPercent / 50);
 
-        resultManager.ShowResult(musicManager.musicTitle, grade, scoreManager.score.text);
+        //resultManager.ShowResult(musicManager.musicTitle, grade, scoreManager.score.text, gold);
+        UserManager.instance.userData.gold += gold;
+        if (musicManager.code > UserManager.instance.userData.progress)
+        {
+            UserManager.instance.userData.progress = musicManager.code;
+        }
+        UserManager.instance.SaveData();
         RecordManager.instance.SetMyRank(MusicManager.instance.code, grade, scoreManager.currentScore, SkillManager.instance.equip[0]);
 
     }
@@ -154,7 +169,7 @@ public class StageManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         note.SetActive(true);
-        if(turnSoul != null)
+        if (turnSoul != null)
         {
             note.animator.SetTrigger("Jump");
             note.animator.SetInteger("body", turnSoul.customizes[0]);
@@ -171,13 +186,12 @@ public class StageManager : MonoBehaviour
             note.animator.SetInteger("ecol", 0);
         }
 
-
-
     }
 
     public void SceneChange()
     {
         audioSource.Stop();
+        musicManager.gameStart = false;
         SceneManager.LoadScene("StageScene");
     }
 
@@ -215,16 +229,16 @@ public class StageManager : MonoBehaviour
                     note.SetNoteInfo(effect, notePools[noteData.pos], exactTime + 1.0f, timePerBeat);
                     note.transform.SetAsFirstSibling();
                     // 이번에 사용할 정령을 불러옴
-                    Debug.Log("이번차례:" +soulSeq);
+                    Debug.Log("이번차례:" + soulSeq);
                     Soul turnSoul = mySoulList[soulSeq++];
                     // 다시 돌아가기 위해서, soulSeq를 돌림(0~5, 총 6마리)
                     soulSeq = soulSeq % mySoulList.Count;
-                    if(turnSoul != null)
+                    if (turnSoul != null)
                     {
                         // 이번에 발동할 스킬번호를 결정
                         int skillNumber = SkillManager.instance.GetSkill(turnSoul, note);
                         // effect의 애니메이터의 인티저를 변경
-                        Debug.Log(skillNumber);
+
                         effect.hitAnimator.SetInteger("Num", skillNumber);
                     }
 

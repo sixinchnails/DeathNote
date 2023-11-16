@@ -2,82 +2,125 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager instance;
-    SoulManager soulManager;
-    MusicManager musicManager;
     [SerializeField] public TextMeshProUGUI score = null;
     [SerializeField] public TextMeshProUGUI grade = null;
     [SerializeField] Image[] blur = null;
-    private int totalNote;
-    private int increaseScore = 10; // 노래의 기본 수치
-    private int[] scoreBonus;
-    private int[] scoreCrit;
-    private int[] comboBonus;
+    [SerializeField] Image background = null; 
+   
+    private int totalNote; // 전체 노트 갯수
+
+
     public int currentScore = 0; // 현재 점수
     public int currentCombo = 0; // 현재 콤보
     public int maxCombo = 0; // 최대 콤보
     public int totalPerfect = 0; // 총 퍼펙트
- 
+    public int totalInspirit = 0; // 총 골드
+
+
     public int totalPercent = 0; // 총 퍼센트
 
     public Color white = Color.white; // 어두운 색
-    public Color[] backColor;
+    public Color[] originColor;
     public Color[] finalColor;
-    public Color transparent; // 최종 색상 (반투명색)
+    public Color endparent; // 최종 색상
+    public Color transparent; // 처음 색상 (투명색)
 
 
     void Start()
     {
-        instance = this;
-        backColor = new Color[11];
-        finalColor = new Color[11];
-        for(int i = 0; i < 11; i++)
+        totalNote = MusicManager.instance.totalNote;//전체 노트
+
+        originColor = new Color[12];
+        finalColor = new Color[12];
+        transparent = new Color(Color.white.r, Color.white.g, Color.white.b, 0);
+        endparent = new Color(Color.white.r, Color.white.g, Color.white.b, 0.8f);
+
+        for (int i = 0; i < originColor.Length; i++)
         {
-            backColor[i] = blur[i].color;
-            finalColor[i] = new Color(backColor[i].r, backColor[i].g, backColor[i].b, 0.2f); // 투명색상
+            originColor[i] = blur[i].color; // 블러의 칼라를 originColor[i]
         }
+
+        for (int i = 0; i < 6; i++)
+        {
+            Soul soul = SkillManager.instance.equip[i];
+            // 블러의 칼라를 다시 재설정
+            if (soul == null)
+            {
+                blur[2 * i].color = new Color(originColor[11].r, originColor[11].b, originColor[11].b, 0);
+                blur[2 * i + 1].color = new Color(originColor[11].r, originColor[11].b, originColor[11].b, 0);
+            }
+            else
+            {
+                int body = soul.customizes[2];
+                blur[2 * i].color = new Color(originColor[body].r, originColor[body].b, originColor[body].b, 0);
+                int eyes = soul.customizes[3];
+                blur[2 * i + 1].color = new Color(originColor[eyes].r, originColor[eyes].b, originColor[eyes].b, 0);
+            }
+        }
+
+        for(int i = 0; i < 12; i++)
+        {
+            originColor[i] = new Color(blur[i].color.r, blur[i].color.g, blur[i].color.b, 0); // 시작색상
+            finalColor[i] = new Color(blur[i].color.r, blur[i].color.g, blur[i].color.b, 0.3f); // 투명색상
+        }
+
         score.text = "000,000"; // 스코어 텍스트 초기화
         grade.text = "0.00%"; // 그레이드 텍스트 초기화
     }
 
-    
-
     // 점수를 올리는 메서드
-    public void IncreaseScore(int percent)
+    public void IncreaseScore(int percent, int bonus, int combo, int perfectB, int gold)
     {
         totalPercent += percent; // 퍼센트 점수를 더함
-        
-        if (percent == 100) totalPerfect++; // 퍼펙트일 경우 퍼펙트를 더함
+        float basicScore = (percent / 10.0f) + bonus; // 기본점수x계수 + 판정보너스 + 기본보너스  
 
-        int basicScore = (increaseScore * percent); // 기본점수x계수 + 판정보너스 + 기본보너스
-        float critical = (float)(1  / 100.0); // 1 + (판정보너스+기본보너스)/100      
-        int comboScore = (currentCombo / 50) * 10; // 콤보는 50점 마다 콤보점수 10점씩 추가 
-        
-        currentScore += (int)(basicScore * critical + comboScore);
-        score.text = currentScore.ToString("000,000");
-        Debug.Log(totalPercent);
-        float realGrade = (float)totalPercent / (MusicManager.instance.totalNote * 100);
-        grade.text = (realGrade*100).ToString("F2")+"%";
+        if (percent == 100)
+        {
+            totalPerfect++; // 퍼펙트일 경우 퍼펙트를 더함
+            basicScore += perfectB;
+
+        }
+            
+        if(currentCombo != 0) // 50 콤보마다 추가점수
+        {
+            basicScore += combo;
+        }
+
+        totalInspirit += gold;
+
+        currentScore += (int)(basicScore); // 현재 스코어에 추가
+        score.text = currentScore.ToString("000,000");  // 형식
+      
+        float realGrade = (float)totalPercent / totalNote; // 백분율
+        realGrade = Mathf.Round(realGrade * 1000f) / 1000f; // 소숫점 셋째자리에서 반올림
+        grade.text = realGrade.ToString("F2")+"%"; // 출력
 
 
-        for (int i = 0; i < 11; i++)
+        for (int i = 0; i < 12; i++)
         {
             // lerpValue 계산
 
             // 각 blur[i]에 대한 최대 lerpValue 범위 조정 (i가 증가함에 따라 더 천천히 바뀌도록)
-            float maxLerpRange = 1f - (i * 0.05f); // i가 증가할수록 maxLerpRange 감소
+            float maxLerpRange = 100f - (i * 5f); // i가 증가할수록 maxLerpRange 감소
 
             // baseLerpValue를 조정된 범위에 맞게 스케일링
             float scaledLerpValue = Mathf.Clamp01(realGrade / maxLerpRange);
 
             // 색상 변경
-            blur[i].color = Color.Lerp(backColor[i], finalColor[i], scaledLerpValue);
+            blur[i].color = Color.Lerp(originColor[i], finalColor[i], scaledLerpValue);
+            if(i==0) background.color = Color.Lerp(transparent, endparent, scaledLerpValue);
+            // 크기 변경
+            Vector3 newScale = Vector3.one * 4 * scaledLerpValue; // Vector3.one은 (1, 1, 1)을 의미
+            blur[i].GetComponent<RectTransform>().localScale = newScale;
+
         }
 
 
