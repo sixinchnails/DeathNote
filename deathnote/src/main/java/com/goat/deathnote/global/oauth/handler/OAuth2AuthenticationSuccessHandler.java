@@ -14,13 +14,12 @@ import com.goat.deathnote.global.oauth.info.OAuth2MemberInfo;
 import com.goat.deathnote.global.oauth.info.OAuth2UserInfoFactory;
 import com.goat.deathnote.global.oauth.util.CookieUtil;
 import com.goat.deathnote.global.oauth.repository.OAuth2AuthorizationRequestBasedOnCookieRepository;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,28 +29,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
+@Component
 @RequiredArgsConstructor
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 	private final OAuth2AuthorizationRequestBasedOnCookieRepository authorizationRequestRepository;
 	private final JwtTokenProvider jwtTokenProvider;
 	private final MemberRepository memberRepository;
-
-//	private String redirectUri = "http://localhost:8080/members/login";
-	private String redirectUri = "https://thatsnote.site/members/login";
+	private String redirectUrl = "http://localhost:8080/login-success"; // 여기로 보내짐
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 										Authentication authentication) throws IOException {
-		String email = determineTargetUrl(request, response, authentication);
+		String nickname = determineTargetUrl(request, response, authentication);
 		if (response.isCommitted()) {
 			log.error("Response has already been committed. Unable to redirect");
 			return;
 		}
 
-		request.setAttribute("email", email);
+		request.setAttribute("nickname", nickname);
 		clearAuthenticationAttributes(request, response);
-		getRedirectStrategy().sendRedirect(request, response, redirectUri);
+		getRedirectStrategy().sendRedirect(request, response, redirectUrl);
 	}
 
 	protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response,
@@ -72,24 +70,24 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 		OAuth2MemberInfo memberInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(socialProvider, user.getAttributes());
 		Collection<? extends GrantedAuthority> authorities = ((OidcUser)authentication.getPrincipal()).getAuthorities();
 
-		String socialEmail = memberInfo.getEmail(); // 멤버의 이메일을 받아옴
+		String nickname = memberInfo.getNickname(); // 멤버의 닉네임을 받아옴
 		MemberRole memberRole;
 		if (hasAuthority(authorities, MemberRole.USER.name())) {
 			memberRole = MemberRole.USER;
 		} else return null;
 
-		Member member = memberRepository.findByEmail(socialEmail).orElseThrow(); // 받아온 이메일로 멤버를 찾음
+		Member member = memberRepository.findByNickname(nickname).orElseThrow(); // 받아온 이메일로 멤버를 찾음
 		Token tokenInfo = jwtTokenProvider.createToken(member.getId(),
 			memberRole.name());
 
-		log.info("successHanlder : " + member.getEmail());
+		log.info("successHanlder : " + member.getEmail() + member.getNickname());
 
 		CookieUtil.deleteCookie(request, response, OAuth2AuthorizationRequestBasedOnCookieRepository.REFRESH_TOKEN);
 		CookieUtil.addCookie(response, OAuth2AuthorizationRequestBasedOnCookieRepository.REFRESH_TOKEN,
 			tokenInfo.getRefreshToken(),
 			JwtTokenProvider.getRefreshTokenExpireTimeCookie());
 //		 아까 받아온 redirectUri로 토큰을 보내줌
-		return socialEmail;
+		return nickname;
 	}
 
 	protected void clearAuthenticationAttributes(HttpServletRequest request, HttpServletResponse response) {

@@ -34,7 +34,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
         try {
             return this.process(userRequest, user);
         } catch (Exception ex) {
-            log.error("CustomOAuth2UserService loadUser Error {} ", ex.getMessage());
+            log.error("OAuth2UserService loadUser Error {} ", ex.getMessage());
             throw new InternalAuthenticationServiceException(ex.getMessage(), ex.getCause());
         }
     }
@@ -55,9 +55,9 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
         }
 //        String jwtToken = JwtTokenProvider.generateToken(savedMember.getId());
 
-        // 그리고 principal 만들어줌
-        return MemberPrincipal.create(savedMember, user.getAttributes(), savedMember.getRole());
-//        return null;
+        MemberPrincipal principal = MemberPrincipal.create(savedMember, user.getAttributes(), savedMember.getRole());
+
+        return principal;
     }
 
     private Member createMember(OAuth2MemberInfo memberInfo, SocialProvider socialProvider) {
