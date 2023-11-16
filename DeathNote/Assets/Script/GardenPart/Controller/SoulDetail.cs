@@ -176,8 +176,10 @@ public class SoulDetail : MonoBehaviour
         int prevIdx = (nowSoul.id + length - 1) % length;
         Soul prevSoul = UserManager.instance.userData.souls[prevIdx];
         GardenSoul prev = prevSoul.gardenSoul;
+        activeSoul = prev;
         prev.CameraZoom();
         InitBook(UserManager.instance.userData.souls[prevIdx]);
+        ChangeBookPage1();
     }
 
     // ¾Æ·§ Á¤·É
@@ -187,8 +189,10 @@ public class SoulDetail : MonoBehaviour
         int nextIdx = (nowSoul.id + 1) % length;
         Soul nextSoul = UserManager.instance.userData.souls[nextIdx];
         GardenSoul next = nextSoul.gardenSoul;
+        activeSoul = next;
         next.CameraZoom();
         InitBook(UserManager.instance.userData.souls[nextIdx]);
+        ChangeBookPage1();
     }
 
 

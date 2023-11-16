@@ -431,6 +431,7 @@ MonoBehaviour:
   soulName: {fileID: 5713312864094819967}
   boundaryTransform: {fileID: 0}
   userCanvas: {fileID: 7551189565903759845}
+  zoomed: 0
   requiredHoldTime: 3
   transforms:
   - {fileID: 2545091731886215190}

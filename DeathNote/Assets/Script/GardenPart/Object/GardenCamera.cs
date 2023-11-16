@@ -7,8 +7,8 @@ public class GardenCamera : MonoBehaviour
 {
     public float speed = 5.0f;               // 카메라의 이동 속도
     public SpriteRenderer backgroundSprite;  // 배경 스프라이트
-    public float minSize = 5.0f; // 카메라의 최소 Orthographic Size
-    public float maxSize = 100.0f; // 카메라의 최대 Orthographic Size
+    public float minSize = 10.0f; // 카메라의 최소 Orthographic Size
+    public float maxSize = 80.0f; // 카메라의 최대 Orthographic Size
     private Camera cam;
     private Vector2 spriteHalfSize;
     private float camHalfHeight;

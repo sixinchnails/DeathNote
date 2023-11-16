@@ -12,7 +12,9 @@ public class MainManager : MonoBehaviour
     
     public void Awake()
     {
+
         string myNick = UserManager.instance.userData.nickname;
+        Debug.Log(myNick);
         int myProgress = UserManager.instance.userData.progress;
 
         nickname.text = myNick;
