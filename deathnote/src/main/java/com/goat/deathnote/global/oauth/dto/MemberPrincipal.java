@@ -27,6 +27,7 @@ import lombok.Setter;
 public class MemberPrincipal implements OAuth2User, UserDetails, OidcUser {
 	private final String email;
 	private final String name;
+	private final String nickname;
 	private final String password;
 	private final SocialProvider socialProvider;
 	private final MemberRole roleType;
@@ -34,9 +35,12 @@ public class MemberPrincipal implements OAuth2User, UserDetails, OidcUser {
 	private Map<String, Object> attributes;
 
 	public static MemberPrincipal create(Member member, MemberRole memberRole) {
+		System.out.println(1);
+		System.out.println(member);
 		return new MemberPrincipal(member.getEmail(),
 			member.getEmail(),
-			null,
+			member.getNickname(),
+			member.getNickname(),
 			member.getProvider(),
 			memberRole,
 			Collections.singletonList(new SimpleGrantedAuthority(memberRole.name())));
@@ -44,7 +48,12 @@ public class MemberPrincipal implements OAuth2User, UserDetails, OidcUser {
 
 	public static MemberPrincipal create(Member member, Map<String, Object> attributes, MemberRole memberRole) {
 		MemberPrincipal memberPrincipal = create(member, memberRole);
-		memberPrincipal.setAttributes(attributes);
+		System.out.println(2);
+		System.out.println(memberPrincipal);
+
+		if (attributes != null) {
+			memberPrincipal.setAttributes(attributes);
+		}
 
 		return memberPrincipal;
 	}
@@ -98,4 +107,5 @@ public class MemberPrincipal implements OAuth2User, UserDetails, OidcUser {
 	public OidcIdToken getIdToken() {
 		return null;
 	}
+
 }
