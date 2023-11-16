@@ -9,6 +9,7 @@ public class ResultManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI songTitle;
     [SerializeField] GameObject paper;
     [SerializeField] GameObject content;
+    [SerializeField] TextMeshProUGUI myGold;
     [SerializeField] TextMeshProUGUI myPercent;
     [SerializeField] TextMeshProUGUI myScore;
     [SerializeField] Animator animator;
@@ -21,12 +22,12 @@ public class ResultManager : MonoBehaviour
         animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
-    public void ShowResult(string title, float percent, string score)
+    public void ShowResult(string title, float percent, string score, int gold)
     {
         songTitle.text = title;
         myPercent.text = percent.ToString("F2");
         myScore.text = score;
-
+        myGold.text = "+" + gold.ToString();
         gameObject.SetActive(true);
         StartCoroutine(ShowPaper());
     }

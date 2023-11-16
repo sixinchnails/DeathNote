@@ -25,6 +25,10 @@ public class LoadingController : MonoBehaviour
 
     IEnumerator LoadSceneProcess()
     {
+        progressBar.fillAmount = 0;
+
+        yield return new WaitForSeconds(2.0f);
+
         //비동기 방식이라서 씬을 불러오는 도중에 다른 작업이 가능하다
         AsyncOperation op  = SceneManager.LoadSceneAsync(nextScene);
         //씬 로딩을 잠깐 멈춰서 로딩씬이 너무 빨리 넘어가지 않게 한다(페이크 로딩)

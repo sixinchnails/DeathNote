@@ -13,7 +13,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI score = null;
     [SerializeField] public TextMeshProUGUI grade = null;
     [SerializeField] Image[] blur = null;
-    [SerializeField] Image background = null; 
+    [SerializeField] Image background = null;
+    [SerializeField] Sprite[] sprites = null;
    
     private int totalNote; // 전체 노트 갯수
 
@@ -37,7 +38,22 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         totalNote = MusicManager.instance.totalNote;//전체 노트
-
+        int code = MusicManager.instance.code;
+        switch (code)
+        {
+            case 401: background.sprite = sprites[0]; break;
+            case 402: background.sprite = sprites[1]; break;
+            case 403: background.sprite = sprites[2]; break;
+            case 404: background.sprite = sprites[3]; break;
+            case 501: background.sprite = sprites[4]; break;
+            case 502: background.sprite = sprites[5]; break;
+            case 503: background.sprite = sprites[6]; break;
+            case 504: background.sprite = sprites[7]; break;
+            case 601: background.sprite = sprites[8]; break;
+            case 602: background.sprite = sprites[9]; break;
+            case 603: background.sprite = sprites[10]; break;
+            case 604: background.sprite = sprites[11]; break;
+        }
         originColor = new Color[12];
         finalColor = new Color[12];
         transparent = new Color(Color.white.r, Color.white.g, Color.white.b, 0);

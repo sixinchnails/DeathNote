@@ -97,12 +97,12 @@ public class LoginManager : MonoBehaviour
         if (load != 3) return;
         if(UserManager.instance.userData.progress > 0)
         {
-
+             LoadingController.LoadScene("MainScene");
         }
         else
         {
             // SceneManager.LoadScene("OpeningScene 1");
-            SceneManager.LoadScene("MainScene");
+            LoadingController.LoadScene("MainScene");
         }
     }
 
@@ -206,8 +206,13 @@ public class LoginManager : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
+                Debug.Log(www.downloadHandler.text);
                 // 만약 로그인에 실패한다는 것은, 이 닉네임이 등록이 안되었다는 것 
                 signButton.SetActive(true);
+            }
+            else
+            {
+                Debug.Log(www.downloadHandler.text);
             }
         }
     }
