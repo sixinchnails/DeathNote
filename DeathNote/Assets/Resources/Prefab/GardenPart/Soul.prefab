@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   boundaryTransform: {fileID: 0}
+  requiredHoldTime: 3
   sprites:
   - {fileID: 3085578316162567025}
   - {fileID: 7070307594635996414}

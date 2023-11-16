@@ -10,11 +10,11 @@ public class StageManager : MonoBehaviour
 {
     AudioSource audioSource; // 오디오 정보
     MusicManager musicManager; // 노래 정보를 담고 있는 객체
-   
+
     public int beatNumber = 0; // 진행중인 현재의 비트 번호
     public double timePerBeat; // 비트 당 걸리는 시간
     public Queue<NoteData> noteQueue; // 노트 정보를 담을 큐
-    public float speed ;
+    public float speed;
     public double currentTime; // 현재 게임 시간
     public double gameStart; // 게임 시작 시간
     public double songStart; // 노래 시작 시간
@@ -25,7 +25,7 @@ public class StageManager : MonoBehaviour
     public Color semiparent; // 최종 색상 (반투명색)
     public Color transparent; // 원래 색상 (투명색)
     private bool running = false; // 음악 실행중 여부
- 
+
 
     [SerializeField] ScoreManager scoreManager;
     [SerializeField] Image thumbnail;
@@ -41,17 +41,17 @@ public class StageManager : MonoBehaviour
     {
         transparent = new Color(white.r, white.g, white.b, 0); // 투명색상
         semiparent = new Color(white.r, white.g, white.b, 150f / 255f); // 최대색상
-        
     }
 
     void Start()
     {
         readyUI.SetActive(true);
         noteQueue = new Queue<NoteData>(); // 노트 큐 선언
-        
+
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
         musicManager.gameStart = true;
+        musicManager.SetAIWFCIU();
         audioSource = musicManager.audioSource;
         audioSource.Stop();
         // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
@@ -116,7 +116,7 @@ public class StageManager : MonoBehaviour
             // 썸네일의 투명도를 고침 
             currentTime = AudioSettings.dspTime; // 현재시간
             int now = (int)((currentTime - gameStart) / timePerBeat);
-            
+
 
             if (beatNumber != now)
             {
@@ -124,7 +124,7 @@ public class StageManager : MonoBehaviour
                 // 메트로눔 실행
                 Metronome(beatNumber);
             }
-            
+
 
             if (noteQueue.Count == 0)
             {
@@ -134,7 +134,7 @@ public class StageManager : MonoBehaviour
 
             yield return null;
         }
-        
+
     }
 
     IEnumerator ExecuteAfterDelay(float delay)
@@ -152,6 +152,7 @@ public class StageManager : MonoBehaviour
         audioSource.volume = startVolume; // 원본 볼륨으로 다시 설정 (재생 준비)
 
         float grade = (float)scoreManager.totalPercent / musicManager.totalNote;
+
         int gold = (int)(scoreManager.totalInspirit + scoreManager.totalPercent/50);
         
         resultManager.ShowResult(musicManager.musicTitle, grade, scoreManager.score.text, gold);
@@ -169,7 +170,7 @@ public class StageManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         note.SetActive(true);
-        if(turnSoul != null)
+        if (turnSoul != null)
         {
             note.animator.SetTrigger("Jump");
             note.animator.SetInteger("body", turnSoul.customizes[0]);
@@ -229,16 +230,16 @@ public class StageManager : MonoBehaviour
                     note.SetNoteInfo(effect, notePools[noteData.pos], exactTime + 1.0f, timePerBeat);
                     note.transform.SetAsFirstSibling();
                     // 이번에 사용할 정령을 불러옴
-                    Debug.Log("이번차례:" +soulSeq);
+                    Debug.Log("이번차례:" + soulSeq);
                     Soul turnSoul = mySoulList[soulSeq++];
                     // 다시 돌아가기 위해서, soulSeq를 돌림(0~5, 총 6마리)
                     soulSeq = soulSeq % mySoulList.Count;
-                    if(turnSoul != null)
+                    if (turnSoul != null)
                     {
                         // 이번에 발동할 스킬번호를 결정
                         int skillNumber = SkillManager.instance.GetSkill(turnSoul, note);
                         // effect의 애니메이터의 인티저를 변경
-                       
+
                         effect.hitAnimator.SetInteger("Num", skillNumber);
                     }
 

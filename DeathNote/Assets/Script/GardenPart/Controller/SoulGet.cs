@@ -27,7 +27,6 @@ public class SoulGet : MonoBehaviour
     // 제일 먼저, UI를 띄워야 한다. 버튼을 이용한 UI다.
     public void EnableUI()
     {
-
         if (!soulGetUI.activeSelf)
         {
             gardenManager.CloseAllUi(); // 모든 UI 창을 닫음

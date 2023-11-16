@@ -6,18 +6,42 @@ public class GameStartController : MonoBehaviour
 {
     public Text countdownText;
     public Text scoreText;
-    public Animator backgroundAnimator; // 배경 애니메이터
-    public ColliderMove colliderMoveScript; // ColliderMove 스크립트
-    public Rigidbody2D controlledRigidbody; // 제어할 Rigidbody 2D
+    public Animator backgroundAnimator;
+    public ColliderMove colliderMoveScript;
+    public Rigidbody2D controlledRigidbody;
+
+    public static bool shouldStartCountdown = true; // 처음에 true로 설정
 
     private void Start()
     {
-        scoreText.gameObject.SetActive(false); // 스코어 텍스트를 숨깁니다.
-        backgroundAnimator.enabled = false; // 배경 애니메이션을 비활성화합니다.
-        colliderMoveScript.StopMoving(); // 움직임을 정지합니다.
-        controlledRigidbody.simulated = false; // 물리 시뮬레이션을 정지합니다.
+        if (shouldStartCountdown)
+        {
+            InitGameStart();
+            StartCoroutine(StartCountdown());
+        }
+        else
+        {
+            InitGameResume(); // 카운트다운 없이 게임 재개
+        }
+    }
 
-        StartCoroutine(StartCountdown());
+    private void InitGameStart()
+    {
+        // 카운트다운 시작에 필요한 초기화
+        scoreText.gameObject.SetActive(false);
+        backgroundAnimator.enabled = false;
+        colliderMoveScript.StopMoving();
+        controlledRigidbody.simulated = false;
+    }
+
+    private void InitGameResume()
+    {
+        // 카운트다운 없이 게임 재개에 필요한 초기화
+        countdownText.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(true);
+        backgroundAnimator.enabled = true;
+        colliderMoveScript.StartMoving();
+        controlledRigidbody.simulated = true;
     }
 
     private IEnumerator StartCountdown()
@@ -39,5 +63,10 @@ public class GameStartController : MonoBehaviour
         backgroundAnimator.enabled = true; // 배경 애니메이션을 활성화합니다.
         colliderMoveScript.StartMoving(); // 움직임을 재개합니다.
         controlledRigidbody.simulated = true; // 물리 시뮬레이션을 재개합니다.
+    }
+
+    public static void ResetCountdown()
+    {
+        shouldStartCountdown = false; // 카운트다운을 비활성화
     }
 }
