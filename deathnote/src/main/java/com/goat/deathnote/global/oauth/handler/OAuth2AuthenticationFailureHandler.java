@@ -28,6 +28,9 @@ public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationF
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 										AuthenticationException exception) throws IOException, ServletException {
 
+		// 실패 시 이동할 URL을 지정
+		String failureUrl = "https://thatsnote.site/login-failed";
+
 		String targetUrl = CookieUtil.getCookie(request,
 				OAuth2AuthorizationRequestBasedOnCookieRepository.REDIRECT_URI_PARAM_COOKIE_NAME)
 			.map(Cookie::getValue)
@@ -41,6 +44,6 @@ public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationF
 
 		oAuth2AuthorizationRequestBasedOnCookieRepository.removeAuthorizationRequestCookies(request, response);
 
-		getRedirectStrategy().sendRedirect(request, response, targetUrl);
+		getRedirectStrategy().sendRedirect(request, response, failureUrl);
 	}
 }

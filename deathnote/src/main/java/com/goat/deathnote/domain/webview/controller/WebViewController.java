@@ -16,6 +16,12 @@ public class WebViewController {
             model.addAttribute("message", "Login successful!");
             model.addAttribute("nickname", principal.getNickname());
         }
-        return "login";
+        return "loginSuccess";
     }
+
+    @GetMapping("/login-failed")
+    public String loginFailed() {
+        return "loginFailed";
+    }
+
 }
