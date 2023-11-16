@@ -22,7 +22,6 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/**").hasRole(MemberRole.USER.name()) // 특정 ROLE을 가진 사용자만 접근 가능하도록 설정
                 .anyRequest().permitAll() // 모두 접근 가능하도록 설정
                 .and()
 //                .logout()
