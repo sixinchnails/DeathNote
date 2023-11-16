@@ -14,6 +14,7 @@ public class GardenChange : MonoBehaviour
     [SerializeField] Animator lessMoney;
     [SerializeField] Button buyButton;
     [SerializeField] Image gardenCurrentImage;
+    [SerializeField] GameObject purchaseButton;
     [SerializeField] Sprite[] sprites;
     [SerializeField] TextMeshProUGUI menuUI;
     [SerializeField] GameObject[] particles;
@@ -67,9 +68,15 @@ public class GardenChange : MonoBehaviour
     public void ChangeGardenMarket()
     {
         gardenCurrentName.text = gardenName[page];
+        gardenCurrentImage.sprite = sprites[page];
 
-        gardenCurrentImage.sprite = Resources.Load<Sprite>("Image/Garden/Background/" + gardenImage[page]);
+        foreach(Garden garden in UserManager.instance.userData.gardens)
+        {
+            if(garden.type == page)
+            {
 
+            }
+        }
         if (gardenPrice[page] == 0)
         {
             gardenCurrentPrice.text = "¿Ãµø";

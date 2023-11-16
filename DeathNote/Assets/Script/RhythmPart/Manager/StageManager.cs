@@ -41,6 +41,7 @@ public class StageManager : MonoBehaviour
     {
         transparent = new Color(white.r, white.g, white.b, 0); // 투명색상
         semiparent = new Color(white.r, white.g, white.b, 150f / 255f); // 최대색상
+        
     }
 
     void Start()
@@ -50,7 +51,9 @@ public class StageManager : MonoBehaviour
         
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
+        musicManager.gameStart = true;
         audioSource = musicManager.audioSource;
+        audioSource.Stop();
         // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
         timePerBeat = (60d / musicManager.bpm);
         // song은 2마디( musicManger.songBeat의 두배 )에서 시작
@@ -148,9 +151,16 @@ public class StageManager : MonoBehaviour
         audioSource.Stop();
         audioSource.volume = startVolume; // 원본 볼륨으로 다시 설정 (재생 준비)
 
-        float grade = (float)scoreManager.totalPercent / (musicManager.totalNote * 100);
-
-        resultManager.ShowResult(musicManager.musicTitle, grade, scoreManager.score.text);
+        float grade = (float)scoreManager.totalPercent / musicManager.totalNote;
+        int gold = (int)(scoreManager.totalInspirit + scoreManager.totalPercent/50);
+        
+        resultManager.ShowResult(musicManager.musicTitle, grade, scoreManager.score.text, gold);
+        UserManager.instance.userData.gold += gold;
+        if(musicManager.code > UserManager.instance.userData.progress)
+        {
+            UserManager.instance.userData.progress = musicManager.code;
+        }
+        UserManager.instance.SaveData();
         RecordManager.instance.SetMyRank(MusicManager.instance.code, grade, scoreManager.currentScore, SkillManager.instance.equip[0]);
 
     }
@@ -181,6 +191,7 @@ public class StageManager : MonoBehaviour
     public void SceneChange()
     {
         audioSource.Stop();
+        musicManager.gameStart = false;
         SceneManager.LoadScene("StageScene");
     }
 
