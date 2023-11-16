@@ -41,7 +41,6 @@ public class StageManager : MonoBehaviour
     {
         transparent = new Color(white.r, white.g, white.b, 0); // 투명색상
         semiparent = new Color(white.r, white.g, white.b, 150f / 255f); // 최대색상
-
     }
 
     void Start()
@@ -152,11 +151,12 @@ public class StageManager : MonoBehaviour
         audioSource.volume = startVolume; // 원본 볼륨으로 다시 설정 (재생 준비)
 
         float grade = (float)scoreManager.totalPercent / musicManager.totalNote;
-        int gold = (int)(scoreManager.totalInspirit + scoreManager.totalPercent / 50);
 
-        //resultManager.ShowResult(musicManager.musicTitle, grade, scoreManager.score.text, gold);
+        int gold = (int)(scoreManager.totalInspirit + scoreManager.totalPercent/50);
+        
+        resultManager.ShowResult(musicManager.musicTitle, grade, scoreManager.score.text, gold);
         UserManager.instance.userData.gold += gold;
-        if (musicManager.code > UserManager.instance.userData.progress)
+        if(musicManager.code > UserManager.instance.userData.progress)
         {
             UserManager.instance.userData.progress = musicManager.code;
         }

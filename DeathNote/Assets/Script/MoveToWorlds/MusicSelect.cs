@@ -63,9 +63,9 @@ public class MusicSelect : MonoBehaviour
         }
 
         LoadRanking(); // UI 호출
+        MusicManager.instance.SetMusic(songProgressData[world * 4 + idx], customOffset);
 
         limit = 0;
-        idx = 0;
         w = Screen.width;
         h = Screen.height;
         
@@ -81,6 +81,7 @@ public class MusicSelect : MonoBehaviour
         if(recordCoroutine != null) StopCoroutine(recordCoroutine); // 비동기 통신이 진행중이면 멈춘다.
 
         songTitle.text = songTitlesData[world*4 + idx]; // 노래 제목 설정
+      
         songThumb.sprite = songThumbnailData[world * 4 + idx]; // 노래 사진 설정
         int score = 0;
         float grade = 0.0f;
@@ -191,8 +192,7 @@ public class MusicSelect : MonoBehaviour
     {
         Debug.Log(songProgressData[world * 4 + idx]);
         PlayerPrefs.SetFloat(songProgressData[idx].ToString(), customOffset); // 커스텀 오프셋 저장
-        MusicManager.instance.SetMusic(songProgressData[world * 4 + idx], customOffset);
-        SceneManager.LoadSceneAsync("ButtonRhythmPart");
+        LoadingController.LoadScene("RhythmGameScene");
     }
 
 
@@ -235,7 +235,8 @@ public class MusicSelect : MonoBehaviour
             }
         }
         LoadRanking();
-        
+        MusicManager.instance.SetMusic(songProgressData[world * 4 + idx], customOffset);
+
     }
 
     public void MoveBack()
@@ -274,6 +275,6 @@ public class MusicSelect : MonoBehaviour
             }
         }
         LoadRanking();
-        
+        MusicManager.instance.SetMusic(songProgressData[world * 4 + idx], customOffset);
     }
 }

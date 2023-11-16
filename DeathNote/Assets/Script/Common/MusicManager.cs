@@ -52,7 +52,6 @@ public class MusicManager : MonoBehaviour
     public string musicTitle; // 음악의 제목
     public float musicLength; // 음악의 길이
     public float musicEnd; // 음악이 끝나는 시간
-
     public int totalNote; // 총 노트의 갯수
     public int bpm = 0; // beats per minute : 1분당 비트 수 
     public int songBeat = 4; // 한 마디의 비트 수 
@@ -78,8 +77,6 @@ public class MusicManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
 
     void Start()
     {
@@ -146,7 +143,7 @@ public class MusicManager : MonoBehaviour
             audioSource.clip = musicClips[sceneIndex];
             audioSource.Play();
         }
-        else if (sceneIndex == 4)
+        else if(sceneIndex == 4)
         {
             fadeCoroutine = StartCoroutine(PlayMusicWithFadeOut());
         }
@@ -268,7 +265,6 @@ public class MusicManager : MonoBehaviour
         return new NoteData(beat[idx], pos[idx], length[idx]);
     }
 
-
     // 음악 미리듣기 
     IEnumerator PlayMusicWithFadeOut()
     {
@@ -305,7 +301,6 @@ public class MusicManager : MonoBehaviour
             // 필요한 경우 음악 다시 재생
             audioSource.Play();
         }
-
     }
 
     public void SetHowAboutYou()
@@ -313,7 +308,6 @@ public class MusicManager : MonoBehaviour
         AudioClip clip = Resources.Load<AudioClip>("Sound/HowAboutYou");
         audioSource.clip = clip;
         musicLength = clip.length;
-
         musicTitle = "HowAboutYou";
         bpm = 98;
         songBeat = 4;

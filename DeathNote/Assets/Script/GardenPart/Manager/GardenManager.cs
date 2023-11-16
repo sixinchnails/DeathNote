@@ -25,7 +25,6 @@ public class GardenManager : MonoBehaviour
     [SerializeField] GameObject gardenPurchaseUI;
     [SerializeField] GameObject soulPurchaseUI;
 
-    private Vector3 UIPos;
     private float speed = 80000.0f;
     private bool open;
 
@@ -38,7 +37,6 @@ public class GardenManager : MonoBehaviour
     void Awake()
     {
         location = -1;
-        UIPos = menuUI.transform.localPosition; // 메뉴 UI의 초기위치
         if(UserManager.instance.userData.progress < 500)
         {
             composeButton.GetComponent<Image>().color = Color.black;
@@ -98,20 +96,6 @@ public class GardenManager : MonoBehaviour
         ActiveSoul(soul);
     }
 
-    public void OpenMenu()
-    {
-        if(coroutine != null) StopCoroutine(coroutine);
-        if (!open)
-        {
-            coroutine = StartCoroutine(MoveToPosition(menuUI.transform, new Vector3(0, UIPos.y)));
-            open = true;
-        }
-        else
-        {
-            coroutine = StartCoroutine(MoveToPosition(menuUI.transform, UIPos));
-            open = false;
-        }
-    }
 
     IEnumerator MoveToPosition(Transform transform, Vector3 position)
     {
