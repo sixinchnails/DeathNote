@@ -3550,6 +3550,7 @@ GameObject:
   - component: {fileID: 1679394539}
   - component: {fileID: 1679394538}
   - component: {fileID: 1679394540}
+  - component: {fileID: 1679394541}
   m_Layer: 5
   m_Name: PaperBackGround
   m_TagString: Untagged
@@ -3635,6 +3636,21 @@ MonoBehaviour:
   - {fileID: 1690563188}
   newStory: {fileID: 1690563184}
   nickname: {fileID: 1548132285}
+--- !u!114 &1679394541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679394536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1688083063
 GameObject:
   m_ObjectHideFlags: 0
