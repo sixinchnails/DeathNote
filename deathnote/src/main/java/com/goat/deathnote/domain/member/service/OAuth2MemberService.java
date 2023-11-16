@@ -4,7 +4,6 @@ import com.goat.deathnote.domain.member.entity.Member;
 import com.goat.deathnote.domain.member.entity.MemberRole;
 import com.goat.deathnote.domain.member.entity.SocialProvider;
 import com.goat.deathnote.domain.member.repository.MemberRepository;
-import com.goat.deathnote.global.jwt.JwtTokenProvider;
 import com.goat.deathnote.global.oauth.dto.MemberPrincipal;
 import com.goat.deathnote.global.oauth.info.OAuth2MemberInfo;
 import com.goat.deathnote.global.oauth.info.OAuth2UserInfoFactory;
@@ -19,6 +18,8 @@ import org.springframework.security.authentication.InternalAuthenticationService
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Optional;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -29,6 +30,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User user = super.loadUser(userRequest); // 유저를 불러옴
+        System.out.println(user);
         try {
             return this.process(userRequest, user);
         } catch (Exception ex) {
@@ -44,22 +46,24 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
         // 얻어온 프로바이더로 해당 소셜에 맞는 유저 정보 가져옴
         OAuth2MemberInfo memberInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(socialProvider, user.getAttributes());
         // 해당 유저가 존재하는지 확인후 존재하지 않으면 회원가입
-        Member foundMember = memberRepository.findByEmail(memberInfo.getEmail()).orElseThrow();
+        Optional<Member> foundMember = memberRepository.findOneByEmail(memberInfo.getEmail());
         Member savedMember;
-        if (foundMember == null) {
+        if (foundMember.isEmpty()) {
             savedMember = createMember(memberInfo, socialProvider);
         } else {
-            savedMember = foundMember;
+            savedMember = foundMember.get();
         }
 //        String jwtToken = JwtTokenProvider.generateToken(savedMember.getId());
 
         // 그리고 principal 만들어줌
         return MemberPrincipal.create(savedMember, user.getAttributes(), savedMember.getRole());
+//        return null;
     }
 
     private Member createMember(OAuth2MemberInfo memberInfo, SocialProvider socialProvider) {
         Member member = Member.builder()
                 .name(memberInfo.getName())
+                .nickname(memberInfo.getNickname())
                 .email(memberInfo.getEmail())
                 .role(MemberRole.USER)
                 .provider(socialProvider)
@@ -67,8 +71,14 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
                 .gold(0L)
                 .progress(0L)
                 .build();
+
         String randomNickname = generateRandomNickname();
-        member.setNickname(randomNickname);
+
+        // 받아온 닉네임이 없으면
+        if (member.getNickname() == null) {
+            // 랜덤 생성 닉네임 배치
+            member.setNickname(randomNickname);
+        }
 
         memberRepository.saveAndFlush(member);
 

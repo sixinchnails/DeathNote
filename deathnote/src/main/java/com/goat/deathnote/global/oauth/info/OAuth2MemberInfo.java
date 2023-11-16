@@ -18,4 +18,6 @@ public abstract class OAuth2MemberInfo {
 
 	public abstract String getEmail();
 
+	public abstract String getNickname();
+
 }
