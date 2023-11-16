@@ -68,7 +68,7 @@ public class ScoreManager : MonoBehaviour
         {
             Soul soul = SkillManager.instance.equip[i];
             // 블러의 칼라를 다시 재설정
-            if (soul == null)
+            if (SkillManager.instance.equip.Count > i)
             {
                 blur[2 * i].color = new Color(originColor[11].r, originColor[11].b, originColor[11].b, 0);
                 blur[2 * i + 1].color = new Color(originColor[11].r, originColor[11].b, originColor[11].b, 0);

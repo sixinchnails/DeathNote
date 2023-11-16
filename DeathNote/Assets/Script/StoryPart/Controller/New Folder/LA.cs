@@ -64,7 +64,9 @@ public class La : MonoBehaviour
         {
             TalkManager.instance.BoxAppear(false);
             //대화 끝났으면 튜토리얼으로 넘어간다.
-            SceneManager.LoadScene("Tutorial");
+            MusicManager.instance.SetTutorial();
+            MusicManager.instance.tutorial = true;
+            SceneManager.LoadScene("RhythmGameScene");
             //LoadingController.LoadScene("Tutorial");
         }
         else

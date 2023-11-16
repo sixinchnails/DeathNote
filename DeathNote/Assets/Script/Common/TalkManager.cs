@@ -112,10 +112,11 @@ public class TalkManager : MonoBehaviour
             new TalkData(2, "『드디어 모든 악보를 찾았구나!』"),
             new TalkData(1, "『···  ···  !』", "landscape"),
             new TalkData(1, "『이 노래··· 어딘가 익숙한데?』"),
-            new TalkData(1, "『내가 어릴 때 작곡한 노래잖아?!』"),
+            new TalkData(1, "『내가 어릴 때 많이 듣던 노래잖아?!』"),
             new TalkData(2, "『드디어 기억이 떠올랐니?』"),
             new TalkData(2, "『이 순간을 기억해. 넌, 대단한 아이야』"),
-            new TalkData(2, "『앞으로 잘 지내.』"),
+            new TalkData(2, "『넌 분명 좋은 노래를 만들 수 있을거야...』"),
+            new TalkData(2, "『앞으로 잘지내...』"),
             new TalkData(2, "『그럼 이만···』"),
             new TalkData(1, "『안녕···』"),
         };
@@ -165,7 +166,7 @@ public class TalkManager : MonoBehaviour
             rects[0].SetAsLastSibling();
             images[1].color = new Color(255, 255, 255, 0.5f);
             rects[1].SetAsFirstSibling();
-            sayname.text = "닉네임이당";
+            sayname.text = "gg";
             //sayname.text = UserManager.instance.userData.nickname;
             sayname.alignment = TextAnchor.MiddleLeft;
             content.alignment = TextAnchor.UpperLeft;

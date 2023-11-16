@@ -9,7 +9,6 @@ public class MoveToDoGam : MonoBehaviour
 
     public void GoToTargetScene()
     {
-        Debug.Log("ぞしぞし");
         SceneManager.LoadScene(targetSceneName);
     }
 }

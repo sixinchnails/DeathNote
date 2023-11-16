@@ -103,8 +103,7 @@ public class LoginManager : MonoBehaviour
         }
         else
         {
-            // SceneManager.LoadScene("OpeningScene 1");
-            LoadingController.LoadScene("MainScene");
+            SceneManager.LoadScene("OpeningScene");
         }
     }
 
@@ -173,7 +172,12 @@ public class LoginManager : MonoBehaviour
                         userData.gold = 0;
                         userData.souls = new List<Soul>
                         {
-                            new Soul(0, "첫 정령", 0, new int[]{1, 0, 0, 5}, new int[]{1, 1, 0, 0}, new int[]{10, 10, 10, 10, 10, 10 }, 0, 0)
+                            new Soul(0, "첫 정령", 0, new int[]{1, 0, 0, 5}, new int[]{1, 1, 0, 0}, new int[]{10, 10, 10, 10, 10, 10 }, 0, 0),
+                            new Soul(1, "첫 정령", 1, new int[]{1, 0, 0, 5}, new int[]{1, 1, 1, 0}, new int[]{10, 10, 10, 10, 10, 10 }, 0, 0),
+                            new Soul(2, "첫 정령", 2, new int[]{1, 0, 0, 5}, new int[]{1, 1, 2, 0}, new int[]{10, 10, 10, 10, 10, 10 }, 0, 0),
+                            new Soul(3, "첫 정령", 3, new int[]{1, 0, 0, 5}, new int[]{1, 1, 3, 0}, new int[]{10, 10, 10, 10, 10, 10 }, 0, 0),
+                            new Soul(4, "첫 정령", 4, new int[]{1, 0, 0, 5}, new int[]{1, 1, 4, 0}, new int[]{10, 10, 10, 10, 10, 10 }, 0, 0),
+                            new Soul(5, "첫 정령", 5, new int[]{1, 0, 0, 5}, new int[]{1, 1, 5, 0}, new int[]{10, 10, 10, 10, 10, 10 }, 0, 0)
                         };
                         userData.gardens = new List<Garden>
                         {

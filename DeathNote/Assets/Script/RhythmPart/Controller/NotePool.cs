@@ -19,12 +19,12 @@ public class NotePool : MonoBehaviour
     void Start()
     {
         // 자기 자신을 초기화한 뒤, 큐들을 채워넣음
-        clickQueue = InsertQueue(note, 4);
-        effectQueue = InsertQueue(effect, 4);
+        clickQueue = InsertQueue(note, 4, false);
+        effectQueue = InsertQueue(effect, 4, true);
 
     }
 
-    Queue<GameObject> InsertQueue(GameObject target, int idx)
+    Queue<GameObject> InsertQueue(GameObject target, int idx, bool active)
     {
         // Queue 선언
         Queue<GameObject> queue = new Queue<GameObject>();
@@ -33,7 +33,7 @@ public class NotePool : MonoBehaviour
             // ObjectInfo 배열의 모든 요소를 count만큼 생성하고 비활성화 한 뒤 Queue에 넣어둔다.
             GameObject clone = Instantiate(target, transform.position, Quaternion.identity);
             // 비활성화
-            clone.SetActive(false);
+            clone.SetActive(active);
             // 생성된 요소의 부모요소 설정
             clone.transform.SetParent(transform);
             queue.Enqueue(clone);

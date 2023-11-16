@@ -51,6 +51,7 @@ public class SkillManager : MonoBehaviour
         {
             equip.Add(null);
         }
+        Debug.Log(equip[1]);
         Debug.Log("우후후훟후");
     }
 
@@ -99,6 +100,7 @@ public class SkillManager : MonoBehaviour
 
     public int GetSkill(Soul turnSoul, ClickNote note)
     {
+         
         // 정령의 세가지 스킬을 돌림
         for (int i = 0; i < 3; i++)
         {

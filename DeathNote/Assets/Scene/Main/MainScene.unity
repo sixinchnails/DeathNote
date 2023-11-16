@@ -3650,6 +3650,7 @@ MonoBehaviour:
   - {fileID: 1690563188}
   newStory: {fileID: 1690563184}
   nickname: {fileID: 1548132285}
+  compose: {fileID: 1834507318}
 --- !u!114 &1679394541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4377,7 +4378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1834507319
 RectTransform:
   m_ObjectHideFlags: 0

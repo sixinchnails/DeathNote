@@ -4582,14 +4582,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 8300000, guid: dc4fc123b001ffe4797f362fc2416609, type: 3}
-  - {fileID: 8300000, guid: dc4fc123b001ffe4797f362fc2416609, type: 3}
-  - {fileID: 8300000, guid: dc4fc123b001ffe4797f362fc2416609, type: 3}
-  - {fileID: 8300000, guid: dc4fc123b001ffe4797f362fc2416609, type: 3}
+  - {fileID: 8300000, guid: 40d035cda57e9154fbbbdcfc26ed62f1, type: 3}
+  - {fileID: 8300000, guid: 40d035cda57e9154fbbbdcfc26ed62f1, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   audioSource: {fileID: 0}
   volumeSlider: {fileID: 0}
   volumeButtonImage: {fileID: 0}
   volumeSprite: {fileID: 21300000, guid: bb688d462771d2d4cb74787fa034a788, type: 3}
   muteSprite: {fileID: 21300000, guid: 2b594c624f3856b4f8b11dcae478d40f, type: 3}
+  tutorial: 0
   nowWorld: 0
   code: 0
   gameStart: 0

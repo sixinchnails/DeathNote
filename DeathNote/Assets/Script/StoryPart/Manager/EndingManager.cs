@@ -62,7 +62,8 @@ public class EndingManager : MonoBehaviour
             //credit.up();
             Invoke("creditUp", 2.5f);
             //진행도 800으로 업데이트
-            //UserManager.instance.SaveData();
+            UserManager.instance.userData.progress = 800;
+            UserManager.instance.SaveData();
             TalkManager.instance.BoxAppear(false);
             //대화 끝났으면 튜토리얼으로 넘어간다.
             Invoke("loadScene", 14.5f);
@@ -89,6 +90,6 @@ public class EndingManager : MonoBehaviour
 
     void loadScene()
     {
-        LoadingController.LoadScene("RaMain 1");
+        LoadingController.LoadScene("MainScene");
     }
 }

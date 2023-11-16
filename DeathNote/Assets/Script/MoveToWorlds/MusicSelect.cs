@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
+
 // 노래 선택 페이지
 public class MusicSelect : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class MusicSelect : MonoBehaviour
     [SerializeField] Text highScore; // 내 최고 점수
     [SerializeField] Text highGrade; // 내 최고 등급
 
+    public GameObject panel;
     // 랭킹UI
     [SerializeField] GameObject rankPanel; // 랭킹을 가리는 패널
     [SerializeField] GameObject[] rankUI; // 랭크 UI
@@ -63,7 +65,11 @@ public class MusicSelect : MonoBehaviour
         }
 
         LoadRanking(); // UI 호출
+        if (UserManager.instance.userData.progress + 1 < songProgressData[world * 4 + idx]) panel.SetActive(true);
+        else panel.SetActive(false);
         MusicManager.instance.SetMusic(songProgressData[world * 4 + idx], customOffset);
+
+
 
         limit = 0;
         w = Screen.width;
@@ -94,7 +100,7 @@ public class MusicSelect : MonoBehaviour
             }
         }
         highScore.text = score.ToString(); // 점수 설정
-        highGrade.text = grade.ToString();  // 등급 설정
+        highGrade.text = grade.ToString("F2")+"%";  // 등급 설정
         float savedOffset = PlayerPrefs.GetFloat(songProgressData[world * 4 + idx].ToString(), 0.0f); // 해당 노래의 저장된 오프셋을 꺼내온다.
         customOffset = savedOffset; // 오프셋 설정
         customOffsetTxt.text = customOffset.ToString(); // 오프셋 텍스트 설정
@@ -167,6 +173,8 @@ public class MusicSelect : MonoBehaviour
                     sessions[i].SetInteger("ecol", 0);
                 }
             }
+            customOffset = PlayerPrefs.GetFloat(songProgressData[idx].ToString(), 0.0f); // 가져오기
+            customOffsetTxt.text = customOffset.ToString("F2");
         }
 
     }
@@ -192,6 +200,7 @@ public class MusicSelect : MonoBehaviour
     {
         Debug.Log(songProgressData[world * 4 + idx]);
         PlayerPrefs.SetFloat(songProgressData[idx].ToString(), customOffset); // 커스텀 오프셋 저장
+        MusicManager.instance.SetMusic(songProgressData[world * 4 + idx], customOffset);
         LoadingController.LoadScene("RhythmGameScene");
     }
 
@@ -235,6 +244,8 @@ public class MusicSelect : MonoBehaviour
             }
         }
         LoadRanking();
+        if (UserManager.instance.userData.progress + 1 < songProgressData[world * 4 + idx]) panel.SetActive(true);
+        else panel.SetActive(false);
         MusicManager.instance.SetMusic(songProgressData[world * 4 + idx], customOffset);
 
     }
@@ -275,6 +286,8 @@ public class MusicSelect : MonoBehaviour
             }
         }
         LoadRanking();
+        if (UserManager.instance.userData.progress + 1 < songProgressData[world * 4 + idx]) panel.SetActive(true);
+        else panel.SetActive(false);
         MusicManager.instance.SetMusic(songProgressData[world * 4 + idx], customOffset);
     }
 }

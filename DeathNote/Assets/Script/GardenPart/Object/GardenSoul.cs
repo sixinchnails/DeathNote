@@ -137,7 +137,6 @@ public class GardenSoul : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             Vector3 moveAmount = new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
             // 새로운 위치를 계산합니다.
             Vector3 newPos = transform.position + moveAmount;
-            Debug.Log(newPos);
             // 캐릭터가 이미지를 넘어가지 않도록 x와 y 위치를 조절합니다.
             newPos.x = Mathf.Clamp(newPos.x, -boundarySize.x / 2, boundarySize.x / 2);
             newPos.y = Mathf.Clamp(newPos.y, -boundarySize.y / 2, boundarySize.y / 2);

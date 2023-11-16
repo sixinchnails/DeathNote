@@ -49,7 +49,7 @@ public class Opening2Manager : MonoBehaviour
             TalkManager.instance.BoxAppear(false);
             //대화 끝났으면 튜토리얼으로 넘어간다.
             //SceneManager.LoadScene("Tutorial");
-            LoadingController.LoadScene("RaMain 1");
+            LoadingController.LoadScene("MainScene");
         }
         else
         {

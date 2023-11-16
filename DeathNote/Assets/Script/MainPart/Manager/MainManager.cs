@@ -9,10 +9,14 @@ public class MainManager : MonoBehaviour
     public Animator[] story;
     public GameObject newStory;
     public TextMeshProUGUI nickname;
-    
+    public GameObject compose;
+ 
     public void Awake()
     {
-
+        if (UserManager.instance.userData.progress == 800)
+        {
+            compose.SetActive(true);
+        }
         string myNick = UserManager.instance.userData.nickname;
         Debug.Log(myNick);
         int myProgress = UserManager.instance.userData.progress;

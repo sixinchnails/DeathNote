@@ -4,6 +4,7 @@ using System.Collections;
 using System.IO;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 //using LitJson;
 
 namespace My
@@ -23,10 +24,10 @@ namespace My
     {
         public Button CloseButton;
 
-        public float LeftMargin = 300;
-        public float TopMargin = 50;
-        public float RightMargin = 300;
-        public float BottomMargin = 50;
+        public float LeftMargin = 400;
+        public float TopMargin = 100;
+        public float RightMargin = 400;
+        public float BottomMargin = 100;
         public bool IsRelativeMargin = true;
 
         public TextMeshProUGUI nickname;
@@ -40,8 +41,18 @@ namespace My
         {
             AlignCloseButton();
 
+            string[] array = new string[7];
+            for(int i = 0; i < 7; i++)
+            {
+                int now = UnityEngine.Random.Range(0, 10);
+                array[i] = "0." + now;
+            }
+
+            int temp = UnityEngine.Random.Range(80, 150);
+            int loudness = UnityEngine.Random.Range(-60, 60);
+
             // for Test
-            Show("https://thatsnote.site/oauth2/authorization/kakao");
+            Show("https://thatsnote.site/musics/play/audio?acousticness=" + array[0] + "&instrumentalness=" + array[1] + "&energy=" + array[2] + "&valence=" + array[3] + "&liveness=" + array[4] + "&loudness=" + loudness + "&tempo=" + temp + "&danceability=" + array[5] + "&speechiness=" + array[6]);
         }
 
         // Update is called once per frame

@@ -51,7 +51,6 @@ public class StageManager : MonoBehaviour
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
         musicManager.gameStart = true;
-        musicManager.SetAIWFCIU();
         audioSource = musicManager.audioSource;
         audioSource.Stop();
         // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
@@ -154,15 +153,39 @@ public class StageManager : MonoBehaviour
         float grade = (float)scoreManager.totalPercent / musicManager.totalNote;
 
         int gold = (int)(scoreManager.totalInspirit + scoreManager.totalPercent/50);
-        
-        resultManager.ShowResult(musicManager.musicTitle, grade, scoreManager.score.text, gold);
         UserManager.instance.userData.gold += gold;
-        if(musicManager.code > UserManager.instance.userData.progress)
+
+        if (UserManager.instance.userData.progress == 0)
         {
             UserManager.instance.userData.progress = musicManager.code;
+            UserManager.instance.SaveData();
+            musicManager.tutorial = false;
+            RecordManager.instance.SetMyRank(MusicManager.instance.code, grade, scoreManager.currentScore, SkillManager.instance.equip[0]);
+            SceneManager.LoadScene("NewOpeningStory");
         }
-        UserManager.instance.SaveData();
-        RecordManager.instance.SetMyRank(MusicManager.instance.code, grade, scoreManager.currentScore, SkillManager.instance.equip[0]);
+
+
+        else if (musicManager.code > UserManager.instance.userData.progress)
+        {
+            UserManager.instance.userData.progress = musicManager.code;
+            RecordManager.instance.SetMyRank(MusicManager.instance.code, grade, scoreManager.currentScore, SkillManager.instance.equip[0]);
+            UserManager.instance.SaveData();
+            if (musicManager.code == 604)
+            {
+                SceneManager.LoadScene("EndingStory");
+            }
+        }
+
+        else
+        {
+            resultManager.ShowResult(musicManager.musicTitle, grade, scoreManager.score.text, gold);
+            RecordManager.instance.SetMyRank(MusicManager.instance.code, grade, scoreManager.currentScore, SkillManager.instance.equip[0]);
+            UserManager.instance.SaveData();
+        }
+
+
+        
+
 
     }
     IEnumerator EnableNote(ClickNote note, Soul turnSoul, float delay)
@@ -234,9 +257,11 @@ public class StageManager : MonoBehaviour
                     Soul turnSoul = mySoulList[soulSeq++];
                     // 다시 돌아가기 위해서, soulSeq를 돌림(0~5, 총 6마리)
                     soulSeq = soulSeq % mySoulList.Count;
-                    if (turnSoul != null)
+                    if (turnSoul != null || turnSoul.emotions.Length != 0)
                     {
                         // 이번에 발동할 스킬번호를 결정
+                        Debug.Log(turnSoul.emotions.Length);
+                        Debug.Log(turnSoul.parameters.Length);
                         int skillNumber = SkillManager.instance.GetSkill(turnSoul, note);
                         // effect의 애니메이터의 인티저를 변경
 

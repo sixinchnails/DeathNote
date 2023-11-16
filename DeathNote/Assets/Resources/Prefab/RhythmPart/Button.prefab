@@ -71,6 +71,7 @@ MonoBehaviour:
   bonus: 0
   combo: 0
   perfect: 0
+  gold: 0
 --- !u!95 &2269546888747809755
 Animator:
   serializedVersion: 5
@@ -134,7 +135,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
