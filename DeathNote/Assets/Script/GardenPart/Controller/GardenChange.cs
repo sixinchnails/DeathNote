@@ -16,6 +16,8 @@ public class GardenChange : MonoBehaviour
     [SerializeField] Image gardenCurrentImage;
     [SerializeField] Sprite[] sprites;
     [SerializeField] TextMeshProUGUI menuUI;
+    [SerializeField] GameObject[] particles;
+
     string[] gardenName;
     string[] gardenImage;
     int[] gardenPrice;
@@ -65,7 +67,9 @@ public class GardenChange : MonoBehaviour
     public void ChangeGardenMarket()
     {
         gardenCurrentName.text = gardenName[page];
+
         gardenCurrentImage.sprite = Resources.Load<Sprite>("Image/Garden/Background/" + gardenImage[page]);
+
         if (gardenPrice[page] == 0)
         {
             gardenCurrentPrice.text = "¿Ãµø";
@@ -84,12 +88,17 @@ public class GardenChange : MonoBehaviour
     {
         if (gardenPrice[page] == 0)
         {
+            for (int i = 0; i < 3; i++)
+            {
+                if (page == i) particles[i].SetActive(true);
+                else particles[i].SetActive(false);
+            }
             gardenManager.ChangeGarden(page);
         }
         else
         {
             UserData data = UserManager.instance.userData;
-            if(data.gold >= gardenPrice[page])
+            if (data.gold >= gardenPrice[page])
             {
                 data.gold -= gardenPrice[page];
                 data.gardens.Add(new Garden(page));
@@ -118,6 +127,6 @@ public class GardenChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

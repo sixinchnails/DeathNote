@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpinAndFall : MonoBehaviour
 {
-    public OpeningManager manager;
+    //public OpeningManager manager;
     public GameObject book;
     public La next;
 

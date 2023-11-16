@@ -176,8 +176,6 @@ public class StageManager : MonoBehaviour
             note.animator.SetInteger("ecol", 0);
         }
 
-
-
     }
 
     public void SceneChange()
