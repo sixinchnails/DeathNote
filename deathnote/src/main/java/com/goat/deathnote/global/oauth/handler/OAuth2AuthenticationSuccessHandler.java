@@ -36,7 +36,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 	private final OAuth2AuthorizationRequestBasedOnCookieRepository authorizationRequestRepository;
 	private final JwtTokenProvider jwtTokenProvider;
 	private final MemberRepository memberRepository;
-	private String redirectUrl = "http://localhost:8080/login-success"; // 여기로 보내짐
+	private String redirectUrl = "https://thatsnote.site/login-success"; // 여기로 보내짐
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
