@@ -1,4 +1,4 @@
-Library: C:\Users\SSAFY\Desktop\FinalProject\S09P31B309\DeathNote\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
+Library: C:\Users\SSAFY\Desktop\URR\S09P31B309\DeathNote\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
 --platform=Android
 --backend=burst-llvm-15
 --target=ARMV7A_NEON32
@@ -8,6 +8,7 @@ Library: C:\Users\SSAFY\Desktop\FinalProject\S09P31B309\DeathNote\Temp\BurstOutp
 --float-precision=Standard
 --target-framework=NetFramework
 --assembly-defines=UnityEngine;
+--assembly-defines=Assembly-CSharp-firstpass;
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=Unity.2D.IK.Runtime;
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
@@ -57,10 +58,10 @@ Library: C:\Users\SSAFY\Desktop\FinalProject\S09P31B309\DeathNote\Temp\BurstOutp
 --assembly-defines=System;
 --assembly-defines=mscorlib;
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=C:\Users\SSAFY\Desktop\FinalProject\S09P31B309\DeathNote\Temp\Burst
+--temp-folder=C:\Users\SSAFY\Desktop\URR\S09P31B309\DeathNote\Temp\Burst
 --key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/PlaybackEngines/AndroidPlayer
---decode-folder=C:\Users\SSAFY\Desktop\FinalProject\S09P31B309\DeathNote\Library\Burst
---output=C:\Users\SSAFY\Desktop\FinalProject\S09P31B309\DeathNote\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
+--decode-folder=C:\Users\SSAFY\Desktop\URR\S09P31B309\DeathNote\Library\Burst
+--output=C:\Users\SSAFY\Desktop\URR\S09P31B309\DeathNote\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10

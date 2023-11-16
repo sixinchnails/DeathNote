@@ -99,7 +99,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -109,7 +109,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -122,7 +122,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
@@ -135,7 +135,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
@@ -148,7 +148,33 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -157,9 +183,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 201
-        width: 201
-        height: 201
+        y: 202
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbb763e08d13cf14596ed79840759cc0
-      internalID: 21300000
+      spriteID: 9f9f5ad407af1084f9fb964be737a30a
+      internalID: 793209992
       vertices: []
       indices: 
       edges: []
@@ -177,10 +203,10 @@ TextureImporter:
       name: air-blast_1
       rect:
         serializedVersion: 2
-        x: 201
-        y: 201
-        width: 201
-        height: 201
+        x: 200
+        y: 202
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,8 +214,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f004c126794ebf64ab69bf1073c9133d
-      internalID: 21300002
+      spriteID: b8305eaf9faa51e479bc7c036a7b7612
+      internalID: 1986635891
       vertices: []
       indices: 
       edges: []
@@ -198,10 +224,10 @@ TextureImporter:
       name: air-blast_2
       rect:
         serializedVersion: 2
-        x: 402
-        y: 201
-        width: 201
-        height: 201
+        x: 400
+        y: 202
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,8 +235,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82ec7efd1fb115142a3f65f8274187ae
-      internalID: 21300004
+      spriteID: 2ad379e7be46d3546b577d9e392aea7a
+      internalID: -1568459588
       vertices: []
       indices: 
       edges: []
@@ -219,10 +245,10 @@ TextureImporter:
       name: air-blast_3
       rect:
         serializedVersion: 2
-        x: 603
-        y: 201
-        width: 201
-        height: 201
+        x: 600
+        y: 202
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,8 +256,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c18fe2a1e6ee24d4aa70116521200744
-      internalID: 21300006
+      spriteID: c44e8d0137825eb4fbde46665a8e0c72
+      internalID: 1697421961
       vertices: []
       indices: 
       edges: []
@@ -240,10 +266,10 @@ TextureImporter:
       name: air-blast_4
       rect:
         serializedVersion: 2
-        x: 804
-        y: 201
-        width: 201
-        height: 201
+        x: 800
+        y: 202
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,8 +277,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4da6d920a2dc3074ebb0dc23dd513755
-      internalID: 21300008
+      spriteID: 9301ade9c11b513478025202cfb753c0
+      internalID: 538685254
       vertices: []
       indices: 
       edges: []
@@ -262,9 +288,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 201
-        height: 201
+        y: 2
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,8 +298,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12e7fe6c4baed9f4cbbd0b481e9d7d08
-      internalID: 21300010
+      spriteID: c95900519630c2945927698f3580a441
+      internalID: 2087376279
       vertices: []
       indices: 
       edges: []
@@ -282,10 +308,10 @@ TextureImporter:
       name: air-blast_6
       rect:
         serializedVersion: 2
-        x: 201
-        y: 0
-        width: 201
-        height: 201
+        x: 200
+        y: 2
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,8 +319,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87bff6e736ce6f044950053bf0e905d3
-      internalID: 21300012
+      spriteID: 46bf6df8517a989478f2a1d168e2ec5c
+      internalID: -324063740
       vertices: []
       indices: 
       edges: []
@@ -303,10 +329,10 @@ TextureImporter:
       name: air-blast_7
       rect:
         serializedVersion: 2
-        x: 402
-        y: 0
-        width: 201
-        height: 201
+        x: 400
+        y: 2
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -314,8 +340,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 764c4538f91233849bad737ffe52791f
-      internalID: 21300014
+      spriteID: 737e439ac52286b4da8e93a0b6141ac0
+      internalID: 635292453
       vertices: []
       indices: 
       edges: []
@@ -324,10 +350,10 @@ TextureImporter:
       name: air-blast_8
       rect:
         serializedVersion: 2
-        x: 603
-        y: 0
-        width: 201
-        height: 201
+        x: 600
+        y: 2
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -335,8 +361,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71d32a5ed44cf124a8e29be349381b6a
-      internalID: 21300016
+      spriteID: 47fd6bf2b2eaf824e9857414376ae045
+      internalID: 1986721290
       vertices: []
       indices: 
       edges: []
@@ -345,10 +371,10 @@ TextureImporter:
       name: air-blast_9
       rect:
         serializedVersion: 2
-        x: 804
-        y: 0
-        width: 201
-        height: 201
+        x: 800
+        y: 2
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -356,8 +382,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80d34fb4cbd81544192341b7dcc61ab5
-      internalID: 21300018
+      spriteID: a80ff07121db041419d375958494e201
+      internalID: -639316091
       vertices: []
       indices: 
       edges: []
@@ -365,7 +391,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 147413ec17989e74ba2a8aebee20c700
+    spriteID: e76133dba242efc4abba055aac9e8ef1
     internalID: 0
     vertices: []
     indices: 
@@ -373,16 +399,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      air-blast_0: 21300000
-      air-blast_1: 21300002
-      air-blast_2: 21300004
-      air-blast_3: 21300006
-      air-blast_4: 21300008
-      air-blast_5: 21300010
-      air-blast_6: 21300012
-      air-blast_7: 21300014
-      air-blast_8: 21300016
-      air-blast_9: 21300018
+      air-blast_0: 793209992
+      air-blast_1: 1986635891
+      air-blast_2: -1568459588
+      air-blast_3: 1697421961
+      air-blast_4: 538685254
+      air-blast_5: 2087376279
+      air-blast_6: -324063740
+      air-blast_7: 635292453
+      air-blast_8: 1986721290
+      air-blast_9: -639316091
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,35 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class EndingManager : MonoBehaviour
 {
-    public TalkManager talkManager;
-    public GameObject dark;
-    public Animator scriptBox;
-    public Text nickname; //나중에 유저 닉네임 받아와서 넣을거임
-    public Text content;
-    public Text nickname2; //사신
-    public Text content2;
+    public FlashBack flashback;
+    public Credit credit;
+
     public GameObject book;
-    public GoBackR goBackR;
-    public GoBackM goBackM;
-    public GameObject me;
+    public GameObject past1;
+    public GameObject past2;
+    public GameObject obj1;
+    public Image img1;
+    public GameObject obj2;
+    public Image img2;
+    public GameObject cryReaper;
 
     int talkIdx = -1;
 
     private void Awake()
     {
-        
+        book.SetActive(false);
+        past1.SetActive(false);
+        past2.SetActive(false);
     }
 
     private void Start()
     {
-        //Invoke("Action", 1);
-        scriptBox.SetBool("isShow", true);
+        TalkManager.instance.BoxAppear(true);
+        Action();
+    }
+
+    public void click()
+    {
+        print("클릭");
         Action();
     }
 
@@ -39,58 +44,51 @@ public class EndingManager : MonoBehaviour
         Talk();
     }
 
-    IEnumerator Typing(string str, int data)
+    async void Talk()
     {
-        content.text = null;
-        content2.text = null;
-        for (int i = 0; i < str.Length; i++)
+        if(talkIdx == 3)
         {
-            if (data == 1)
+            await flashback.show(obj1, img1);
+            await flashback.hide(obj1, img1);
+            await flashback.show(obj2, img2);
+            await flashback.hide(obj2, img2);
+
+        }
+        bool isFinish = TalkManager.instance.ChangeUI(7, talkIdx);
+        print("대사가 시작했다");
+        if (isFinish)
+        {
+            cryReaper.SetActive(true);
+            //credit.up();
+            Invoke("creditUp", 2.5f);
+            //진행도 800으로 업데이트
+            //UserManager.instance.SaveData();
+            TalkManager.instance.BoxAppear(false);
+            //대화 끝났으면 튜토리얼으로 넘어간다.
+            Invoke("loadScene", 14.5f);
+        }
+        else
+        {
+            switch (talkIdx)
             {
-                content.text += str[i];
+                case 1: bookShow(); break;
             }
-            else if (data == 2)
-            {
-                content2.text += str[i];
-            }
-            yield return new WaitForSeconds(0.05f);
         }
     }
 
-    void Talk()
+    void bookShow()
     {
-        content.text = null;
-        nickname.text = null;
-        content2.text = null;
-        nickname2.text = null;
-        int storyId = talkManager.getStoryId();
-        TalkData data = talkManager.getTalk(storyId, talkIdx);
-        if(talkIdx == 4)
-        {
-            me.SetActive(false);
-        }
-        if (data == null)
-        {
-            scriptBox.SetBool("isShow", false);
-            //대화 끝났으면 튜토리얼으로 넘어간다.
-            //SceneManager.LoadScene("");
-        }
-        if (data.id == 0)
-        {
-            nickname.text = "";
-        }
-        else if (data.id == 1)
-        {
-            goBackR.back();
-            goBackM.forward();
-            nickname.text = "사용자 닉네임 들어갈거임";
-        }
-        else if (data.id == 2)
-        {
-            goBackR.forward();
-            goBackM.back();
-            nickname2.text = "사신";
-        }
-        StartCoroutine(Typing(data.content, data.id));
+        book.SetActive (true);
+    }
+
+    void creditUp()
+    {
+        cryReaper.SetActive(false);
+        credit.up();
+    }
+
+    void loadScene()
+    {
+        LoadingController.LoadScene("RaMain 1");
     }
 }

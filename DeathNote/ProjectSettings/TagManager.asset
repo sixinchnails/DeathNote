@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Note
+  - Character
+  - Sound
+  - SoundEffectsSlider
+  - BackgroundMusicSlider
+  - 'MuteButtonTag '
+  - MuteButton
   layers:
   - Default
   - TransparentFX
@@ -41,4 +47,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Souls
+    uniqueID: 2807098109
     locked: 0

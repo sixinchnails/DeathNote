@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class SpinAndFall : MonoBehaviour
 {
-    public OpeningManager manager;
+    //public OpeningManager manager;
     public GameObject book;
+    public La next;
 
     AudioSource sound;
     public AudioClip drop;
@@ -44,7 +45,6 @@ public class SpinAndFall : MonoBehaviour
         sound.Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (go)
@@ -67,7 +67,7 @@ public class SpinAndFall : MonoBehaviour
                 sound.clip = bam;
                 sound.Play();
                 show = true;
-                manager.BoxAppear();
+                next.BoxAppear();
             }
         }
     }
