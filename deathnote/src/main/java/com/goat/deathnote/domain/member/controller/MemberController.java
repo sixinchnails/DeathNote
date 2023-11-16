@@ -38,13 +38,13 @@ public class MemberController {
     }
 
     // 로그인하면 이동하는페이지
-    @GetMapping("/login")
-    public String login(HttpServletRequest req, Model model) {
-        // 예제로, id를 "12345"라고 설정합니다
-        String email = (String) req.getAttribute("email");
-        model.addAttribute("id", email);
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String login(HttpServletRequest req, Model model) {
+//        // 예제로, id를 "12345"라고 설정합니다
+//        String email = (String) req.getAttribute("email");
+//        model.addAttribute("id", email);
+//        return "login";
+//    }
 
     // 회원가입
     @PostMapping("/signup")
