@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Data</title>
+</head>
+<body>
+<form id="dataForm">
+    <input type="number" name="energy" placeholder="Energy" step="0.1" min="0" max="1"><br>
+    <input type="number" name="instrumentalness" placeholder="Instrumentalness" step="0.1" min="0" max="1"><br>
+    <input type="number" name="valence" placeholder="Valence" step="0.1" min="0" max="1"><br>
+    <input type="number" name="tempo" placeholder="Tempo"><br>
+    <input type="number" name="acousticness" placeholder="Acousticness" step="0.1" min="0" max="1"><br>
+    <input type="number" name="liveness" placeholder="Liveness" step="0.1" min="0" max="1"><br>
+    <input type="number" name="loudness" placeholder="Loudness"><br>
+    <input type="number" name="speechiness" placeholder="Speechiness" step="0.1" min="0" max="1"><br>
+    <input type="number" name="danceability" placeholder="Danceability" step="0.1" min="0" max="1"><br>
+    <button type="submit">Send Data</button>
+
+    <div id="response"></div>
+</form>
+
+<script>
+    document.getElementById('dataForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        fetch('http://localhost:8080/musics/play/audio', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.text()) // Assume the response is text/HTML
+            .then(html => {
+                document.getElementById('response').innerHTML = html; // Display the response in the div
+            })
+            .catch(error => console.error('Error:', error));
+    });
+</script>
+</body>
+</html>

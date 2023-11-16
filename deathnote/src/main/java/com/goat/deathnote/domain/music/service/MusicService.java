@@ -35,17 +35,8 @@ public class MusicService {
         return musicRepository.findById(id);
     }
 
-    public byte[] getAudioFile() {
-        MusicDto requestData = MusicDto.builder().valence(0.5).energy(0.5)   // Example value
-                .acousticness(0.5)  // Example value
-                .danceability(0.5)  // Example value
-                .instrumentalness(0.5)  // Example value
-                .liveness(0.5)  // Example value
-                .loudness(-60)  // Example value
-                .speechiness(0.5)  // Example value
-                .tempo(120).build();// Example value
-
-        ResponseEntity<byte[]> response = restTemplate.postForEntity(pythonServerUrl, requestData, byte[].class);
+    public byte[] getAudioFile(MusicDto musicDto) {
+        ResponseEntity<byte[]> response = restTemplate.postForEntity(pythonServerUrl, musicDto, byte[].class);
         return response.getBody();
     }
 }
