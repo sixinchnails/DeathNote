@@ -4,9 +4,6 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-<<<<<<< HEAD
-  m_Scenes: []
-=======
   m_Scenes:
   - enabled: 1
     path: Assets/Scene/LogIn/LoginScene.unity
@@ -41,5 +38,4 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scene/Story/GetSoul.unity
     guid: fba11741f0aefa342ba6e1349dd9b54a
->>>>>>> 7bd4d13e803eb85fcc41b9a50fa23229fb594c48
   m_configObjects: {}

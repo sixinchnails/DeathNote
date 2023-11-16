@@ -51,6 +51,7 @@ public class StageManager : MonoBehaviour
         // MusicManager 싱글턴을 불러오고, 노래 설정
         musicManager = MusicManager.instance;
         musicManager.gameStart = true;
+        musicManager.SetAIWFCIU();
         audioSource = musicManager.audioSource;
         audioSource.Stop();
         // bpm을 60으로 나눈 초당 비트수의 역수는 비트당 초
