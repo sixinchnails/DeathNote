@@ -18,9 +18,22 @@ public class Soul
     public int[] emotions; // 6가지 수치
     public int revive; // 총 환생 횟수
     public int garden; // 현재 가든 위치
+    public GardenSoul gardenSoul;
 
     public Soul(string name, int equip, int[] parameters, int[] customizes, int[] emotions, int revive, int garden)
     {
+        this.name = name;
+        this.equip = equip;
+        this.parameters = parameters;
+        this.customizes = customizes;
+        this.emotions = emotions;
+        this.revive = revive;
+        this.garden = garden;
+    }
+
+    public Soul(int id, string name, int equip, int[] parameters, int[] customizes, int[] emotions, int revive, int garden)
+    {
+        this.id = id;
         this.name = name;
         this.equip = equip;
         this.parameters = parameters;

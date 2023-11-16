@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Garden/GameOverScene.unity
     guid: e38b9be6438ed6d4c964b81def7f44e1
+  - enabled: 1
+    path: Assets/Scene/ComposeScene.unity
+    guid: 06ed35ee559ee304292c76ccc78df0f1
   - enabled: 0
     path: Assets/Scene/Story/GetSoul.unity
     guid: fba11741f0aefa342ba6e1349dd9b54a

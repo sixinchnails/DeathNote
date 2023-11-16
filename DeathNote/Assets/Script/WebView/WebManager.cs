@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.IO;
 using UnityEngine.UI;
+using TMPro;
 //using LitJson;
 
 namespace My
@@ -28,6 +29,8 @@ namespace My
         public float BottomMargin = 50;
         public bool IsRelativeMargin = true;
 
+        public TextMeshProUGUI nickname;
+
         [HideInInspector]
         public string URL;
 
@@ -38,7 +41,7 @@ namespace My
             AlignCloseButton();
 
             // for Test
-            Show("https://thatsnote.site/oauth2/authorization/google?redirect_uri=http://thatsnote.site/oauth/redirect");
+            Show("https://thatsnote.site/oauth2/authorization/kakao");
         }
 
         // Update is called once per frame
@@ -159,7 +162,7 @@ namespace My
 
         void OnResultWebView(string resultData)
         {
-            print($"WebView CallFromJS : {resultData}");
+            nickname.text = resultData;
             /*
              {
                 result : string,

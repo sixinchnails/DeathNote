@@ -13,7 +13,6 @@ public class SoulGet : MonoBehaviour
     [SerializeField] TextMeshProUGUI currentCapacity; // 현재 Garden의 Capacity
     [SerializeField] TextMeshProUGUI currentCost; // 현재 정령을 뽑는데 필요한 영감
     [SerializeField] TextMeshProUGUI purchaseButton; // 구매가 가능한지 아닌지
-    
     [SerializeField] Animator getAnimator;
     [SerializeField] GardenManager gardenManager;
     [SerializeField] Transform soulImage;
@@ -27,7 +26,7 @@ public class SoulGet : MonoBehaviour
     // 제일 먼저, UI를 띄워야 한다. 버튼을 이용한 UI다.
     public void EnableUI()
     {
-        gardenManager.OpenMenu();
+         animationUI.SetActive(false);
         if (!soulGetUI.activeSelf)
         {
             gardenManager.CloseAllUi(); // 모든 UI 창을 닫음
@@ -151,8 +150,9 @@ public class SoulGet : MonoBehaviour
             emotions[i] = UnityEngine.Random.Range(5, 20);
         }
 
+        int id = UserManager.instance.userData.souls.Count;
         //return new Soul(nameInputField.text, -1, parameters, customizes, emotions, 0, gardenManager.location);
-        return new Soul("새 정령", -1, parameters, customizes, emotions, 0, gardenManager.location);
+        return new Soul(id, "새 정령", -1, parameters, customizes, emotions, 0, gardenManager.location);
     }
 
 

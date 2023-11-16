@@ -18,9 +18,11 @@ public class GardenChange : MonoBehaviour
     [SerializeField] Sprite[] sprites;
     [SerializeField] TextMeshProUGUI menuUI;
     [SerializeField] GameObject[] particles;
+    [SerializeField] Image smallButton;
+    [SerializeField] Sprite[] smallSprites;
+    [SerializeField] TextMeshProUGUI smallText;
 
     string[] gardenName;
-    string[] gardenImage;
     int[] gardenPrice;
 
     bool canGo;
@@ -32,7 +34,6 @@ public class GardenChange : MonoBehaviour
     void Awake()
     {
         gardenName = new string[] { "얼어붙은 땅", "꽃피는 정원", "정령의 바다" };
-        gardenImage = new string[] { "0", "1", "2" };
         gardenPrice = new int[] { 0, 30000, 100000 };
         InitUI();
 
@@ -98,6 +99,21 @@ public class GardenChange : MonoBehaviour
                 else particles[i].SetActive(false);
             }
             gardenManager.ChangeGarden(page);
+            smallButton.sprite = smallSprites[page];
+        }
+
+    }
+
+    public void UIOnOff()
+    {
+        UI.SetActive(!UI.activeSelf);
+        if (UI.activeSelf)
+        {
+            smallText.text = "닫기";
+        }
+        else
+        {
+            smallText.text = "배경 변경";
         }
     }
 

@@ -101,8 +101,16 @@ public class GardenCamera : MonoBehaviour
 
         else
         {
-            isFollowing = false;
-            followTarget = null;
+            if(followTarget.Equals(target))
+            {
+                isFollowing = false;
+                followTarget = null;
+            }
+            else
+            {
+                followTarget = target;
+            }
+            
         }
     }
     void HandleZoom()
@@ -170,7 +178,6 @@ public class GardenCamera : MonoBehaviour
         if (isDragging && Input.GetMouseButton(0))
         {
             Vector3 currentTouchPosition = cam.ScreenToViewportPoint(Input.mousePosition); // 현재 위치
-            Debug.Log(lastMousePosition.x + "/" + currentTouchPosition.x);
             Vector3 difference = lastMousePosition - currentTouchPosition; // 위치차이
             
             // 카메라의 위치를 범위밖으로 나가지 않게 보정

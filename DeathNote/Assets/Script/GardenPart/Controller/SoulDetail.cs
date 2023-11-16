@@ -47,7 +47,11 @@ public class SoulDetail : MonoBehaviour
 
             InitBook(Gsoul.soul); // 초기화
             ChangeBookPage1(); // 책 1페이지로
-        } 
+        }
+        else
+        {
+            Gsoul.CameraZoom();
+        }
     }
 
     // 책 초기화 메서드
@@ -164,6 +168,34 @@ public class SoulDetail : MonoBehaviour
 
             TargetSelect(0);
         }
+    }
+    // 윗 정령
+    public void GoUp()
+    {
+        int length = UserManager.instance.userData.souls.Count;
+        int prevIdx = (nowSoul.id + length - 1) % length;
+        Soul prevSoul = UserManager.instance.userData.souls[prevIdx];
+        GardenSoul prev = prevSoul.gardenSoul;
+        prev.CameraZoom();
+        InitBook(UserManager.instance.userData.souls[prevIdx]);
+    }
+
+    // 아랫 정령
+    public void GoDown()
+    {
+        int length = UserManager.instance.userData.souls.Count;
+        int nextIdx = (nowSoul.id + 1) % length;
+        Soul nextSoul = UserManager.instance.userData.souls[nextIdx];
+        GardenSoul next = nextSoul.gardenSoul;
+        next.CameraZoom();
+        InitBook(UserManager.instance.userData.souls[nextIdx]);
+    }
+
+
+    public void ChangeName()
+    {
+        string name = nameInputField.text;
+        if (name.Length >= 2 && name.Length <= 6) activeSoul.ChangeName(name);
     }
 
     public void TargetSelect(int idx)

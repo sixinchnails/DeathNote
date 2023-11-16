@@ -41,8 +41,23 @@ public class LoginManager : MonoBehaviour
 
     public int load; // 0은 로딩 전, 1은 회원가입 혹은 로그인 필요, 2는 서버 통신 불가, 3은 로그인 완료
 
+    public Button CloseButton;
+
+    public float LeftMargin = 400;
+    public float TopMargin = 50;
+    public float RightMargin = 400;
+    public float BottomMargin = 50;
+    public bool IsRelativeMargin = true;
+
+    [HideInInspector]
+    public string URL;
+
+    private WebViewObject webViewObject;
+
+
     void Start()
     {
+        AlignCloseButton();
         StartCoroutine(GetUserData(null));
     }
 
@@ -157,6 +172,7 @@ public class LoginManager : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("로그인 성공"+ www.downloadHandler.text);
                     logoutButton.SetActive(true);
                     UserDataDTO dto = JsonUtility.FromJson<UserDataDTO>(www.downloadHandler.text);
                     UserManager.instance.userData = JsonUtility.FromJson<UserData>(dto.token);
@@ -302,7 +318,7 @@ public class LoginManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("오예오예오오옹예");
+                Debug.Log("회원가입");
                 string sceneName = SceneManager.GetActiveScene().name;
                 SceneManager.LoadScene(sceneName);
             }
@@ -363,6 +379,169 @@ public class LoginManager : MonoBehaviour
         }
 
     }
+
+
+
+    void Start()
+    {
+
+
+        // for Test
+        Show("https://thatsnote.site/oauth2/authorization/kakao");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //if (Application.platform == RuntimePlatform.Android) {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            // 뒤 로 가 기, esc 버 튼 
+            if (webViewObject)
+            {
+                if (webViewObject.gameObject.activeInHierarchy)
+                {
+                    // webViewObject.GoBack();
+                }
+            }
+            Hide();
+            return;
+        }
+        //}
+    }
+
+    private void OnDestroy()
+    {
+        DestroyWebView();
+    }
+
+    void DestroyWebView()
+    {
+        if (webViewObject)
+        {
+            GameObject.Destroy(webViewObject.gameObject);
+            webViewObject = null;
+        }
+    }
+
+    void AlignCloseButton()
+    {
+        if (CloseButton == null)
+        {
+            return;
+        }
+
+        float defaultScreenHeight = 1080;
+        float top = CloseButton.GetComponent<RectTransform>().rect.height * Screen.height / defaultScreenHeight;
+
+        TopMargin = top;
+    }
+
+    public void Show(string url)
+    {
+        gameObject.SetActive(true);
+
+        URL = url;
+
+        StartWebView();
+    }
+
+    public void Hide()
+    {
+        // 뒤 로 가 기, esc 버 튼 
+        URL = string.Empty;
+
+        if (webViewObject != null)
+        {
+            webViewObject.SetVisibility(false);
+
+            //webViewObject.ClearCache(true);
+            //webViewObject.ClearCookies();                
+        }
+
+        DestroyWebView();
+
+        gameObject.SetActive(false);
+    }
+
+    public void StartWebView()
+    {
+        string strUrl = URL;  //"https://www.naver.com/";            
+
+        try
+        {
+            if (webViewObject == null)
+            {
+                webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
+
+                webViewObject.Init(
+                    cb: OnResultWebView,
+                    err: (msg) => { Debug.Log($"WebView Error : {msg}"); },
+                    httpErr: (msg) => { Debug.Log($"WebView HttpError : {msg}"); },
+                    started: (msg) => { Debug.Log($"WebView Started : {msg}"); },
+                    hooked: (msg) => { Debug.Log($"WebView Hooked : {msg}"); },
+
+                    ld: (msg) =>
+                    {
+                        Debug.Log($"WebView Loaded : {msg}");
+                        //webViewObject.EvaluateJS(@"Unity.call('ua=' + navigator.userAgent)");                    
+                    }
+                    , androidForceDarkMode: 1  // 0: follow system setting, 1: force dark off, 2: force dark on
+
+#if UNITY_EDITOR
+                    , separated: true
+#endif
+
+                );
+            }
+
+            webViewObject.LoadURL(strUrl);
+            webViewObject.SetVisibility(true);
+            webViewObject.SetMargins((int)LeftMargin, (int)TopMargin, (int)RightMargin, (int)BottomMargin, IsRelativeMargin);
+        }
+        catch (System.Exception e)
+        {
+            print($"WebView Error : {e}");
+        }
+
+    }
+
+    void OnResultWebView(string resultData)
+    {
+        nickname.text = resultData;
+        /*
+         {
+            result : string,
+            data : string or json string
+        }
+        */
+
+        //try
+        //{
+        //    JsonData json = JsonMapper.ToObject(resultData);
+
+        //    if ((string)json["result"] == "success")
+        //    {
+        //        JsonData data = json["data"]["response"];
+        //        long birthdayTick = (long)(data["birth"].IsLong ? (long)data["birth"] : (int)data["birth"]);
+        //        string birthday = (string)data["birthday"];
+        //        string unique_key = (string)data["unique_key"];
+
+        //        // success
+        //    }
+        //    else if ((string)json["result"] == "failed")
+        //    {
+        //        Hide();
+
+        //        // failed
+        //    }
+        //}
+        //catch (Exception e)
+        //{
+        //    print("웹 리턴 값에 문제가 있습니다.");
+        //}
+    }
+}
 
 
 }

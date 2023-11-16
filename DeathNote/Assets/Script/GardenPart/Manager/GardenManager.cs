@@ -37,11 +37,6 @@ public class GardenManager : MonoBehaviour
     void Awake()
     {
         location = -1;
-        if(UserManager.instance.userData.progress < 500)
-        {
-            composeButton.GetComponent<Image>().color = Color.black;
-            composeButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
-        }
     }
 
     // 초기화 메서드
@@ -53,6 +48,7 @@ public class GardenManager : MonoBehaviour
     // 정령을 초기화 하는 메서드
     public void InitSoul()
     {
+       
         moveSouls = new List<GardenSoul>(); // 움직이는 정령들의 스크립트 리스트
         List<Soul> souls = UserManager.instance.userData.souls; // 유저의 모든 정령
         capacity = souls.Count; // 유저의 총 정령 수
@@ -76,12 +72,14 @@ public class GardenManager : MonoBehaviour
 
         // 생성된 요소의 부모요소 설정
         gardenSoul.transform.SetParent(area);
+
         // GardenSoul 스크립트를 설정
         GardenSoul script = gardenSoul.GetComponent<GardenSoul>();
         script.boundaryTransform = area;
         // Soul 객체와 연결
         script.soul = soul;
         script.soulDetail = soulUI.GetComponent<SoulDetail>();
+        soul.gardenSoul = script;
         // 한번에 관리하기 위해, gardenSoul 스크립트를 관리
         moveSouls.Add(script);
 
