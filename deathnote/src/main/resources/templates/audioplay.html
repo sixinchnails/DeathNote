@@ -1,180 +1,180 @@
-  <!DOCTYPE html>
-  <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Audio Player with Visualizer and Spinning Sphere</title>
-    <style>
-      body {
-        font-family: 'Arial', sans-serif;
-        background-image: url('/img/back1.jpg'); /* Add your image URL here */
-        background-size: cover; /* This will ensure that the image covers the whole page */
-        background-repeat: no-repeat; /* This will prevent the image from repeating */
-        background-attachment: fixed ;
-        background-position: center; /* This centers the image in the page */
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        display: flex;
-      }
-
-      #logo {
-        position: absolute;
-        top: 20px;  /* Adjust for spacing from the top */
-        left: 50%;  /* Center align */
-        transform: translateX(-50%); /* Exact center alignment */
-        width: 400px; /* Increase the width */
-        height: auto; /* Maintain the aspect ratio */
-        z-index: 30; /* Ensure it's above other elements */
-      }
-
-      #visualizer {
-        width: 100%;
-        height: 400px; /* Set your desired height */
-      }
-
-      @keyframes spin {
-        from {transform: rotate(0deg);}
-        to {transform: rotate(360deg);}
-      }
-
-      #cdContainer {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40vw;
-        height: 40vw;
-      }
-
-      #centerImage {
-        position: absolute;
-        top: 20%;
-        left: 20%;
-        width: 60%;
-        height: 60%;
-        animation: spin 2s linear infinite;
-        animation-play-state: paused; /* Start with the animation paused */
-      }
-
-      #playPauseButton {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100px; /* Adjust size as needed */
-        height: 100px; /* Adjust size as needed */
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-color: transparent; /* Make the background transparent */
-        border: none; /* Remove any border */
-        cursor: pointer;
-        outline: none;
-        z-index: 17;
-      }
-
-      #visualizer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-
-      audio {
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 10;
-        width: 60%;
-      }
-
-      #songInfo {
-        position: absolute;
-        top: 10px; /* Adjust as needed */
-        right: 10px; /* Adjust as needed */
-        background-color: black;
-        color: white;
-        padding: 20px; /* Increased padding */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        border-radius: 5px;
-        z-index: 20; /* Make sure it's above other elements */
-        width: auto; /* Adjust width as needed or use a specific value like 300px */
-        max-width: 300px; /* Optional: if you want to limit the width */
-      }
-
-      #songInfo h2, #songInfo p {
-        margin: 0; /* Remove default margin */
-        font-size: 2.5em; /* Increase font size */
-      }
-    </style>
-  </head>
-  <body>
-  <img id="logo" src="/img/deathnote.png" alt="Logo" />
-  <canvas id="visualizer"></canvas>
-  <div id="songInfo">
-    <h2 id="songTitle">Song Title</h2>
-    <p id="songLength">Length: 3:30</p>
-    <!-- Add more elements as needed -->
-  </div>
-  <div id="cdContainer">
-    <img id="centerImage" src="/img/acurela.png" alt = "image missing">
-    <button id="playPauseButton"></button>
-  </div>
-  <!--<h1>WAV File Player</h1>-->
-  <audio id="audioPlayer">
-    <source th:src="@{${audioData}}" type="audio/wav">
-    Your browser does not support the audio element.
-  </audio>
-
-  <script>
-    const audioPlayer = document.getElementById('audioPlayer');
-    const canvas = document.getElementById('visualizer');
-    const canvasContext = canvas.getContext('2d');
-    const centerImage = document.getElementById('centerImage');
-    let audioContext;
-    let analyser;
-    let source;
-
-    audioPlayer.onplay = () => {
-      if (!audioContext) {
-        setupWebAudio();
-      }
-    };
-
-    function setupWebAudio() {
-      const audioContext = new AudioContext();
-      analyser = audioContext.createAnalyser();
-      source = audioContext.createMediaElementSource(audioPlayer);
-      source.connect(analyser);
-      analyser.connect(audioContext.destination);
-      // visualize();
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Audio Player with Visualizer and Spinning Sphere</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-image: url('/img/back1.jpg'); /* Add your image URL here */
+      background-size: cover; /* This will ensure that the image covers the whole page */
+      background-repeat: no-repeat; /* This will prevent the image from repeating */
+      background-attachment: fixed ;
+      background-position: center; /* This centers the image in the page */
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
     }
 
-    audioPlayer.onplay = (e) => {
-      if (!audioContext) {
-        setupWebAudio();
-      }
-    };
+    #logo {
+      position: absolute;
+      top: 20px;  /* Adjust for spacing from the top */
+      left: 50%;  /* Center align */
+      transform: translateX(-50%); /* Exact center alignment */
+      width: 400px; /* Increase the width */
+      height: auto; /* Maintain the aspect ratio */
+      z-index: 30; /* Ensure it's above other elements */
+    }
 
-    const playPauseButton = document.getElementById('playPauseButton');
+    #visualizer {
+      width: 100%;
+      height: 400px; /* Set your desired height */
+    }
 
-    playPauseButton.addEventListener('click', function() {
-      if (audioPlayer.paused) {
-        audioPlayer.play();
-        playPauseButton.style.backgroundImage = "url('/img/stop.png')"; // Set to pause icon
-        centerImage.style.animationPlayState = 'running'; // Start spinning
-      } else {
-        audioPlayer.pause();
-        playPauseButton.style.backgroundImage = "url('/img/play.png')"; // Set to play icon
-        centerImage.style.animationPlayState = 'paused'; // Stop spinning
-      }
-    });
+    @keyframes spin {
+      from {transform: rotate(0deg);}
+      to {transform: rotate(360deg);}
+    }
 
-    // Initialize the button with the play icon
-    playPauseButton.style.backgroundImage = "url('/img/play.png')";
-  </script>
-  </body>
-  </html>
+    #cdContainer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40vw;
+      height: 40vw;
+    }
 
+    #centerImage {
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 60%;
+      height: 60%;
+      animation: spin 2s linear infinite;
+      animation-play-state: paused; /* Start with the animation paused */
+    }
+
+    #playPauseButton {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px; /* Adjust size as needed */
+      height: 100px; /* Adjust size as needed */
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: transparent; /* Make the background transparent */
+      border: none; /* Remove any border */
+      cursor: pointer;
+      outline: none;
+      z-index: 17;
+    }
+
+    #visualizer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    audio {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      width: 60%;
+    }
+
+    #songInfo {
+      position: absolute;
+      top: 10px; /* Adjust as needed */
+      right: 10px; /* Adjust as needed */
+      background-color: black;
+      color: white;
+      padding: 20px; /* Increased padding */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+      z-index: 20; /* Make sure it's above other elements */
+      width: auto; /* Adjust width as needed or use a specific value like 300px */
+      max-width: 300px; /* Optional: if you want to limit the width */
+    }
+
+    #songInfo h2, #songInfo p {
+      margin: 0; /* Remove default margin */
+      font-size: 2.5em; /* Increase font size */
+    }
+  </style>
+</head>
+<body>
+<img id="logo" src="/img/deathnote.png" alt="Logo" />
+<canvas id="visualizer"></canvas>
+<div id="songInfo">
+  <!--    <title th:text="${Title}">Default Title</title>-->
+  <h2 id="songTitle" th:text="${Title}">Song Title</h2>
+  <p id="songLength" th:text="'Length: ' + ${Duration}">Length: 3:30</p>
+  <!-- Add more elements as needed -->
+</div>
+<div id="cdContainer">
+  <img id="centerImage" src="/img/acurela.png" alt = "image missing">
+  <button id="playPauseButton"></button>
+</div>
+<!--<h1>WAV File Player</h1>-->
+<audio id="audioPlayer">
+  <source th:src="@{${audioData}}" type="audio/wav">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  const audioPlayer = document.getElementById('audioPlayer');
+  const canvas = document.getElementById('visualizer');
+  const canvasContext = canvas.getContext('2d');
+  const centerImage = document.getElementById('centerImage');
+  let audioContext;
+  let analyser;
+  let source;
+
+  audioPlayer.onplay = () => {
+    if (!audioContext) {
+      setupWebAudio();
+    }
+  };
+
+  function setupWebAudio() {
+    const audioContext = new AudioContext();
+    analyser = audioContext.createAnalyser();
+    source = audioContext.createMediaElementSource(audioPlayer);
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+    // visualize();
+  }
+
+  audioPlayer.onplay = (e) => {
+    if (!audioContext) {
+      setupWebAudio();
+    }
+  };
+
+  const playPauseButton = document.getElementById('playPauseButton');
+
+  playPauseButton.addEventListener('click', function() {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      playPauseButton.style.backgroundImage = "url('/img/stop.png')"; // Set to pause icon
+      centerImage.style.animationPlayState = 'running'; // Start spinning
+    } else {
+      audioPlayer.pause();
+      playPauseButton.style.backgroundImage = "url('/img/play.png')"; // Set to play icon
+      centerImage.style.animationPlayState = 'paused'; // Stop spinning
+    }
+  });
+
+  // Initialize the button with the play icon
+  playPauseButton.style.backgroundImage = "url('/img/play.png')";
+</script>
+</body>
+</html>

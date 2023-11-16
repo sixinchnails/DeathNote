@@ -4,6 +4,7 @@ import com.goat.deathnote.domain.music.dto.MusicDto;
 import com.goat.deathnote.domain.music.entity.Music;
 import com.goat.deathnote.domain.music.repository.MusicRepository;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -35,8 +36,9 @@ public class MusicService {
         return musicRepository.findById(id);
     }
 
-    public byte[] getAudioFile(MusicDto musicDto) {
+    public ResponseEntity<byte[]> getAudioFile(MusicDto musicDto) {
         ResponseEntity<byte[]> response = restTemplate.postForEntity(pythonServerUrl, musicDto, byte[].class);
-        return response.getBody();
+
+        return response;
     }
 }
