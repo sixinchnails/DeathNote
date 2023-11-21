@@ -8,9 +8,10 @@ RPG와 리듬게임을 융합한 캐주얼 모바일 게임
 
 ## 프로젝트 내용
 
-<img width="80%" src="https://user-images.githubusercontent.com/16822641/109461495-913fc480-7aa5-11eb-9d0e-aff762669f98.gif"/>
+
 
 ### 소셜로그인
+<img width="700" height="370" src="https://user-images.githubusercontent.com/16822641/109461495-913fc480-7aa5-11eb-9d0e-aff762669f98.gif"/>
 <img src="/image/카카오.gif"  width="700" height="370" />
 - 카카오 소셜로그인을 기본으로 함
 
