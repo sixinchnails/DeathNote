@@ -9,7 +9,7 @@ RPG와 리듬게임을 융합한 캐주얼 모바일 게임
 ## 프로젝트 내용
 
 ### 소셜로그인
-<img src="/image/카카오.gif"  width="700" height="370">
+<img src="/image/카카오.gif"  width="700" height="370" />
 - 카카오 소셜로그인을 기본으로 함
 
 ### 스토리
