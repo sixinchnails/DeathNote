@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Success</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('/img/back1.jpg'); /* Add your image URL here */
+            background-size: cover; /* This will ensure that the image covers the whole page */
+            background-repeat: no-repeat; /* This will prevent the image from repeating */
+            background-attachment: fixed;
+            background-position: center; /* This centers the image in the page */
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            height: 100vh; /* Full viewport height */
+        }
+
+        #logo {
+            position: absolute;
+            top: 30%;  /* Adjust for spacing from the top */
+            left: 50%;  /* Center align */
+            transform: translateX(-50%); /* Exact center alignment */
+            width: 400px; /* Increase the width */
+            height: auto; /* Maintain the aspect ratio */
+            z-index: 30; /* Ensure it's above other elements */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Add transparency to the white background */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #3498db;
+        }
+
+        p {
+            color: #555555;
+            margin-top: 10px;
+        }
+    </style>
+    <script th:inline="javascript">
+        window.onload = function () {
+            var nickname = [[${nickname}]];
+
+            if (typeof Unity !== 'undefined' && typeof Unity.call === 'function') {
+                Unity.call(nickname);
+            } else {
+                console.log('Unity.call function is not available in this environment.');
+            }
+        };
+    </script>
+</head>
+<body>
+<img id="logo" src="/img/deathnote.png" alt="Logo" />
+<div class="container">
+    <h1 th:text="'반가워요, ' + ${nickname} + '님!'"></h1>
+    <p>아름다운 연주 기대할게요!</p>
+    <!-- You can add more content or customize as needed. -->
+</div>
+</body>
+</html>
