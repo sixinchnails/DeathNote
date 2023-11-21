@@ -1,12 +1,12 @@
 DeathNote
 
-프로젝트 개요
+## 프로젝트 개요
 RPG와 리듬게임을 융합한 캐주얼 모바일 게임
 
-프로젝트 기간
+## 프로젝트 기간
 2023.10.10 ~ 2023.11.17 (6주)
 
-프로젝트 인원
+## 프로젝트 인원
 
 유니티(4명)
 
@@ -22,5 +22,6 @@ RPG와 리듬게임을 융합한 캐주얼 모바일 게임
 이경원 (소셜 로그인, DB 구축)
 
 
-사용 스택
-  <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">              
+## 사용 스택
+  <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
+  <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">  
