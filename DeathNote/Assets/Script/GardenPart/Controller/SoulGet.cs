@@ -47,7 +47,7 @@ public class SoulGet : MonoBehaviour
     // UI를 띄웠을 때, 들어가야 하는 값들을 초기화하는 메서드
     public void InitUI()
     {
-        int cost = gardenManager.capacity * 1000;
+        int cost = gardenManager.capacity * 100;
         currentCost.text = cost.ToString(); // 현재 정령수의 1000을 곱한 가격
         if (gardenManager.capacity == 16) // 16마리라면
         {
@@ -67,7 +67,7 @@ public class SoulGet : MonoBehaviour
     // 정령을 소환하는 메서드
     public void PurchaseSoul()
     {
-        int cost = gardenManager.capacity * 1000; // 정령뽑는데 드는 비용
+        int cost = gardenManager.capacity * 100; // 정령뽑는데 드는 비용
         if(UserManager.instance.userData.gold >= cost && gardenManager.capacity < 16){ // 조건문
             UserManager.instance.userData.gold -= cost; // 영감 감소
 
@@ -105,8 +105,8 @@ public class SoulGet : MonoBehaviour
         int[] parameters = new int[4]; // 스킬 3개 + 친밀도
         int[] emotions = new int[6]; // 감성 6개
 
-        customizes[0] = UnityEngine.Random.Range(1, 7); // 1부터 6까지 몸통
-        customizes[1] = UnityEngine.Random.Range(1, 3); // 1부터 2까지 눈
+        customizes[0] = UnityEngine.Random.Range(1, 8); // 1부터 6까지 몸통
+        customizes[1] = UnityEngine.Random.Range(1, 4); // 1부터 2까지 눈
 
 
         // 난수에 따라 색깔을 바꿔줌
@@ -133,15 +133,15 @@ public class SoulGet : MonoBehaviour
             chance = UnityEngine.Random.Range(0, 100);
             if (chance == 0)
             {
-                parameters[i] = 200; // 신화 스킬
+                parameters[i] = 200 + UnityEngine.Random.Range(0, 3); // 전설 스킬
             }
             else if (chance < 10)
             {
-                parameters[i] = 100 + UnityEngine.Random.Range(0, 3); // 전설 스킬
+                parameters[i] = 100 + UnityEngine.Random.Range(0, 12); // 전설 스킬
             }
             else
             {
-                parameters[i] = UnityEngine.Random.Range(0, 6); // 일반 스킬
+                parameters[i] = UnityEngine.Random.Range(0, 12); // 일반 스킬
             }
         }
 

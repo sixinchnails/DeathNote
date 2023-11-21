@@ -159,20 +159,25 @@ public class StageManager : MonoBehaviour
         {
             UserManager.instance.userData.progress = musicManager.code;
             UserManager.instance.SaveData();
-            musicManager.tutorial = false;
             RecordManager.instance.SetMyRank(MusicManager.instance.code, grade, scoreManager.currentScore, SkillManager.instance.equip[0]);
             SceneManager.LoadScene("NewOpeningStory");
         }
 
 
-        else if (musicManager.code > UserManager.instance.userData.progress)
+        else if (musicManager.code >= UserManager.instance.userData.progress)
         {
             UserManager.instance.userData.progress = musicManager.code;
+            if (musicManager.code == 404) UserManager.instance.userData.progress = 500;
+            if (musicManager.code == 504) UserManager.instance.userData.progress = 600;
             RecordManager.instance.SetMyRank(MusicManager.instance.code, grade, scoreManager.currentScore, SkillManager.instance.equip[0]);
             UserManager.instance.SaveData();
             if (musicManager.code == 604)
             {
                 SceneManager.LoadScene("EndingStory");
+            }
+            else
+            {
+                resultManager.ShowResult(musicManager.musicTitle, grade, scoreManager.score.text, gold);
             }
         }
 

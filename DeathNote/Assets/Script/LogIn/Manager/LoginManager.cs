@@ -192,7 +192,9 @@ public class LoginManager : MonoBehaviour
                     {
                         Debug.Log("저기에여");
                         UserData userData = JsonUtility.FromJson<UserData>(dto.token);
+                        
                         UserManager.instance.userData = userData;
+                   
                         UserManager.instance.SaveData();
                     }
 

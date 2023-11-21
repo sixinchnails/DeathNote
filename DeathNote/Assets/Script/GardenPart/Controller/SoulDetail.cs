@@ -84,9 +84,10 @@ public class SoulDetail : MonoBehaviour
             skillname[i].text = skill.name;
             skillDescription[i].text = skill.description;
             string star = "";
+            Debug.Log("티어"+skill.tier);
             for (int j = 0; j < skill.tier; j++)
             {
-                star += "★"; // 티어만큼 별을 설정
+                star = star+"★"; // 티어만큼 별을 설정
             }   
             tier[i].text = star;
         }
@@ -99,7 +100,6 @@ public class SoulDetail : MonoBehaviour
         {
             if (i == 0) BookPage[i].SetActive(true); // 이 페이지를 활성화하고 
             else BookPage[i].SetActive(false); // 다른 페이지를 활성화하지 않음
-            Debug.Log(nowSoul.customizes[i]);
         }
         soulImages[0].SetInteger("body", nowSoul.customizes[0]);
         soulImages[0].SetInteger("eyes", nowSoul.customizes[1]);
@@ -351,10 +351,10 @@ public class SoulDetail : MonoBehaviour
 
     public int CalcuateCost()
     {
-        int cost = 1000 + 50 * nowSoul.revive;
+        int cost = 100 + 50 * nowSoul.revive;
         for(int i = 0; i <6; i++)
         {
-            if (ascendSwitch[i]) cost += 1000;
+            if (ascendSwitch[i]) cost += 200;
         }
 
         return cost;
@@ -378,8 +378,8 @@ public class SoulDetail : MonoBehaviour
     // 만들기
     public void ReviveSoul()
     {
-        if (!ascendSwitch[0]) nowSoul.customizes[0] = UnityEngine.Random.Range(1, 7); // 1부터 6까지 몸통
-        if (!ascendSwitch[1]) nowSoul.customizes[1] = UnityEngine.Random.Range(1, 3); // 1부터 6까지 몸통
+        if (!ascendSwitch[0]) nowSoul.customizes[0] = UnityEngine.Random.Range(1, 8); // 1부터 6까지 몸통
+        if (!ascendSwitch[1]) nowSoul.customizes[1] = UnityEngine.Random.Range(1, 4); // 1부터 6까지 몸통
         if (!ascendSwitch[2])
         {
             int chance = UnityEngine.Random.Range(0, 100);
@@ -405,15 +405,15 @@ public class SoulDetail : MonoBehaviour
             int chance = UnityEngine.Random.Range(0, 100);
             if (chance == 0)
             {
-                nowSoul.parameters[i] = 200; // 신화 스킬
+                nowSoul.parameters[i] = 200 + UnityEngine.Random.Range(0, 3); // 전설 스킬
             }
             else if (chance < 10)
             {
-                nowSoul.parameters[i] = 100 + UnityEngine.Random.Range(0, 3); // 전설 스킬
+                nowSoul.parameters[i] = 100 + UnityEngine.Random.Range(0, 12); // 전설 스킬
             }
             else
             {
-                nowSoul.parameters[i] = UnityEngine.Random.Range(0, 6); // 일반 스킬
+                nowSoul.parameters[i] = UnityEngine.Random.Range(0, 12); // 일반 스킬
             }
         }
 

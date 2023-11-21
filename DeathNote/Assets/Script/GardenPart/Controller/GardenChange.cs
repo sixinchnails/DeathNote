@@ -34,7 +34,7 @@ public class GardenChange : MonoBehaviour
     void Awake()
     {
         gardenName = new string[] { "얼어붙은 땅", "꽃피는 정원", "정령의 바다" };
-        gardenPrice = new int[] { 0, 30000, 100000 };
+        gardenPrice = new int[] { 0, 3000, 10000 };
         InitUI();
 
     }

@@ -2169,7 +2169,7 @@ MonoBehaviour:
   - {fileID: 563784119}
   - {fileID: 1746120220}
   tier:
-  - {fileID: 2094204236}
+  - {fileID: 1448660798}
   - {fileID: 2094204236}
   - {fileID: 320091664}
   skillname:
@@ -4410,7 +4410,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2605\u2605\u2605"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d79987e2c9da3f40aa3d78e1b6ffe4e, type: 2}
   m_sharedMaterial: {fileID: 3696055606098244384, guid: 6d79987e2c9da3f40aa3d78e1b6ffe4e, type: 2}
@@ -19199,7 +19199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2605\u2605\u2605"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d79987e2c9da3f40aa3d78e1b6ffe4e, type: 2}
   m_sharedMaterial: {fileID: 3696055606098244384, guid: 6d79987e2c9da3f40aa3d78e1b6ffe4e, type: 2}
@@ -26596,7 +26596,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2605\u2605\u2605"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d79987e2c9da3f40aa3d78e1b6ffe4e, type: 2}
   m_sharedMaterial: {fileID: 3696055606098244384, guid: 6d79987e2c9da3f40aa3d78e1b6ffe4e, type: 2}

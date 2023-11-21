@@ -11,7 +11,7 @@ public class Move : MonoBehaviour
     void Start()
     {
         w = Screen.width;
-        speed = 20;
+        speed = 60;
         len = (int)Mathf.Round(w / 2);
         num = MusicSelect.limit;
     }

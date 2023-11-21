@@ -65,8 +65,8 @@ public class MusicSelect : MonoBehaviour
         }
 
         LoadRanking(); // UI »£√‚
-        if (UserManager.instance.userData.progress + 1 < songProgressData[world * 4 + idx]) panel.SetActive(true);
-        else panel.SetActive(false);
+        if (UserManager.instance.userData.progress + 1 >= songProgressData[world * 4 + idx]) panel.SetActive(false);
+        else panel.SetActive(true);
         MusicManager.instance.SetMusic(songProgressData[world * 4 + idx], customOffset);
 
 
@@ -244,8 +244,8 @@ public class MusicSelect : MonoBehaviour
             }
         }
         LoadRanking();
-        if (UserManager.instance.userData.progress + 1 < songProgressData[world * 4 + idx]) panel.SetActive(true);
-        else panel.SetActive(false);
+        if (UserManager.instance.userData.progress + 1 >= songProgressData[world * 4 + idx]) panel.SetActive(false);
+        else panel.SetActive(true);
         MusicManager.instance.SetMusic(songProgressData[world * 4 + idx], customOffset);
 
     }
@@ -286,8 +286,8 @@ public class MusicSelect : MonoBehaviour
             }
         }
         LoadRanking();
-        if (UserManager.instance.userData.progress + 1 < songProgressData[world * 4 + idx]) panel.SetActive(true);
-        else panel.SetActive(false);
+        if (UserManager.instance.userData.progress + 1 >= songProgressData[world * 4 + idx]) panel.SetActive(false);
+        else panel.SetActive(true);
         MusicManager.instance.SetMusic(songProgressData[world * 4 + idx], customOffset);
     }
 }

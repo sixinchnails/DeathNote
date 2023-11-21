@@ -243,7 +243,7 @@ public class MusicManager : MonoBehaviour
 
     public void SetMusic(int cod, float offset)
     {
-        Debug.Log("ㅎㅇ");
+        
         code = cod;
         customOffset = offset;
         StopAllCoroutines();
@@ -870,6 +870,7 @@ public class MusicManager : MonoBehaviour
 
     public void SetTutorial()
     {
+        code = 401;
         AudioClip clip = Resources.Load<AudioClip>("Sound/Tutorial120");
         musicLength = clip.length;
         audioSource.clip = clip;
@@ -1135,7 +1136,7 @@ public class MusicManager : MonoBehaviour
         bpm = 165;
         songBeat = 4;
         stdBeat = 4;
-        offset = (float)-0.81f;
+        offset = (float)-0.4f;
         totalNote = 392;
         beat = new int[] { 60, 60, 80, 90, 100, 103, 110, 122, 130, 132, 140, 160, 160, //그래 그리 쉽지는 않겠지
             170, 172, 180, 180, 200, 200, 220, 220, //나를 허락해준 세상이란
