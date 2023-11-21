@@ -1,0 +1,55 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.17'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.goat'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '11'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// JPA
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// WEB
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'mysql:mysql-connector-java:8.0.32'
+	// OAuth 로그인
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// JWT
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
+	// Redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	// 랜덤영단어 생성
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0' // 현재 사용 가능한 버전에 따라 버전을 조정하세요.
+	// Thymeleaf
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

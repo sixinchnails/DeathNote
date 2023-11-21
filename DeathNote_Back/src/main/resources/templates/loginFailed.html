@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Failed</title>
+    <script th:inline="javascript">
+        // 페이지가 로드되면 실행됩니다.
+        window.onload = function () {
+            // Thymeleaf를 사용하여 서버로부터 받은 nickname 값을 가져옵니다.
+            var nickname = 듀퓸산빙쒔폘;
+
+            // Unity.call 함수가 있는지 확인하고 호출합니다.
+            if (typeof Unity !== 'undefined' && typeof Unity.call === 'function') {
+                Unity.call(nickname);
+            } else {
+                console.log('Unity.call 함수가 이 환경에서는 사용할 수 없습니다.');
+            }
+        };
+    </script>
+</head>
+<body>
+<h1 th:text="'로그인실패'"></h1>
+<!-- 여기에 로그인 성공 관련 내용을 추가합니다. -->
+</body>
+</html>

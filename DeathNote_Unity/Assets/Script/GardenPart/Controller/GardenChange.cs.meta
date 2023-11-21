@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 4fad069f2cd56b747ae654ff85ae9c35
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - UI: {instanceID: 0}
+  - gardenManager: {instanceID: 0}
+  - gardenCurrentName: {instanceID: 0}
+  - gardenCurrentPrice: {instanceID: 0}
+  - lockImage: {instanceID: 0}
+  - lessMoney: {instanceID: 0}
+  - buyButton: {instanceID: 0}
+  - gardenCurrentImage: {instanceID: 0}
+  - menuUI: {instanceID: 0}
+  - snowPrefab: {fileID: 5047336948004215264, guid: 01581cf36c00fe54a85cfd4311c3103a, type: 3}
+  - bugsPrefab: {fileID: 2196607999691837737, guid: 4b45e6b64b334d9478934398f4df75cb, type: 3}
+  - twinclesPrefab: {fileID: 4307387383322139180, guid: 233a61081f064d140a253d787665c66f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
