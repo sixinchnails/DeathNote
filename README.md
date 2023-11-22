@@ -16,9 +16,12 @@ RPG와 리듬게임을 융합한 캐주얼 모바일 게임
 - 카카오 소셜로그인을 기본으로 함
 
 ### 스토리
-<img width="700" height="370" src="/image/스토리.png"/>
+<img width="700" height="370" src="/image/대화.gif"/>
 <br>
 - 악마가 악보(데스노트)를 떨어뜨리면서 시작되는 스토리
+<br>
+<img width="700" height="370" src="/image/엔딩.gif"/>
+<br>
 - 마지막 노래 플레이시 엔딩 등장 및 작곡 해금
 
 ### 리듬게임 시스템
