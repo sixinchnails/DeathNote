@@ -166,7 +166,8 @@ public class TalkManager : MonoBehaviour
             rects[0].SetAsLastSibling();
             images[1].color = new Color(255, 255, 255, 0.5f);
             rects[1].SetAsFirstSibling();
-            sayname.text = UserManager.instance.userData.nickname;
+            //sayname.text = UserManager.instance.userData.nickname;
+            sayname.text = "데스노트플레이어";
             sayname.alignment = TextAnchor.MiddleLeft;
             content.alignment = TextAnchor.UpperLeft;
 
