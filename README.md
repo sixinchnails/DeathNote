@@ -110,14 +110,11 @@ RPG와 리듬게임을 융합한 캐주얼 모바일 게임
 - UCC 구현
 
 ### 인프라(1명)
-최재용 (빅데이터, 머신러닝, 인프라 구축)
-- AWS, Docker, Jenkins를 활용한 인프라 구축
-- 가비아 도메인 등록, HTTPS 기능, NginX 적용
-- Librosa를 활용한 음악 파형 분석
-- 다중 출력 모델을 활용한 노래 특성 예측 기능 구현
-- 신경망을 활용한 노래 인기도 예측 기능 구현
+최재용 (인프라 구축, 데이터 분석)
+- AWS, Git, Docker, Jenkins 기반 배포 자동화
+- 서버 도메인 등록, HTTPS 및 Nginx 적용
+- Gradient Boosting 및 keras 신경망 회귀 모델 구축
 - Flask REST API 서버로 작곡 추천 API 구현
-- AI 작곡 플랫폼 ‘AIVA’로 노래 50개 작곡
 
 ### 백엔드(1명)
 이경원 (소셜 로그인, DB 구축)
