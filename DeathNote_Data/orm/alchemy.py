@@ -115,58 +115,7 @@ spotifySession = SpotifySession()
 #all_music = session.query(composeMusic).all()
 
 def getComposeSongs():
-    return session.query(composeMusic).all()
+    return [m.__dict__ for m in session.query(composeMusic).all()]
 
 def getSpotifySongs():
-    #spotify_music = spotifySession.query(spotifyMusic).all()
-    return spotifySession.query(spotifyMusic).all()
-
-# Create an instance of the Music class
-# Create an instance of the Music class with sample data
-
-"""
-new_music = Music(
-    music_title="Sample Song",
-    rmsep_a=0.6,
-    rmsep_std=0.1,
-    rmseh_a=0.4,
-    rmseh_std=0.05,
-    centroid_a=1500.0,
-    centroid_std=250.0,
-    bw_a=2000.0,
-    bw_std=300.0,
-    contrast_a=0.3,
-    contrast_std=0.06,
-    polyfeat_a=1.0,
-    polyfeat_std=0.2,
-    tonnetz_a=0.5,
-    tonnetz_std=0.1,
-    zcr_a=0.2,
-    zcr_std=0.04,
-    onset_a=0.3,
-    onset_std=0.05,
-    bpm=120,
-    rmsep_skew=0.5,
-    rmsep_kurtosis=3.0,
-    rmseh_skew=0.4,
-    rmseh_kurtosis=3.2,
-    beats_a=0.7,
-    beats_std=0.15,
-    acousticness=0.2,
-    danceability=0.8,
-    energy=0.9,
-    instrumentalness=0.0,
-    liveness=0.1,
-    loudness=-5.0,
-    speechiness=0.05,
-    valence=0.7,
-    tempo=100.0,
-    populatrity=0.85
-)
-"""
-
-# Add the record to the session
-#session.add(new_music)
-
-# Commit the session to write the data to the database
-#session.commit()
+    return [m.__dict__ for m in spotifySession.query(spotifyMusic).all()]

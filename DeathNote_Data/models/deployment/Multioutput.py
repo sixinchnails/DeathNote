@@ -6,7 +6,6 @@ from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_squared_error
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-
 from DeathNote_Data.orm.alchemy import spotifyMusic
 from DeathNote_Data.orm.dbutils import getSpotifySession
 
@@ -20,65 +19,55 @@ tracks = session.query(spotifyMusic).all()
 data = []
 
 for track in tracks:
-    # Use the __dict__ attribute but exclude SQLAlchemy internal attributes
+    # Exclude SQLAlchemy internal attr.
     row_data = {key: value for key, value in track.__dict__.items() if not key.startswith('_')}
     data.append(row_data)
 
 spotify_df = pd.DataFrame(data)
 
-# Merge the features and targets DataFrames on the corresponding ID columns
-# In this case, 'file_name' from features_df and 'spotify_id' from targets_df
-
-# After merging, drop the 'file_name' and 'spotify_id' columns unnecessary for prediction
-#
 # Get all columns as a list
 all_columns = spotify_df.columns.tolist()
 
-# Specify the columns to exclude
-columns_to_exclude = ['file_name', 'spotify_id', 'title', 'wav_path', 'time_signature', 'song_key', 'popularity']  # Add any other columns you want to exclude
-exclude_columns = ['music_id', 'music_title', 'populatrity']
-
-# Get feature columns by excluding the unwanted columns
-# Assume that target columns are known and listed as 'target_columns_list'
+feat_exclude_columns = ['music_id', 'music_title', 'populatrity']
 target_columns_list = ['acousticness', 'danceability', 'energy', 'instrumentalness',
                        'liveness', 'loudness', 'speechiness', 'valence', 'tempo']
 
 # Input feature column
-feature_columns = [col for col in all_columns if col not in target_columns_list + exclude_columns]
+feature_columns = [col for col in all_columns if col not in target_columns_list + feat_exclude_columns]
 # Target column
 target_columns = [col for col in target_columns_list if col in all_columns]
 
-# Now, select the features and targets from the merged dataframe
-X = spotify_df[feature_columns]
-y = spotify_df[target_columns]
 scaler = MinMaxScaler()
 pca = PCA(n_components=0.95)
 
-X = scaler.fit_transform(X)
-X = pca.fit_transform(X)
+# Make input and output data for model
+X = pca.fit_transform(scaler.fit_transform(spotify_df[feature_columns]))
+y = spotify_df[target_columns]
 
+# Save scaler and pca model as pkl for further use
 joblib.dump(scaler, 'multiscaler.pkl')
 joblib.dump(pca, 'multipca.pkl')
 
 # Split the data into training and test sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-# Create the multioutput regressor
+# Create model
 model = MultiOutputRegressor(GradientBoostingRegressor(random_state=42))
 
 # Train the model
 model.fit(X_train, y_train)
 
+# Save model
 joblib.dump(model, 'multimodel.pkl')
 
 # Predict on the test data
 y_pred = model.predict(X_test)
 
-# Evaluate the model
+# Calculate MSE
 mse = mean_squared_error(y_test, y_pred, multioutput='raw_values')
 print(f"Mean Squared Error for each output: {mse}")
 
-# If you want to calculate the average MSE across all outputs
+# MSE across all outputs(AVG)
 mean_mse = mse.mean()
 print(f"Mean Squared Error (average across outputs): {mean_mse}")
 

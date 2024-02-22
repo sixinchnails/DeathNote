@@ -1,9 +1,11 @@
 import pandas as pd, numpy as np
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.preprocessing import MinMaxScaler
-
 from DeathNote_Data.orm.alchemy import spotifyMusic
 from DeathNote_Data.orm.dbutils import getSpotifySession
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import GridSearchCV
 
 spotify_df = pd.read_csv('../data/spotify_output.csv')
 feature_df = pd.read_csv('../data/feat_output.csv')
@@ -36,7 +38,7 @@ string_df = spotify_df[['spotify_id', 'title']]
 
 filter_df = merged_df[columns]
 
-X = filter_df.drop('popularity', axis = 1)
+X = filter_df.drop('popularity', axis=1)
 Y = filter_df['popularity']
 
 X_convert = X.iloc[:, 2:]
@@ -45,11 +47,7 @@ scaler = MinMaxScaler()
 X_scaled = pd.DataFrame(scaler.fit_transform(X_convert), columns=X.columns[2:])
 X_scaled.index = filter_df.index
 
-from sklearn.model_selection import train_test_split
-
 train_x, test_x, train_y, test_y = train_test_split(X_scaled, Y)
-
-from sklearn.ensemble import RandomForestRegressor
 
 n_estimators = [int(x) for x in np.linspace(start=200, stop=2000, num=10)]
 
@@ -93,8 +91,6 @@ best_random = rf_random.best_estimator_
 random_accuracy = evaluate(best_random, train_x, train_y)
 
 print('Improvement of {:0.2f}%'.format(100 * (random_accuracy - base_accuracy) / base_accuracy))
-
-from sklearn.model_selection import GridSearchCV
 
 param_grid = {
     'bootstrap': [True],

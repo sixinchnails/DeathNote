@@ -8,7 +8,7 @@ import pandas as pd
 from DeathNote_Data.orm.alchemy import getSpotifySongs
 
 # Load and preprocess Spotify songs data
-music_data = [m.__dict__ for m in getSpotifySongs()]
+music_data = getSpotifySongs()
 
 for music in music_data:
     music.pop('_sa_instance_state', None)
@@ -33,7 +33,7 @@ param_grid_gbr = {
 random_search_gbr = RandomizedSearchCV(estimator=gbr, param_distributions=param_grid_gbr,
                                        n_iter=10, cv=3, random_state=42)
 
-# Define a pipeline with MinMaxScaler, PCA, and Gradient Boosting Regressor
+# Pipeline with MinMaxScaler, PCA, and Gradient Boosting Regressor
 pipeline_gb = make_pipeline(
     MinMaxScaler(),
     PCA(n_components=0.95),

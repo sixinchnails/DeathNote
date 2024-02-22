@@ -7,12 +7,11 @@ from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 from DeathNote_Data.orm.alchemy import getSpotifySongs
 
-# Load and preprocess Spotify songs data
-spotifySongs = getSpotifySongs()
+music_data = getSpotifySongs()
 
-music_data = [m.__dict__ for m in spotifySongs]
 for music in music_data:
     music.pop('_sa_instance_state', None)
+
 spotify_df = pd.DataFrame(music_data)
 
 X = spotify_df.drop(['music_id', 'music_title', 'populatrity'], axis=1)
@@ -32,7 +31,7 @@ param_grid_svr = {
 random_search_svr = RandomizedSearchCV(estimator=svr, param_distributions=param_grid_svr,
                                        n_iter=10, cv=3, random_state=42)
 
-# Define a pipeline with MinMaxScaler, PCA, and SVR
+# Pipeline with MinMaxScaler, PCA, and SVR
 pipeline_svr = make_pipeline(
     MinMaxScaler(),
     PCA(n_components=0.95),
