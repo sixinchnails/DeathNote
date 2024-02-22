@@ -6,7 +6,7 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 
-from alchemy import getSpotifySongs, getComposeSongs
+from DeathNote_Data.orm.alchemy import getSpotifySongs
 
 # Assuming getSpotifySongs and getComposeSongs are functions that retrieve your data
 

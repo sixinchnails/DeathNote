@@ -101,7 +101,5 @@ features = {
     'loudness': 0.7,
     'speechiness': 0.4,
     'valence': 0.95,
-    'tempo': 0.3,  # Let's assume tempo here is normalized for simplicity
+    'tempo': 0.3,
 }
-
-#print(suggest_song_title(features))

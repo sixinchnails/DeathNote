@@ -18,8 +18,8 @@ pd.set_option('display.max_columns', None)
 np.set_printoptions(formatter={'float_kind':'{:.8f}'.format})
 
 # Load your data
-features_df = pd.read_csv('feat_output.csv')
-targets_df = pd.read_csv('spotify_output.csv')
+features_df = pd.read_csv('../data/feat_output.csv')
+targets_df = pd.read_csv('../data/spotify_output.csv')
 
 # Ensure that only the rows with matching 'file_name' and 'spotify_id' are used
 df = features_df.merge(targets_df, left_on='file_name', right_on='spotify_id')
@@ -41,7 +41,7 @@ X_scaled = scaler.fit_transform(X)
 # with open('scaler.pkl', 'wb') as file:
 #     pickle.dump(scaler, file)
 
-joblib.dump(scaler, 'scaler.pkl')
+joblib.dump(scaler, '../data/pkl/scaler.pkl')
 
 # Define the PCA model
 pca = PCA(n_components=0.95)  # Retain 95% of variance
@@ -52,7 +52,7 @@ X_pca = pca.fit_transform(X_scaled)
 # with open('pca_model.pkl', 'wb') as file:
 #     pickle.dump(pca, file)
 
-joblib.dump(pca, 'pca.pkl')
+joblib.dump(pca, '../data/pkl/pca.pkl')
 
 # Create a DataFrame of the PCA-transformed features for inspection
 pca_df = pd.DataFrame(X_pca, columns=[f'PC{i+1}' for i in range(X_pca.shape[1])])
@@ -69,7 +69,7 @@ regressor = RandomForestRegressor(n_estimators=100, random_state=1)
 # Fit the model
 regressor.fit(X_train, y_train)
 
-joblib.dump(regressor, 'regressor_model.pkl')
+joblib.dump(regressor, '../data/pkl/regressor_model.pkl')
 
 # Predict on the test data
 y_pred = regressor.predict(X_test)
@@ -136,9 +136,9 @@ another_sample_data = {
     'beats_std': [0.4],           # Replace with actual beats_std value
 }
 
-loaded_scaler = joblib.load('scaler.pkl')
-loaded_pca = joblib.load('pca.pkl')
-loaded_regressor = joblib.load('regressor_model.pkl')
+loaded_scaler = joblib.load('../data/pkl/scaler.pkl')
+loaded_pca = joblib.load('../data/pkl/pca.pkl')
+loaded_regressor = joblib.load('../data/pkl/regressor_model.pkl')
 
 sample_df = pd.DataFrame(sample_data)
 another_sample_df = pd.DataFrame(another_sample_data)

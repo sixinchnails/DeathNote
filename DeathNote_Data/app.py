@@ -1,4 +1,4 @@
-from dbutils import getDbConnection
+from DeathNote_Data.orm.dbutils import getDbConnection
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import os
@@ -6,7 +6,7 @@ import joblib
 from flask_expects_json import expects_json
 import traceback
 import logging
-from simcalc import sim_calc
+from DeathNote_Data.utils.simcalc import sim_calc
 
 app = Flask(__name__)
 CORS(app)
@@ -14,9 +14,9 @@ CORS(app)
 mysql_conn = getDbConnection()
 cursor = mysql_conn.cursor()
 
-scaler = joblib.load("scaler.pkl")
-pca = joblib.load("pca.pkl")
-regressor = joblib.load("regressor_model.pkl")
+scaler = joblib.load("data/pkl/scaler.pkl")
+pca = joblib.load("data/pkl/pca.pkl")
+regressor = joblib.load("data/pkl/regressor_model.pkl")
 
 logging.basicConfig(level=logging.INFO, filename='nohup2.log',
         filemode='a', format='%(asctime)s - %(levelname)s - %(message)s')

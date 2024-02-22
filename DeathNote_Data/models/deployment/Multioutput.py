@@ -7,8 +7,8 @@ from sklearn.metrics import mean_squared_error
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
-from alchemy import spotifyMusic
-from dbutils import getSpotifySession
+from DeathNote_Data.orm.alchemy import spotifyMusic
+from DeathNote_Data.orm.dbutils import getSpotifySession
 
 session = getSpotifySession()
 
@@ -29,7 +29,7 @@ spotify_df = pd.DataFrame(data)
 # Merge the features and targets DataFrames on the corresponding ID columns
 # In this case, 'file_name' from features_df and 'spotify_id' from targets_df
 
-# After merging, you can drop the 'file_name' and 'spotify_id' columns if they are not needed for prediction
+# After merging, drop the 'file_name' and 'spotify_id' columns unnecessary for prediction
 #
 # Get all columns as a list
 all_columns = spotify_df.columns.tolist()
@@ -43,9 +43,9 @@ exclude_columns = ['music_id', 'music_title', 'populatrity']
 target_columns_list = ['acousticness', 'danceability', 'energy', 'instrumentalness',
                        'liveness', 'loudness', 'speechiness', 'valence', 'tempo']
 
-# Exclude the target columns and any other specific columns you don't want from the features
+# Input feature column
 feature_columns = [col for col in all_columns if col not in target_columns_list + exclude_columns]
-# Your target columns are already defined, but if you need to dynamically exclude columns, do similarly:
+# Target column
 target_columns = [col for col in target_columns_list if col in all_columns]
 
 # Now, select the features and targets from the merged dataframe

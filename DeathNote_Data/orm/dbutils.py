@@ -42,11 +42,14 @@ SpotifySession = sessionmaker(bind=spotify_engine)
 session = Session()
 spotifySession = SpotifySession()
 
+
 def getDbConnection():
     return conn
 
+
 def get9oatSession():
     return session
+
 
 def getSpotifySession():
     return spotifySession

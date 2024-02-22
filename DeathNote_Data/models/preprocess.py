@@ -1,26 +1,12 @@
 import pandas as pd, numpy as np
-import seaborn as sns, random, string
-from scipy.stats import skew
 from sklearn.model_selection import RandomizedSearchCV
-from scipy.stats import kurtosis
-from sklearn.cluster import KMeans
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.linear_model import RidgeCV, LassoCV, Ridge, Lasso
-from sklearn.decomposition import PCA
-from sklearn.svm import SVC
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
-from sklearn.svm import SVC
-from sklearn.metrics import classification_report
-from sklearn.ensemble import RandomForestClassifier
-import matplotlib.pyplot as plt
-import matplotlib
 
-from alchemy import spotifyMusic
-from dbutils import getSpotifySession
+from DeathNote_Data.orm.alchemy import spotifyMusic
+from DeathNote_Data.orm.dbutils import getSpotifySession
 
-spotify_df = pd.read_csv('spotify_output.csv')
-feature_df = pd.read_csv('feat_output.csv')
+spotify_df = pd.read_csv('../data/spotify_output.csv')
+feature_df = pd.read_csv('../data/feat_output.csv')
 
 session = getSpotifySession()
 
@@ -53,12 +39,6 @@ filter_df = merged_df[columns]
 X = filter_df.drop('popularity', axis = 1)
 Y = filter_df['popularity']
 
-# plt.style.use('fivethirtyeight')
-# sns.heatmap(filter_df.corr())
-# plt.tight_layout()
-# plt.savefig('./plots/correlation.png')
-# plt.show()
-
 X_convert = X.iloc[:, 2:]
 
 scaler = MinMaxScaler()
@@ -88,7 +68,6 @@ random_grid = {'n_estimators': n_estimators,
                'bootstrap': bootstrap}
 
 rf = RandomForestRegressor(random_state = 42)
-# rf_random = RandomizedSearchCV(estimator=rf, param_distributions=random_grid, n_iter=100, cv=3, verbose=2, random_state=42, n_jobs=-1)
 rf_random = RandomizedSearchCV(estimator=rf, param_distributions=random_grid, n_iter=100, cv=3, verbose=2, random_state=42, n_jobs=-1)
 rf_random.fit(train_x, train_y)
 

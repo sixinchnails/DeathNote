@@ -4,7 +4,7 @@ import spotipy, librosa as lb
 import yt_dlp as youtube_dl
 from spotipy.oauth2 import SpotifyClientCredentials
 
-from freqstats import get_features_mean
+from DeathNote_Data.utils.Utils import get_features_mean
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -19,9 +19,9 @@ client_id = client_id
 client_secret = client_secret
 sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
 
-scaler = joblib.load('scaler.pkl')
-pca = joblib.load('pca.pkl')
-regressor = joblib.load('regressor_model.pkl')
+scaler = joblib.load('../../data/pkl/scaler.pkl')
+pca = joblib.load('../../data/pkl/pca.pkl')
+regressor = joblib.load('../../data/pkl/regressor_model.pkl')
 path = '.\\songs\\'
 
 # Define the list of music keywords

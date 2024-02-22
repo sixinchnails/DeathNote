@@ -1,14 +1,15 @@
-from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.svm import SVR
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.pipeline import make_pipeline
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
-from alchemy import getSpotifySongs
+from DeathNote_Data.orm.alchemy import getSpotifySongs
 
 # Load and preprocess Spotify songs data
 spotifySongs = getSpotifySongs()
+
 music_data = [m.__dict__ for m in spotifySongs]
 for music in music_data:
     music.pop('_sa_instance_state', None)
@@ -20,29 +21,28 @@ y = spotify_df['populatrity']
 # Split the data into training and test sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-gbr = GradientBoostingRegressor()
+svr = SVR()
 
-param_grid_gbr = {
-    'n_estimators': [100, 200, 300],
-    'learning_rate': [0.01, 0.1, 0.2],
-    'max_depth': [3, 4, 5]
+param_grid_svr = {
+    'C': [0.1, 1, 10],
+    'gamma': ['scale', 'auto'],
+    'epsilon': [0.01, 0.1, 0.2],
 }
 
-# Create the RandomizedSearchCV object
-random_search_gbr = RandomizedSearchCV(estimator=gbr, param_distributions=param_grid_gbr,
+random_search_svr = RandomizedSearchCV(estimator=svr, param_distributions=param_grid_svr,
                                        n_iter=10, cv=3, random_state=42)
 
-# Define a pipeline with MinMaxScaler, PCA, and Gradient Boosting Regressor
-pipeline_gb = make_pipeline(
+# Define a pipeline with MinMaxScaler, PCA, and SVR
+pipeline_svr = make_pipeline(
     MinMaxScaler(),
     PCA(n_components=0.95),
-    random_search_gbr
+    random_search_svr
 )
 
 # Train the model
-pipeline_gb.fit(X_train, y_train)
-y_pred_gb = pipeline_gb.predict(X_test)
+pipeline_svr.fit(X_train, y_train)
+y_pred_svr = pipeline_svr.predict(X_test)
 
 # Calculate MSE
-mse_gb = mean_squared_error(y_test, y_pred_gb)
-print(f"Mean Squared Error with Gradient Boosting: {mse_gb}")
+mse_svr = mean_squared_error(y_test, y_pred_svr)
+print(f"Mean Squared Error with SVR: {mse_svr}")

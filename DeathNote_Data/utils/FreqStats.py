@@ -84,4 +84,4 @@ def get_features_mean(y, sr, hop_length, n_fft):
 
     return features_dict
 
-csv_file = 'feat_output.csv'
+csv_file = '../data/feat_output.csv'

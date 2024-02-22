@@ -1,4 +1,4 @@
-from dbutils import getDbConnection
+from DeathNote_Data.orm.dbutils import getDbConnection
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import random
