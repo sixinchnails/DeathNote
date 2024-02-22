@@ -10,4 +10,5 @@ orm - Contains ORM implemented by SQLAlchemy and additional utils for database m
 <br>
 utils - Contains general purpose util libraries
 <br>
+<br>
 Finally, app.py is the code that runs on deployment environment.
