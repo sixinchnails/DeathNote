@@ -14,9 +14,9 @@ CORS(app)
 mysql_conn = getDbConnection()
 cursor = mysql_conn.cursor()
 
-scaler = joblib.load("data/pkl/scaler.pkl")
-pca = joblib.load("data/pkl/pca.pkl")
-regressor = joblib.load("data/pkl/regressor_model.pkl")
+scaler = joblib.load("data/test/scaler.pkl")
+pca = joblib.load("data/test/pca.pkl")
+regressor = joblib.load("data/test/regressor_model.pkl")
 
 logging.basicConfig(level=logging.INFO, filename='nohup2.log',
         filemode='a', format='%(asctime)s - %(levelname)s - %(message)s')

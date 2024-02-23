@@ -37,7 +37,7 @@ y = predictive_features[['acousticness', 'danceability', 'energy', 'instrumental
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-joblib.dump(scaler, '../data/pkl/scaler.pkl')
+joblib.dump(scaler, '../data/test/scaler.pkl')
 
 # Define the PCA model
 pca = PCA(n_components=0.95)  # Retain 95% of variance
@@ -45,7 +45,7 @@ pca = PCA(n_components=0.95)  # Retain 95% of variance
 # Fit PCA on the features
 X_pca = pca.fit_transform(X_scaled)
 
-joblib.dump(pca, '../data/pkl/pca.pkl')
+joblib.dump(pca, '../data/test/pca.pkl')
 
 # Create test DF with PCA applied, and analyze variance
 pca_df = pd.DataFrame(X_pca, columns=[f'PC{i+1}' for i in range(X_pca.shape[1])])
@@ -62,4 +62,4 @@ regressor = RandomForestRegressor(n_estimators=100, random_state=1)
 # Fit the model
 regressor.fit(X_train, y_train)
 
-joblib.dump(regressor, '../data/pkl/regressor_model.pkl')
+joblib.dump(regressor, '../data/test/regressor_model.pkl')

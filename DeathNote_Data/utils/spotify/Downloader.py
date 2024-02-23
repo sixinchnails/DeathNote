@@ -19,9 +19,9 @@ client_id = client_id
 client_secret = client_secret
 sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
 
-scaler = joblib.load('../../data/pkl/scaler.pkl')
-pca = joblib.load('../../data/pkl/pca.pkl')
-regressor = joblib.load('../../data/pkl/regressor_model.pkl')
+scaler = joblib.load('../../data/test/scaler.pkl')
+pca = joblib.load('../../data/test/pca.pkl')
+regressor = joblib.load('../../data/test/regressor_model.pkl')
 path = '.\\songs\\'
 
 # Define the list of music keywords

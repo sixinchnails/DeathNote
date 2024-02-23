@@ -70,4 +70,3 @@ print(f"Mean Squared Error for each output: {mse}")
 # MSE across all outputs(AVG)
 mean_mse = mse.mean()
 print(f"Mean Squared Error (average across outputs): {mean_mse}")
-
