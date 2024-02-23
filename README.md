@@ -113,7 +113,7 @@ RPG와 리듬게임을 융합한 캐주얼 모바일 게임
 최재용 (인프라 구축, 데이터 분석)
 - AWS, Git, Docker, Jenkins 기반 배포 자동화
 - 서버 도메인 등록, HTTPS 및 Nginx 적용
-- Gradient Boosting 및 keras 신경망 회귀 모델 구축
+- ML 모델 Flask 서비스 배포(Gradient Boosting Multioutput Regressor, Keras Sequential Regressor)
 - Flask REST API 서버로 작곡 추천 API 구현
 
 ### 백엔드(1명)
