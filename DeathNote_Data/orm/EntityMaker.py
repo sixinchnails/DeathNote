@@ -6,20 +6,18 @@ import numpy as np
 from DeathNote_Data.orm.Alchemy import composeMusic
 from keras.models import load_model
 from DbUtils import getDbConnection, get9oatSession
-from freqstats import get_features_mean
+from DeathNote_Data.utils.FreqStats import get_features_mean
 
-"""
-요약: 미확인 노래 특성 값 전부 추출해서 DB에 저장/디렉토리에서 알아서 조회
-1. 분석 하지 않은 노래가 있는지 검색 및 전처리
-2. 모델 불러오기
-3. 음악 파형 특성 값 추출
-4. 모델 실행(Scaler, PCA, Regressor)
-5. ORM을 활용한 Music 엔티티 삽입
-"""
-
-# Set to display all columns in the dataframe
 pd.set_option('display.max_columns', None)
-np.set_printoptions(formatter={'float_kind':'{:.8f}'.format})
+np.set_printoptions(formatter={'float_kind': '{:.8f}'.format})
+
+"""
+Summary: Extract features from unseen songs and store in DB
+1. Find unseen songs and extract features
+2. Load model and extract waveform features from song
+3. Run model pipeline(Scaler/PCA/Regressor)
+4. Insert Music Entity into MySQL using ORM
+"""
 
 scaler = joblib.load('scaler.pkl')
 pca = joblib.load('pca.pkl')
@@ -28,66 +26,54 @@ regressor = joblib.load('regressor_model.pkl')
 pop_scaler = joblib.load('pop_scaler.pkl')
 pop_pca = joblib.load('pop_pca.pkl')
 
-"""
-아직 분석하지 않은 노래 검색 및 전처리
-"""
+#Find unseen songs
 conn = getDbConnection()
 cursor = conn.cursor()
 
 data = {}
-name_list =[]
+name_list = []
 path = 'aiva/'
 
-#song directory files
+# Song directory files
 directory_files = [f for f in glob.glob(path + "*.wav", recursive=True)]
-#song table files
+# Song table files
 cursor.execute("SELECT music_title FROM music")
 table_files = [x[0] for x in cursor.fetchall()]
-#Will process files
 files = []
 
 for file in directory_files:
     if file in table_files: continue
-    
+
     files.append(file)
 
 for file in files:
     name = file.split('\\')[-1].split('.')[0]
 
     y, sr = lb.load(file, sr=44100)
-    data[name] = {'y' : y, 'sr': sr}
+    data[name] = {'y': y, 'sr': sr}
 
-"""
-모델 불러오기
-"""
-
+# Load multioutput model
 scaler = joblib.load('multiscaler.pkl')
 pca = joblib.load('multipca.pkl')
 regressor = joblib.load('multimodel.pkl')
 
-"""
-음악 파형 특성 값 추출
-"""
-
+# Extract Waveform features
 df = pd.DataFrame()
 
 for key in data.keys():
     res = get_features_mean(y=data[key]['y'], sr=data[key]['sr'], hop_length=512, n_fft=2048)
-    #res['file_name'] = generate_song_title('0')
+    # res['file_name'] = generate_song_title('0')
     res['file_name'] = key.split("/")[1]
 
     res_df = pd.DataFrame([res])
 
     df = pd.concat([df, res_df], ignore_index=True)
 
-"""
-모델 실행(Scaler, PCA, Regressor)
-"""
+# Run Scaler, Pca, Regression Pipeline
 
 cols = df.columns.tolist()
 
 cols.remove("file_name")
-#cols = ["file_name"] + cols
 df_file_name = df["file_name"]
 df = df[cols]
 
@@ -96,41 +82,38 @@ pca_df = pca.transform(scaled_df)
 
 prediction = regressor.predict(pca_df)
 
-prediction_df = pd.DataFrame(prediction, columns = [
-    'acousticness','danceability','energy',
-    'instrumentalness','liveness','loudness',
-    'speechiness','valence','tempo'
+prediction_df = pd.DataFrame(prediction, columns=[
+    'acousticness', 'danceability', 'energy',
+    'instrumentalness', 'liveness', 'loudness',
+    'speechiness', 'valence', 'tempo'
 ])
 
-df_final = pd.concat([df, prediction_df], axis = 1)
-df_final = df_final[['contrast_std', 'onset_a', 'rmseh_skew', 'instrumentalness', 'rmsep_a', 'polyfeat_a', 'onset_std', 'rmseh_kurtosis', 'liveness', 'rmsep_std', 'polyfeat_std', 'bpm', 'loudness', 'rmseh_a', 'centroid_a', 'tonnetz_a', 'beats_a', 'speechiness', 'rmseh_std', 'centroid_std', 'tonnetz_std', 'beats_std', 'valence', 'bw_a', 'zcr_a', 'rmsep_skew', 'acousticness', 'tempo', 'bw_std', 'zcr_std', 'rmsep_kurtosis', 'danceability', 'contrast_a', 'energy']]
+df_final = pd.concat([df, prediction_df], axis=1)
+df_final = df_final[['contrast_std', 'onset_a', 'rmseh_skew', 'instrumentalness', 'rmsep_a', 'polyfeat_a', 'onset_std',
+                     'rmseh_kurtosis', 'liveness', 'rmsep_std', 'polyfeat_std', 'bpm', 'loudness', 'rmseh_a',
+                     'centroid_a', 'tonnetz_a', 'beats_a', 'speechiness', 'rmseh_std', 'centroid_std', 'tonnetz_std',
+                     'beats_std', 'valence', 'bw_a', 'zcr_a', 'rmsep_skew', 'acousticness', 'tempo', 'bw_std',
+                     'zcr_std', 'rmsep_kurtosis', 'danceability', 'contrast_a', 'energy']]
 
-"""
-Assuming 'df_final' is your final DataFrame after merging
-Add a new column 'popularity' with random values between 0 and 1
-This is where popularity will be computed and stored.
-"""
-
-#df_final['popularity'] = np.random.rand(df_final.shape[0])
+# df_final['popularity'] = np.random.rand(df_final.shape[0])
 
 pop_scaler = joblib.load('pop_scaler.pkl')
 pop_pca = joblib.load('pop_pca.pkl')
 pop_model = load_model('pop_model.keras')
 
-scaled_df_final = pop_scaler.transform(df_final)
-pca_df_final = pop_pca.transform(scaled_df_final)
+prediction_df = pop_model.predict(
+    pop_pca.transform(
+        pop_scaler.transform(df_final)
+    )
+)
 
-prediction_df = pop_model.predict(pca_df_final)
 df_final['popularity'] = prediction_df
 
-df_mysql = pd.concat([df_final, df_file_name], axis = 1)
+df_mysql = pd.concat([df_final, df_file_name], axis=1)
 
 col_list = df_mysql.columns.tolist()
 
-"""
-ORM을 활용한 Music 엔티티 CRUD 연산
-"""
-
+# Music Entity CRUD operation using SQLAlchemy
 session = get9oatSession()
 
 # Loop through each row of the DataFrame and create an instance of the Music class
@@ -162,10 +145,10 @@ for index, row in df_mysql.iterrows():
         rmseh_kurtosis=row['rmseh_kurtosis'],
         beats_a=row['beats_a'],
         beats_std=row['beats_std'],
-        acousticness=row['acousticness'],  # Corrected typo here
+        acousticness=row['acousticness'],
         danceability=row['danceability'],
         energy=row['energy'],
-        instrumentalness=row['instrumentalness'],  # Corrected typo here
+        instrumentalness=row['instrumentalness'],
         liveness=row['liveness'],
         loudness=row['loudness'],
         speechiness=row['speechiness'],

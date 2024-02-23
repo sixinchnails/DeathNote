@@ -1,5 +1,5 @@
 import pymysql, configparser
-from sqlalchemy import create_engine, Column, Integer, Float, String
+from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -30,7 +30,7 @@ spotify_engine = create_engine(f'mysql+pymysql://{user}:{password}@{server_ip}/s
 Base = declarative_base()
 spotifyBase = declarative_base()
 
-# Create all tables in the engine. This is equivalent to "Create Table" statements in raw SQL.
+# Create all tables in the engine
 Base.metadata.create_all(engine)
 spotifyBase.metadata.create_all(spotify_engine)
 

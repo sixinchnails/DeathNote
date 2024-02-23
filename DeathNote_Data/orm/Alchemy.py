@@ -12,7 +12,7 @@ user = config['DEFAULT']['user']
 password = config['DEFAULT']['password']
 server_ip = config['DEFAULT']['serverIP']
 
-# Define the MySQL connection string
+# MySQL connection string
 # mysql://<user>:<password>@<host>/<dbname>
 engine = create_engine(f"mysql+pymysql://{user}:{password}@{server_ip}/9oat")
 spotifyEngine = create_engine(f'mysql+pymysql://{user}:{password}@{server_ip}/spotify')
@@ -97,10 +97,8 @@ class spotifyMusic(Base):
     tempo = Column(Float, nullable=False)
     populatrity = Column('popularity', Float, nullable=False)
 
-# After this, you would still create an engine, bind it to the sessionmaker,
-# and create a session as shown in the previous example.
-
-# Create all tables in the engine. This is equivalent to "Create Table" statements in raw SQL.
+# Bind engine to \'sessionmaker\', and create a session
+# Create all tables in the engine
 Base.metadata.create_all(engine)
 spotifyBase.metadata.create_all(spotifyEngine)
 
