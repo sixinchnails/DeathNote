@@ -1,5 +1,5 @@
 # DeathNote
-![로고](/image/로고.gif)
+<img src="/image/로고.gif" alt="로고" width="500" height="250"/>
 ## 프로젝트 개요
 RPG와 리듬게임을 융합한 캐주얼 모바일 게임
 
