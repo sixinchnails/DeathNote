@@ -1,8 +1,8 @@
 import pandas as pd, numpy as np
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.preprocessing import MinMaxScaler
-from DeathNote_Data.orm.alchemy import spotifyMusic
-from DeathNote_Data.orm.dbutils import getSpotifySession
+from DeathNote_Data.orm.Alchemy import spotifyMusic
+from DeathNote_Data.orm.DbUtils import getSpotifySession
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV

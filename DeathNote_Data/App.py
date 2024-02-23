@@ -1,4 +1,4 @@
-from DeathNote_Data.orm.dbutils import getDbConnection
+from DeathNote_Data.orm.DbUtils import getDbConnection
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import os
@@ -6,7 +6,7 @@ import joblib
 from flask_expects_json import expects_json
 import traceback
 import logging
-from DeathNote_Data.utils.simcalc import sim_calc
+from DeathNote_Data.utils.SimCalc import sim_calc
 
 app = Flask(__name__)
 CORS(app)
@@ -14,13 +14,14 @@ CORS(app)
 mysql_conn = getDbConnection()
 cursor = mysql_conn.cursor()
 
-scaler = joblib.load("data/test/scaler.pkl")
-pca = joblib.load("data/test/pca.pkl")
-regressor = joblib.load("data/test/regressor_model.pkl")
+scaler = joblib.load("offline_models/test/scaler.pkl")
+pca = joblib.load("offline_models/test/pca.pkl")
+regressor = joblib.load("offline_models/test/regressor_model.pkl")
 
 logging.basicConfig(level=logging.INFO, filename='nohup2.log',
-        filemode='a', format='%(asctime)s - %(levelname)s - %(message)s')
+                    filemode='a', format='%(asctime)s - %(levelname)s - %(message)s')
 
+# JSON request must follow this format or throws request error
 compose_schema = {
     "type": "object",
     "properties": {
@@ -34,13 +35,14 @@ compose_schema = {
         "tempo": {"type": "number"},
         "valence": {"type": "number"}
     },
-    "required": ["energy", "acousticness", "danceability", "instrumentalness", "liveness", "loudness", "speechiness", "tempo", "valence"]
+    "required": ["energy", "acousticness", "danceability", "instrumentalness", "liveness", "loudness", "speechiness",
+                 "tempo", "valence"]
 }
+
 
 @app.route('/compose', methods=['POST'])
 @expects_json(compose_schema)
 def compose():
-    print("Compose API")
     req = request.get_json()
 
     valence = float(req['valence'])
@@ -54,13 +56,11 @@ def compose():
     tempo = float(req['tempo'])
 
     try:
-        # Depending on the use case, you may want to exclude the exact match, which will have a cosine similarity of 1.
-        #similar_rows = [row for row in similar_rows if row['cosine_similarity'] < 0.9999]
         print("[Logging]")
-        logging.info('This is an info message that will go to nohup2.log.')
+        logging.info('This is an info message that will go to nohup.log.')
 
         similar_song = sim_calc([acousticness, danceability, energy, liveness, loudness, speechiness, valence, tempo])
-        print(similar_song)
+
         file_name = similar_song + '.wav'
         directory_path = 'aiva/'
         file_path = os.path.join(directory_path, file_name)
@@ -72,27 +72,20 @@ def compose():
 
         response = send_file(file_path, mimetype='audio/wav')
         response.headers['Title'] = similar_song
+
         return response
     except Exception as e:
         traceback.print_exc()
-        print(f"Error: {e}")
 
-        tb = traceback.format_exc()
-        print(tb)
+        logging.error(traceback.format_exc())
 
         return jsonify({"error": str(e)}), 500
+
 
 @app.route('/', methods=['GET'])
 def index():
     return ""
 
-@app.route('/hello', methods=['GET'])
-def hello():
-    return "hello world!"
-
-@app.route('/ssafy', methods=['GET'])
-def ssafy():
-    return "ssafy"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

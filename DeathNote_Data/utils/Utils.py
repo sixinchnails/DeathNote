@@ -1,4 +1,6 @@
-import string, random
+import string
+import random
+
 
 def generate_song_title(pattern, length=22):
     """
@@ -8,14 +10,16 @@ def generate_song_title(pattern, length=22):
     :param length: The total length of the song ID (excluding the '.wav' extension).
     :return: A randomly generated song title.
     """
+
     # Generate a random string of uppercase letters and digits
-    # Subtract the length of the pattern and the length of the extension (.wav = 4 characters)
+    # Subtract .wav = 4 characters
     random_part = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length - len(pattern) - 4))
 
     # Concatenate the pattern, the random part, and the '.wav' extension
     title = f"{pattern}{random_part}"
 
     return title
+
 
 def suggest_song_title(features):
     themes = {
@@ -90,6 +94,7 @@ def suggest_song_title(features):
     title = ' '.join(title_parts)
 
     return title
+
 
 # Example usage:
 features = {

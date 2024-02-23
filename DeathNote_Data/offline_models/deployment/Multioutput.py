@@ -6,8 +6,8 @@ from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_squared_error
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-from DeathNote_Data.orm.alchemy import spotifyMusic
-from DeathNote_Data.orm.dbutils import getSpotifySession
+from DeathNote_Data.orm.Alchemy import spotifyMusic
+from DeathNote_Data.orm.DbUtils import getSpotifySession
 
 session = getSpotifySession()
 

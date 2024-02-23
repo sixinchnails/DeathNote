@@ -1,10 +1,11 @@
-from DeathNote_Data.orm.dbutils import getDbConnection
+from DeathNote_Data.orm.DbUtils import getDbConnection
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import random
 
 conn = getDbConnection()
 cursor = conn.cursor()
+
 
 def select_element(popularities):
     inverted_pop = [1 / pop for pop in popularities]
@@ -14,8 +15,10 @@ def select_element(popularities):
 
     return random.choices([x for x in range(len(popularities))], weights=normalized_probs, k=1)[0]
 
+
 def sim_calc(my_song):
-    cursor.execute("SELECT music_title, acousticness, danceability, energy, liveness, loudness, speechiness, valence, tempo, populatrity FROM music")
+    cursor.execute(
+        "SELECT music_title, acousticness, danceability, energy, liveness, loudness, speechiness, valence, tempo, populatrity FROM music")
     songs = list(cursor.fetchall())
 
     for i in range(len(songs)):
@@ -41,9 +44,10 @@ def sim_calc(my_song):
         song_features = np.array(songs[i][1:-1]).reshape(1, -1)
 
         # Calculate the cosine similarity and append it to the results
-        similarity = cosine_similarity(my_song, song_features)[0][0]  # [0][0] to get the scalar value
+        # [0][0] to get the scalar value
+        similarity = cosine_similarity(my_song, song_features)[0][0]
         sim_res.append([songs[i][0], similarity, songs[i][-1]])
-    
+
     sim_res.sort(key=lambda x: x[1], reverse=True)
 
     popularities = [sim_res[i][-1] for i in range(min(9, len(sim_res)))]

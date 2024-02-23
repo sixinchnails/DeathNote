@@ -3,9 +3,9 @@ import glob
 import librosa as lb
 import pandas as pd
 import numpy as np
-from DeathNote_Data.orm.alchemy import composeMusic
+from DeathNote_Data.orm.Alchemy import composeMusic
 from keras.models import load_model
-from dbutils import getDbConnection, get9oatSession
+from DbUtils import getDbConnection, get9oatSession
 from freqstats import get_features_mean
 
 """
