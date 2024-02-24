@@ -25,16 +25,16 @@ for track in tracks:
 spotify_df = pd.DataFrame(data)
 
 # Get all columns as a list
-all_columns = spotify_df.columns.tolist()
+spotify_columns = spotify_df.columns.tolist()
 
 feat_exclude_columns = ['music_id', 'music_title', 'populatrity']
 target_columns_list = ['acousticness', 'danceability', 'energy', 'instrumentalness',
                        'liveness', 'loudness', 'speechiness', 'valence', 'tempo']
 
 # Input feature column
-feature_columns = [col for col in all_columns if col not in target_columns_list + feat_exclude_columns]
+feature_columns = [col for col in spotify_columns if col not in target_columns_list + feat_exclude_columns]
 # Target column
-target_columns = [col for col in target_columns_list if col in all_columns]
+target_columns = [col for col in target_columns_list if col in spotify_columns]
 
 scaler = MinMaxScaler()
 pca = PCA(n_components=0.95)
@@ -57,7 +57,7 @@ model = MultiOutputRegressor(GradientBoostingRegressor(random_state=42))
 model.fit(X_train, y_train)
 
 # Save model
-joblib.dump(model, 'DeathNote_Data.multimodel.pkl')
+joblib.dump(model, 'multimodel.pkl')
 
 # Predict on the test data
 y_pred = model.predict(X_test)

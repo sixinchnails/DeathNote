@@ -1,10 +1,40 @@
 from sqlalchemy import Column, Integer, Float, String
 from sqlalchemy.orm import declarative_base
+from DeathNote_Data.orm.DbUtils import getDbConnection
 from DeathNote_Data.orm.DbUtils import getSession
 
 Base = declarative_base()
 session = getSession('spotify')
 
+# Create a MySQL connection
+conn = getDbConnection()
+cursor = conn.cursor()
+
+# Define column names as an array
+column_names = [
+    'spotify_id',
+    'title',
+    'acousticness',
+    'danceability',
+    'energy',
+    'instrumentalness',
+    'liveness',
+    'loudness',
+    'speechiness',
+    'valence',
+    'tempo',
+    'popularity',
+    # Sound feature values
+    'rmseP_a', 'rmseP_std', 'rmseH_a', 'rmseH_std', 'centroid_a', 'centroid_std', 'bw_a', 'bw_std', 'contrast_a',
+    'contrast_std',
+    'polyfeat_a', 'polyfeat_std', 'tonnetz_a', 'tonnetz_std', 'zcr_a', 'zcr_std', 'onset_a', 'onset_std', 'bpm',
+    'rmseP_skew',
+    'rmseP_kurtosis', 'rmseH_skew', 'rmseH_kurtosis', 'beats_a', 'beats_std'
+]
+
+# Assign VARCHAR(255) to 'spotify_id' and 'title', FLOAT to the rest
+columns = ', '.join(
+    [f"{name} VARCHAR(255)" if name in ['spotify_id', 'title'] else f"{name} FLOAT" for name in column_names])
 
 class SpotifyMusic(Base):
     __tablename__ = 'spotify_songs'
@@ -49,3 +79,33 @@ class SpotifyMusic(Base):
 
 def getSpotifySongs():
     return [m.__dict__ for m in session.query(SpotifyMusic).all()]
+
+
+def dropSpotifySongs():
+    query = f'DROP TABLE IF EXISTS spotify_songs'
+
+    cursor.execute(query)
+
+
+def createSpotifySongs():
+    create_table_query = f'CREATE TABLE IF NOT EXISTS spotify_songs ({columns})'
+    cursor.execute(create_table_query)
+
+
+def findSpotifySong(spotify_id):
+    query = f"SELECT * FROM spotify_songs WHERE spotify_id = %s"
+    cursor.execute(query, (spotify_id,))
+
+    return cursor.fetchone()
+
+
+def insertSpotifySong(row):
+    # Number of columns to insert
+    num_columns = 37
+
+    # Create a string with placeholders to use in INSERT statement
+    placeholders = ", ".join(["%s"] * num_columns)
+
+    insert_query = f"INSERT INTO spotify_songs VALUES ({placeholders})"
+
+    cursor.execute(insert_query, row)

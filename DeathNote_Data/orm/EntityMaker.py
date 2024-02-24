@@ -4,7 +4,7 @@ import glob
 import librosa as lb
 import pandas as pd
 import numpy as np
-from DeathNote_Data.orm.entities.ComposeMusic import ComposeMusic
+from DeathNote_Data.orm.entities.ComposeMusic import *
 from keras.models import load_model
 from DbUtils import getDbConnection, get9oatSession
 from DeathNote_Data.utils.FreqStats import get_features_mean
@@ -20,16 +20,13 @@ Summary: Extract features from unseen songs and store in DB
 4. Insert Music Entity into MySQL using ORM
 """
 
-scaler = joblib.load('scaler.pkl')
-pca = joblib.load('pca.pkl')
-regressor = joblib.load('regressor_model.pkl')
+# Load multioutput model
+scaler = joblib.load('multiscaler.pkl')
+pca = joblib.load('multipca.pkl')
+regressor = joblib.load('multimodel.pkl')
 
 pop_scaler = joblib.load('pop_scaler.pkl')
 pop_pca = joblib.load('pop_pca.pkl')
-
-#Find unseen songs
-conn = getDbConnection()
-cursor = conn.cursor()
 
 data = {}
 name_list = []
@@ -38,33 +35,22 @@ path = 'aiva/'
 # Song directory files
 directory_files = [f for f in glob.glob(path + "*.wav", recursive=True)]
 # Song table files
-cursor.execute("SELECT music_title FROM music")
-table_files = [x[0] for x in cursor.fetchall()]
-files = []
+table_files = findComposeSongs()
+# Extract Waveform features
+df = pd.DataFrame()
 
 for file in directory_files:
-    if file in table_files: continue
+    if file in table_files:
+        continue
 
-    files.append(file)
-
-for file in files:
     name = file.split('\\')[-1].split('.')[0]
 
     y, sr = lb.load(file, sr=44100)
     data[name] = {'y': y, 'sr': sr}
 
-# Load multioutput model
-scaler = joblib.load('multiscaler.pkl')
-pca = joblib.load('multipca.pkl')
-regressor = joblib.load('multimodel.pkl')
+    res = get_features_mean(y=data[name]['y'], sr=data[name]['sr'], hop_length=512, n_fft=2048)
 
-# Extract Waveform features
-df = pd.DataFrame()
-
-for key in data.keys():
-    res = get_features_mean(y=data[key]['y'], sr=data[key]['sr'], hop_length=512, n_fft=2048)
-
-    res['file_name'] = key.split("/")[1]
+    res['file_name'] = name.split("/")[1]
 
     res_df = pd.DataFrame([res])
 
@@ -79,7 +65,6 @@ df = df[cols]
 
 scaled_df = scaler.transform(df)
 pca_df = pca.transform(scaled_df)
-
 prediction = regressor.predict(pca_df)
 
 prediction_df = pd.DataFrame(prediction, columns=[
@@ -95,8 +80,6 @@ df_final = df_final[['contrast_std', 'onset_a', 'rmseh_skew', 'instrumentalness'
                      'beats_std', 'valence', 'bw_a', 'zcr_a', 'rmsep_skew', 'acousticness', 'tempo', 'bw_std',
                      'zcr_std', 'rmsep_kurtosis', 'danceability', 'contrast_a', 'energy']]
 
-# df_final['popularity'] = np.random.rand(df_final.shape[0])
-
 pop_scaler = joblib.load('pop_scaler.pkl')
 pop_pca = joblib.load('pop_pca.pkl')
 pop_model = load_model('pop_model.keras')
@@ -108,9 +91,7 @@ prediction_df = pop_model.predict(
 )
 
 df_final['popularity'] = prediction_df
-
 df_mysql = pd.concat([df_final, df_file_name], axis=1)
-
 col_list = df_mysql.columns.tolist()
 
 # Music Entity CRUD operation using SQLAlchemy
@@ -118,7 +99,7 @@ session = get9oatSession()
 
 # Loop through each row of the DataFrame and create an instance of the Music class
 for index, row in df_mysql.iterrows():
-    music = composeMusic(
+    music = ComposeMusic(
         music_title=row['file_name'],
         rmsep_a=row['rmsep_a'],
         rmsep_std=row['rmsep_std'],

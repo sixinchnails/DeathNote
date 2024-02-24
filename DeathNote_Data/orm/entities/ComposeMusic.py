@@ -1,10 +1,13 @@
 from sqlalchemy import Column, Integer, Float, String
 from sqlalchemy.orm import declarative_base
-from DeathNote_Data.orm.DbUtils import getSession
+from DeathNote_Data.orm.DbUtils import *
 
 Base = declarative_base()
 session = getSession('9oat')
 
+# Create a MySQL connection
+conn = getDbConnection()
+cursor = conn.cursor()
 
 class ComposeMusic(Base):
     __tablename__ = 'music'
@@ -49,3 +52,10 @@ class ComposeMusic(Base):
 
 def getComposeSongs():
     return [m.__dict__ for m in session.query(ComposeMusic).all()]
+
+def findComposeSongs():
+    cursor.execute("SELECT music_title FROM music")
+
+    return [x[0] for x in cursor.fetchall()]
+
+def insertComposeSongs():
