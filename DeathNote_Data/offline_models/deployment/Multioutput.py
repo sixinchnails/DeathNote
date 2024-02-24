@@ -6,15 +6,14 @@ from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_squared_error
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-from DeathNote_Data.orm.Alchemy import spotifyMusic
+from DeathNote_Data.orm.entities.SpotifyMusic import SpotifyMusic
 from DeathNote_Data.orm.DbUtils import getSpotifySession
-
-session = getSpotifySession()
 
 pd.set_option('display.max_columns', None)
 np.set_printoptions(formatter={'float_kind':'{:.8f}'.format})
 
-tracks = session.query(spotifyMusic).all()
+session = getSpotifySession()
+tracks = session.query(SpotifyMusic).all()
 
 data = []
 

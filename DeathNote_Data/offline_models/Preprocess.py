@@ -1,7 +1,7 @@
 import pandas as pd, numpy as np
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.preprocessing import MinMaxScaler
-from DeathNote_Data.orm.Alchemy import spotifyMusic
+from DeathNote_Data.orm.entities import SpotifyMusic
 from DeathNote_Data.orm.DbUtils import getSpotifySession
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
@@ -11,8 +11,7 @@ spotify_df = pd.read_csv('../data/spotify_output.csv')
 feature_df = pd.read_csv('../data/feat_output.csv')
 
 session = getSpotifySession()
-
-tracks = session.query(spotifyMusic).all()
+tracks = session.query(SpotifyMusic).all()
 
 data = []
 
@@ -26,12 +25,12 @@ spotify_df = pd.DataFrame(data)
 merged_df = pd.merge(spotify_df, feature_df, left_on='spotify_id', right_on='file_name')
 
 columns = [
-       'rmsep_a', 'rmsep_std', 'rmseh_a', 'rmseh_std',
-       'centroid_a', 'centroid_std', 'bw_a', 'bw_std', 'contrast_a',
-       'contrast_std', 'polyfeat_a', 'polyfeat_std', 'tonnetz_a',
-       'tonnetz_std', 'zcr_a', 'zcr_std', 'onset_a', 'onset_std', 'bpm',
-       'rmsep_skew', 'rmsep_kurtosis', 'rmseh_skew', 'rmseh_kurtosis',
-       'beats_a', 'beats_std', 'popularity'
+    'rmsep_a', 'rmsep_std', 'rmseh_a', 'rmseh_std',
+    'centroid_a', 'centroid_std', 'bw_a', 'bw_std', 'contrast_a',
+    'contrast_std', 'polyfeat_a', 'polyfeat_std', 'tonnetz_a',
+    'tonnetz_std', 'zcr_a', 'zcr_std', 'onset_a', 'onset_std', 'bpm',
+    'rmsep_skew', 'rmsep_kurtosis', 'rmseh_skew', 'rmseh_kurtosis',
+    'beats_a', 'beats_std', 'popularity'
 ]
 
 string_df = spotify_df[['spotify_id', 'title']]
@@ -65,11 +64,13 @@ random_grid = {'n_estimators': n_estimators,
                'min_samples_leaf': min_samples_leaf,
                'bootstrap': bootstrap}
 
-rf = RandomForestRegressor(random_state = 42)
-rf_random = RandomizedSearchCV(estimator=rf, param_distributions=random_grid, n_iter=100, cv=3, verbose=2, random_state=42, n_jobs=-1)
+rf = RandomForestRegressor(random_state=42)
+rf_random = RandomizedSearchCV(estimator=rf, param_distributions=random_grid, n_iter=100, cv=3, verbose=2,
+                               random_state=42, n_jobs=-1)
 rf_random.fit(train_x, train_y)
 
 print(rf_random.best_params_)
+
 
 def evaluate(model, test_features, test_labels):
     predictions = model.predict(test_features)
@@ -83,6 +84,7 @@ def evaluate(model, test_features, test_labels):
 
     return accuracy
 
+
 base_model = RandomForestRegressor(n_estimators=10, random_state=42)
 base_model.fit(train_x, train_y)
 base_accuracy = evaluate(base_model, train_x, train_y)
@@ -95,13 +97,13 @@ print('Improvement of {:0.2f}%'.format(100 * (random_accuracy - base_accuracy) /
 param_grid = {
     'bootstrap': [True],
     'max_depth': [80, 90, 100, 110],
-    'max_features':[2, 3],
+    'max_features': [2, 3],
     'min_samples_leaf': [3, 4, 5],
     'min_samples_split': [8, 10, 12],
     'n_estimators': [100, 200, 300, 1000]
 }
 
-grid_search = GridSearchCV(estimator = rf, param_grid = param_grid, cv = 3, n_jobs = -1, verbose = 2)
+grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=3, n_jobs=-1, verbose=2)
 
 grid_search.fit(train_x, train_y)
 
@@ -113,7 +115,7 @@ grid_accuracy = evaluate(best_grid, train_x, train_y)
 print('Improvement f {:0.2f}%.'.format(100 * (grid_accuracy - base_accuracy) / base_accuracy))
 
 best_params = grid_search.best_params_
-grid_rf_model = RandomForestRegressor(**best_params, random_state = 42)
+grid_rf_model = RandomForestRegressor(**best_params, random_state=42)
 grid_rf_model.fit(train_x, train_y)
 
 predictions = grid_rf_model.predict(test_x)

@@ -5,7 +5,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
-from DeathNote_Data.orm.Alchemy import getSpotifySongs
+from DeathNote_Data.orm.entities.SpotifyMusic import getSpotifySongs
 
 # Load and preprocess Spotify songs data
 music_data = getSpotifySongs()

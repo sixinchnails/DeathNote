@@ -6,7 +6,8 @@ import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import MinMaxScaler
 from keras.backend import sigmoid
-from DeathNote_Data.orm.Alchemy import getSpotifySongs, getComposeSongs
+from DeathNote_Data.orm.entities.SpotifyMusic import getSpotifySongs
+from DeathNote_Data.orm.entities.ComposeMusic import getComposeSongs
 
 
 # Swish Function
