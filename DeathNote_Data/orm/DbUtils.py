@@ -5,24 +5,10 @@ from sqlalchemy.orm import sessionmaker
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-user = config['DEFAULT']['user']
-password = config['DEFAULT']['password']
-server_ip = config['DEFAULT']['serverIP']
-db = config['DEFAULT']['db']
-
-conn = pymysql.connect(
-    host=server_ip,
-    user=user,
-    password=password,
-    db=db
-)
-
-spotify_conn = pymysql.connect(
-    host=server_ip,
-    user=user,
-    password=password,
-    db=db
-)
+user = config['DB']['user']
+password = config['DB']['password']
+server_ip = config['DB']['serverIP']
+db = config['DB']['db']
 
 engine = create_engine(f"mysql+pymysql://{user}:{password}@{server_ip}/9oat")
 spotify_engine = create_engine(f'mysql+pymysql://{user}:{password}@{server_ip}/spotify')
@@ -44,6 +30,13 @@ spotifySession = SpotifySession()
 
 
 def getDbConnection():
+    conn = pymysql.connect(
+        host=server_ip,
+        user=user,
+        password=password,
+        db=db
+    )
+
     return conn
 
 

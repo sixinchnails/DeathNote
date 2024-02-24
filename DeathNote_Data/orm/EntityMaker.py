@@ -1,3 +1,4 @@
+import logging
 import joblib
 import glob
 import librosa as lb
@@ -62,7 +63,7 @@ df = pd.DataFrame()
 
 for key in data.keys():
     res = get_features_mean(y=data[key]['y'], sr=data[key]['sr'], hop_length=512, n_fft=2048)
-    # res['file_name'] = generate_song_title('0')
+
     res['file_name'] = key.split("/")[1]
 
     res_df = pd.DataFrame([res])
@@ -70,7 +71,6 @@ for key in data.keys():
     df = pd.concat([df, res_df], ignore_index=True)
 
 # Run Scaler, Pca, Regression Pipeline
-
 cols = df.columns.tolist()
 
 cols.remove("file_name")
@@ -164,7 +164,7 @@ for index, row in df_mysql.iterrows():
 try:
     session.commit()
 except Exception as e:
-    print(e)
+    logging.exception(e)
     session.rollback()
 finally:
     session.close()

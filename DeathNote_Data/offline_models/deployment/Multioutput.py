@@ -58,7 +58,7 @@ model = MultiOutputRegressor(GradientBoostingRegressor(random_state=42))
 model.fit(X_train, y_train)
 
 # Save model
-joblib.dump(model, 'multimodel.pkl')
+joblib.dump(model, 'DeathNote_Data.multimodel.pkl')
 
 # Predict on the test data
 y_pred = model.predict(X_test)
