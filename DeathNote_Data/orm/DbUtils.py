@@ -34,8 +34,10 @@ def getDbConnection():
 
     return conn
 
+
 def getSession(db):
     return initializeSession(db)
+
 
 def get9oatSession():
     return initializeSession('9oat')

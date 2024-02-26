@@ -1,10 +1,11 @@
 from sqlalchemy import Column, Integer, Float, String
 from sqlalchemy.orm import declarative_base
-from DeathNote_Data.orm.DbUtils import getDbConnection
-from DeathNote_Data.orm.DbUtils import getSession
+from sqlalchemy import insert
+from DeathNote_Data.orm.DbUtils import *
 
 Base = declarative_base()
 session = getSession('spotify')
+engine = session.get_bind()
 
 # Create a MySQL connection
 conn = getDbConnection()
@@ -77,6 +78,8 @@ class SpotifyMusic(Base):
     populatrity = Column('popularity', Float, nullable=False)
 
 
+SpotifyMusic.__table__.create(bind=engine, checkfirst=True)
+
 def getSpotifySongs():
     return [m.__dict__ for m in session.query(SpotifyMusic).all()]
 
@@ -100,12 +103,4 @@ def findSpotifySong(spotify_id):
 
 
 def insertSpotifySong(row):
-    # Number of columns to insert
-    num_columns = 37
-
-    # Create a string with placeholders to use in INSERT statement
-    placeholders = ", ".join(["%s"] * num_columns)
-
-    insert_query = f"INSERT INTO spotify_songs VALUES ({placeholders})"
-
-    cursor.execute(insert_query, row)
+    session.execute(insert(SpotifyMusic), row)

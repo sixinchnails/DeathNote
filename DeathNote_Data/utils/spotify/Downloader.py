@@ -187,23 +187,45 @@ for keyword in keywords:
                         y, sr = lb.load(file, sr=44100)
                         res = get_features_mean(y=y, sr=sr, hop_length=512, n_fft=2048)
 
-                        row = (spotify_id, track_name, audio_features['acousticness'],
-                               audio_features['danceability'], audio_features['energy'],
-                               audio_features['instrumentalness'], audio_features['liveness'],
-                               audio_features['loudness'], audio_features['speechiness'],
-                               audio_features['valence'], audio_features['tempo'],
-                               popularity,
-                               float(res['rmseP_a']), float(res['rmseP_std']), float(res['rmseH_a']),
-                               float(res['rmseH_std']), float(res['centroid_a']),
-                               float(res['centroid_std']), float(res['bw_a']), float(res['bw_std']),
-                               float(res['contrast_a']), float(res['contrast_std']),
-                               float(res['polyfeat_a']), float(res['polyfeat_std']), float(res['tonnetz_a']),
-                               float(res['tonnetz_std']), float(res['zcr_a']),
-                               float(res['zcr_std']), float(res['onset_a']), float(res['onset_std']),
-                               float(res['bpm']), float(res['rmseP_skew']), float(res['rmseP_kurtosis']),
-                               float(res['rmseH_skew']), float(res['rmseH_kurtosis']), float(res['beats_a']),
-                               float(res['beats_std'])
-                               )
+                        row = {
+                            'spotify_id': spotify_id,
+                            'track_name': track_name,
+                            'acousticness': audio_features['acousticness'],
+                            'danceability': audio_features['danceability'],
+                            'energy': audio_features['energy'],
+                            'instrumentalness': audio_features['instrumentalness'],
+                            'liveness': audio_features['liveness'],
+                            'loudness': audio_features['loudness'],
+                            'speechiness': audio_features['speechiness'],
+                            'valence': audio_features['valence'],
+                            'tempo': audio_features['tempo'],
+                            'popularity': popularity,
+                            'rmseP_a': float(res['rmseP_a']),
+                            'rmseP_std': float(res['rmseP_std']),
+                            'rmseH_a': float(res['rmseH_a']),
+                            'rmseH_std': float(res['rmseH_std']),
+                            'centroid_a': float(res['centroid_a']),
+                            'centroid_std': float(res['centroid_std']),
+                            'bw_a': float(res['bw_a']),
+                            'bw_std': float(res['bw_std']),
+                            'contrast_a': float(res['contrast_a']),
+                            'contrast_std': float(res['contrast_std']),
+                            'polyfeat_a': float(res['polyfeat_a']),
+                            'polyfeat_std': float(res['polyfeat_std']),
+                            'tonnetz_a': float(res['tonnetz_a']),
+                            'tonnetz_std': float(res['tonnetz_std']),
+                            'zcr_a': float(res['zcr_a']),
+                            'zcr_std': float(res['zcr_std']),
+                            'onset_a': float(res['onset_a']),
+                            'onset_std': float(res['onset_std']),
+                            'bpm': float(res['bpm']),
+                            'rmseP_skew': float(res['rmseP_skew']),
+                            'rmseP_kurtosis': float(res['rmseP_kurtosis']),
+                            'rmseH_skew': float(res['rmseH_skew']),
+                            'rmseH_kurtosis': float(res['rmseH_kurtosis']),
+                            'beats_a': float(res['beats_a']),
+                            'beats_std': float(res['beats_std'])
+                        }
 
                         insertSpotifySong(row)
 
