@@ -1,4 +1,4 @@
-Mostly contains ML models for deployment, and PySpark code for distributed processing on Apache Spark cluster.
+This directory mostly contains codes for the training and deployment of ML models.
 <br>
 The code intends to comply with the PEP8 coding convention.
 
